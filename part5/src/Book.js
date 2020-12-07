@@ -13,7 +13,7 @@ export default class Book extends Component {
 
   render() {
 
-    const { img, title, author } = this.props.info;
+    const { img, title, author, id } = this.props.info;
     const {handleDelete} = this.props
     return (
       <article className="book">
@@ -21,7 +21,7 @@ export default class Book extends Component {
         <div>
           <h4>Title : {title}</h4>
           <h6>Author : {author}</h6>
-        <Button handleDelete={handleDelete}></Button>
+          <button type="button" onClick={() => handleDelete(id)}>Delete me</button>
         </div>
       </article>
     );
