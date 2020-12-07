@@ -11,7 +11,6 @@ export default class BookList extends Component {
   }
 
   handleDelete = (id) => {
-    console.log(this.state.books);
     const sortedBooks = this.state.books.filter((book) => book.id !== id);
     this.setState({
       books: sortedBooks,
