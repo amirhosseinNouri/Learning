@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import PropTypes from "prop-types";
 
-const Person = ({ name, img, age, info }) => {
+const Person = ({ person }) => {
+  const { name, img, age, info } = person;
   return (
     <article>
       <img src={img} alt="person" />
@@ -14,17 +15,25 @@ const Person = ({ name, img, age, info }) => {
 };
 
 Person.propTypes = {
+  person : PropTypes.shape({
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   age: PropTypes.number.isRequired,
+  info: PropTypes.string.isRequired,
+  })
+
 };
 
-Person.defaultProps = {
-  img : "https://randomuser.me/api/portraits/men/45.jpg",
-  name : 'james doe',
-  age : 34,
-  info : 'default info about the person'
+person,defaultProps = {
+  
 }
+
+// Person.defaultProps = {
+//   img: "https://randomuser.me/api/portraits/men/45.jpg",
+//   name: "james doe",
+//   age: 34,
+//   info: "default info about the person",
+// };
 
 class PersonList extends Component {
   state = {
@@ -46,7 +55,7 @@ class PersonList extends Component {
         name: "peter",
         age: 27,
         img: "https://randomuser.me/api/portraits/men/82.jpg",
-        info : "some info about peter"
+        info: "some info about peter",
       },
     ],
   };
@@ -55,13 +64,7 @@ class PersonList extends Component {
     return (
       <section>
         {this.state.people.map((person) => (
-          <Person
-            key={person.id}
-            name={person.name}
-            img={person.img}
-            age={person.age}
-            info={person.info}
-          ></Person>
+          <Person key={person.id} person={person}></Person>
         ))}
       </section>
     );
