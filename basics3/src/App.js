@@ -1,39 +1,54 @@
 import React, { Component } from "react";
 import "./App.css";
 
-class Form extends Component {
+class Counter extends Component {
+  state = {
+    count: 0,
+  };
 
+  handleIncrease = () => {
+    // console.log("Called first : ", this.state.count);
+    this.setState(
+      {
+        count: this.state.count + 1,
+      },
+      () => {
+        // console.log("Called second : ", this.state.count);
+      }
+    );
+    // this.setState({
+    //   count: this.state.count + 2,
+    // });
+    // console.log("Called third : ", this.state.count);
+  };
 
-  handleSubmit = event => {
-    event.preventDefault()
-    const name = this.refs.myName
-    const nameValue = name.value
-    const email = this.email.value;
+  handleDecrease = () => {
+    console.log("Called first : ", this.state.count);
+    this.setState((state,props) =>{
+      return {count : state.count - props.amount }
+    } , () => console.log("called second " , this.state.count))
+    console.log("Called third : ", this.state.count);
+  };
 
-    const pText = this.refs.myText ;
-    pText.style.color = "red"
-
-    console.log(nameValue , email , pText);
-
-  }
-
-
-  render(){
-    return(
-      <section>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text"  ref="myName" />
-          <input type="email" ref={(orange)=> this.email= orange} />
-          <button type="submit">Submit</button>
-        </form>
-        <p ref="myText">Hello world</p>
-      </section>
-    )
+  render() {
+    return (
+      <>
+        <div style={{ margin: "3rem", fontSize: "2rem" }}>
+          <button type="button" onClick={this.handleIncrease}>
+            Increase
+          </button>
+          <span style={{ margin: "3rem" }}>Count : {this.state.count}</span>
+          <button type="button" onClick={this.handleDecrease}>
+            decrease
+          </button>
+        </div>
+      </>
+    );
   }
 }
 
 export default class App extends Component {
   render() {
-    return <Form></Form>;
+    return <Counter amount="2"></Counter>;
   }
 }
