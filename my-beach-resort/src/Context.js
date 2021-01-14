@@ -1,21 +1,46 @@
 import React, { Component } from "react";
+import items from "./data";
 
 const RoomContext = React.createContext();
 
 class RoomProvider extends Component {
-    state = {
-        greeting : "hello",
-        name : "amir"
-    }
+  state = {
+    rooms: items,
+    sortedRooms: [],
+    featuredRooms: [],
+    loading: true,
+  };
+
+  componentDidMount() {
+    let rooms = this.formatData(items);
+    let featured = rooms.filter((room) => room.featured);
+    this.setState({
+      rooms,
+      sortedRooms: rooms,
+      featuredRoom: featured,
+      loading: false,
+    });
+  }
+
+  formatData(items) {
+    let tempItems = items.map((item) => {
+      let id = item.sys.id;
+      let images = item.fields.images.map((image) => image.fields.file.url);
+      let room = { ...item.fields, images };
+      return room;
+    });
+    return tempItems;
+  }
+
   render() {
-    return <RoomContext.Provider value = {{...this.state}}>
+    return (
+      <RoomContext.Provider value={{ ...this.state }}>
         {this.props.children}
-    </RoomContext.Provider>;
+      </RoomContext.Provider>
+    );
   }
 }
 
-const RoomConsumer = RoomContext.Consumer
+const RoomConsumer = RoomContext.Consumer;
 
-export {RoomProvider, RoomConsumer, RoomContext};
-
-
+export { RoomProvider, RoomConsumer, RoomContext };
