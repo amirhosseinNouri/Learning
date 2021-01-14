@@ -13,11 +13,11 @@ class RoomProvider extends Component {
 
   componentDidMount() {
     let rooms = this.formatData(items);
-    let featured = rooms.filter((room) => room.featured);
+    let featuredRooms = rooms.filter((room) => room.featured);
     this.setState({
       rooms,
       sortedRooms: rooms,
-      featuredRoom: featured,
+      featuredRooms,
       loading: false,
     });
   }
@@ -26,7 +26,7 @@ class RoomProvider extends Component {
     let tempItems = items.map((item) => {
       let id = item.sys.id;
       let images = item.fields.images.map((image) => image.fields.file.url);
-      let room = { ...item.fields, images };
+      let room = { ...item.fields, images, id };
       return room;
     });
     return tempItems;
