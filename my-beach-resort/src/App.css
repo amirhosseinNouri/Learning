@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+* {
+  margin : 0;
+  padding : 0;
+  box-sizing: border-box;
+}
+/* Globals */
+:root {
+  --primaryColor : #af9a7d;
+  --mainWhite : #fff;
+  --offWhite : #f7f7f7;
+  --mainBlack : #222;
+  --mainGray : #ececec;
+  --darkGray : #cfcfcf;
+  --mainTransition : all 0.3s linear;
+  --mainSpacing : 3px;
+  --lightShadow : 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow : 4px 10px 5xp 0px rgba(0, 0, 0, 0.5);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  padding-top : 66px;
+  color : var(--mainBlack);
+  background: var(--mainWhite);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Navbar */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar{
+  position: fixed;
+  top: 0;
+  left : 0 ;
+  width: 100%;
+  padding : 0.75rem 2rem;
+  background-color: var(--offWhite);
+  z-index: 1;
+}
+.nav-header{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+}
+.nav-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.nav-icon {
+  font-size: 1.5rem;
+  color: var(--primaryColor);
 }
 
-.App-link {
-  color: #61dafb;
+.nav-links{
+  height: 0;
+  overflow: hidden;
+  transition: var(--mainTransition);
+  list-style-type: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-links a {
+  display: block;
+  text-decoration: none;
+  padding : 1rem 0;
+  color : var(--mainBlack);
+  transition: var(--mainTransition);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: var(--mainSpacing);
+}
+.nav-links a:hover{
+  color : var(--primaryColor)
+}
+.show-nav{
+  height : 100px
+}
+@media screen and (min-width : 768px){
+  .nav-btn {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .nav-center{
+    max-width: 1170px;
+    margin : 0 auto;
+    display: flex;
+  }
+  .nav-links{
+    height: auto;
+    display: flex;
+    flex-direction: row;  
+    margin-left: 4rem;
+  }
+
+  .nav-links a{
+    margin : 0 1rem;
+    padding: 0.5rem;
   }
 }
