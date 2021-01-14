@@ -25,8 +25,27 @@ body {
   line-height: 1.4;
 }
 
-/* Navbar */
+h1{
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
 
+.btn-primary{
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--mainSpacing);
+  color : var(--mainBlack);
+  background-color : var(--primaryColor);
+  padding : 0.4rem 0.9rem;
+  border : 3xp solid var(--primaryColor);
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+
+}
+
+/* Navbar */
 .navbar{
   position: fixed;
   top: 0;
@@ -106,8 +125,43 @@ body {
   align-items: center;
   background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
 }
-
 .roomsHero{
   background-image: url("./images/room-2.jpeg");
   min-height: 60vh;
+}
+
+/* Banner */
+.banner {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.5);
+  color : var(--mainWhite);
+  padding : 2rem 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+
+}
+.banner h1 {
+  font-size : 2.5rem;
+}
+
+.banner div {
+  width: 10rem ;
+  height: 5px;
+  background-color: var(--primaryColor);
+  margin : 1.7rem auto;
+}
+
+.banner p {
+  font-size : 1.2rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 576px){
+  .banner {
+    padding : 2rem 3rem;
+  }
+  .banner h1{
+    font-size : 3rem;
+  }
 }
