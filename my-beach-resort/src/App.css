@@ -245,3 +245,15 @@ h6 {
   grid-column-gap: 40px;
 
 }
+@media screen and (min-width: 776px){
+  .featured-rooms-center{
+    width : 90vw;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
+}
+@media screen and (min-width: 992px) {
+  .featured-rooms-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
