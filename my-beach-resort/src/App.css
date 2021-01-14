@@ -231,3 +231,17 @@ h6 {
     width: 100%;
   }
 }
+
+/* Featured Rooms */
+.featured-rooms {
+  padding : 5rem 0;
+}
+.featured-rooms-center {
+  width: 80vw;
+  margin : 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-row-gap : 2rem;
+  grid-column-gap: 40px;
+
+}

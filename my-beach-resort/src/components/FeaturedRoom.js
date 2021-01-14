@@ -14,11 +14,10 @@ export default class FeaturedRoom extends Component {
     });
     return (
       <section className="featured-rooms">
-          <Title title="Featured Rooms"></Title>
-          <div className="featured-rooms-center">
-              {loading ?<Loading></Loading> : rooms }
-          </div>
-        
+        <Title title="Featured Rooms"></Title>
+        <div className="featured-rooms-center">
+          {loading ? <Loading></Loading> : rooms}
+        </div>
       </section>
     );
   }
