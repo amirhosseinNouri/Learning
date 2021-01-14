@@ -96,3 +96,18 @@ body {
     padding: 0.5rem;
   }
 }
+
+/* Hero */
+.defaultHero,
+.roomsHero{
+  min-height: calc(100vh - 66px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
+}
+
+.roomsHero{
+  background-image: url("./images/room-2.jpeg");
+  min-height: 60vh;
+}
