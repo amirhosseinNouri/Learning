@@ -54,6 +54,12 @@ h6 {
   cursor: pointer;
 }
 
+.loading {
+  text-transform: capitalize;
+  text-align: center;
+  margin-top: 3rem;
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
