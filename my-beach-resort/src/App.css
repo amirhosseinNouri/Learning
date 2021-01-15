@@ -73,10 +73,10 @@ h6 {
   text-align: center;
   margin-top: 3rem;
 }
-.error{
-  text-align : center;
-  text-transform : capitalize;
-  margin : 2rem 0;
+.error {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
 }
 
 /* Navbar */
@@ -329,15 +329,91 @@ h6 {
 .img-container:hover .price-top {
   opacity: 0;
 }
-.img-container:hover .room-link{
+.img-container:hover .room-link {
   transform: translate(-50%, -50%) scale(1);
 }
-.room-info{
-  background-color : var(--darkGray);
-  text-transform : capitalize;
-  padding : 0.5rem 0;
-  text-align : center;
-  font-weight : 700;
+.room-info {
+  background-color: var(--darkGray);
+  text-transform: capitalize;
+  padding: 0.5rem 0;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: var(--mainSpacing);
+}
+/* Single Room */
+.single-room {
+  padding: 5rem 0 0 0;
+}
+
+.single-room-images {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 50px;
+}
+
+.single-room-images img {
+  width: 100%;
+  display: block;
+}
+
+.single-room-info {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 2rem auto;
+}
+
+.desc,
+.info {
+  margin: 1rem 0;
+}
+.desc h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.desc p {
+  line-height: 1.5;
+}
+.info h3,
+.info h6 {
+  text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
 
+.info h6 {
+  font-weight: 300;
+}
+.room-extras {
+  width: 80vw;
+  margin: 0 auto 3rem auto;
+}
+.room-extras h6 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.extras {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+}
+@media screen and (min-width: 992px) {
+  .single-room-images,
+  .single-room-info,
+  .room-extras {
+    width: 95vw;
+    max-width: 1170px;
+  }
+  .single-room-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
+  }
+  .info {
+    padding-left: 3rem;
+  }
+}
