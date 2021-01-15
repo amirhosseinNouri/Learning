@@ -26,14 +26,28 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3em;
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
 }
 h4 {
   font-size: 1.2em;
   line-height: 1.25;
   margin-bottom: 1.25em;
+}
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
 }
 h6 {
   font-size: 1em;
@@ -234,20 +248,19 @@ h6 {
 
 /* Featured Rooms */
 .featured-rooms {
-  padding : 5rem 0;
+  padding: 5rem 0;
 }
 .featured-rooms-center {
   width: 80vw;
-  margin : 0 auto;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  grid-row-gap : 2rem;
+  grid-row-gap: 2rem;
   grid-column-gap: 40px;
-
 }
-@media screen and (min-width: 776px){
-  .featured-rooms-center{
-    width : 90vw;
+@media screen and (min-width: 776px) {
+  .featured-rooms-center {
+    width: 90vw;
     grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   }
 }
@@ -257,3 +270,69 @@ h6 {
     max-width: 1170px;
   }
 }
+
+/* Room */
+.room {
+  box-shadow: var(--lightShadow);
+  transition: var(--mainTransition);
+}
+.room:hover {
+  box-shadow: var(--darkShadow);
+}
+.img-container {
+  position: relative;
+}
+
+.img-container img {
+  width: 100%;
+  display: block;
+  transition: var(--mainTransition);
+}
+
+.price-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--mainWhite);
+  text-align: center;
+  padding: 0.3rem 0.6rem 0.5rem;
+  border-bottom-right-radius: 1rem;
+  font-size: 0.5rem;
+  transition: var(--mainTransition);
+}
+.price-top h6 {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: var(--mainSpacing);
+}
+
+.room-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0);
+  transition: all 0.3s linear;
+}
+.img-container:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.img-container:hover img {
+  opacity: 0.3;
+}
+.img-container:hover .price-top {
+  opacity: 0;
+}
+.img-container:hover .room-link{
+  transform: translate(-50%, -50%) scale(1);
+}
+.room-info{
+  background-color : var(--darkGray);
+  text-transform : capitalize;
+  padding : 0.5rem 0;
+  text-align : center;
+  font-weight : 700;
+  letter-spacing: var(--mainSpacing);
+}
+
