@@ -51,13 +51,39 @@ class RoomProvider extends Component {
     return tempRooms.find((item) => item.slug === slug);
   };
 
-  handelChange = (event) => {
-    const { type, name, value } = event.target;
-    console.log(type, name, value);
+  handleChange = (event) => {
+    const target = event.target;
+    const { type, name } = event.target;
+    const value = type === "checkbox" ? target.checked : target.value;
+
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.filterRooms
+    );
   };
 
   filterRooms = () => {
-    console.log("filter rooms method");
+    let {
+      rooms,
+      type,
+      capacity,
+      price,
+      minSize,
+      maxSize,
+      breakfast,
+      pets,
+    } = this.state;
+
+    let tempRooms = [...rooms];
+    if (type !== "all") {
+      tempRooms = tempRooms.filter((room) => room.type === type);
+    }
+
+    this.setState({
+      sortedRooms: tempRooms,
+    });
   };
 
   render() {
@@ -66,7 +92,7 @@ class RoomProvider extends Component {
         value={{
           ...this.state,
           getRoom: this.getRoom,
-          handelChange: this.handelChange,
+          handleChange: this.handleChange,
         }}
       >
         {this.props.children}

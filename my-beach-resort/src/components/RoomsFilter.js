@@ -37,7 +37,7 @@ export default function RoomsFilter({rooms}) {
   return (
     <section className="filter-container">
       <Title title="search rooms"></Title>
-      <from className="filter-form">
+      <form className="filter-form">
         {/* select type */}
         <div className="form-group">
           <label htmlFor="type">room type</label>
@@ -47,12 +47,13 @@ export default function RoomsFilter({rooms}) {
             value={type}
             className="form-control"
             onChange={handleChange}
+            
           >
             {types}
           </select>
         </div>
         {/* end of select type */}
-      </from>
+      </form>
     </section>
   );
 }
