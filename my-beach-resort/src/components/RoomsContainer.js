@@ -8,11 +8,10 @@ function RoomsContainer({ context }) {
   const { loading, sortedRooms, rooms } = context;
   if (loading) return <Loading></Loading>;
   return (
-    <div>
-      Rooms Container
+    <>
       <RoomsFilter rooms={rooms}></RoomsFilter>
       <RoomList rooms={sortedRooms}></RoomList>
-    </div>
+    </>
   );
 }
 
