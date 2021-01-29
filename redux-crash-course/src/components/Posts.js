@@ -4,8 +4,18 @@ export default function Posts() {
   React.useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setPosts(data));
   }, []);
 
-  return <div>Posts</div>;
+  const [posts , setPosts] = React.useState([])
+
+  
+
+
+  return posts.map((item => {
+    return <div key={item.id}>
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+    </div>
+}));
 }
