@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class PostForm extends Component {
-    render() {
-        return (
+export default function PostForm() {
+    const [title, setTitle] = React.useState()
+    return (
+        
             <div>
                 <h1>Add Post</h1>
                 <form>
@@ -19,6 +20,5 @@ export default class PostForm extends Component {
                     <button type="submit">Submit</button>
                 </form>
             </div>
-        )
-    }
+    )
 }
