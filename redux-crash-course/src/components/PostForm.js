@@ -3,10 +3,27 @@ import React from "react";
 export default function PostForm() {
   const [title, setTitle] = React.useState("");
   const [body, setBody] = React.useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const post = { title, body };
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((response) => response.json()).then((data) => console.log(data));
+
+      setTitle('')
+      setBody('')
+  };
+
   return (
     <div>
       <h1>Add Post</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label> <br />
           <input
