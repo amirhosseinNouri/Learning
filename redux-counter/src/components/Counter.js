@@ -1,13 +1,14 @@
 import React from "react";
 
 
-export default function Counter() {
+export default function Counter(props) {
 
+  const amount = props.state.count
 
   return (
     <div className="container">
       <h1>Counter</h1>
-      <p className="counter">{}</p>
+      <p className="counter">{amount}</p>
       <div className="buttons">
         <button
           type="button"

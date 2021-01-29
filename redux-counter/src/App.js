@@ -1,12 +1,22 @@
 import "./App.css";
 import Counter from "./components/Counter";
 import { Provider } from "react-redux";
-import store from './store'
+import { createStore } from "redux";
+
+const defaultState = {
+    count : 0,
+    name : "amir"
+}
+const reducer = (state = defaultState, action) =>{
+    return state
+}
+
+const store = createStore(reducer);
 
 function App() {
   return (
     <Provider store={store}>
-      <Counter></Counter>;
+      <Counter state={store.getState()}></Counter>;
     </Provider>
   );
 }
