@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function Counter({state}) {
-    const amount  =state.count
+export default function Counter() {
+
   const [count, setCount] = React.useState(0);
   return (
     <div className="container">
       <h1>Counter</h1>
-      <p className="counter">{amount}</p>
+      <p className="counter">{count}</p>
       <div className="buttons">
         <button
           type="button"
