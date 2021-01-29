@@ -1,8 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import increment from "../actions/increment";
+import decrement from "../actions/decrement";
+import reset from "../actions/reset";
 
 export default function Counter() {
+  const count = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  const [count, setCount] = React.useState(0);
+  // const [count, setCount] = React.useState(0);
   return (
     <div className="container">
       <h1>Counter</h1>
@@ -11,17 +18,17 @@ export default function Counter() {
         <button
           type="button"
           className="btn"
-          onClick={() => setCount(count - 1)}
+          onClick={() => dispatch(decrement())}
         >
           Decrease
         </button>
-        <button type="button" className="btn" onClick={() => setCount(0)}>
+        <button type="button" className="btn" onClick={() => dispatch(reset())}>
           Reset
         </button>
         <button
           type="button"
           className="btn"
-          onClick={() => setCount(count + 1)}
+          onClick={() => dispatch(increment())}
         >
           Increase
         </button>
