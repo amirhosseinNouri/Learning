@@ -1,29 +1,33 @@
 import React from "react";
+import {useSelector , useDispatch} from 'react-redux'
+import {increase , decrease , reset} from '../actions'
 
 
-export default function Counter(props) {
+function Counter() {
 
-  const amount = props.state.count
+  const dispatch = useDispatch()
+  const count = useSelector(state => state.count)
+
 
   return (
     <div className="container">
       <h1>Counter</h1>
-      <p className="counter">{amount}</p>
+      <p className="counter">{count}</p>
       <div className="buttons">
         <button
           type="button"
           className="btn"
-          onClick={() => console.log("decrease")}
+          onClick={() => dispatch(decrease)}
         >
           Decrease
         </button>
-        <button type="button" className="btn" onClick={() => console.log("reset")}>
+        <button type="button" className="btn" onClick={() => dispatch(reset)}>
           Reset
         </button>
         <button
           type="button"
           className="btn"
-          onClick={() => console.log("increase")}
+          onClick={() => dispatch(increase)}
         >
           Increase
         </button>
@@ -31,3 +35,5 @@ export default function Counter(props) {
     </div>
   );
 }
+
+export default Counter

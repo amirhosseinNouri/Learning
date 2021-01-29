@@ -6,6 +6,7 @@ import reducer from './reducers'
 
 
 
+
 const defaultState = {
   count: 0,
   name: "amir",
@@ -18,7 +19,7 @@ const store = createStore(reducer , defaultState);
 function App() {
   return (
     <Provider store={store}>
-      <Counter state={store.getState()}></Counter>;
+      <Counter></Counter>;
     </Provider>
   );
 }
