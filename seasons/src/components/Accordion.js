@@ -6,7 +6,7 @@ export default function Accordion({ items }) {
     <div>
       {items.map((item) => {
         return (
-          <div className="item" key={item.id}>
+          <div className="item" key={item.id} clas>
             <div className="title">
               <GoChevronDown></GoChevronDown>
               <h4>{item.title}</h4>

@@ -9,8 +9,11 @@
   --mainGrey: #f8f8f8;
   --mainWhite: #ffffff;
   --mainTransition: all 0.3 linear;
+  --lightGrey: rgb(46, 49, 49);
+  --mainBlack: #222222;
 }
 body {
+  color: var(--mainBlack);
   background-color: var(--mainGrey);
 }
 
@@ -26,20 +29,18 @@ body {
   min-width: 40vw;
   background-color: var(--mainWhite);
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .title {
   display: flex;
 }
 
-.title svg {
-  cursor: pointer;
-}
-
 .title h4 {
   margin-bottom: 0.8rem;
-  cursor: pointer;
   margin-left: 0.5rem;
 }
 .content {
+  font-size: 0.9rem;
+  color: var(--lightGrey);
 }
