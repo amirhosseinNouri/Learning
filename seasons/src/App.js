@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import './App.css';
 import SeasonDisplay from './components/SeasonDisplay'
+import loadingGif from './images/35.gif'
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,9 @@ class App extends Component {
 
   render() {
     if(this.state.loading){
-      return <h1>Loading</h1>
+      return <div className="center">
+        <img src={loadingGif} alt=""/>
+      </div>
     }
     return (
       <SeasonDisplay lat={this.state.lat}></SeasonDisplay>
