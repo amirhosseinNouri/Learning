@@ -6,12 +6,12 @@
 
 :root {
   --primaryColor: #487eb0;
-  --mainGrey : 	#F9F9F9;
-  --mainWhite : #ffffff;
-  --mainTransition : all 0.3 linear;
+  --mainGrey: #f9f9f9;
+  --mainWhite: #ffffff;
+  --mainTransition: all 0.3 linear;
 }
 body {
-  background-color : var(--mainGrey);
+  background-color: var(--mainGrey);
 }
 
 .center {
@@ -19,29 +19,16 @@ body {
   width: 100vw;
   margin: 0 auto;
 }
-
-form {
-  margin-bottom: 2rem;
-  border : 1px solid #ccc ;
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 5px;
-  background-color: var(--mainWhite);
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding: 2rem;
+  gap: 1rem;
+  grid-auto-rows: 200px;
 }
 
-form input {
+.list img {
+  display: block;
   width: 100%;
-  display: block;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  outline: none;
-}
-
-form input:focus {
-  border: none;
-  outline: 3px solid var(--primaryColor);
-}
-
-form label {
-  display: block;
-  margin-bottom: 0.8rem;
+  border : 1px solid #ccc ;
 }

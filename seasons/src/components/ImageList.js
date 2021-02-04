@@ -1,11 +1,20 @@
-import React, { Component } from 'react'
+import React from "react";
+import ImageCard from "./ImageCard";
 
-export default class ImageList extends Component {
-    render() {
+const ImageList = ({ images }) => {
+  return (
+    <div className="list">
+      {images.map((item) => {
+        const url = item.urls.regular;
         return (
-            <div>
-                Image list
-            </div>
-        )
-    }
-}
+          <ImageCard
+            desc={item.description}
+            image={url}
+            key={item.id}
+          ></ImageCard>
+        );
+      })}
+    </div>
+  );
+};
+export default ImageList;
