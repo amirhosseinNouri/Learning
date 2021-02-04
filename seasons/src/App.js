@@ -5,7 +5,7 @@ import SeasonDisplay from './components/SeasonDisplay'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { lat: null, errorMessage: "" };
+    this.state = { lat: null, errorMessage: ""  , loading : true};
   }
 
   componentDidMount() {
@@ -13,6 +13,8 @@ class App extends Component {
       (position) => {
         this.setState({
           lat: position.coords.latitude,
+        } , () =>{
+          this.setState({loading : false})
         });
       },
       (err) => {
@@ -24,6 +26,9 @@ class App extends Component {
   }
 
   render() {
+    if(this.state.loading){
+      return <h1>Loading</h1>
+    }
     return (
       <SeasonDisplay lat={this.state.lat}></SeasonDisplay>
     );
