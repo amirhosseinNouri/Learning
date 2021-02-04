@@ -6,16 +6,26 @@
 
 :root {
   --primaryColor: #487eb0;
+  --mainGrey : 	#F8F8F8;
+  --mainWhite : #ffffff;
+  --mainTransition : all 0.3 linear;
+}
+body {
+  background-color : var(--mainGrey);
 }
 
 .center {
   padding: 2rem;
-  width: 90vw;
+  width: 100vw;
   margin: 0 auto;
 }
 
 form {
   margin-bottom: 2rem;
+  border : 1px solid #ccc ;
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 5px;
+  background-color: var(--mainWhite);
 }
 
 form input {
