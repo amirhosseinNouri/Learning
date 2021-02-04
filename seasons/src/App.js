@@ -7,7 +7,7 @@ import items from './Items'
 
 export default function App() {
   return (
-    <div>
+    <div className="center">
       <Accordian items={items}></Accordian>
     </div>
   );
