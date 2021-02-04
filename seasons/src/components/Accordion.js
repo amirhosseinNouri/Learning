@@ -11,7 +11,7 @@ export default function Accordion({ items }) {
       {items.map((item) => {
         return (
           <div
-            className="item"
+          className={activeIndex === item.id ? "item item-show" : "item"}
             key={item.id}
             onClick={() => {
               handleClick(item.id);
@@ -21,7 +21,7 @@ export default function Accordion({ items }) {
               <GoChevronDown></GoChevronDown>
               <h4>{item.title}</h4>
             </div>
-            <div className="content">{item.content}</div>
+            <div className={activeIndex === item.id ? "content content-show" : "content"}>{item.content}</div>
           </div>
         );
       })}

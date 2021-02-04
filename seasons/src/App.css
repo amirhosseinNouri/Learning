@@ -8,7 +8,7 @@
   --primaryColor: #487eb0;
   --mainGrey: #f8f8f8;
   --mainWhite: #ffffff;
-  --mainTransition: all 0.3 linear;
+  --mainTransition: all 0.3s linear;
   --lightGrey: rgb(46, 49, 49);
   --mainBlack: #222222;
 }
@@ -30,6 +30,12 @@ body {
   background-color: var(--mainWhite);
   border-radius: 5px;
   cursor: pointer;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--mainTransition);
+
 }
 
 .title {
@@ -37,10 +43,18 @@ body {
 }
 
 .title h4 {
-  margin-bottom: 0.8rem;
   margin-left: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 .content {
   font-size: 0.9rem;
   color: var(--lightGrey);
+  display: none;
+}
+
+.content-show {
+  display: block;
+}
+.item-show{
+  min-height: 25vh;
 }
