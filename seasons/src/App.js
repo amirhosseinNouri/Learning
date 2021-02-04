@@ -1,14 +1,18 @@
 import { Component } from "react";
 import "./App.css";
+import SearchBar from "./components/SearchBar";
+import ImageList from "./components/ImageList";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { lat: null, errorMessage: "", loading: true };
   }
 
   render() {
-    return <div>app</div>;
+    return <div className="center">
+      <SearchBar></SearchBar>
+      <ImageList></ImageList>
+    </div>
   }
 }
 

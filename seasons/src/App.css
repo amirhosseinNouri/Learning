@@ -1,29 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primaryColor: #487eb0;
+}
+
 .center {
-  display: grid;
-  place-items: center;
-  height: 100vh;
+  padding: 2rem;
   width: 90vw;
   margin: 0 auto;
 }
 
-.icon {
-  width: 90vw;
-  display: flex;
-}
-.icon svg {
-  font-size: 10rem;
-}
-.icon--top {
-  justify-content: flex-start;
-}
-.icon--bottom {
-  justify-content: flex-end;
-  /* border : 1px solid green  */
+form {
+  margin-bottom: 2rem;
 }
 
-.sun {
-  color: #F7CA18;
+form input {
+  width: 100%;
+  display: block;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  outline: none;
 }
-.snow {
-  color: darkturquoise;
+
+form input:focus {
+  border: none;
+  outline: 3px solid var(--primaryColor);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.8rem;
 }
