@@ -6,7 +6,7 @@
 
 :root {
   --primaryColor: #487eb0;
-  --mainGrey: #f9f9f9;
+  --mainGrey: #F9F99F9;
   --mainWhite: #ffffff;
   --mainTransition: all 0.3 linear;
 }
@@ -19,16 +19,44 @@ body {
   width: 100vw;
   margin: 0 auto;
 }
+
+form {
+  margin-bottom: 2rem;
+  border: 1px solid #ccc;
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 5px;
+  background-color: var(--mainWhite);
+}
+
+form input {
+  width: 100%;
+  display: block;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  outline: none;
+}
+
+form input:focus {
+  border: none;
+  outline: 3px solid var(--primaryColor);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   padding: 2rem;
-  gap: 1rem;
-  grid-auto-rows: 200px;
+  gap: 0;
+  grid-auto-rows: 10px;
 }
 
 .list img {
-  display: block;
-  width: 100%;
-  border : 1px solid #ccc ;
+  /* display: block; */
+  width: 250px;
+  border: 1px solid #ccc;
+  grid-row-end: span 2;
 }
