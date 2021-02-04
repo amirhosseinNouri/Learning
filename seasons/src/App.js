@@ -8,9 +8,14 @@ class App extends Component {
     super(props);
   }
 
+  onSearchSubmit(term){
+    console.log(term);
+
+  }
+
   render() {
     return <div className="center">
-      <SearchBar></SearchBar>
+      <SearchBar onSubmit={this.onSearchSubmit}></SearchBar>
       <ImageList></ImageList>
     </div>
   }
