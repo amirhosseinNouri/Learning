@@ -6,7 +6,7 @@
 
 :root {
   --primaryColor: #487eb0;
-  --mainGrey: #F9F99F9;
+  --mainGrey: #f8f8f8;
   --mainWhite: #ffffff;
   --mainTransition: all 0.3 linear;
 }
@@ -20,3 +20,26 @@ body {
   margin: 0 auto;
 }
 
+.item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-width: 40vw;
+  background-color: var(--mainWhite);
+  border-radius: 5px;
+}
+
+.title {
+  display: flex;
+}
+
+.title svg {
+  cursor: pointer;
+}
+
+.title h4 {
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+.content {
+}
