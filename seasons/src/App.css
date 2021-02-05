@@ -108,3 +108,34 @@ body {
   color: var(--primaryColor);
   background-color: var(--mainWhite);
 }
+
+.options {
+  border : 1px solid #ccc; 
+  padding : 0.5rem;
+  transition: var(--mainTransition);
+}
+.options__item{
+  margin-top : 0.7rem;
+  display: none;
+  overflow: hidden;
+  transition: var(--mainTransition);
+  cursor: pointer;
+user-select: none;
+font-size : 0.9rem;
+}
+.selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.show {
+  display: block;
+  overflow: visible;
+}
+.selected__result {
+  margin-top : 2rem;
+  padding : 1rem;
+  text-align: center;
+}
