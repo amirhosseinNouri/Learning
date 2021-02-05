@@ -1,16 +1,23 @@
 import React from "react";
 import { GoChevronDown } from "react-icons/go";
 
-export default function Dropdown({ options }) {
+export default function Dropdown({ options, open, setOpen }) {
   const [selected, setSelected] = React.useState({ label: "Select a color" });
-  const [open, setOpen] = React.useState(false);
   const ref = React.useRef();
 
   React.useEffect(() => {
-    document.addEventListener("click", (e) => {
-
-      if (!ref.current.contains(e.target)) setOpen(false);
-    });
+    console.log("use effect");
+    const onBodyClick = (e) => {
+      document.body.removeEventListener("click", onBodyClick);
+      return;
+      if (!ref.current) {
+      }
+      if (ref.current.contains(e.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.body.addEventListener("click", onBodyClick);
   }, []);
   const itemsClassName = open ? "options__item show" : "options__item";
 
