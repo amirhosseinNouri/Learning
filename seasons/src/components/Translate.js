@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DropDown from "./Dropdown";
+import Convet from './Convert'
 
 const options = [
   { label: "Afrikaans", value: "af" },
@@ -25,7 +26,9 @@ export default function Translate() {
         options={options}
         open={language}
         setOpen={setLanguage}
+        title="Select a language"
       ></DropDown>
+      <Convet text={text} language={language}></Convet>
     </div>
   );
 }

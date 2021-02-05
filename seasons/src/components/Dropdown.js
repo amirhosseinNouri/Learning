@@ -1,8 +1,10 @@
 import React from "react";
 import { GoChevronDown } from "react-icons/go";
 
-export default function Dropdown({ options, open, setOpen  , title }) {
-  const [selected, setSelected] = React.useState({ label: "Select a color" });
+export default function Dropdown({ options, open, setOpen, title }) {
+  const [selected, setSelected] = React.useState({
+    label: "Select a language",
+  });
   const ref = React.useRef();
 
   React.useEffect(() => {
