@@ -30,11 +30,11 @@ body {
   background-color: var(--mainWhite);
   border-radius: 5px;
   cursor: pointer;
-  min-height: 20vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: var(--mainTransition);
+
 
 }
 
@@ -58,3 +58,24 @@ body {
 .item-show{
   min-height: 25vh;
 }
+.search__control input{
+  display: block;
+  width: 100%;
+  height: 35px;
+  border :1px solid #ccc;
+  outline: none;
+  padding : 0 0.7rem;
+  
+}
+.search__control input:focus{
+
+  border :none;
+  outline : 3px solid var(--primaryColor);
+
+  
+}
+.search__control label{
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
