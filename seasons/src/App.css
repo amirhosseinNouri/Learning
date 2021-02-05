@@ -113,6 +113,7 @@ body {
   border : 1px solid #ccc; 
   padding : 0.5rem;
   transition: var(--mainTransition);
+  box-shadow: 3px 5px 5px 0 rgba(0,0,0,0.3);
 }
 .options__item{
   margin-top : 0.7rem;
@@ -129,6 +130,7 @@ font-size : 0.9rem;
   align-items: center;
   cursor: pointer;
   letter-spacing: 1px;
+  user-select: none;
 }
 .show {
   display: block;
