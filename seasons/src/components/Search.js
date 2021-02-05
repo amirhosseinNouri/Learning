@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 export default function Search() {
   const [term, setTerm] = useState("car");
-  const [results , setResults] = useState([])
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     const search = async () => {
-      const {data} = await axios.get("https://en.wikipedia.org/w/api.php", {
+      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
         params: {
           action: "query",
           list: "search",
@@ -16,12 +17,16 @@ export default function Search() {
           srsearch: term,
         },
       });
-      setResults(data.query.search)
+      setResults(data.query.search);
       console.log(results);
     };
-    if(term){
-        search();
-
+    const timeoutId = setTimeout(() =>{
+        if (term) {
+            search()
+          }
+    } , 500)
+    return () =>{
+        clearTimeout(timeoutId)
     }
   }, [term]);
   return (
@@ -36,6 +41,23 @@ export default function Search() {
           onChange={(e) => setTerm(e.target.value)}
         />
       </div>
+
+      {results.map((item) => {
+        return (
+          <div className="result" key={item.pageid}>
+            <div className="result__title">
+              {item.title}
+              <a
+                className="go-link"
+                href={`https://en.wikipedia.org?curid=${item.pageid}`}
+              >
+                Go
+              </a>
+            </div>
+            <div className="result__snippet">{item.snippet}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }
