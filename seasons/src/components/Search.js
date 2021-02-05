@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 export default function Search() {
   const [term, setTerm] = useState("car");
   const [results, setResults] = useState([]);
@@ -20,13 +19,17 @@ export default function Search() {
       setResults(data.query.search);
       console.log(results);
     };
-    const timeoutId = setTimeout(() =>{
+    if (term && !results.length) {
+      search();
+    } else {
+      const timeoutId = setTimeout(() => {
         if (term) {
-            search()
-          }
-    } , 500)
-    return () =>{
-        clearTimeout(timeoutId)
+          search();
+        }
+      }, 500);
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [term]);
   return (
@@ -54,7 +57,7 @@ export default function Search() {
                 Go
               </a>
             </div>
-            <div className="result__snippet">{item.snippet}</div>
+            <div className="result__snippet" dangerouslySetInnerHTML={{__html: item.snippet}}></div>
           </div>
         );
       })}
