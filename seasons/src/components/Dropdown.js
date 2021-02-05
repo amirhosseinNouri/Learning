@@ -52,7 +52,7 @@ export default function Dropdown({ options, open, setOpen  , title }) {
         className="selected__result"
         style={{ backgroundColor: `${selected.value}` }}
       >
-        Selected Color : {selected.label}
+        {selected.label}
       </h3>
     </>
   );
