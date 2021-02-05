@@ -6,11 +6,10 @@ export default function Dropdown({ options, open, setOpen }) {
   const ref = React.useRef();
 
   React.useEffect(() => {
-    console.log("use effect");
     const onBodyClick = (e) => {
-      document.body.removeEventListener("click", onBodyClick);
-      return;
       if (!ref.current) {
+        document.body.removeEventListener("click", onBodyClick);
+        return;
       }
       if (ref.current.contains(e.target)) {
         return;
