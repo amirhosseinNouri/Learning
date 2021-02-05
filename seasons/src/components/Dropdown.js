@@ -1,7 +1,7 @@
 import React from "react";
 import { GoChevronDown } from "react-icons/go";
 
-export default function Dropdown({ options, open, setOpen }) {
+export default function Dropdown({ options, open, setOpen  , title }) {
   const [selected, setSelected] = React.useState({ label: "Select a color" });
   const ref = React.useRef();
 
@@ -25,7 +25,7 @@ export default function Dropdown({ options, open, setOpen }) {
   };
   return (
     <>
-      <h3>Select a color</h3>
+      <h3>{title}</h3>
 
       <div className="options" ref={ref}>
         <div className="selected" onClick={toggleDropDown}>
