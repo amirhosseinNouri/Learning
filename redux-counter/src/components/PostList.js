@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
 
 function PostList() {
-  useEffect(fetchPosts, []);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   return <div>Post List</div>;
 }
 
