@@ -51,3 +51,16 @@ body {
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 1rem;
 }
+
+.container {
+    padding-top : 1rem;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin : 0 auto ;
+}
+
+.detail {
+    max-width: 50vw;
+    padding : 1rem;
+}

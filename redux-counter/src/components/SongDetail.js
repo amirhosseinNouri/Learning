@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
+
 function SongDetail({ selected }) {
-  console.log(selected);
+
   if (!selected) {
-    return <h2>Please Select A Song</h2>;
+    return <section className="detail">
+        <h2>Please Select A Song</h2>
+    </section>;
   }
   return (
     <section className="detail">
       <h2>Song Details:</h2>
-      <p>{selected.title}</p>
-      <p>{selected.duration}</p>
+      <p>Title : {selected.title}</p>
+      <p>Duration : {selected.duration}</p>
     </section>
   );
 }
