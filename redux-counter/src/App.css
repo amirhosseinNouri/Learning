@@ -17,12 +17,37 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-    font-family:"Catamaran", sans-serif ;
-    color : var(--mainBlack);
-    
+  font-family: "Catamaran", sans-serif;
+  color: var(--mainBlack);
+}
+.btn {
+  padding: 0.4rem 0.8rem;
+  color : var(--mainWhite);
+  background-color: var(--primaryColor);
+  border : 1px solid var(--primaryColor);
+  outline: none;
+  transition: var(--mainTransition);
+}
+.btn:hover {
+    color : var(--primaryColor);
+    background-color: var(--mainWhite);
+}
+
+.song__list {
+  max-width: 50vw;
+  padding: 1rem;
+}
+
+.song {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 1rem;
 }
