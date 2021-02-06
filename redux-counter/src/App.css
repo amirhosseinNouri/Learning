@@ -58,19 +58,3 @@ h6{
     background-color: var(--mainBlack);
     color : var(--mainWhite);
 }
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.counter {
-    font-size: 10rem;
-}
-.container{
-    text-align: center;
-    width: 85vw;
-    max-width: var(--maxWidth);
-}
-.container h1{
-    font-size: 3rem;
-}
