@@ -1,11 +1,8 @@
 import "./App.css";
-
-
+import SongList from "./components/SongList";
 
 function App() {
-  return (
-    <div>App</div>
-  );
+  return <SongList></SongList>;
 }
 
 export default App;
