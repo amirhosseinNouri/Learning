@@ -1,22 +1,33 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
+import { AiOutlineUser } from "react-icons/ai";
 
-function PostList({ posts , fetchPosts }) {
+function PostList({ posts, fetchPosts }) {
   console.log(posts);
 
   useEffect(() => {
-
-      fetchPosts()
+    fetchPosts();
   }, []);
-  return <div>Post List</div>;
+  return (
+    <section className="postlist">
+      {posts.map((item) => {
+        return (
+          <article key={item.id} className="item">
+            <div className="item__top">
+              <AiOutlineUser className="item__icon"></AiOutlineUser>
+              <h4>{item.title}</h4>
+            </div>
+            <div className="item__bottom">{item.body}</div>
+          </article>
+        );
+      })}
+    </section>
+  );
 }
 
 const mapStateToProps = (state) => {
   return { posts: state.posts };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchPosts }
-)(PostList);
+export default connect(mapStateToProps, { fetchPosts })(PostList);

@@ -27,15 +27,15 @@ body {
 }
 .btn {
   padding: 0.4rem 0.8rem;
-  color : var(--mainWhite);
+  color: var(--mainWhite);
   background-color: var(--primaryColor);
-  border : 1px solid var(--primaryColor);
+  border: 1px solid var(--primaryColor);
   outline: none;
   transition: var(--mainTransition);
 }
 .btn:hover {
-    color : var(--primaryColor);
-    background-color: var(--mainWhite);
+  color: var(--primaryColor);
+  background-color: var(--mainWhite);
 }
 
 .song__list {
@@ -53,14 +53,35 @@ body {
 }
 
 .container {
-    padding-top : 1rem;
-    max-width: 500px;
-    display: flex;
-    justify-content: space-between;
-    margin : 0 auto ;
+  padding-top: 1rem;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 
 .detail {
-    max-width: 50vw;
-    padding : 1rem;
+  max-width: 50vw;
+  padding: 1rem;
+}
+
+.postlist {
+  padding: 1rem;
+}
+.item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.item__top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.item__top h4 {
+  margin-left: 1rem;
+}
+.item__top .item__icon {
+  font-size: 2rem;
+}
+.item__bottom {
 }
