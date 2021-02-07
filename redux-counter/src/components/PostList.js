@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
 import { AiOutlineUser } from "react-icons/ai";
+import UserHeader from './UserHeader'
 
 function PostList({ posts, fetchPosts }) {
   console.log(posts);
@@ -19,6 +20,7 @@ function PostList({ posts, fetchPosts }) {
               <h4>{item.title}</h4>
             </div>
             <div className="item__bottom">{item.body}</div>
+            <UserHeader id={item.userId}></UserHeader>
           </article>
         );
       })}
