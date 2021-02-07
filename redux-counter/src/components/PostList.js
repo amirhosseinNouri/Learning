@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPosts } from "../actions";
+import { fetchPostsAndUsers } from "../actions";
 import { AiOutlineUser } from "react-icons/ai";
 import UserHeader from './UserHeader'
 
-function PostList({ posts, fetchPosts }) {
-  console.log(posts);
-
+function PostList({ posts, fetchPostsAndUsers }) {
   useEffect(() => {
-    fetchPosts();
+    fetchPostsAndUsers();
   }, []);
   return (
     <section className="postlist">
@@ -32,4 +30,4 @@ const mapStateToProps = (state) => {
   return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPostsAndUsers })(PostList);
