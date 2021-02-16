@@ -7,24 +7,27 @@
 }
 
 .container {
-  display: grid;
   border: 3px solid #222;
-  grid-template: 100px auto 100px / 3fr 7fr;
-  gap: 1rem;
-  grid-template-areas:
-    "header header"
-    "sidebar main"
-    "footer footer";
-  height: 100vh;
+  display: grid;
+  gap: 0.5rem;
+
+  grid-template: repeat(2, 300px) / 1fr 1fr;
 }
 .box {
-  background-color: teal;
+  background-color: chocolate;
+  border: 1px solid #222;
+  width: 33%;
 }
 
-.box-1 {
-  grid-column: 1 / span 2;
-  grid-row: 1;
-  /* start / end  */
-  /* row column */
-  grid-area: header;
+.up {
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.box--long--left {
+  background-color: gray;
+}
+.box--long--right {
+  background-color: teal;
 }
