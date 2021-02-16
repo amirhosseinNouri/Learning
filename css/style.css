@@ -7,27 +7,39 @@
 }
 
 .container {
-  border: 3px solid #222;
-  display: grid;
-  gap: 0.5rem;
-
-  grid-template: repeat(2, 300px) / 1fr 1fr;
-}
-.box {
-  background-color: chocolate;
-  border: 1px solid #222;
-  width: 33%;
-}
-
-.up {
-  grid-column: 1 / 3;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.box--long--left {
-  background-color: gray;
-}
-.box--long--right {
+.box {
   background-color: teal;
+  padding: 1rem;
+}
+.box:nth-last-of-type(2) {
+  background-color: tomato;
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    flex-direction: row;
+  }
+  .box{
+      background-color: black;
+  }
+}
+
+@media print {
+    body {
+        font-size : 12pt;
+    }
+
+    .box {
+        padding : 0.5cm;
+    }
 }
