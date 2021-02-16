@@ -1,4 +1,4 @@
-# react_learning
+# Learning
 
 ## My path to learn React:
 
