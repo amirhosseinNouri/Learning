@@ -1,5 +1,6 @@
 .box{
     width: 200px;
     height: 200px;
- background: radial-gradient(circle at top left, #222, #ccc);
+ background: tomato;
+ box-shadow: 0 0 30px grey;
 }
