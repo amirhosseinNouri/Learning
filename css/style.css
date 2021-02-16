@@ -7,24 +7,24 @@
 }
 
 .container {
-    border : 3px solid grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    background-color: #f8f8f8;
-
+  display: grid;
+  border: 3px solid #222;
+  grid-template: 100px auto 100px / 3fr 7fr;
+  gap: 1rem;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  height: 100vh;
 }
-
 .box {
-    flex-basis: 15rem;
-    flex-shrink: 1;
-    flex-grow: 1;
-    width: 5rem;
-    height: 5rem;
-    background-color: teal;
-    margin: 1rem;
+  background-color: teal;
 }
-.box-1{
-    flex-shrink: 0;
+
+.box-1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  /* start / end  */
+  /* row column */
+  grid-area: header;
 }
