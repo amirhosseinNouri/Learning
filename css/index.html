@@ -8,20 +8,10 @@
     <title>Document</title>
   </head>
   <body>
-    <img
-      class="meal"
-      src="./images/meal.jpg"
-      alt=""
-      srcset="
-        ./images/meal.jpg     400w,
-        ./images/meal@2x.jpg  800w,
-        ./images/meal@3x.jpg 1200w
-      "
-      sizes="
-      (max-width : 500px) 100vw,
-      (max-width : 700px) 50vw,
-      33vw
-      "
-    />
+    <picture>
+        <source media="(max-width : 500px)" srcset="images/meal-cropped.jpg">
+        <source media="(min-width : 501px)" srcset="images/meal.jpg">
+            <img src="./images/meal.jpg" alt="">
+    </picture>
   </body>
 </html>
