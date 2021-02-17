@@ -39,7 +39,7 @@ body {
 
 .meal{
   transition: all 0.3s linear;
-  width: 400px;
+  
 }
 
 .meal:hover{
