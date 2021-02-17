@@ -24,7 +24,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 1px;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
 
 }
 
@@ -37,30 +37,42 @@ body {
   box-sizing: border-box;
 }
 
-
-h1{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 4.2rem;
-  margin-top: 3rem 0 1rem 0;
-  letter-spacing: -1px;
+.meal{
+  width: 100vw;
 }
 
-h2{
-  font-size: 3.15rem;
-  margin-top: 1rem;
+
+.bg-dishes
+{
+background:url('../images/css-sprite-combined.png') 0px -0px;
+width:100px;height:100px;
+display:inline-block;
 }
 
-@media screen and (min-width : 400px){
-  html{
-    font-size: 130%;
-  }
+.bg-landing
+{
+background:url('../images/css-sprite-combined.png') -100px -0px;
+width:100px;height:100px;
+display:inline-block;
 }
 
-p{
-  font-weight: normal;
-  font-style: italic;
-  font-size: 1rem;
-  color : #333;
-  width: 50ch;
+.bg-rocketship
+{
+background:url('../images/css-sprite-combined.png') -200px -0px;
+width:100px;height:100px;
+display:inline-block;
 }
 
+.bg-saturn
+{
+background:url('../images/css-sprite-combined.png') -300px -0px;
+width:100px;height:100px;
+display:inline-block;
+}
+
+.bg-ufo
+{
+background:url('../images/css-sprite-combined.png') -400px -0px;
+width:100px;height:100px;
+display:inline-block;
+}
