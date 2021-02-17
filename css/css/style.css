@@ -38,7 +38,13 @@ body {
 }
 
 .meal{
-  width: 100vw;
+  transition: all 0.3s linear;
+  width: 400px;
+}
+
+.meal:hover{
+  
+  filter: grayscale(70%) blur(3px);
 }
 
 
