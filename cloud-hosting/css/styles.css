@@ -120,3 +120,34 @@ a {
     font-size: 1.2rem;
   }
 }
+
+/* Lists */
+.list {
+  list-style: none;
+  padding-left: 0;
+  color: var(--color-headings);
+}
+
+.list__item {
+  margin-right: 2rem;
+}
+
+.list--tick {
+  list-style-image: url("../images/icons/tick.svg");
+  padding-left: 3rem;
+}
+
+.list--tick .list__item {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.list--inline .list__item {
+  display: inline-block;
+}
+
+@media screen and (min-width: 1024px) {
+  .list--tick .list__item {
+    padding-left: 0;
+  }
+}
