@@ -1,84 +1,71 @@
-html{
+html {
   /* font-size: 62.5%; */
 }
 
 @font-face {
-  font-family: 'opensans';
-  src: url('./fonts/opan-sans/opensans-regular-webfont.woff2') format('woff2'),
-       url('./fonts/opan-sans/opensans-regular-webfont.woff') format('woff');
+  font-family: "opensans";
+  src: url("./fonts/opan-sans/opensans-regular-webfont.woff2") format("woff2"),
+    url("./fonts/opan-sans/opensans-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: optional;
-
 }
 @font-face {
-  font-family: 'opensans';
-  src: url('./fonts/opan-sans/opensans-bold-webfont.woff2') format('woff2'),
-       url('./fonts/opan-sans/opensans-bold-webfont.woff') format('woff');
+  font-family: "opensans";
+  src: url("./fonts/opan-sans/opensans-bold-webfont.woff2") format("woff2"),
+    url("./fonts/opan-sans/opensans-bold-webfont.woff") format("woff");
   font-weight: bold;
   font-style: normal;
-
 }
 body {
-  font-family:  'opensans' ,Arial , Helvetica , sans-serif ;
-  font-size: 1rem;
+  font-family: "opensans", Arial, Helvetica, sans-serif;
   line-height: 1.5;
-  letter-spacing: 1px;
-
-
+  padding : 1rem;
 }
-
-
 
 *,
 *::before,
 *::after {
-  
   box-sizing: border-box;
 }
 
-.meal{
+label {
+  display: block;
+}
+
+input {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem 0.7rem;
   transition: all 0.3s linear;
+}
+
+button {
+  background-color: tomato;
+  color : #fff;
+  border : 1px solid tomato;
+  padding : 0.5rem 0.7rem;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
   
 }
 
-.meal:hover{
-  
-  filter: grayscale(70%) blur(3px);
+
+input:focus {
+  border-color: #7db0fb;
+  box-shadow: 0 0 0 4px rgba(24,117, 255, 0.25);
+  outline: none;
 }
 
-
-.bg-dishes
-{
-background:url('../images/css-sprite-combined.png') 0px -0px;
-width:100px;height:100px;
-display:inline-block;
+.form-group {
+  margin-bottom: 1rem;
 }
 
-.bg-landing
-{
-background:url('../images/css-sprite-combined.png') -100px -0px;
-width:100px;height:100px;
-display:inline-block;
+.nav-bar{
+
 }
 
-.bg-rocketship
-{
-background:url('../images/css-sprite-combined.png') -200px -0px;
-width:100px;height:100px;
-display:inline-block;
-}
+.navBar {
 
-.bg-saturn
-{
-background:url('../images/css-sprite-combined.png') -300px -0px;
-width:100px;height:100px;
-display:inline-block;
-}
-
-.bg-ufo
-{
-background:url('../images/css-sprite-combined.png') -400px -0px;
-width:100px;height:100px;
-display:inline-block;
 }
