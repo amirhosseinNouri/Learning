@@ -4,6 +4,8 @@
   --color-headings: #1b0760;
   --color-primary: #2584ff;
   --color-secondary: #00d9ff;
+  --color-border: #ccc;
+  --border-radius: 30px;
 }
 
 *,
@@ -189,7 +191,7 @@ a {
   text-align: center;
   text-transform: capitalize;
   white-space: nowrap;
-  margin : 1rem 0;
+  margin: 1rem 0;
 }
 
 .btn--primary {
@@ -225,40 +227,57 @@ a {
 }
 
 .btn--outline {
-    border : 2px solid var(--color-headings);
-    background-color: #fff;
-    color : var(--color-headings);
+  border: 2px solid var(--color-headings);
+  background-color: #fff;
+  color: var(--color-headings);
 }
 
 .btn--outline:hover {
-    background-color: var(--color-headings);
-    color : #fff;
-
+  background-color: var(--color-headings);
+  color: #fff;
 }
 
 @media screen and (min-width: 1024px) {
-    .btn{
-        font-size: 1.5rem;
-    }
+  .btn {
+    font-size: 1.5rem;
+  }
 }
 
 /* Input */
 .input {
-    border : 1px solid #ccc;
-    border-radius: 30px;
-    box-shadow: 0 0 20px 10px #f3f3f3;
-    color : var(--color-headings);
-    font-size: 2rem;
-    outline: none;
-    padding : 1.5rem  3.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-headings);
+  font-size: 2rem;
+  outline: none;
+  padding: 1.5rem 3.5rem;
 }
 
-::placeholder{
-    color : #cdcdb7;
+::placeholder {
+  color: #cdcdb7;
 }
 
-@media screen and (min-width : 1024px){
-    .input{
-        font-size: 1.5rem;
-    }
+.input-group {
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 20px 10px #f3f3f3;
+  color: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group .input {
+  border: 0;
+  flex-grow: 1;
+  width: 0;
+  padding: 1.5rem 1rem;
+}
+
+.input-group .btn {
+  margin: 4px;
+}
+
+@media screen and (min-width: 1024px) {
+  .input {
+    font-size: 1.5rem;
+  }
 }
