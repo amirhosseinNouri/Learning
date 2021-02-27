@@ -6,22 +6,19 @@ export default function App() {
 
   const handleSearchClick = async (e) => {
     e.preventDefault();
-    console.log("enter");
+    if(!query) return
     const data = await fetchWeather(query);
     console.log(data);
   };
   return (
     <div className="main-container">
-      <form>
+      <form onSubmit={handleSearchClick}>
         <input
           type="text"
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={handleSearchClick} type="submit">
-          Submit
-        </button>
       </form>
     </div>
   );
