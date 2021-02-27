@@ -12,16 +12,14 @@ export default function SearchBar() {
   };
 
   return (
-    <section className="searchbar">
-      <form onSubmit={handleSearchClick}>
-        <input
+    <form onSubmit={handleSearchClick}>
+      <input
         className="searchbar__input"
-          type="text"
-          placeholder="Search..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </form>
-    </section>
+        type="text"
+        placeholder="Search..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+    </form>
   );
 }

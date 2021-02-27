@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
 *,
 *::after,
 *::before {
@@ -6,4 +8,38 @@
   padding: 0;
 }
 
+html {
+  font-size: 62.5%;
+}
 
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  background: url("./images/bg.webp") no-repeat center/cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar__input {
+  border: none;
+  outline: none;
+  padding: 2rem 7rem;
+  text-align: center;
+  border-radius: 30px;
+  font-size: 1.7rem;
+}
+
+.searchbar__input::placeholder {
+  font-size: 1.7rem;
+}
+
+@media screen and (min-width: 768px) {
+  .searchbar__input {
+    padding: 2rem 9rem;
+  }
+}
