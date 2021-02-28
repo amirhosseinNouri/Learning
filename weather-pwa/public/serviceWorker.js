@@ -31,3 +31,22 @@ self.addEventListener("fetch", (event) => {
       )
   );
 });
+
+/*
+    Activatation
+    Clear data that we don't need to cache from it.
+*/
+self.addEventListener("activate", (event) => {
+  const cacheWhiteList = [];
+  cacheWhiteList.push(CACHE_NAME);
+
+  event.waitUntil(
+    caches.keys().then((cacheNames) =>
+      cacheNames.map((cacheName) => {
+        if (!cacheWhiteList.includes(cacheName)) {
+          return caches.delete(cacheName);
+        }
+      })
+    )
+  );
+});
