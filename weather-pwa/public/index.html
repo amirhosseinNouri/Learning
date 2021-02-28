@@ -10,14 +10,24 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  
+
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+
     <title>Weather</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-   
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./serviceWorker.js")
+            .then((reg) => console.log("done", reg.scope))
+            .catch((err) => console.log("failure"));
+        });
+      }
+    </script>
   </body>
 </html>
