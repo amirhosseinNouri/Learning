@@ -21,20 +21,27 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1140px;
-  margin: 0 auto;
 }
 
+.content {
+  width: 90vw;
+  max-width: 400px;
+}
+
+/* Searchbar */
+
 .searchbar__input {
+  display: inline-block;
   border: none;
   outline: none;
-  padding: 2rem 7vw;
+  padding: 2rem 3rem;
   text-align: center;
-  border-radius: 30px;
+  border-radius: 20px;
   font-size: 1.7rem;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .searchbar__input::placeholder {
@@ -46,4 +53,47 @@ body {
   .searchbar__input {
     padding: 2rem 9rem;
   }
+}
+
+/* Result Card */
+.result {
+  margin-top: 4rem;
+  padding: 2rem 10rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+}
+
+.result__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.result__city {
+  font-size: 2.5rem;
+}
+
+.result__country {
+  margin-left: 1rem;
+  position: relative;
+  bottom: 10px;
+  background-color: orange;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0.1rem 0.7rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.result__temperature {
+  margin-bottom: 1rem;
+  font-size: 4.5rem;
+}
+
+.result__icon {
+}
+
+.result__status {
 }
