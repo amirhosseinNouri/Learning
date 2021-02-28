@@ -15,7 +15,7 @@ export default function SearchBar({ setWeather }) {
   return (
     <form onSubmit={handleSearchClick}>
       <input
-        className="searchbar__input"
+        className="searchbar__input content"
         type="text"
         placeholder="Search..."
         value={query}

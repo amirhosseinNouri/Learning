@@ -2,14 +2,14 @@ import React from "react";
 
 export default function ResultCard({ weather }) {
   return (
-    <div className="result">
+    <div className="result content">
       <div className="result__title">
         <h2 className="result__city">{weather.name}</h2>
         <span className="result__country">{weather.sys.country}</span>
       </div>
 
       <h1 className="result__temperature">
-        {Math.round(weather.main.temp)}&deg;C
+        {Math.round(weather.main.temp)}&deg;<span className="result__centi">C</span>
       </h1>
       <img
         className="result__icon"

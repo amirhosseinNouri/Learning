@@ -58,10 +58,11 @@ body {
 /* Result Card */
 .result {
   margin-top: 4rem;
-  padding: 2rem 10rem;
+  padding: 4rem 10rem;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
+  box-shadow: 2px 5px 20px 10px rgba(0, 0, 0, 0.3);
 }
 
 .result__title {
@@ -73,6 +74,10 @@ body {
 
 .result__city {
   font-size: 2.5rem;
+}
+
+.result__centi {
+  font-size: 3rem;
 }
 
 .result__country {
@@ -93,7 +98,10 @@ body {
 }
 
 .result__icon {
+  margin-bottom: 1rem;
 }
 
 .result__status {
+  font-size: 1.3rem;
+  text-transform: capitalize;
 }
