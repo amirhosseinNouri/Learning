@@ -20,14 +20,16 @@
     <div id="root"></div>
 
     <script>
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("./serviceWorker.js")
-            .then((reg) => console.log("done", reg.scope))
-            .catch((err) => console.log("failure"));
+            .then((reg) => console.log("Service worker registered ", reg.scope))
+            .catch((err) => console.log("Registration failed ", err));
         });
       }
+      
     </script>
   </body>
 </html>
