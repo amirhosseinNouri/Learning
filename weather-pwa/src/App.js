@@ -11,6 +11,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="container">
+      <SearchBar setLoading={setLoading} setWeather={setWeather}></SearchBar>
         <div className="loading content">
         <h1 className="loading__title">Loading...</h1>
        

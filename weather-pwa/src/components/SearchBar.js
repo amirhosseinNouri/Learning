@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import fetchWeather from "../api/fetchWeather";
 
-export default function SearchBar({ setWeather  , setLoading}) {
+export default function SearchBar({ setWeather, setLoading }) {
   const [query, setQuery] = useState("");
 
   const handleSearchClick = async (e) => {
-    setLoading(true)
     e.preventDefault();
     if (!query) return;
+
+    setLoading(true);
+
     const data = await fetchWeather(query);
-    console.log(data);
     setWeather(data);
     setQuery("");
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
