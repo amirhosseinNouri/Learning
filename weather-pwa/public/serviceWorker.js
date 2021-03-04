@@ -1,6 +1,7 @@
-const CACHE_NAME = "version-1";
+const cacheName = "version-1";
 const urlToCache = ["index.html", "offline.html"];
 const self = this;
+
 
 /* 
     Install Service Worker.
@@ -9,7 +10,7 @@ const self = this;
 */
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(cacheName).then((cache) => {
       console.log("Cache opened successfully.");
       return cache.addAll(urlToCache);
     })
@@ -17,10 +18,10 @@ self.addEventListener("install", (event) => {
 });
 
 /*
-    Listen for requests.
+    Fetch.
     Fires after each request.
     We can respond to the request the way we want to.
-    If there is an error (in network probably),we render offline.html
+    If there is an error (in network probably), we render offline.html
 */
 self.addEventListener("fetch", (event) => {
   event.respondWith(
@@ -38,7 +39,7 @@ self.addEventListener("fetch", (event) => {
 */
 self.addEventListener("activate", (event) => {
   const cacheWhiteList = [];
-  cacheWhiteList.push(CACHE_NAME);
+  cacheWhiteList.push(cacheName);
 
   event.waitUntil(
     caches.keys().then((cacheNames) =>
