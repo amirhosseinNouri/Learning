@@ -17,5 +17,13 @@
   <body>
     <h1>Service Worker</h1>
   </body>
-  <script src="./serviceWorker.js"></script>
+  
+  <script>
+      if('serviceWorker' in navigator){
+          navigator.serviceWorker.register('./serviceWorker.js')
+          .then(resp => console.log(resp))
+          .catch(err => console.log(err))
+      }
+  </script>
+
 </html>
