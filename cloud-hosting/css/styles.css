@@ -572,3 +572,41 @@ a {
   max-height: 100vh;
   opacity: 1;
 }
+
+/* Blocks */
+.block {
+  --block-vertocal-padding: 6rem;
+  padding: var(--block-vertocal-padding) 2rem;
+}
+
+.block__header {
+  text-align: center;
+}
+
+.block__heading {
+  margin-top: 0;
+}
+
+.block--dark {
+  background-color: #000;
+  color: #7b858b;
+}
+
+.block--dark .block__heading {
+  color: #fff;
+}
+
+.block--skewed--right {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  padding-bottom: calc(var(--block-vertocal-padding) + 4rem);
+}
+
+.block--skewed--left {
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  padding-bottom: calc(var(--block-vertocal-padding) + 4rem);
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
