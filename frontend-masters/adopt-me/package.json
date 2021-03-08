@@ -25,6 +25,7 @@
     "prettier": "^2.2.1"
   },
   "dependencies": {
+    "@frontendmasters/pet": "^1.0.3",
     "rea": "0.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
