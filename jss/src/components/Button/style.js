@@ -1,19 +1,12 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
-const useStyle = createUseStyles(
-  {
-    myButton: {
-      padding: (props) => props.spacing,
-    },
-
-    myLabel: (props) => ({
-      display: 'block',
-      color: props.labelColor,
-      fontWeight: props.fontWeight,
-      fontStyle: props.fontStyle,
-    }),
+const useStyle = createUseStyles((theme) => ({
+  button: {
+    background: theme.colorPrimary,
   },
-  { name: 'button' },
-);
+  label: {
+    fontWeight: 'bold',
+  },
+}));
 
 export default useStyle;
