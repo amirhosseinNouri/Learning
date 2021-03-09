@@ -2,28 +2,22 @@ import { createUseStyles } from 'react-jss';
 
 const useStyle = createUseStyles({
   myButton: {
-    color: 'green',
-    margin: {
-      top: '5',
-      right: '0',
-      bottom: '0',
-      left: '1rem',
-    },
-    padding: {
-      top: '1rem',
-      right: '2rem',
-      bottom: '1rem',
-      left: '2rem',
-    },
-
-    '& span': {
-      fontWeight: 'bold',
-    },
+    padding: (props) => props.spacing,
   },
 
-  myLabel: {
-    fontStyle: 'italic',
-  },
+  myLabel: (props) => ({
+    display: 'block',
+    color: props.labelColor,
+    fontWeight: props.fontWeight,
+    fontStyle: props.fontStyle,
+  }),
+
+  //   myLabel: {
+  //     display: 'block',
+  //     color: (props) => props.labelColor,
+  //     fontWeight: (props) => props.fontWeight,
+  //     fontStyle: (props) => props.fontStyle,
+  //   },
 });
 
 export default useStyle;
