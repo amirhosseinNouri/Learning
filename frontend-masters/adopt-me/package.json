@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-      "dev:mock" : "cross-env PET_MOCK=mock parcel src/index.html"
+    "dev:mock": "cross-env PET_MOCK=mock parcel src/index.html"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +28,10 @@
   },
   "dependencies": {
     "@frontendmasters/pet": "^1.0.3",
+    "@reach/router": "^1.3.4",
     "rea": "0.0.1",
+    "reach": "^1.0.1",
+    "reach-router": "0.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
