@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
-export default class Details extends Component {
+import ErrorBoundry from './ErrorBoundry';
+class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +29,7 @@ export default class Details extends Component {
       return <h1>Loading...</h1>;
     }
 
-    const { media ,  animal, breed, location, description, name } = this.state;
+    const { media, animal, breed, location, description, name } = this.state;
 
     return (
       <div className='details'>
@@ -42,4 +43,12 @@ export default class Details extends Component {
       </div>
     );
   }
+}
+
+export default function DetailsWithErrorBoundry(props) {
+  return (
+    <ErrorBoundry>
+      <Details {...props}></Details>
+    </ErrorBoundry>
+  );
 }
