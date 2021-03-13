@@ -19,7 +19,7 @@ class ErrorBoundry extends Component {
     console.error('Error Boundry caught an error', error, info);
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     if (this.state.hasError) {
       setTimeout(() => this.setState({ redirect: true }), 5000);
     }
