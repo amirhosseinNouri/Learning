@@ -7,3 +7,4 @@ const b = 5;
 console.log(add(a,b));
 
 const mult = (a,b) => a*b;
+const sub = (a,b) => a - b;
