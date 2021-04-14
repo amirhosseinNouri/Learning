@@ -1,8 +1,13 @@
-function getStudentById(studentId) {
-  return studentRecords.find(function mathId(record) {
-    return record.id == studentId;
-  });
-}
+const getStudentById = (studentId) =>
+  studentRecords.find((record) => record.id === studentId);
+
+// function getStudentById(studentId) {
+//   return studentRecords.find(function mathId(record) {
+//     return record.id == studentId;
+//   });
+// }
+
+const printRecords = recordIds => recordIds.map(getStudentById).sort((record1 , record2) => record1.name < record2.name ? -1 : (record1.name > record2.name ))
 
 function printRecords(recordIds) {
   const records = recordIds.map(getStudentById);
