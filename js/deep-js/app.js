@@ -1,9 +1,12 @@
-const formatTrend = (trendRate) => {
-  let direction = trendRate < 0 || Object.is(trendRate, -0) ? '⌄' : '^';
-  return `${direction} ${Math.abs(trendRate)}`;
+var workshop = {
+  teacher: 'kyle',
+  ask(question) {
+    console.log(this.teacher, question);
+  },
 };
 
-console.log(formatTrend(-3));
-console.log(formatTrend(3));
-console.log(formatTrend(-0));
-console.log(formatTrend(0));
+setTimeout(workshop.ask, 10, 'Lost this?');
+
+setTimeout(workshop.ask.bind(workshop), 10, 'Hard bound this?');
+
+setTimeout(workshop.ask.call(workshop), 10, 'explixt binding??');
