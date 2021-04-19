@@ -2,4 +2,8 @@ function addTwo(num) {
   return num + 2;
 }
 
-console.log(addTwo(2));
+function addS(word) {
+  return word + 's';
+}
+
+console.log(addS('Amir'));
