@@ -15,4 +15,12 @@ function map(array, callback) {
   return result;
 }
 
-console.log(map([1, 2, 3], (e) => e * 2));
+// console.log(map([1, 2, 3], (e) => e * 2));
+
+function forEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i]);
+  }
+}
+
+forEach([1, 2, 3], (e) => console.log(e));
