@@ -31,4 +31,16 @@ function mapWith(array, callback) {
   return result;
 }
 
-console.log(mapWith([1, 2, 3], (e) => e * 2));
+// console.log(mapWith([1, 2, 3], (e) => e * 2));
+
+function reduce(array, callback, initialValue) {
+  var result = initialValue;
+
+  for (let i = 0; i < array.length; i++) {
+    result += callback(array[i]);
+  }
+
+  return result;
+}
+
+console.log(reduce([1, 2, 3], (e) => e * 2, 0));
