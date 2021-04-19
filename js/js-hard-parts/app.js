@@ -6,4 +6,13 @@ function addS(word) {
   return word + 's';
 }
 
-console.log(addS('Amir'));
+function map(array, callback) {
+  var result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    result.push(callback(array[i]));
+  }
+  return result;
+}
+
+console.log(map([1, 2, 3], (e) => e * 2));
