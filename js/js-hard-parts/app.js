@@ -23,4 +23,12 @@ function forEach(array, callback) {
   }
 }
 
-forEach([1, 2, 3], (e) => console.log(e));
+// forEach([1, 2, 3], (e) => console.log(e));
+
+function mapWith(array, callback) {
+  var result = [];
+  forEach(array, (el) => result.push(callback(el)));
+  return result;
+}
+
+console.log(mapWith([1, 2, 3], (e) => e * 2));
