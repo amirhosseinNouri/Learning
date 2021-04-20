@@ -50,10 +50,30 @@ function intersection(arrays) {
     return curr.filter((el) => acc.includes(el));
   });
 }
-console.log(
-  intersection([
-    [5, 10, 15, 20],
-    [15, 88, 1, 5, 7],
-    [1, 10, 15, 5, 20],
-  ]),
-);
+// console.log(
+//   intersection([
+//     [5, 10, 15, 20],
+//     [15, 88, 1, 5, 7],
+//     [1, 10, 15, 5, 20],
+//   ]),
+// );
+
+function memo() {
+  var args = [];
+
+  return function (param) {
+    if (!args.includes(param)) {
+      args.push(param);
+      console.log(param);
+    }
+  };
+}
+
+const myMemo = memo();
+myMemo(1);
+myMemo(1);
+myMemo(1);
+myMemo(1);
+myMemo(2);
+myMemo(3);
+myMemo(1);
