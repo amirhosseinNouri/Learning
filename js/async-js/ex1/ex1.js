@@ -26,15 +26,14 @@ function getFile(file) {
   });
 }
 
+const files = ['file1', 'file2', 'file3'];
 function handleResponse(filename, content) {
-  if (!filename in responses) {
+  if (!(filename in responses)) {
     responses[filename] = content;
   }
 
-  var filesOrder = ['file1', 'file2', 'file3'];
-
-  for (var i = 0; i < filesOrder.length; i++) {
-    var currentFile = filesOrder[i];
+  for (var i = 0; i < files.length; i++) {
+    var currentFile = files[i];
     if (currentFile in responses) {
       if (typeof responses[currentFile] == 'string') {
         output(responses[currentFile]);
