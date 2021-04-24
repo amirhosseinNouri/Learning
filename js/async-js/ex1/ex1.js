@@ -30,12 +30,15 @@ function handleResponse(filename, content) {
   if (!filename in responses) {
     responses[filename] = content;
   }
-  var filenames = ['file1', 'file2', 'file3'];
-  for (var i = 0; i < filename.length; i++) {
-    if (filenames[i] in responses) {
-      if (typeof responses[filenames[i]] == 'string') {
-        output(responses[filenames[i]]);
-        responses[filenames[i]] = false;
+
+  var filesOrder = ['file1', 'file2', 'file3'];
+
+  for (var i = 0; i < filesOrder.length; i++) {
+    var currentFile = filesOrder[i];
+    if (currentFile in responses) {
+      if (typeof responses[currentFile] == 'string') {
+        output(responses[currentFile]);
+        responses[currentFile] = false;
       }
     } else {
       return;
