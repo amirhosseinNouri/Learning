@@ -69,11 +69,11 @@ function memo() {
   };
 }
 
-const myMemo = memo();
-myMemo(1);
-myMemo(1);
-myMemo(1);
-myMemo(1);
-myMemo(2);
-myMemo(3);
-myMemo(1);
+// const myMemo = memo();
+// myMemo(1);
+// myMemo(1);
+// myMemo(1);
+// myMemo(1);
+// myMemo(2);
+// myMemo(3);
+// myMemo(1);
