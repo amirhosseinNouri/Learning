@@ -6,7 +6,7 @@ const log = (func) => (...args) => {
 };
 
 const logAdd = log(add);
-logAdd(2, 3);
+// logAdd(2, 3);
 
 const delay = (timeout) =>
   new Promise((callback) => setTimeout(callback, timeout));
@@ -22,4 +22,11 @@ const delayPrint = (func) => async (...args) => {
 };
 
 const delayPrintFunction = delayPrint(print);
-delayPrintFunction(5, 6);
+// delayPrintFunction(5, 6);
+
+const curryingAdd = (x) => (y) => x + y;
+
+const add1 = curryingAdd(1);
+console.log(add1(4));
+console.log(add1(5));
+console.log(add1(6));
