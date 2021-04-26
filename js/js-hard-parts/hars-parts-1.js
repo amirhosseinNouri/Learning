@@ -20,8 +20,15 @@ function printPromiseContetn(content) {
   console.log(content);
 }
 
+// var promise = new Promise(function (resolve, reject) {
+//   reject('Rejected');
+// });
+
+// promise.catch(printPromiseContetn);
+
 var promise = new Promise(function (resolve, reject) {
-  reject('Rejected');
+  resolve('Promise has been resolved');
 });
 
-promise.catch(printPromiseContetn);
+promise.then(() => console.log('Promise has been resolved!'));
+console.log("I'm not the promise!");
