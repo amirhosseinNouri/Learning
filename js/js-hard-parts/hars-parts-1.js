@@ -6,4 +6,16 @@ function printHello() {
   console.log('Hello');
 }
 
-sayHello();
+// sayHello();
+
+var promise = new Promise(function (resolve, reject) {
+  setTimeout(() => {
+    resolve('Resolved');
+  }, 1000);
+});
+
+promise.then(printPromiseContetn);
+
+function printPromiseContetn(content) {
+  console.log(content);
+}
