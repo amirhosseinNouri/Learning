@@ -38,4 +38,14 @@ function delay() {
     setTimeout(resolve, 1000);
   });
 }
-delay().then(sayHello);
+// delay().then(sayHello);
+
+var secondPromise = new Promise((resolve, reject) => {
+  resolve('Second!');
+});
+
+var firstPromise = new Promise((resolve, reject) => {
+  resolve(secondPromise);
+});
+
+firstPromise.then((value) => console.log('Challenge 6', value));
