@@ -30,5 +30,12 @@ var promise = new Promise(function (resolve, reject) {
   resolve('Promise has been resolved');
 });
 
-promise.then(() => console.log('Promise has been resolved!'));
-console.log("I'm not the promise!");
+// promise.then(() => console.log('Promise has been resolved!'));
+// console.log("I'm not the promise!");
+
+function delay() {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000);
+  });
+}
+delay().then(sayHello);
