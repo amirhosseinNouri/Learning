@@ -8,14 +8,20 @@ function printHello() {
 
 // sayHello();
 
-var promise = new Promise(function (resolve, reject) {
-  setTimeout(() => {
-    resolve('Resolved');
-  }, 1000);
-});
+// var promise = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     resolve('Resolved');
+//   }, 1000);
+// });
 
-promise.then(printPromiseContetn);
+// promise.then(printPromiseContetn);
 
 function printPromiseContetn(content) {
   console.log(content);
 }
+
+var promise = new Promise(function (resolve, reject) {
+  reject('Rejected');
+});
+
+promise.catch(printPromiseContetn);
