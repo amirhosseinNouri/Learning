@@ -41,3 +41,18 @@ function nextIterator(arr) {
 // console.log(iteratorWithNext.next()); // -> should log 1
 // console.log(iteratorWithNext.next()); // -> should log 2
 // console.log(iteratorWithNext.next()); // -> should log 3
+
+function sumArray(arr) {
+  var sum = 0;
+  var iterator = nextIterator(arr);
+  var next = iterator.next();
+  while (next) {
+    sum += next;
+    next = iterator.next();
+  }
+
+  return sum;
+}
+
+const array4 = [1, 2, 3, 4];
+console.log(sumArray(array4)); // -> should log 10
