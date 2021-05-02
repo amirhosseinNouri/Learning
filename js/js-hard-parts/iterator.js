@@ -70,8 +70,25 @@ function setIterator(set) {
   };
 }
 
-const mySet = new Set('hey');
-const iterateSet = setIterator(mySet);
-console.log(iterateSet.next()); // -> should log 'h'
-console.log(iterateSet.next()); // -> should log 'e'
-console.log(iterateSet.next()); // -> should log 'y'
+// const mySet = new Set('hey');
+// const iterateSet = setIterator(mySet);
+// console.log(iterateSet.next()); // -> should log 'h'
+// console.log(iterateSet.next()); // -> should log 'e'
+// console.log(iterateSet.next()); // -> should log 'y'
+
+function indexIterator(arr) {
+  var i = 0;
+  return {
+    next: function () {
+      if (i < arr.length) {
+        return [i, arr[i++]];
+      }
+    },
+  };
+}
+
+const array5 = ['a', 'b', 'c', 'd'];
+const iteratorWithIndex = indexIterator(array5);
+console.log(iteratorWithIndex.next()); // -> should log [0, 'a']
+console.log(iteratorWithIndex.next()); // -> should log [1, 'b']
+console.log(iteratorWithIndex.next()); // -> should log [2, 'c']
