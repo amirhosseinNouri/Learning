@@ -57,8 +57,17 @@ function sumArray(arr) {
 // const array4 = [1, 2, 3, 4];
 // console.log(sumArray(array4)); // -> should log 10
 
-function setIterator(arr) {
-  return nextIterator(Array.from(arr));
+// function setIterator(arr) {
+//   return nextIterator(Array.from(arr));
+// }
+
+function setIterator(set) {
+  var iterator = set.values();
+  return {
+    next: function () {
+      return iterator.next().value;
+    },
+  };
 }
 
 const mySet = new Set('hey');
