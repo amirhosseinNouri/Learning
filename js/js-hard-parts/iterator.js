@@ -122,7 +122,25 @@ Words.prototype[Symbol.iterator] = function () {
   };
 };
 
-const helloWorld = new Words('Hello World');
-for (word of helloWorld) {
-  console.log(word);
-} // -> should log 'Hello' and 'World'
+// const helloWorld = new Words('Hello World');
+// for (word of helloWorld) {
+//   console.log(word);
+// } // -> should log 'Hello' and 'World'
+
+function valueAndPrevIndex(arr) {
+  var i = 0;
+  return {
+    sentence: function () {
+      var text = i - 1;
+      if (i == 0) {
+        text = 'first';
+      }
+      return `${arr[i++]} was found after index ${text}`;
+    },
+  };
+}
+
+const returnedSentence = valueAndPrevIndex([4, 5, 6]);
+console.log(returnedSentence.sentence());
+console.log(returnedSentence.sentence());
+console.log(returnedSentence.sentence());
