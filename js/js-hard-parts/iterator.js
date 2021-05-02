@@ -18,9 +18,26 @@ function returnIterator(arr) {
   };
 }
 
-const array2 = ['a', 'b', 'c', 'd'];
-const myIterator = returnIterator(array2);
-console.log(myIterator()); // -> should log 'a'
-console.log(myIterator()); // -> should log 'b'
-console.log(myIterator()); // -> should log 'c'
-console.log(myIterator()); // -> should log 'd'
+// const array2 = ['a', 'b', 'c', 'd'];
+// const myIterator = returnIterator(array2);
+// console.log(myIterator()); // -> should log 'a'
+// console.log(myIterator()); // -> should log 'b'
+// console.log(myIterator()); // -> should log 'c'
+// console.log(myIterator()); // -> should log 'd'
+
+function nextIterator(arr) {
+  var i = 0;
+  return {
+    next: function () {
+      if (i < arr.length) {
+        return arr[i++];
+      }
+    },
+  };
+}
+
+// const array3 = [1, 2, 3];
+// const iteratorWithNext = nextIterator(array3);
+// console.log(iteratorWithNext.next()); // -> should log 1
+// console.log(iteratorWithNext.next()); // -> should log 2
+// console.log(iteratorWithNext.next()); // -> should log 3
