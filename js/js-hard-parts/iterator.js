@@ -54,5 +54,15 @@ function sumArray(arr) {
   return sum;
 }
 
-const array4 = [1, 2, 3, 4];
-console.log(sumArray(array4)); // -> should log 10
+// const array4 = [1, 2, 3, 4];
+// console.log(sumArray(array4)); // -> should log 10
+
+function setIterator(arr) {
+  return nextIterator(Array.from(arr));
+}
+
+const mySet = new Set('hey');
+const iterateSet = setIterator(mySet);
+console.log(iterateSet.next()); // -> should log 'h'
+console.log(iterateSet.next()); // -> should log 'e'
+console.log(iterateSet.next()); // -> should log 'y'
