@@ -87,8 +87,42 @@ function indexIterator(arr) {
   };
 }
 
-const array5 = ['a', 'b', 'c', 'd'];
-const iteratorWithIndex = indexIterator(array5);
-console.log(iteratorWithIndex.next()); // -> should log [0, 'a']
-console.log(iteratorWithIndex.next()); // -> should log [1, 'b']
-console.log(iteratorWithIndex.next()); // -> should log [2, 'c']
+// const array5 = ['a', 'b', 'c', 'd'];
+// const iteratorWithIndex = indexIterator(array5);
+// console.log(iteratorWithIndex.next()); // -> should log [0, 'a']
+// console.log(iteratorWithIndex.next()); // -> should log [1, 'b']
+// console.log(iteratorWithIndex.next()); // -> should log [2, 'c']
+
+// function wordIterator() {
+
+// }
+
+// const str = 'Hello Hello Hello str';
+// const iterator = wordIterator(str);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+function Words(str) {
+  this.str = str;
+}
+
+Words.prototype[Symbol.iterator] = function () {
+  var i = 0;
+  const words = this.str.split(' ');
+  return {
+    next: function () {
+      if (i < words.length) {
+        return { value: words[i++], done: false };
+      } else {
+        return { done: true };
+      }
+    },
+  };
+};
+
+const helloWorld = new Words('Hello World');
+for (word of helloWorld) {
+  console.log(word);
+} // -> should log 'Hello' and 'World'
