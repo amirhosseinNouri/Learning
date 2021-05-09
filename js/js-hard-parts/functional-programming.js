@@ -28,5 +28,16 @@ function mapWith(array, callback) {
   forEach(array, (element) => result.push(callback(element)));
   return result;
 }
+// console.log(mapWith([1, 2, 3], addTwo));
 
-console.log(mapWith([1, 2, 3], addTwo));
+function reduce(array, callback, initialValue) {
+  var result = initialValue;
+  for (let i = 0; i < array.length; i++) {
+    result = callback(result, array[i]);
+  }
+
+  return result;
+}
+const nums = [4, 1, 3];
+const add = (a, b) => a + b;
+console.log(reduce(nums, add, 0)); //-> 8
