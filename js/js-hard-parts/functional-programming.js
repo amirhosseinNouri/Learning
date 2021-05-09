@@ -16,3 +16,9 @@ function map(array, callback) {
 }
 
 // console.log(map([1, 2, 3], addTwo));
+
+function forEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i]);
+  }
+}
