@@ -22,3 +22,11 @@ function forEach(array, callback) {
     callback(array[i]);
   }
 }
+
+function mapWith(array, callback) {
+  var result = [];
+  forEach(array, (element) => result.push(callback(element)));
+  return result;
+}
+
+console.log(mapWith([1, 2, 3], addTwo));
