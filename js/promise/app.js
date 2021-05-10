@@ -19,6 +19,8 @@ const functionC = async () => {
 //   console.log('All resolved'),
 // );
 
-[functionA(), functionB(), functionC()]
-  .reduce((acc, curr) => acc.then(curr), Promise.resolve())
+const applyAsync = (acc, curr) => acc.then(curr);
+
+[(functionA(), functionB(), functionC())]
+  .reduce(applyAsync, Promise.resolve())
   .then(console.log('All resolved'));
