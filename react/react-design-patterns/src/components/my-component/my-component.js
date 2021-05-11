@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withInnerWidth } from '../../hoc/with-inner-width';
 
-export default function MyComponent({ className }) {
-  return <div className={className}></div>;
+function MyComponent({ innerWidth }) {
+  return <div>{innerWidth}</div>;
 }
 
 MyComponent.propTypes = {
-  className: PropTypes.string,
+  innerWidth: PropTypes.number,
 };
 
+MyComponent.defaultProps = { innerWidth: 0 };
 
-
-MyComponent.defaultProps = { className: '' };
+export default withInnerWidth(MyComponent);
