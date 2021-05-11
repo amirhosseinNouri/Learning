@@ -1,10 +1,10 @@
 import './App.css';
-import Geolocation from './components/geolocation';
+import GeolocationContainer from './containers/geolocation';
 
 function App() {
   return (
     <div>
-      <Geolocation />
+      <GeolocationContainer />
     </div>
   );
 }

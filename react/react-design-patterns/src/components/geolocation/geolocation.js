@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function GeoLocation() {
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleGeoLocation, handleError);
-    }
-  }, []);
-
-  const handleGeoLocation = ({ coords }) => {
-    const { latitude, longitude } = coords;
-    setLatitude(latitude);
-    setLongitude(longitude);
-  };
-
-  const handleError = (error) => {
-    console.error('Error Code = ' + error.code + ' - ' + error.message);
-  };
-
+export default function geolocation({ latitude, longitude }) {
   return (
     <div>
       <h2>lat : {latitude}</h2>
@@ -27,3 +9,13 @@ export default function GeoLocation() {
     </div>
   );
 }
+
+geolocation.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
+
+geolocation.defaultProps = {
+  latitude: null,
+  longitude: null,
+};
