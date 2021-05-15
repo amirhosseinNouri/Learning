@@ -1,12 +1,10 @@
 import './App.css';
-import GeolocationContainer from './containers/geolocation';
-import MyComponent from './components/my-component';
+import FunctionAsChild from './components/function-as-child';
 
 function App() {
   return (
     <div>
-      <GeolocationContainer />
-      <MyComponent />
+      <FunctionAsChild children={(name) => <div>Hello {name}</div>} />
     </div>
   );
 }
