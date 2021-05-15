@@ -1,10 +1,11 @@
 import './App.css';
-import WindowWidth from './components/window-width';
+import Foo from './components/foo';
+import Hello from './components/hello';
 
 function App() {
   return (
     <div>
-      <WindowWidth>{(width) => <div>width is {width}</div>}</WindowWidth>
+      <Foo render={Hello} />
     </div>
   );
 }
