@@ -1,10 +1,10 @@
 import './App.css';
-import FunctionAsChild from './components/function-as-child';
+import WindowWidth from './components/window-width';
 
 function App() {
   return (
     <div>
-      <FunctionAsChild children={(name) => <div>Hello {name}</div>} />
+      <WindowWidth>{(width) => <div>width is {width}</div>}</WindowWidth>
     </div>
   );
 }
