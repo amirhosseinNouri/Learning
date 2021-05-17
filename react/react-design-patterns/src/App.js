@@ -1,13 +1,10 @@
 import './App.css';
-import Foo from './components/foo';
-import Hello from './components/hello';
+import Counter from './components/counter';
+// import Foo from './components/foo';
+// import Hello from './components/hello';
 
 function App() {
-  return (
-    <div>
-      <Foo render={Hello} />
-    </div>
-  );
+  return <Counter />;
 }
 
 export default App;
