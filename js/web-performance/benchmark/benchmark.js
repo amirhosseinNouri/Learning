@@ -18,7 +18,7 @@ performance.mark('start');
 while (iterations--) {
   add(a, b);
 }
-add('a', 'b');
+// add('a', 'b');
 
 iterations = 1e7;
 
