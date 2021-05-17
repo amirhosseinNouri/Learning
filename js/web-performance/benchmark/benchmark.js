@@ -7,22 +7,11 @@ const obs = new PerformanceObserver((items) => {
 });
 obs.observe({ entryTypes: ['measure'] });
 
-let iterations = 1e7;
-
-const a = 1;
-const b = 2;
-const add = (x, y) => x + y;
-
-%NeverOptimizeFunction(add);
-
-performance.mark('start');
-
-while (iterations--) {
-  add(a, b);
+function measure(name, fn, iterations) {
+  performance.mark('start');
+  while (iterations--) {
+    fn();
+  }
+  performance.mark('end');
+  performance.measure(name, 'start', 'end');
 }
-
-
-
-performance.mark('end');
-
-performance.measure('Benchmark', 'start', 'end');
