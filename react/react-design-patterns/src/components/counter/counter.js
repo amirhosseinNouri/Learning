@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Buttons from '../buttons';
 
 export default function Counter() {
   const [counter, setCounter] = useState(0);
@@ -10,8 +11,10 @@ export default function Counter() {
   return (
     <div>
       <h1>{counter}</h1>
-      <button onClick={handleIncreaseClick}>Increase</button>
-      <button onClick={handleDecreaseClick}>Decrease</button>
+      <Buttons
+        onIncrease={handleIncreaseClick}
+        onDecrease={handleDecreaseClick}
+      />
     </div>
   );
 }
