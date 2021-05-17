@@ -13,18 +13,15 @@ const a = 1;
 const b = 2;
 const add = (x, y) => x + y;
 
+%NeverOptimizeFunction(add);
+
 performance.mark('start');
 
 while (iterations--) {
   add(a, b);
 }
-// add('a', 'b');
 
-iterations = 1e7;
 
-while (iterations--) {
-  add(a, b);
-}
 
 performance.mark('end');
 
