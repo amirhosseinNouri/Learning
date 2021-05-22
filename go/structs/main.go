@@ -10,6 +10,9 @@ type person struct {
 }
 
 func main() {
-	amir := person{firstname : "Amirhossein" , lastname : "Nouri"}
+	var amir person
+	amir.firstname = "Amirhossein"
+	amir.lastname = "Nouri"
 	fmt.Println(amir)
+	fmt.Printf("%+v" , amir)
 }
