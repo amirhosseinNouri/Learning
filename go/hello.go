@@ -4,9 +4,12 @@ import "fmt"
 
 
 func main() {
-	x := 10
+	mySlice := []string{"Hi"  , "There" , "How" , "Are" , "You"}
+	updateSlice(mySlice)
+	fmt.Println(mySlice)
 
-	if x == 10 {
-		fmt.Pri
-	}
+}
+
+func updateSlice(s []string){
+	s[0] = "Bye"
 }
