@@ -13,5 +13,7 @@ func main(){
 
 	colors["white"] = "#fff"
 
+	delete(colors , "white")
+
 	fmt.Println(colors)
 }
