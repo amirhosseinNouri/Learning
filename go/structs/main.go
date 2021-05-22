@@ -24,9 +24,14 @@ func main() {
 		},
 	}
 
+	jim.updateName("Jimmy")
 	jim.print()
 
 	
+}
+
+func (p* person) updateName(newFirstname string){
+	p.firstname = newFirstname
 }
 
 func (p person) print(){
