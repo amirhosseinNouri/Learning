@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withData from '../../hoc/with-data';
 import connectWithGists from '../../hoc/connect-with-gists';
+import Gist from '../gist';
 
-function List({ gists, propertyName, username }) {
+function List({ gists, username }) {
   console.log(gists);
   return (
     <ul>
       {gists.fulfilled &&
-        gists.value.map((item, index) => (
-          <li key={`${item[propertyName]}-${index}`}>{item[propertyName]}</li>
-        ))}
+        gists.value.map((item, index) => <Gist key={index} {...item} />)}
     </ul>
   );
 }
