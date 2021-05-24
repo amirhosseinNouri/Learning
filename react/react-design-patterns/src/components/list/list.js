@@ -1,22 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withData from '../../hoc/with-data';
+import connectWithGists from '../../hoc/connect-with-gists';
 
-function List({ data, propertyName }) {
+function List({ gists, propertyName, username }) {
+  console.log(gists);
   return (
     <ul>
-      {data.map((item, index) => (
-        <li key={`${item[propertyName]}-${index}`}>{item[propertyName]}</li>
-      ))}
+      {gists.fulfilled &&
+        gists.value.map((item, index) => (
+          <li key={`${item[propertyName]}-${index}`}>{item[propertyName]}</li>
+        ))}
     </ul>
   );
 }
 
 List.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  gists: PropTypes.object,
   properties: PropTypes.string,
+  username: PropTypes.string,
 };
 
-export default withData('https://api.github.com/users/amirhosseinnouri/gists')(
-  List,
-);
+List.defaultProps = {
+  gists: null,
+  properties: '',
+  username: '',
+};
+
+export default connectWithGists(List);
