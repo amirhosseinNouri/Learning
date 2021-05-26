@@ -1,11 +1,8 @@
 import './App.css';
-import Counter from './components/counter';
-import Gists from './components/gists';
-// import Foo from './components/foo';
-// import Hello from './components/hello';
+import Parent from './components/parent';
 
 function App() {
-  return <Gists />;
+  return <Parent />;
 }
 
 export default App;
