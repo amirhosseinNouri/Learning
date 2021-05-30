@@ -1,4 +1,17 @@
 const { performance, PerformanceObserver } = require('perf_hooks');
+class Point {
+  constructor(x, y){
+    this.x = x;
+    this.y = y;
+  }
+}
+const test = () => {
+  const add = point => point.x + point.y;
+  
+
+  const point = new Point(10 , 20)
+  add(point)
+}
 
 const obs = new PerformanceObserver((items) => {
   items.getEntries().forEach((item) => {
@@ -17,13 +30,13 @@ function measure(name, fn, iterations) {
 }
 
 const iterations = 1e5;
-class Point {
-  constructor(x, y, z) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
-}
+// class Point {
+//   constructor(x, y, z) {
+//     this.x = x;
+//     this.y = y;
+//     this.z = z;
+//   }
+// }
 
 const undefineProperty = (property) => {
   const point = new Point(1, 2, 3);
@@ -35,10 +48,12 @@ const deleteProperty = (property) => {
   delete point[property];
 };
 
-measure('delete x', () => deleteProperty('x'), iterations);
-measure('delete y', () => deleteProperty('y'), iterations);
-measure('delete z', () => deleteProperty('z'), iterations);
+measure('test' , test ,  iterations)
 
-measure('undefine x', () => undefineProperty('x'), iterations);
-measure('delete y', () => deleteProperty('y'), iterations);
-measure('delete z', () => deleteProperty('z'), iterations);
+// measure('delete x', () => deleteProperty('x'), iterations);
+// measure('delete y', () => deleteProperty('y'), iterations);
+// measure('delete z', () => deleteProperty('z'), iterations);
+
+// measure('undefine x', () => undefineProperty('x'), iterations);
+// measure('delete y', () => deleteProperty('y'), iterations);
+// measure('delete z', () => deleteProperty('z'), iterations);
