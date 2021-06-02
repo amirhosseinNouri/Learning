@@ -67,3 +67,19 @@ let otherContactInfo: HasEmail & HasPhoneNumber = {
 otherContactInfo.phone;
 otherContactInfo.name;
 otherContactInfo.email;
+
+/* *************** Functions *************** */
+
+function sendEmail(to: HasEmail): { recipient: string; body: string } {
+  return {
+    recipient: `${to.name} <${to.email}>`,
+    body: 'This is the body',
+  };
+}
+
+const sendTextMessage = (to: HasEmail): { recipient: string; body: string } => {
+  return {
+    recipient: `${to.name} <${to.email}>`,
+    body: 'This is the body',
+  };
+};
