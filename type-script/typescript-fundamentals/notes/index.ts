@@ -27,3 +27,43 @@ cc = {
   name: 'Amirhossein',
   //   x : '' // extra
 };
+
+interface Person {
+  name: string;
+  age?: number;
+}
+
+let ee: Person = { name: 'Amirhossein' };
+
+interface HasPhoneNumber {
+  name: string;
+  phone?: string;
+}
+
+interface HasEmail {
+  name: string;
+  email?: string;
+}
+
+let contactInfo: HasEmail | HasPhoneNumber =
+  Math.random() > 0.5
+    ? {
+        name: 'Amirhossein',
+        phone: '09195850787',
+      }
+    : {
+        name: 'Amirhossein',
+        email: 'Amirhossein@gmail.com',
+      };
+
+contactInfo.name;
+
+let otherContactInfo: HasEmail & HasPhoneNumber = {
+  name: 'Amirhossein',
+  email: '@',
+  phone: 'XXXX',
+};
+
+otherContactInfo.phone;
+otherContactInfo.name;
+otherContactInfo.email;
