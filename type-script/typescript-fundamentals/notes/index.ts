@@ -112,3 +112,17 @@ type HasName = { name: string };
 export interface HasInternationalPhoneNumber extends HasPhoneNumber {
   countryCode: string;
 }
+
+interface ContactMessanger1 {
+  (contact: HasEmail | HasPhoneNumber, message: string): void;
+}
+
+type ContactMessenger2 = (
+  contact: HasEmail | HasPhoneNumber,
+  message: string,
+) => void;
+
+interface ContractConstructor {
+  new (...args: any[]): HasEmail | HasPhoneNumber;
+}
+
