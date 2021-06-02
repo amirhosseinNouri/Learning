@@ -101,3 +101,14 @@ function contactPeople(
 contactPeople('email', { name: 'amir', email: 'amir@gmail' });
 contactPeople('phone', { name: 'amir', phone: 'xxxx' });
 // contactPeople('email', { name: 'amir', phone: 'xxxx' });
+
+/* *************** interface and alias *************** */
+
+type StringOrNumber = string | number;
+let x: StringOrNumber = 2;
+x = 'some string';
+type HasName = { name: string };
+
+export interface HasInternationalPhoneNumber extends HasPhoneNumber {
+  countryCode: string;
+}
