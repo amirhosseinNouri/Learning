@@ -83,3 +83,21 @@ const sendTextMessage = (to: HasEmail): { recipient: string; body: string } => {
     body: 'This is the body',
   };
 };
+
+function contactPeople(method: 'email', ...people: HasEmail[]): void;
+function contactPeople(method: 'phone', ...people: HasPhoneNumber[]): void;
+
+function contactPeople(
+  method: 'email' | 'phone',
+  ...people: (HasEmail | HasPhoneNumber)[]
+): void {
+  if (method === 'email') {
+    (people as HasEmail[]).forEach(sendEmail);
+  } else {
+    (people as HasPhoneNumber[]).forEach(sendTextMessage);
+  }
+}
+
+contactPeople('email', { name: 'amir', email: 'amir@gmail' });
+contactPeople('phone', { name: 'amir', phone: 'xxxx' });
+// contactPeople('email', { name: 'amir', phone: 'xxxx' });
