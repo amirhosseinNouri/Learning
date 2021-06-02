@@ -19,4 +19,11 @@ aa.push(2);
 
 let t: [number, string, string, number] = [123, 'str', 'str', 13243];
 
-t = [1 , " " , " " , 2];
+t = [1, ' ', ' ', 2];
+
+let cc: { name: string; age?: number };
+
+cc = {
+  name: 'Amirhossein',
+  //   x : '' // extra
+};
