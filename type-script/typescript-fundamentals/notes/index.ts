@@ -129,3 +129,18 @@ interface ContractConstructor {
 const emailer: ContactMessanger1 = (_contact, _message) => {
   /* */
 };
+
+interface PhoneNumberDict {
+  [numberName: string]: undefined | { areaCode: number; num: number };
+}
+
+const d: PhoneNumberDict = {};
+
+if (d.abc) {
+  d.abc; // no undefined here
+}
+
+const PhoneDict: PhoneNumberDict = {
+  office: { areaCode: 321, num: 2222 },
+  home: { areaCode: 232, num: 432434343 },
+};
