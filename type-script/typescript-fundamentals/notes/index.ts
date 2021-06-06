@@ -176,3 +176,21 @@ export class Contact implements HasEmail {
     this.name = name;
   }
 }
+
+class ParamPropContact implements HasEmail {
+  constructor(public name: string, protected email: string = 'No Email') {}
+}
+
+const xx = new ParamPropContact('a', 'b');
+// xx.
+
+class OtherContact implements HasEmail, HasPhoneNumber {
+  protected age: number = 0;
+  private password: string;
+  readonly city: string = 'Tehran';
+  constructor(
+    public name: string,
+    public email: string,
+    public phone: number,
+  ) {}
+}
