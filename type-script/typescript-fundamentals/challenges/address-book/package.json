@@ -12,12 +12,13 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "tsc src/index.ts --outDir lib --types node --module commonjs --target ES2017",
-    "test": "mocha"
+    "test": "mocha test/**/*.test.ts --require ts-node/register --require source-map-support/register --timeout 60000  --watch-extensions js,ts,json"
   },
   "devDependencies": {},
   "dependencies": {
     "chai": "^4.3.4",
     "mocha": "^8.4.0",
+    "source-map-support": "^0.5.19",
     "ts-node": "^10.0.0",
     "ts-node-register": "^1.0.0",
     "tslib": "^2.2.0",
