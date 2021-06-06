@@ -1,3 +1,12 @@
+interface Address {
+  houseNumber: number;
+  city: string;
+  state: string;
+  postalCode: number;
+  street: string;
+  country: string;
+}
+
 interface Person {
   firstName?: string;
   middleName?: string;
@@ -7,14 +16,7 @@ interface Person {
     [k: string]: string;
   };
   addresses: {
-    [k: string]: {
-      houseNumber: number;
-      city: string;
-      state: string;
-      postalCode: number;
-      street: string;
-      country: string;
-    };
+    [k: string]: Address;
   };
   email: string;
 }
