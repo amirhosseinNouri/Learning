@@ -164,3 +164,15 @@ PhoneDict.mobie; // maybe present
 type NumVal = 1 | 2 | 3 | NumArr;
 interface NumArr extends Array<NumVal> {}
 const xxxx: NumVal = [1, 2, 3, 1, 1, [2, 3]];
+
+/* ******** Classes ****** */
+
+export class Contact implements HasEmail {
+  email: string;
+  name: string;
+
+  constructor(name: string, email: string) {
+    this.email = email;
+    this.name = name;
+  }
+}
