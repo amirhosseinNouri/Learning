@@ -134,13 +134,29 @@ interface PhoneNumberDict {
   [numberName: string]: undefined | { areaCode: number; num: number };
 }
 
-const d: PhoneNumberDict = {};
+// const d: PhoneNumberDict = {};
 
-if (d.abc) {
-  d.abc; // no undefined here
-}
+// if (d.abc) {
+//   d.abc; // no undefined here
+// }
 
 const PhoneDict: PhoneNumberDict = {
   office: { areaCode: 321, num: 2222 },
   home: { areaCode: 232, num: 432434343 },
+  iphone: { areaCode: 111, num: 323223 }, // optional
 };
+
+interface PhoneNumberDict {
+  home: {
+    areaCode: number;
+    num: number;
+  };
+  office: {
+    areaCode: number;
+    num: number;
+  };
+}
+
+PhoneDict.home; // present
+PhoneDict.office; // present
+PhoneDict.mobie; // maybe present
