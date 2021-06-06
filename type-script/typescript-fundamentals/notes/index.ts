@@ -186,11 +186,13 @@ const xx = new ParamPropContact('a', 'b');
 
 class OtherContact implements HasEmail, HasPhoneNumber {
   protected age: number = 0;
-  private password: string;
+  private password!: string ;
   readonly city: string = 'Tehran';
-  constructor(
-    public name: string,
-    public email: string,
-    public phone: number,
-  ) {}
+  constructor(public name: string, public email: string, public phone: number) {
+    
+  }
+
+  async init (){
+    this.password = '12234';
+  }
 }
