@@ -206,3 +206,19 @@ class OtherContact implements HasEmail, HasPhoneNumber {
   //   this.password = '12234';
   // }
 }
+
+abstract class AbstractContact implements HasEmail, HasPhoneNumber {
+  constructor(public name: string, public email: string) {}
+
+  abstract sendEmail(): void;
+}
+
+class ConcreteContact extends AbstractContact {
+  constructor(public phone: number, name: string, email: string) {
+    super(name, email);
+  }
+
+  sendEmail() {
+    console.log('sending an email');
+  }
+}
