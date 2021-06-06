@@ -1,0 +1,26 @@
+{
+  "name": "address-book",
+  "version": "0.0.0",
+  "private": true,
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "tsc src/index.ts --outDir lib --types node --module commonjs --target ES2017",
+    "test": "mocha"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "ts-node": "^10.0.0",
+    "ts-node-register": "^1.0.0",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
+  }
+}
