@@ -126,3 +126,6 @@ interface ContractConstructor {
   new (...args: any[]): HasEmail | HasPhoneNumber;
 }
 
+const emailer: ContactMessanger1 = (_contact, _message) => {
+  /* */
+};
