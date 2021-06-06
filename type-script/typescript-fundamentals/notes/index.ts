@@ -160,3 +160,7 @@ interface PhoneNumberDict {
 PhoneDict.home; // present
 PhoneDict.office; // present
 PhoneDict.mobie; // maybe present
+
+type NumVal = 1 | 2 | 3 | NumArr;
+interface NumArr extends Array<NumVal> {}
+const xxxx: NumVal = [1, 2, 3, 1, 1, [2, 3]];
