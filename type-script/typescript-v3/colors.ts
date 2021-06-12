@@ -14,5 +14,5 @@ export function hexToRgba(hex: string): { r: number; g: number; b: number } {
 }
 
 export function rgbToHex(r: number, g: number, b: number): string {
-    
+  return [r, g, b].map((decCh) => decCh.toString(16)).join('');
 }
