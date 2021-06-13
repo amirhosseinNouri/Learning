@@ -242,3 +242,17 @@ truthyFilter(0);
 truthyFilter(1);
 truthyFilter('');
 truthyFilter(['dsa']);
+
+function resolveOrTimeout<T>(promise: Promise<T>, timeout: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(() => reject('Time up'), timeout);
+
+    promise.then((val) => {
+      clearTimeout(timeoutId);
+
+      resolve(val);
+    });
+  });
+}
+
+resolveOrTimeout(fetch(''), 2000);
