@@ -222,3 +222,16 @@ class ConcreteContact extends AbstractContact {
     console.log('sending an email');
   }
 }
+
+interface WrappedValue<X> {
+  value: X;
+}
+
+let val: WrappedValue<string[]> = { value: [] };
+
+interface FilterFunction<T = any> {
+  (value: T): boolean;
+}
+
+const stringsFilter: FilterFunction<string> = (value) =>
+  typeof value === 'string';
