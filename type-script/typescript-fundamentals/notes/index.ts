@@ -256,3 +256,24 @@ function resolveOrTimeout<T>(promise: Promise<T>, timeout: number): Promise<T> {
 }
 
 resolveOrTimeout(fetch(''), 2000);
+
+interface ArrayInterface {
+  id: string;
+}
+
+function arrayToDict<T extends ArrayInterface>(array: T[]): { [k: string]: T } {
+  const out: { [k: string]: T } = {};
+
+  array.forEach((value) => {
+    out[value.id] = value;
+  });
+
+  return out;
+}
+
+const myDict = arrayToDict([
+  { id: '1', value: 'val1', lastname: 'nndsd' },
+  { id: '2', value: 'val2' },
+]);
+
+// myDict.foo.
