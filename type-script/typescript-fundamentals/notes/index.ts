@@ -235,3 +235,10 @@ interface FilterFunction<T = any> {
 
 const stringsFilter: FilterFunction<string> = (value) =>
   typeof value === 'string';
+
+const truthyFilter: FilterFunction = (val) => val;
+
+truthyFilter(0);
+truthyFilter(1);
+truthyFilter('');
+truthyFilter(['dsa']);
