@@ -303,3 +303,10 @@ function isHasEmail(x: any): x is HasEmail {
 if (isHasEmail(myUnknown)) {
   console.log(myUnknown.name, myUnknown.email);
 }
+
+function isDefined<T>(arg: T | undefined): arg is T {
+  return typeof arg !== 'undefined';
+}
+
+const list = ['a', 'b', 'c', undefined, 'e'];
+const filtered = list.filter(isDefined);
