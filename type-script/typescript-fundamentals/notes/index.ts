@@ -285,3 +285,13 @@ function startTuple<T>(a: T) {
 }
 
 const myTuple = startTuple(['first'])(42);
+
+const myUnknown: unknown = 'some value';
+
+if (typeof myUnknown === 'string') {
+  myUnknown.split(', ');
+}
+
+if (myUnknown instanceof Promise) {
+  myUnknown.then(console.log);
+}
