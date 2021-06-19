@@ -295,3 +295,11 @@ if (typeof myUnknown === 'string') {
 if (myUnknown instanceof Promise) {
   myUnknown.then(console.log);
 }
+
+function isHasEmail(x: any): x is HasEmail {
+  return typeof x.name === 'string' && typeof x.email === 'string';
+}
+
+if (isHasEmail(myUnknown)) {
+  console.log(myUnknown.name, myUnknown.email);
+}
