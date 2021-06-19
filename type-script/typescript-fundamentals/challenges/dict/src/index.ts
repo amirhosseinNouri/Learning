@@ -27,6 +27,4 @@ mapDict(
 );
 
 // Array.prototype.reduce, but for Dict
-export function reduceDict() {
-  dict: Dict;
-}
+export function reduceDict() {}
