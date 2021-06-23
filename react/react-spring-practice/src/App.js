@@ -4,19 +4,19 @@ import { animated, useSpring, config } from 'react-spring';
 
 function App() {
   const [flip, setFlip] = useState(false);
-  const props = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
+  const { number } = useSpring({
+    number: 1,
+    from: { number: 0 },
     config: config.molasses,
     reset: true,
     reverse: flip,
-    onRest: () => setFlip((current) => !current),
-    delay: 500,
+    onRest: () => setFlip(!flip),
+    delay: 200,
   });
   return (
     <div className='App'>
       <header className='App-header'>
-        <animated.div style={props}>Hello</animated.div>
+        <animated.div>{number.to((n) => n.toFixed(2))}</animated.div>
       </header>
     </div>
   );
