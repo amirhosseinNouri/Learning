@@ -1,8 +1,9 @@
 # Learning
 
-## My path to learn React:
+-- 4/7/2021 --
 
-* [React Tutorial and Projects Course](https://www.udemy.com/course/react-tutorial-and-projects-course/)  ✔️
-* [Modern React with Redux](https://www.udemy.com/course/react-redux/) ✔️
-* [Advanced React and Redux](https://www.udemy.com/course/react-redux-tutorial/)
+- [lossy compression](https://www.pcmag.com/encyclopedia/term/lossy-compression)
+
+## PolyLine Algorithms
+
 
