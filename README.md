@@ -16,6 +16,7 @@
 - [Image Tiling](https://northstar-www.dartmouth.edu/doc/idl/html_6.2/Image_Tiling.html#:~:text=This%20changes%20the%20resolution%20of,zoom%20in%20on%20that%20area.)
 - [Vector tiles: the next generation of tiled maps](https://www.e-education.psu.edu/geog585/node/746)
 - [WHAT IS TILE AND DIFFERENTIATE BETWEEN RASTER TILE AND VECTOR TILE](https://bachasoftware.com/what-is-tile-and-differentiate-between-raster-tile-and-vector-tile/)
+- [How web maps work - MapBox Document](https://docs.mapbox.com/vector-tiles/reference/)
 
 
 
