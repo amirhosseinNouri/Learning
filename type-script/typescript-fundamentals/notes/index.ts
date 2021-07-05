@@ -405,3 +405,31 @@ interface SetTimoutInterface {
 interface SetIntervalInterface {
   (handler: () => void, delay: number): IntervalId;
 }
+
+// let : never = 4;
+
+let xxxxx = 'abs' as string | number;
+
+if (typeof xxxxx === 'string') {
+  xxxxx.toLocaleLowerCase();
+} else if (typeof xxxxx === 'number') {
+  xxxxx.toFixed();
+} else {
+  // xxxxx is never here
+}
+
+class unreachableError extends Error {
+  constructor(val: never, message: string) {
+    super(`${val} shold be ${message}`);
+  }
+}
+
+let y = 4 as string | number;
+
+if (typeof y === 'string') {
+  y.toLocaleLowerCase();
+} else if (typeof y === 'number') {
+  y.toFixed();
+} else {
+  throw new unreachableError(y, 'String or number');
+}
