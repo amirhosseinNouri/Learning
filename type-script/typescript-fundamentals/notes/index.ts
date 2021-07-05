@@ -310,3 +310,84 @@ function isDefined<T>(arg: T | undefined): arg is T {
 
 const list = ['a', 'b', 'c', undefined, 'e'];
 const filtered = list.filter(isDefined);
+
+let aaa: unknown = 41;
+let bb: unknown = ['a', 'string'];
+
+bb = aaa; // this is not OK!!!
+
+interface BrandedA {
+  __this_is_branded_with_a: 'A';
+}
+
+function brandA(value: string): BrandedA {
+  return value as unknown as BrandedA;
+}
+
+function unBrandA(value: BrandedA): string {
+  return value as unknown as string;
+}
+
+interface BrandedB {
+  __this_is_branded_with_b: 'B';
+}
+
+function brandB(value: string): BrandedB {
+  return value as unknown as BrandedB;
+}
+
+function unBrandB(value: BrandedB): string {
+  return value as unknown as string;
+}
+
+interface Person {
+  name: string;
+  id: number;
+}
+
+interface Pet {
+  name: string;
+  id: number;
+}
+
+let somePet: Pet = { name: 'Peeet', id: 1 };
+let somePerson: Person = somePet; // This is not OK!!!
+
+interface BrandedPet {
+  __brand: 'pet';
+}
+
+interface BrandedPerson {
+  __brand: 'person';
+}
+
+function brandPerson(p: Person): BrandedPerson {
+  return p as unknown as BrandedPerson;
+}
+
+function unBrandPerson(p: BrandedPerson): Person {
+  return p as unknown as Person;
+}
+
+function brandPet(p: Pet): BrandedPet {
+  return p as unknown as BrandedPet;
+}
+
+function unBrandPet(p: BrandedPet): Pet {
+  return p as unknown as Pet;
+}
+
+let brandedPet: BrandedPet = brandPet({ name: 'Peeet', id: 1 });
+let brandedPerson: BrandedPerson = brandPerson({ name: 'Person', id: 1 });
+
+type Brand<K, T> = K & { ___brand: T };
+
+type USD = Brand<number, 'USD'>;
+type EUR = Brand<number, 'EUR'>;
+
+const usd = 10 as USD;
+const eur = 10 as EUR;
+
+function euroToUds(value: EUR): USD {
+  return (value * 1.18) as USD;
+}

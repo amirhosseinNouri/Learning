@@ -1,0 +1,11 @@
+{
+  "name": "ts-workshop-notes",
+  "private": true,
+  "version": "0.0.0-development",
+  "devDependencies": {
+    "typescript": "3.7.7"
+  },
+  "dependencies": {
+    "json-types": "^1.0.2"
+  }
+}
