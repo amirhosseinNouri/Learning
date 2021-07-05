@@ -19,6 +19,7 @@
 
 ## Branded Types in Typescript
 - [An Introduction to Nominal TypeScript](https://betterprogramming.pub/nominal-typescript-eee36e9432d2)
+- [Surviving the TypeScript Ecosystem — Part 6: Branding and Type-Tagging](https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d)
 
 
 
