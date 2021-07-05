@@ -1,6 +1,5 @@
 # Learning
 
--- 4/7/2021 --
 
 ## PolyLine Algorithm
 
@@ -17,6 +16,9 @@
 - [Vector tiles: the next generation of tiled maps](https://www.e-education.psu.edu/geog585/node/746)
 - [WHAT IS TILE AND DIFFERENTIATE BETWEEN RASTER TILE AND VECTOR TILE](https://bachasoftware.com/what-is-tile-and-differentiate-between-raster-tile-and-vector-tile/)
 - [How web maps work - MapBox Document](https://docs.mapbox.com/vector-tiles/reference/)
+
+## Branded Types in Typescript
+- [An Introduction to Nominal TypeScript](https://betterprogramming.pub/nominal-typescript-eee36e9432d2)
 
 
 
