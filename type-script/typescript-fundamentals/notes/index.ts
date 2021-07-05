@@ -456,3 +456,11 @@ function contact<K extends keyof CommunicationMethods>(
 contact('email', { name: 'Amir', email: 'Amir@gmail.com' });
 contact('fax', { fax: 1234 });
 contact('phone', { name: 'Amir', phone: '093232' });
+
+const alreadyResolvedNum = Promise.resolve(4);
+
+type ResolveType = typeof Promise.resolve;
+
+const rt: ResolveType = Promise.resolve;
+
+rt(43).then(console.log);
