@@ -464,3 +464,8 @@ type ResolveType = typeof Promise.resolve;
 const rt: ResolveType = Promise.resolve;
 
 rt(43).then(console.log);
+
+type EventualType<T> = T extends Promise<infer S> ? S : T;
+
+let aEvt: EventualType<Promise<number>>;
+let bEvt: EventualType<number[]>;
