@@ -433,3 +433,26 @@ if (typeof y === 'string') {
 } else {
   throw new unreachableError(y, 'String or number');
 }
+
+/** Advanced Types */
+
+interface HasFax {
+  fax: number;
+}
+
+interface CommunicationMethods {
+  email: HasEmail;
+  phone: HasPhoneNumber;
+  fax: HasFax;
+}
+
+function contact<K extends keyof CommunicationMethods>(
+  method: K,
+  contact: CommunicationMethods[K],
+) {
+  console.log('contact');
+}
+
+contact('email', { name: 'Amir', email: 'Amir@gmail.com' });
+contact('fax', { fax: 1234 });
+contact('phone', { name: 'Amir', phone: '093232' });
