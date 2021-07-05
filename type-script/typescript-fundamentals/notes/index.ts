@@ -380,6 +380,9 @@ function unBrandPet(p: BrandedPet): Pet {
 let brandedPet: BrandedPet = brandPet({ name: 'Peeet', id: 1 });
 let brandedPerson: BrandedPerson = brandPerson({ name: 'Person', id: 1 });
 
+unBrandPerson(brandedPerson).age;
+unBrandPerson(brandedPerson).id;
+
 type Brand<K, T> = K & { ___brand: T };
 
 type USD = Brand<number, 'USD'>;
@@ -390,4 +393,15 @@ const eur = 10 as EUR;
 
 function euroToUds(value: EUR): USD {
   return (value * 1.18) as USD;
+}
+
+type TimeoutId = Brand<number, 'ClearTimeout'>;
+type IntervalId = Brand<number, 'ClearInterval'>;
+
+interface SetTimoutInterface {
+  (handler: () => void, delay: number): TimeoutId;
+}
+
+interface SetIntervalInterface {
+  (handler: () => void, delay: number): IntervalId;
 }
