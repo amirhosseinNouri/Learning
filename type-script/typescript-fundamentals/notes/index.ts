@@ -469,3 +469,44 @@ type EventualType<T> = T extends Promise<infer S> ? S : T;
 
 let aEvt: EventualType<Promise<number>>;
 let bEvt: EventualType<number[]>;
+
+interface Animal {
+  live: () => void;
+}
+
+interface Dog extends Animal {
+  woof: () => void;
+}
+
+type Example1 = Dog extends Animal ? number : string;
+type Example2 = RegExp extends Animal ? number : string;
+
+interface IdLabel {
+  id: number;
+}
+
+interface NameLabel {
+  name: string;
+}
+
+function createLabel(id: number): IdLabel;
+
+function createLabel(name: string): NameLabel;
+
+function createLabel(nameOrId: string | number): IdLabel | NameLabel {
+  throw 'unImplemented';
+}
+
+type IdOrName<T extends number | string> = T extends number
+  ? IdLabel
+  : NameLabel;
+
+// function genericCreateLabel2<T extends number | string>(
+//   idOrName: T,
+// ): IdOrName<T> {
+//   return null;
+// }
+
+function genericCreateLabel(value: string | number): NameLabel | IdLabel {
+  return { name: 'Amir' };
+}
