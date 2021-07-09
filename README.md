@@ -36,7 +36,7 @@
 
 ## Bitmap
 - [A Beginners Guide to Bitmaps](http://paulbourke.net/dataformats/bitmaps/)
-- [What are bitmap and vector graphics, and how are they different?](https://kb.iu.edu/d/afmr#:~:text=A%20bitmap%20(also%20called%20%22raster,that%20together%20form%20an%20image.&text=Rather%20than%20a%20grid%20of,which%20together%20make%20a%20picture.)
+- [What are bitmap and vector graphics, and how are they different?](https://kb.iu.edu/d/afmr)
 
 
 
