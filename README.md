@@ -23,6 +23,7 @@
 
 ## How browsers works
 - [How the browser renders a web page? — DOM, CSSOM, and Rendering](https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969)
+- [Inside look at modern web browser (part 3)](https://developers.google.com/web/updates/2018/09/inside-browser-part3)
 - [How web browser works step by step [Latest]— high-level architecture (part 1)](https://cabulous.medium.com/how-browser-works-part-i-process-and-thread-f63a9111bae9)
 - [Anatomy of a Browser](https://www.youtube.com/watch?v=LTV56k5X36o)
 - [How web browser works step by step [latest]— navigation phase (part 2)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-ii-navigation-342b27e56d7b)
