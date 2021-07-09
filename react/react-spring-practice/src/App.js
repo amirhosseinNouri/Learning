@@ -21,9 +21,9 @@ function App() {
       v.length
         ? []
         : [
-            { y: -50, delay: 200 },
-            { y: 0, delay: 400 },
-            { y: 50, delay: 600 },
+            { y: -50, delay: 200, text: 'A' },
+            { y: 0, delay: 400, text: 'B' },
+            { y: 50, delay: 600, text: 'C' },
           ],
     );
   };
@@ -34,7 +34,7 @@ function App() {
       <div className='container'>
         {transition((style, item) => {
           return item ? (
-            <animated.div style={style} className='item'></animated.div>
+            <animated.div style={style} className='item'>{item.text}</animated.div>
           ) : null;
         })}
       </div>

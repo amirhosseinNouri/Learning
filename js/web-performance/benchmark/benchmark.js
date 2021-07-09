@@ -13,6 +13,10 @@ const test = () => {
   add(point)
 }
 
+const square = (x) => x*x;
+
+const sumOfSquare = (a,b) => square(a) + square(b);
+
 const obs = new PerformanceObserver((items) => {
   items.getEntries().forEach((item) => {
     console.log(item);
@@ -20,10 +24,10 @@ const obs = new PerformanceObserver((items) => {
 });
 obs.observe({ entryTypes: ['measure'] });
 
-function measure(name, fn, iterations) {
+function measure(name, fn, iterations , ...args) {
   performance.mark('start');
   while (iterations--) {
-    fn();
+    fn(...args);
   }
   performance.mark('end');
   performance.measure(name, 'start', 'end');
@@ -48,7 +52,7 @@ const deleteProperty = (property) => {
   delete point[property];
 };
 
-measure('test' , test ,  iterations)
+// measure('test' , test ,  iterations)
 
 // measure('delete x', () => deleteProperty('x'), iterations);
 // measure('delete y', () => deleteProperty('y'), iterations);
@@ -57,3 +61,6 @@ measure('test' , test ,  iterations)
 // measure('undefine x', () => undefineProperty('x'), iterations);
 // measure('delete y', () => deleteProperty('y'), iterations);
 // measure('delete z', () => deleteProperty('z'), iterations);
+
+
+measure('sumOfSquare' , sumOfSquare ,iterations , iterations , iterations + 1)
