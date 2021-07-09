@@ -21,6 +21,17 @@
 - [An Introduction to Nominal TypeScript](https://betterprogramming.pub/nominal-typescript-eee36e9432d2)
 - [Surviving the TypeScript Ecosystem — Part 6: Branding and Type-Tagging](https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d)
 
+## How browsers works
+- [How web browser works step by step [Latest]— high-level architecture (part 1)](https://cabulous.medium.com/how-browser-works-part-i-process-and-thread-f63a9111bae9)
+- [Anatomy of a Browser](https://www.youtube.com/watch?v=LTV56k5X36o)
+- [How web browser works step by step [latest]— navigation phase (part 2)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-ii-navigation-342b27e56d7b)
+- [How does browser work step by step [latest] — rendering phase (part 3)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-iii-rendering-phase-i-850c8935958f)
+- [How does browser work step by step [latest] — optimization in the loading stage (part 4)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-4-more-about-rendering-phase-fbba0d94a174)
+- [How does browser work step by step [latest] — optimization in the interaction stage (part 5)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-5-optimization-in-the-interaction-stage-66b53b8ec0ad)
+
+## Bitmap
+- [A Beginners Guide to Bitmaps](http://paulbourke.net/dataformats/bitmaps/)
+- [What are bitmap and vector graphics, and how are they different?](https://kb.iu.edu/d/afmr#:~:text=A%20bitmap%20(also%20called%20%22raster,that%20together%20form%20an%20image.&text=Rather%20than%20a%20grid%20of,which%20together%20make%20a%20picture.)
 
 
 
