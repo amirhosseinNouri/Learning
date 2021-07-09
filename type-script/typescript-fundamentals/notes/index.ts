@@ -501,11 +501,7 @@ type IdOrName<T extends number | string> = T extends number
   ? IdLabel
   : NameLabel;
 
-// function genericCreateLabel2<T extends number | string>(
-//   idOrName: T,
-// ): IdOrName<T> {
-//   return null;
-// }
+//  
 
 function genericCreateLabel(value: string | number): NameLabel | IdLabel {
   return { name: 'Amir' };
