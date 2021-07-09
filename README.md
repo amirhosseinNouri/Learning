@@ -22,12 +22,17 @@
 - [Surviving the TypeScript Ecosystem — Part 6: Branding and Type-Tagging](https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d)
 
 ## How browsers works
+- [How the browser renders a web page? — DOM, CSSOM, and Rendering](https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969)
 - [How web browser works step by step [Latest]— high-level architecture (part 1)](https://cabulous.medium.com/how-browser-works-part-i-process-and-thread-f63a9111bae9)
 - [Anatomy of a Browser](https://www.youtube.com/watch?v=LTV56k5X36o)
 - [How web browser works step by step [latest]— navigation phase (part 2)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-ii-navigation-342b27e56d7b)
 - [How does browser work step by step [latest] — rendering phase (part 3)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-iii-rendering-phase-i-850c8935958f)
 - [How does browser work step by step [latest] — optimization in the loading stage (part 4)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-4-more-about-rendering-phase-fbba0d94a174)
 - [How does browser work step by step [latest] — optimization in the interaction stage (part 5)](https://cabulous.medium.com/how-does-browser-work-in-2019-part-5-optimization-in-the-interaction-stage-66b53b8ec0ad)
+- [When Reflow happens?](https://stackoverflow.com/a/27637245/2790983)
+- [LAYOUT & WEB PERFORMANCE](https://kellegous.com/j/2013/01/26/layout-performance/)
+- [Avoid Large, Complex Layouts and Layout Thrashing](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing#feedback)
+- [How the browser renders a web page? — DOM, CSSOM, and Rendering](https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969)
 
 ## Bitmap
 - [A Beginners Guide to Bitmaps](http://paulbourke.net/dataformats/bitmaps/)
