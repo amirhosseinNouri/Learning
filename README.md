@@ -32,7 +32,7 @@
 - [When Reflow happens?](https://stackoverflow.com/a/27637245/2790983)
 - [LAYOUT & WEB PERFORMANCE](https://kellegous.com/j/2013/01/26/layout-performance/)
 - [Avoid Large, Complex Layouts and Layout Thrashing](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing#feedback)
-- [How the browser renders a web page? — DOM, CSSOM, and Rendering](https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969)
+
 
 ## Bitmap
 - [A Beginners Guide to Bitmaps](http://paulbourke.net/dataformats/bitmaps/)
