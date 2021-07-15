@@ -1,8 +1,8 @@
 import './App.css';
-import Reset from './components/reset'
+import Transition from './components/transition';
 
-function App() { 
-  return <Reset />;
+function App() {
+  return <Transition />;
 }
 
 export default App;
