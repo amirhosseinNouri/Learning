@@ -39,5 +39,9 @@
 - [A Beginners Guide to Bitmaps](http://paulbourke.net/dataformats/bitmaps/)
 - [What are bitmap and vector graphics, and how are they different?](https://kb.iu.edu/d/afmr)
 
+## Event Deligation in React
+- [Event Capturing, Bubbling, and Delegation in React](https://medium.com/@john.louis.rumingan/event-capturing-bubbling-and-delegation-in-react-f08b704706a0)
+- [Should I use event delegation in React?](https://dev.to/thawsitt/should-i-use-event-delegation-in-react-nl0)
+
 
 
