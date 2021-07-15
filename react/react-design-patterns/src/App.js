@@ -1,9 +1,8 @@
 import './App.css';
-import Parent from './components/parent';
-import Events from './components/events';
+import Focus from './components/focus';
 
-function App() {
-  return <Events />;
+function App() { 
+  return <Focus />;
 }
-    
+
 export default App;
