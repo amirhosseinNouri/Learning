@@ -1,8 +1,8 @@
 import './App.css';
-import Focus from './components/focus';
+import Reset from './components/reset'
 
 function App() { 
-  return <Focus />;
+  return <Reset />;
 }
 
 export default App;
