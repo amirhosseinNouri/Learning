@@ -1,15 +1,15 @@
 import React from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { Motion, spring } from 'react-motion';
 
 export default function Transition() {
   return (
-    <CSSTransitionGroup
-      transitionName="fade"
-      transitionAppear
-      transitionAppearTimeout={1_000}
-      transitionEnterTimeout={200}
+    <Motion
+      defaultStyle={{ opacity: 0.1, letterSpacing: 0 }}
+      style={{ opacity: spring(1), letterSpacing: spring(5) }}
     >
-      <h1>Hello Transition</h1>
-    </CSSTransitionGroup>
+      {(interpolatingStyle) => (
+        <h1 style={interpolatingStyle}>Hello Transition</h1>
+      )}
+    </Motion>
   );
 }
