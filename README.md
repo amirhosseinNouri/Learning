@@ -43,5 +43,12 @@
 - [Event Capturing, Bubbling, and Delegation in React](https://medium.com/@john.louis.rumingan/event-capturing-bubbling-and-delegation-in-react-f08b704706a0)
 - [Should I use event delegation in React?](https://dev.to/thawsitt/should-i-use-event-delegation-in-react-nl0)
 
+## Redux Selectors and Reselect
+- [What is a Redux selector?](https://medium.com/@matthew.holman/what-is-a-redux-selector-a517acee1fe8)
+- [Selectors in Redux](https://www.youtube.com/watch?v=frT3to2ACCw)
+- [Reselect Doc](https://github.com/reduxjs/reselect)
+
+## React Design Patterns
+- [React component code smells](https://antongunnarsson.com/react-component-code-smells/)
 
 
