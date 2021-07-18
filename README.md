@@ -51,4 +51,7 @@
 ## React Design Patterns
 - [React component code smells](https://antongunnarsson.com/react-component-code-smells/)
 
+## Server Side Rendering
+- [A beginner’s guide to React Server-Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55)
+
 
