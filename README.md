@@ -54,5 +54,5 @@
 ## Server Side Rendering
 - [A beginner’s guide to React Server-Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55)
 
-## Promises
-- [Promise.all()](https://www.javascripttutorial.net/es6/javascript-promise-all/)
+## Javascript Promises
+- [Promise.all() static method](https://www.javascripttutorial.net/es6/javascript-promise-all/)
