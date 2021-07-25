@@ -59,3 +59,6 @@
 
 ## Testing
 - [Maintaining End-To-End Quality With Visual Testing](https://www.smashingmagazine.com/2021/07/maintaining-end-to-end-quality-visual-testing)
+
+## Solid Design Principles
+- [SOLID Design Principles Explained: The Liskov Substitution Principle with Code Examples](https://stackify.com/solid-design-liskov-substitution-principle/)
