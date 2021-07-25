@@ -56,3 +56,6 @@
 
 ## Javascript Promises
 - [Promise.all() static method](https://www.javascripttutorial.net/es6/javascript-promise-all/)
+
+## Testing
+- [Maintaining End-To-End Quality With Visual Testing](https://www.smashingmagazine.com/2021/07/maintaining-end-to-end-quality-visual-testing)
