@@ -61,4 +61,9 @@
 - [Maintaining End-To-End Quality With Visual Testing](https://www.smashingmagazine.com/2021/07/maintaining-end-to-end-quality-visual-testing)
 
 ## Solid Design Principles
+- [SOLID Design Principles Explained: The Single Responsibility Principle](https://stackify.com/solid-design-principles/)
+- [SOLID Design Principles Explained: The Open/Closed Principle with Code Examples](https://stackify.com/solid-design-open-closed-principle/)
 - [SOLID Design Principles Explained: The Liskov Substitution Principle with Code Examples](https://stackify.com/solid-design-liskov-substitution-principle/)
+- [SOLID Design Principles Explained: Interface Segregation with Code Examples](https://stackify.com/interface-segregation-principle/)
+- [SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples](https://stackify.com/dependency-inversion-principle/)
+
