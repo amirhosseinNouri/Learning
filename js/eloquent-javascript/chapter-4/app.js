@@ -29,7 +29,38 @@ function reverseArrayInPlace(arr) {
 }
 
 const arr = [1, 2, 3, 4, 5];
-console.log(reverseArray(arr));
-console.log(reverseArrayInPlace(arr));
-console.log(arr === reverseArrayInPlace(arr));
-console.log(arr === reverseArray(arr));
+// console.log(reverseArray(arr));
+// console.log(reverseArrayInPlace(arr));
+// console.log(arr === reverseArrayInPlace(arr));
+// console.log(arr === reverseArray(arr));
+
+function deepComparison(arg1, arg2) {
+  if (
+    typeof arg1 === 'object' &&
+    arg1 !== null &&
+    typeof arg2 === 'object' &&
+    arg2 !== null
+  ) {
+    const prop1 = Object.keys(arg1);
+    const prop2 = Object.keys(arg2);
+
+    if (prop1.length !== prop2.length) {
+      return false;
+    }
+
+    const maxProps = Math.max(prop1.length, prop2.length);
+
+    for (let i = 0; i < maxProps; i++) {
+      if (prop1[i] !== prop2[i]) {
+        return false;
+      }
+    }
+    return true;
+  } else {
+    return arg1 === arg2;
+  }
+}
+
+const a = { value: 1, items: [], id: 1 };
+const b = { value: 2, items: [1, 2] };
+console.log(deepComparison(a, b));
