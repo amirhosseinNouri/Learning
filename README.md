@@ -43,5 +43,29 @@
 - [Event Capturing, Bubbling, and Delegation in React](https://medium.com/@john.louis.rumingan/event-capturing-bubbling-and-delegation-in-react-f08b704706a0)
 - [Should I use event delegation in React?](https://dev.to/thawsitt/should-i-use-event-delegation-in-react-nl0)
 
+## Redux Selectors and Reselect
+- [What is a Redux selector?](https://medium.com/@matthew.holman/what-is-a-redux-selector-a517acee1fe8)
+- [Selectors in Redux](https://www.youtube.com/watch?v=frT3to2ACCw)
+- [Reselect Doc](https://github.com/reduxjs/reselect)
 
+## React Design Patterns
+- [React component code smells](https://antongunnarsson.com/react-component-code-smells/)
 
+## Server Side Rendering
+- [A beginner’s guide to React Server-Side Rendering (SSR)](https://medium.com/jspoint/a-beginners-guide-to-react-server-side-rendering-ssr-bf3853841d55)
+
+## Javascript Promises
+- [Promise.all() static method](https://www.javascripttutorial.net/es6/javascript-promise-all/)
+
+## Testing
+- [Maintaining End-To-End Quality With Visual Testing](https://www.smashingmagazine.com/2021/07/maintaining-end-to-end-quality-visual-testing)
+
+## Solid Design Principles
+- [SOLID Design Principles Explained: The Single Responsibility Principle](https://stackify.com/solid-design-principles/)
+- [SOLID Design Principles Explained: The Open/Closed Principle with Code Examples](https://stackify.com/solid-design-open-closed-principle/)
+- [SOLID Design Principles Explained: The Liskov Substitution Principle with Code Examples](https://stackify.com/solid-design-liskov-substitution-principle/)
+- [SOLID Design Principles Explained: Interface Segregation with Code Examples](https://stackify.com/interface-segregation-principle/)
+- [SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples](https://stackify.com/dependency-inversion-principle/)
+
+## WebRTC
+- [WebRTC Doc](https://webrtc.org/getting-started/media-devices#using-asyncawait)
