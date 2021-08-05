@@ -13,3 +13,14 @@ const userFunctionStore = {
 const user1 = userCreator('Amir', 12);
 // console.log(user1);
 user1.login();
+
+function sayHello() {
+  console.log('Helo');
+}
+
+console.log(sayHello);
+sayHello.value = 3;
+console.log(sayHello);
+console.log(sayHello.value);
+
+
