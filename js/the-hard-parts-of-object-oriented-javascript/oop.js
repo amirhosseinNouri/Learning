@@ -29,7 +29,10 @@ const sandra = personFromPersonStore('Sandra', 26);
 
 // sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
-function PersonConstructor() {}
+function PersonConstructor(name, age) {
+  this.name = name;
+  this.age = age;
+}
 
 PersonConstructor.prototype.greet = function () {
   console.log('Hi');
@@ -37,4 +40,16 @@ PersonConstructor.prototype.greet = function () {
 
 // /********* Uncomment this line to test your work! *********/
 const simon = new PersonConstructor();
-simon.greet(); // -> Logs 'hello'
+// simon.greet(); // -> Logs 'hello'
+
+function personFromConstructor(name, age) {
+  const newPerson = new PersonConstructor(name, age);
+  return newPerson;
+}
+
+const mike = personFromConstructor('Mike', 30);
+
+// /********* Uncomment these lines to test your work! *********/
+console.log(mike.name); // -> Logs 'Mike'
+console.log(mike.age); //-> Logs 30
+mike.greet(); //-> Logs 'hello'
