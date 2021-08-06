@@ -38,6 +38,10 @@ PersonConstructor.prototype.greet = function () {
   console.log('Hi');
 };
 
+PersonConstructor.prototype.introduce = function () {
+  console.log(`Hi, my name is ${this.name}`);
+};
+
 // /********* Uncomment this line to test your work! *********/
 const simon = new PersonConstructor();
 // simon.greet(); // -> Logs 'hello'
@@ -53,3 +57,4 @@ const mike = personFromConstructor('Mike', 30);
 console.log(mike.name); // -> Logs 'Mike'
 console.log(mike.age); //-> Logs 30
 mike.greet(); //-> Logs 'hello'
+mike.introduce(); // -> Logs 'Hi, my name is Mike'
