@@ -7,6 +7,9 @@ const vicky = makePerson('Vicky', 24);
 
 const personStore = {
   greet: () => console.log('Hello'),
+  introduce: function () {
+    console.log(`Hi, my name is ${this.name}`);
+  },
 };
 // personStore.greet(); // -> Logs 'hello'
 
@@ -20,6 +23,8 @@ function personFromPersonStore(name, age) {
 const sandra = personFromPersonStore('Sandra', 26);
 
 // /********* Uncomment these lines to test your work! *********/
-console.log(sandra.name); // -> Logs 'Sandra'
-console.log(sandra.age); //-> Logs 26
-sandra.greet(); //-> Logs 'hello'
+// console.log(sandra.name); // -> Logs 'Sandra'
+// console.log(sandra.age); //-> Logs 26
+// sandra.greet(); //-> Logs 'hello'
+
+sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
