@@ -71,4 +71,14 @@ class PersonClass {
 
 // /********* Uncomment this line to test your work! *********/
 const george = new PersonClass();
-george.greet(); // -> Logs 'hello'
+// george.greet(); // -> Logs 'hello'
+
+class DeveloperClass extends PersonClass {
+  introduce() {
+    console.log(`Hi, my name is ${this.name}`);
+  }
+}
+// /********* Uncomment these lines to test your work! *********/
+const thai = new DeveloperClass('Thai', 32);
+console.log(thai.name); // -> Logs 'Thai'
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
