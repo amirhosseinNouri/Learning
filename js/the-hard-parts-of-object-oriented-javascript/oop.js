@@ -54,7 +54,21 @@ function personFromConstructor(name, age) {
 const mike = personFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
-console.log(mike.name); // -> Logs 'Mike'
-console.log(mike.age); //-> Logs 30
-mike.greet(); //-> Logs 'hello'
-mike.introduce(); // -> Logs 'Hi, my name is Mike'
+// console.log(mike.name); // -> Logs 'Mike'
+// console.log(mike.age); //-> Logs 30
+// mike.greet(); //-> Logs 'hello'
+// mike.introduce(); // -> Logs 'Hi, my name is Mike'
+
+class PersonClass {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log('Hello');
+  }
+}
+
+// /********* Uncomment this line to test your work! *********/
+const george = new PersonClass();
+george.greet(); // -> Logs 'hello'
