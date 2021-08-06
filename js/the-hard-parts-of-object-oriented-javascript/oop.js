@@ -27,4 +27,14 @@ const sandra = personFromPersonStore('Sandra', 26);
 // console.log(sandra.age); //-> Logs 26
 // sandra.greet(); //-> Logs 'hello'
 
-sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
+// sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
+
+function PersonConstructor() {}
+
+PersonConstructor.prototype.greet = function () {
+  console.log('Hi');
+};
+
+// /********* Uncomment this line to test your work! *********/
+const simon = new PersonConstructor();
+simon.greet(); // -> Logs 'hello'
