@@ -11,6 +11,11 @@
 
 // add(a, b, true, 'The result is:');
 
+type Combinable = number | string;
+type Conversion = 'as-type' | 'as-text';
+
+const a: Combinable = 2;
+
 enum Role {
   ADMIN,
   USER,
