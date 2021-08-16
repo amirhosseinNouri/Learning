@@ -1,29 +1,9 @@
-// const add = (n1: number, n2: number, logResult: boolean, phrase: string) => {
-//   const result: number = n1 + n2;
-//   if (logResult) {
-//     console.log(`${phrase} ${result}`);
-//   }
-//   return n1 + n2;
-// };
-
-// const a = 2;
-// const b = 3.2;
-
-// add(a, b, true, 'The result is:');
-
-type Combinable = number | string;
-type Conversion = 'as-type' | 'as-text';
-
-const a: Combinable = 2;
-
-enum Role {
-  ADMIN,
-  USER,
-  MANAGER,
+function add(a: number, b: number): number {
+  return a + b;
 }
 
-const person = {
-  role: Role.ADMIN,
-};
+function printResult(num: number): void {
+  console.log(`Result: ${num}`);
+}
 
-console.log(person.role);
+printResult(add(1, 2));
