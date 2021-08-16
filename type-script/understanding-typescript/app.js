@@ -1,14 +1,12 @@
-function add(a, b) {
-    return a + b;
+var userInput;
+var username;
+userInput = 3;
+userInput = 'Amir';
+if (typeof userInput === 'string') {
+    username = userInput;
 }
-function printResult(num) {
-    console.log("Result: " + num);
+function generateError(message, errorCode) {
+    console.log('generate error');
+    throw new Error(message);
 }
-// printResult(add(1, 2));
-function addAndHandle(a, b, cb) {
-    var result = a + b;
-    cb(result);
-}
-addAndHandle(1, 4, function (result) { return console.log(result); });
-var addFunction = add;
-console.log(addFunction(2, 23));
+generateError('error', 202);

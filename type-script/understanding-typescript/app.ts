@@ -1,21 +1,15 @@
-type addType = (a: number, b: number) => number;
+let userInput: unknown;
+let username: string;
 
-function add(a: number, b: number): number {
-  return a + b;
+userInput = 3;
+userInput = 'Amir';
+if (typeof userInput === 'string') {
+  username = userInput;
 }
 
-function printResult(num: number): void {
-  console.log(`Result: ${num}`);
+function generateError(message: string, errorCode?: number): never {
+  console.log('generate error');
+  throw new Error(message);
 }
 
-// printResult(add(1, 2));
-
-function addAndHandle(a: number, b: number, cb: (a: number) => void) {
-  const result = a + b;
-  cb(result);
-}
-
-addAndHandle(1, 4, (result) => console.log(result));
-
-const addFunction: addType = add;
-console.log(addFunction(2, 23));
+generateError('error', 202);
