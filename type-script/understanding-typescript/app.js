@@ -1,12 +1,6 @@
-var userInput;
-var username;
-userInput = 3;
-userInput = 'Amir';
-if (typeof userInput === 'string') {
-    username = userInput;
-}
-function generateError(message, errorCode) {
-    console.log('generate error');
-    throw new Error(message);
-}
-generateError('error', 202);
+"use strict";
+var firstName = 'Amir';
+console.log(firstName);
+var button = document.querySelector('button');
+button === null || button === void 0 ? void 0 : button.addEventListener('click', function () { return console.log('Clicked'); });
+//# sourceMappingURL=app.js.map
