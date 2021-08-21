@@ -3,4 +3,8 @@ console.log(firstName);
 
 const button = document.querySelector('button');
 
-button?.addEventListener('click', () => console.log('Clicked'));
+function handleClick(message: string) {
+  console.log(message);
+}
+
+button?.addEventListener('click', handleClick.bind(null, 'Message'));
