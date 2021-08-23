@@ -1,23 +1,16 @@
 "use strict";
-var user = {
-    name: 'Amir',
-    age: 21,
-    greet: function (phrase) { return console.log(phrase); },
-};
-var Employee = /** @class */ (function () {
-    function Employee(name, age) {
-        this.name = name;
-        this.age = age;
+function printEmployeeInformation(e) {
+    console.log(e.name);
+    if ('privileges' in e) {
+        console.log(e.privileges);
     }
-    Employee.prototype.greet = function () {
-        console.log('Greet');
-    };
-    return Employee;
-}());
-var e1 = new Employee('Amir', 20);
-var addUsingInterface = function (a, b) {
-    return a + b;
+    if ('startDate' in e) {
+        console.log(e.startDate);
+    }
+}
+var e1 = {
+    name: 'Amir',
+    privileges: [''],
+    startDate: new Date(),
 };
-var addUsingType = function (a, b) {
-    return a + b;
-};
+printEmployeeInformation(e1);

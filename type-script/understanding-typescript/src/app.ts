@@ -1,46 +1,30 @@
-interface Person {
+type Admin = {
   name: string;
-  age: number;
-  greet(phrase: string): void;
+  privileges: string[];
+};
+
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee;
+type UnknownEmployee = Admin | Employee;
+
+function printEmployeeInformation(e: UnknownEmployee) {
+  console.log(e.name);
+  if ('privileges' in e) {
+    console.log(e.privileges);
+  }
+  if ('startDate' in e) {
+    console.log(e.startDate);
+  }
 }
 
-const user: Person = {
+const e1: ElevatedEmployee = {
   name: 'Amir',
-  age: 21,
-  greet: (phrase) => console.log(phrase),
+  privileges: [''],
+  startDate: new Date(),
 };
 
-class Employee implements Person {
-  name: string;
-  age: number;
-
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-
-  greet() {
-    console.log('Greet');
-  }
-}
-
-const e1 = new Employee('Amir', 20);
-
-
-
-interface AddFunctionInterface {
-  (a: number, b: number): number;
-}
-
-type AddFunctionType = (a: number, b: number) => number;
-
-const addUsingInterface: AddFunctionInterface = (
-  a: number,
-  b: number,
-): number => {
-  return a + b;
-};
-
-const addUsingType: AddFunctionType = (a: number, b: number): number => {
-  return a + b;
-};
+printEmployeeInformation(e1);
