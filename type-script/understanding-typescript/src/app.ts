@@ -28,3 +28,33 @@ const e1: ElevatedEmployee = {
 };
 
 printEmployeeInformation(e1);
+
+class Car {
+  drive() {
+    console.log('Driving');
+  }
+}
+
+class Truck {
+  drive() {
+    console.log('Driving truck');
+  }
+  cargo(amount: number) {
+    console.log(`Cargo ${amount}`);
+  }
+}
+
+type Vehicle = Car | Truck;
+
+const v = new Car();
+const t = new Truck();
+
+function useVehicle(v: Vehicle) {
+  v.drive();
+  if ('cargo' in v) {
+    v.cargo(200);
+  }
+}
+
+useVehicle(v);
+useVehicle(t);

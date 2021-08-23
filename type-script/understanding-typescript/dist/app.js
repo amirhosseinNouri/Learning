@@ -14,3 +14,32 @@ var e1 = {
     startDate: new Date(),
 };
 printEmployeeInformation(e1);
+var Car = /** @class */ (function () {
+    function Car() {
+    }
+    Car.prototype.drive = function () {
+        console.log('Driving');
+    };
+    return Car;
+}());
+var Truck = /** @class */ (function () {
+    function Truck() {
+    }
+    Truck.prototype.drive = function () {
+        console.log('Driving truck');
+    };
+    Truck.prototype.cargo = function (amount) {
+        console.log("Cargo " + amount);
+    };
+    return Truck;
+}());
+var v = new Car();
+var t = new Truck();
+function useVehicle(v) {
+    v.drive();
+    if ('cargo' in v) {
+        v.cargo(200);
+    }
+}
+useVehicle(v);
+useVehicle(t);
