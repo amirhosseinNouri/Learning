@@ -88,3 +88,9 @@ function moveAnimal(a: Animal) {
 
 const b1: Bird = { flyingSpeed: 20, type: 'bird' };
 moveAnimal(b1);
+
+const paragraph = <HTMLInputElement>document.querySelector('#user-input')!;
+paragraph.value = 'Changed';
+
+const inp = document.querySelector('#user-input')! as HTMLInputElement;
+inp.value = 'Changed for the second time';

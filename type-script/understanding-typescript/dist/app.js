@@ -59,3 +59,7 @@ function moveAnimal(a) {
 }
 var b1 = { flyingSpeed: 20, type: 'bird' };
 moveAnimal(b1);
+var paragraph = document.querySelector('#user-input');
+paragraph.value = 'Changed';
+var inp = document.querySelector('#user-input');
+inp.value = 'Changed for the second time';
