@@ -94,3 +94,10 @@ paragraph.value = 'Changed';
 
 const inp = document.querySelector('#user-input')! as HTMLInputElement;
 inp.value = 'Changed for the second time';
+
+interface ErrorContainer {
+  id: string;
+  [err: string]: string;
+}
+
+const errorBag: ErrorContainer = { id: 1, email: 'Not a valid email.' };
