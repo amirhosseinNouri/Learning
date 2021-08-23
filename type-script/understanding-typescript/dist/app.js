@@ -1,13 +1,23 @@
 "use strict";
-var Department = /** @class */ (function () {
-    function Department(name) {
+var user = {
+    name: 'Amir',
+    age: 21,
+    greet: function (phrase) { return console.log(phrase); },
+};
+var Employee = /** @class */ (function () {
+    function Employee(name, age) {
         this.name = name;
+        this.age = age;
     }
-    Department.prototype.printName = function () {
-        console.log(this.name);
+    Employee.prototype.greet = function () {
+        console.log('Greet');
     };
-    return Department;
+    return Employee;
 }());
-var tech = new Department('Tech');
-console.log(tech);
-tech.printName();
+var e1 = new Employee('Amir', 20);
+var addUsingInterface = function (a, b) {
+    return a + b;
+};
+var addUsingType = function (a, b) {
+    return a + b;
+};

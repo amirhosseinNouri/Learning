@@ -1,15 +1,46 @@
-class Department {
+interface Person {
   name: string;
+  age: number;
+  greet(phrase: string): void;
+}
 
-  constructor(name: string) {
+const user: Person = {
+  name: 'Amir',
+  age: 21,
+  greet: (phrase) => console.log(phrase),
+};
+
+class Employee implements Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
     this.name = name;
+    this.age = age;
   }
 
-  printName() {
-    console.log(this.name);
+  greet() {
+    console.log('Greet');
   }
 }
 
-const tech = new Department('Tech');
-console.log(tech);
-tech.printName();
+const e1 = new Employee('Amir', 20);
+
+
+
+interface AddFunctionInterface {
+  (a: number, b: number): number;
+}
+
+type AddFunctionType = (a: number, b: number) => number;
+
+const addUsingInterface: AddFunctionInterface = (
+  a: number,
+  b: number,
+): number => {
+  return a + b;
+};
+
+const addUsingType: AddFunctionType = (a: number, b: number): number => {
+  return a + b;
+};
