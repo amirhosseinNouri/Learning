@@ -63,3 +63,12 @@ var paragraph = document.querySelector('#user-input');
 paragraph.value = 'Changed';
 var inp = document.querySelector('#user-input');
 inp.value = 'Changed for the second time';
+var errorBag = { id: '1', email: 'Not a valid email.' };
+function add(a, b) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+var result = add('Amir', 'Hossein');
+result.toString();
