@@ -1,10 +1,15 @@
-const firstName: string = 'Amir';
-console.log(firstName);
+class Department {
+  name: string;
 
-const button = document.querySelector('button');
+  constructor(name: string) {
+    this.name = name;
+  }
 
-function handleClick(message: string) {
-  console.log(message);
+  printName() {
+    console.log(this.name);
+  }
 }
 
-button?.addEventListener('click', handleClick.bind(null, 'Message'));
+const tech = new Department('Tech');
+console.log(tech);
+tech.printName();
