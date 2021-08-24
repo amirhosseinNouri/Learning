@@ -125,3 +125,7 @@ const fetchedUserData = {
   job: { title: 'developer' },
 };
 console.log(fetchedUserData?.job?.title);
+
+const userInput = '';
+const storedData = userInput ?? 'Default';
+console.log({ storedData });
