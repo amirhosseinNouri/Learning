@@ -133,3 +133,6 @@ function createGoalScore(title, description, completeUntil) {
     obj.completeUntil = completeUntil;
     return obj;
 }
+var myNames = ['Amir', 'Amirhossein', 'Ali'];
+// myNames.push('new name');
+// myNames.pop();

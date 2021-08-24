@@ -217,3 +217,7 @@ function createGoalScore(
 
   return obj as CourseGoal;
 }
+
+const myNames: Readonly<string[]> = ['Amir', 'Amirhossein', 'Ali'];
+// myNames.push('new name');
+// myNames.pop();
