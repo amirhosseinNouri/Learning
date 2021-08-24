@@ -27,7 +27,7 @@ const e1: ElevatedEmployee = {
   startDate: new Date(),
 };
 
-printEmployeeInformation(e1);
+// printEmployeeInformation(e1);
 
 class Car {
   drive() {
@@ -56,8 +56,8 @@ function useVehicle(v: Vehicle) {
   }
 }
 
-useVehicle(v);
-useVehicle(t);
+// useVehicle(v);
+// useVehicle(t);
 
 interface Bird {
   type: 'bird';
@@ -87,7 +87,7 @@ function moveAnimal(a: Animal) {
 }
 
 const b1: Bird = { flyingSpeed: 20, type: 'bird' };
-moveAnimal(b1);
+// moveAnimal(b1);
 
 const paragraph = <HTMLInputElement>document.querySelector('#user-input')!;
 paragraph.value = 'Changed';
@@ -116,19 +116,19 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-const result = add('Amir', 'Hossein');
-result.toString();
+// const result = add('Amir', 'Hossein');
+// result.toString();
 
 const fetchedUserData = {
   id: '1',
   name: 'Amir',
   job: { title: 'developer' },
 };
-console.log(fetchedUserData?.job?.title);
+// console.log(fetchedUserData?.job?.title);
 
 const userInput = '';
 const storedData = userInput ?? 'Default';
-console.log({ storedData });
+// console.log({ storedData });
 
 const names: Array<string> = ['Amirhossein', 'Ali'];
 
@@ -143,8 +143,8 @@ function merge<T extends object, U extends object>(a: T, b: U) {
 }
 
 const mergedObject = merge({ name: 'Amir' }, { age: 2 });
-console.log(mergedObject.age);
-console.log(mergedObject.name);
+// console.log(mergedObject.age);
+// console.log(mergedObject.name);
 
 interface Lengthy {
   length: number;
@@ -158,3 +158,12 @@ function countAndPrint<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndPrint('Hello there'));
+
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U,
+) {
+  return obj[key];
+}
+
+console.log(extractAndConvert({name : 'Amir'}, 'name'));

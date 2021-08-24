@@ -1,5 +1,4 @@
 "use strict";
-var _a;
 function printEmployeeInformation(e) {
     console.log(e.name);
     if ('privileges' in e) {
@@ -14,7 +13,7 @@ var e1 = {
     privileges: [''],
     startDate: new Date(),
 };
-printEmployeeInformation(e1);
+// printEmployeeInformation(e1);
 var Car = /** @class */ (function () {
     function Car() {
     }
@@ -42,8 +41,6 @@ function useVehicle(v) {
         v.cargo(200);
     }
 }
-useVehicle(v);
-useVehicle(t);
 function moveAnimal(a) {
     var speed;
     switch (a.type) {
@@ -59,7 +56,7 @@ function moveAnimal(a) {
     console.log("Running with " + speed + " speed.");
 }
 var b1 = { flyingSpeed: 20, type: 'bird' };
-moveAnimal(b1);
+// moveAnimal(b1);
 var paragraph = document.querySelector('#user-input');
 paragraph.value = 'Changed';
 var inp = document.querySelector('#user-input');
@@ -71,17 +68,17 @@ function add(a, b) {
     }
     return a + b;
 }
-var result = add('Amir', 'Hossein');
-result.toString();
+// const result = add('Amir', 'Hossein');
+// result.toString();
 var fetchedUserData = {
     id: '1',
     name: 'Amir',
     job: { title: 'developer' },
 };
-console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+// console.log(fetchedUserData?.job?.title);
 var userInput = '';
 var storedData = userInput !== null && userInput !== void 0 ? userInput : 'Default';
-console.log({ storedData: storedData });
+// console.log({ storedData });
 var names = ['Amirhossein', 'Ali'];
 var promise = new Promise(function (res, rej) {
     setTimeout(function () { return res('Done'); }, 2000);
@@ -91,8 +88,6 @@ function merge(a, b) {
     return Object.assign(a, b);
 }
 var mergedObject = merge({ name: 'Amir' }, { age: 2 });
-console.log(mergedObject.age);
-console.log(mergedObject.name);
 function countAndPrint(element) {
     var description = element.length
         ? "Got " + element.length + " elements."
@@ -100,3 +95,7 @@ function countAndPrint(element) {
     return [element, description];
 }
 console.log(countAndPrint('Hello there'));
+function extractAndConvert(obj, key) {
+    return obj[key];
+}
+console.log(extractAndConvert({ name: 'Amir' }, 'name'));
