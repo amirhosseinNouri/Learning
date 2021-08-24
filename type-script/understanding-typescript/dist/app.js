@@ -1,4 +1,9 @@
 "use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 function printEmployeeInformation(e) {
     console.log(e.name);
     if ('privileges' in e) {
@@ -99,3 +104,30 @@ function extractAndConvert(obj, key) {
     return obj[key];
 }
 console.log(extractAndConvert({ name: 'Amir' }, 'name'));
+var DataStorage = /** @class */ (function () {
+    function DataStorage() {
+        this.data = [];
+    }
+    DataStorage.prototype.addItem = function (item) {
+        this.data.push(item);
+    };
+    DataStorage.prototype.removeItem = function (item) {
+        this.data.splice(this.data.indexOf(item), 1);
+    };
+    DataStorage.prototype.getItems = function () {
+        return __spreadArray([], this.data);
+    };
+    return DataStorage;
+}());
+var textStorage = new DataStorage();
+textStorage.addItem('hello');
+textStorage.addItem('amir');
+textStorage.removeItem('hello');
+console.log(textStorage.getItems());
+var numberStorage = new DataStorage();
+var hybridStorage = new DataStorage();
+// const objectStorage = new DataStorage<object>();
+// objectStorage.addItem({ name: 'Amir' });
+// objectStorage.addItem({ age: 23 });
+// objectStorage.removeItem({ age: 23 });
+// console.log(objectStorage.getItems());
