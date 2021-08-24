@@ -126,8 +126,10 @@ textStorage.removeItem('hello');
 console.log(textStorage.getItems());
 var numberStorage = new DataStorage();
 var hybridStorage = new DataStorage();
-// const objectStorage = new DataStorage<object>();
-// objectStorage.addItem({ name: 'Amir' });
-// objectStorage.addItem({ age: 23 });
-// objectStorage.removeItem({ age: 23 });
-// console.log(objectStorage.getItems());
+function createGoalScore(title, description, completeUntil) {
+    var obj = {};
+    obj.title = title;
+    obj.description = description;
+    obj.completeUntil = completeUntil;
+    return obj;
+}

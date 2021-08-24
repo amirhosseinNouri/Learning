@@ -198,3 +198,22 @@ const hybridStorage = new DataStorage<string | number>();
 // objectStorage.addItem({ age: 23 });
 // objectStorage.removeItem({ age: 23 });
 // console.log(objectStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createGoalScore(
+  title: string,
+  description: string,
+  completeUntil: Date,
+): CourseGoal {
+  const obj: Partial<CourseGoal> = {};
+  obj.title = title;
+  obj.description = description;
+  obj.completeUntil = completeUntil;
+
+  return obj as CourseGoal;
+}
