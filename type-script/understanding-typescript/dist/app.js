@@ -82,3 +82,21 @@ console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 
 var userInput = '';
 var storedData = userInput !== null && userInput !== void 0 ? userInput : 'Default';
 console.log({ storedData: storedData });
+var names = ['Amirhossein', 'Ali'];
+var promise = new Promise(function (res, rej) {
+    setTimeout(function () { return res('Done'); }, 2000);
+});
+promise.then(function (res) { return console.log(res.toUpperCase()); });
+function merge(a, b) {
+    return Object.assign(a, b);
+}
+var mergedObject = merge({ name: 'Amir' }, { age: 2 });
+console.log(mergedObject.age);
+console.log(mergedObject.name);
+function countAndPrint(element) {
+    var description = element.length
+        ? "Got " + element.length + " elements."
+        : 'Got no value.';
+    return [element, description];
+}
+console.log(countAndPrint('Hello there'));

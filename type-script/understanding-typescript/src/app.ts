@@ -129,3 +129,32 @@ console.log(fetchedUserData?.job?.title);
 const userInput = '';
 const storedData = userInput ?? 'Default';
 console.log({ storedData });
+
+const names: Array<string> = ['Amirhossein', 'Ali'];
+
+const promise: Promise<string> = new Promise((res, rej) => {
+  setTimeout(() => res('Done'), 2_000);
+});
+
+promise.then((res) => console.log(res.toUpperCase()));
+
+function merge<T extends object, U extends object>(a: T, b: U) {
+  return Object.assign(a, b);
+}
+
+const mergedObject = merge({ name: 'Amir' }, { age: 2 });
+console.log(mergedObject.age);
+console.log(mergedObject.name);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndPrint<T extends Lengthy>(element: T): [T, string] {
+  const description: string = element.length
+    ? `Got ${element.length} elements.`
+    : 'Got no value.';
+  return [element, description];
+}
+
+console.log(countAndPrint('Hello there'));
