@@ -116,5 +116,12 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-const result = add('Amir'  , 'Hossein');
+const result = add('Amir', 'Hossein');
 result.toString();
+
+const fetchedUserData = {
+  id: '1',
+  name: 'Amir',
+  job: { title: 'developer' },
+};
+console.log(fetchedUserData?.job?.title);
