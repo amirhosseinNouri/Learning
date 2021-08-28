@@ -1,11 +1,11 @@
 import './App.css';
-import Circle from './components/circle';
+// import Circle from './components/circle';
+import PerformanceList from './components/performance-list';
 
 function App() {
   return (
     <div>
-      <Circle x={20} y={20} radius={20} fill="teal" />
-      <Circle />
+      <PerformanceList />
     </div>
   );
 }
