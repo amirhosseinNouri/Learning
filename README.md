@@ -71,3 +71,6 @@
 - [WebRTC Doc](https://webrtc.org/getting-started/media-devices#using-asyncawait)
 - [WebRTC Teach Lead slides - Justin Uberti](https://io13webrtc.appspot.com/)
 - [Google I/O 2012 - WebRTC: Real-time Audio/Video and P2P in HTML5](https://www.youtube.com/watch?v=E8C8ouiXHHk)
+
+## Symbols in JS
+- [JavaScript Symbols: But Why?](https://medium.com/intrinsic-blog/javascript-symbols-but-why-6b02768f4a5c)
