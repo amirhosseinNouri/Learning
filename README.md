@@ -74,3 +74,8 @@
 
 ## Symbols in JS
 - [JavaScript Symbols: But Why?](https://medium.com/intrinsic-blog/javascript-symbols-but-why-6b02768f4a5c)
+
+
+## HTTP and Web Socket
+- [Transmission Control Protocol (TCP)](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/transmission-control-protocol--tcp)
+- [The Evolution of HTTP – HTTP/2 Deep Dive](https://ably.com/topic/http2)
