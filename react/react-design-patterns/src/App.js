@@ -1,11 +1,12 @@
 import './App.css';
 // import Circle from './components/circle';
-import PerformanceList from './components/performance-list';
+// import PerformanceList from './components/performance-list';
+import Todos from './components/todos';
 
 function App() {
   return (
     <div>
-      <PerformanceList />
+      <Todos />
     </div>
   );
 }
