@@ -27,7 +27,11 @@ export default class PerformanceList extends React.Component {
       <div>
         <ul>
           {this.state.items.map((item, index) => (
-            <PerformanceItem item={item} key={`${item}-${index}`} />
+            <PerformanceItem
+              onClick={console.log}
+              item={item}
+              key={`${item}-${index}`}
+            />
           ))}
         </ul>
         <button onClick={() => this.handleButtonClick()}>Add New Item</button>

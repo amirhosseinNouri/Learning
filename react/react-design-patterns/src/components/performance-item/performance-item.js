@@ -1,7 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class PerformanceItem extends Component {
+export default class PerformanceItem extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { onClick, item } = this.props;
+    onClick(item);
+  }
+
   render() {
-    return <li>{this.props.item}</li>;
+    return <li onClick={this.handleClick}>{this.props.item}</li>;
   }
 }
