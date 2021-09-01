@@ -160,3 +160,28 @@ function WithTemplate(template, hookId) {
         }
     };
 }
+class Product {
+    constructor(title, price) {
+        this.title = title;
+        this._price = price;
+    }
+    set price(value) {
+        if (value > 0) {
+            this._price = value;
+        }
+        else {
+            throw new Error('Invalid price');
+        }
+    }
+    getPriceWithTax(tax) {
+        return this._price * (1 + tax);
+    }
+}
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
+function Log(target, propertyName) {
+    console.log('Property Decorator');
+    console.log(target);
+    console.log(propertyName);
+}
