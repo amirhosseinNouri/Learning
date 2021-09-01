@@ -265,6 +265,7 @@ class Product {
     this._price = price;
   }
 
+  @Log2
   set price(value: number) {
     if (value > 0) {
       this._price = value;
@@ -282,4 +283,15 @@ function Log(target: any, propertyName: string | Symbol) {
   console.log('Property Decorator');
   console.log(target);
   console.log(propertyName);
+}
+
+function Log2(
+  target: any,
+  name: string,
+  propertyDescriptor: PropertyDecorator,
+) {
+  console.log('Accessor decorator');
+  console.log(target);
+  console.log(name);
+  console.log(propertyDescriptor);
 }

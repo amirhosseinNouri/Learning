@@ -185,3 +185,9 @@ function Log(target, propertyName) {
     console.log(target);
     console.log(propertyName);
 }
+function Log2(target, name, propertyDescriptor) {
+    console.log('Accessor decorator');
+    console.log(target);
+    console.log(name);
+    console.log(propertyDescriptor);
+}
