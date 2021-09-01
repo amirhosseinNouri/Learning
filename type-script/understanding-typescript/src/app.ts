@@ -221,3 +221,36 @@ function createGoalScore(
 const myNames: Readonly<string[]> = ['Amir', 'Amirhossein', 'Ali'];
 // myNames.push('new name');
 // myNames.pop();
+
+@WithTemplate('<h1>My person object</h1>', 'app')
+@Logger('Log')
+class Person {
+  name = 'Max';
+
+  constructor() {
+    console.log('Creating new person');
+  }
+}
+
+const p = new Person();
+console.log(p);
+
+function Logger(logString: string) {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
+}
+
+function WithTemplate(template: string, hookId: string) {
+  return function (constructor: any) {
+    console.log('Rendering template');
+    const hookElement = document.querySelector(`#${hookId}`);
+    const p = new constructor();
+    console.log(p.name);
+    document.querySelector('h2')!.textContent = p.name;
+    if (hookElement) {
+      hookElement.innerHTML = template;
+    }
+  };
+}

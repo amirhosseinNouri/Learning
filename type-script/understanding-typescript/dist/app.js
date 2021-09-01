@@ -1,8 +1,9 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 function printEmployeeInformation(e) {
     console.log(e.name);
@@ -13,33 +14,27 @@ function printEmployeeInformation(e) {
         console.log(e.startDate);
     }
 }
-var e1 = {
+const e1 = {
     name: 'Amir',
     privileges: [''],
     startDate: new Date(),
 };
 // printEmployeeInformation(e1);
-var Car = /** @class */ (function () {
-    function Car() {
-    }
-    Car.prototype.drive = function () {
+class Car {
+    drive() {
         console.log('Driving');
-    };
-    return Car;
-}());
-var Truck = /** @class */ (function () {
-    function Truck() {
     }
-    Truck.prototype.drive = function () {
+}
+class Truck {
+    drive() {
         console.log('Driving truck');
-    };
-    Truck.prototype.cargo = function (amount) {
-        console.log("Cargo " + amount);
-    };
-    return Truck;
-}());
-var v = new Car();
-var t = new Truck();
+    }
+    cargo(amount) {
+        console.log(`Cargo ${amount}`);
+    }
+}
+const v = new Car();
+const t = new Truck();
 function useVehicle(v) {
     v.drive();
     if ('cargo' in v) {
@@ -47,7 +42,7 @@ function useVehicle(v) {
     }
 }
 function moveAnimal(a) {
-    var speed;
+    let speed;
     switch (a.type) {
         case 'bird':
             speed = a.flyingSpeed;
@@ -58,15 +53,15 @@ function moveAnimal(a) {
         default:
             speed = -1;
     }
-    console.log("Running with " + speed + " speed.");
+    console.log(`Running with ${speed} speed.`);
 }
-var b1 = { flyingSpeed: 20, type: 'bird' };
+const b1 = { flyingSpeed: 20, type: 'bird' };
 // moveAnimal(b1);
-var paragraph = document.querySelector('#user-input');
+const paragraph = document.querySelector('#user-input');
 paragraph.value = 'Changed';
-var inp = document.querySelector('#user-input');
+const inp = document.querySelector('#user-input');
 inp.value = 'Changed for the second time';
-var errorBag = { id: '1', email: 'Not a valid email.' };
+const errorBag = { id: '1', email: 'Not a valid email.' };
 function add(a, b) {
     if (typeof a === 'string' || typeof b === 'string') {
         return a.toString() + b.toString();
@@ -75,27 +70,27 @@ function add(a, b) {
 }
 // const result = add('Amir', 'Hossein');
 // result.toString();
-var fetchedUserData = {
+const fetchedUserData = {
     id: '1',
     name: 'Amir',
     job: { title: 'developer' },
 };
 // console.log(fetchedUserData?.job?.title);
-var userInput = '';
-var storedData = userInput !== null && userInput !== void 0 ? userInput : 'Default';
+const userInput = '';
+const storedData = userInput !== null && userInput !== void 0 ? userInput : 'Default';
 // console.log({ storedData });
-var names = ['Amirhossein', 'Ali'];
-var promise = new Promise(function (res, rej) {
-    setTimeout(function () { return res('Done'); }, 2000);
+const names = ['Amirhossein', 'Ali'];
+const promise = new Promise((res, rej) => {
+    setTimeout(() => res('Done'), 2000);
 });
-promise.then(function (res) { return console.log(res.toUpperCase()); });
+promise.then((res) => console.log(res.toUpperCase()));
 function merge(a, b) {
     return Object.assign(a, b);
 }
-var mergedObject = merge({ name: 'Amir' }, { age: 2 });
+const mergedObject = merge({ name: 'Amir' }, { age: 2 });
 function countAndPrint(element) {
-    var description = element.length
-        ? "Got " + element.length + " elements."
+    const description = element.length
+        ? `Got ${element.length} elements.`
         : 'Got no value.';
     return [element, description];
 }
@@ -104,35 +99,64 @@ function extractAndConvert(obj, key) {
     return obj[key];
 }
 console.log(extractAndConvert({ name: 'Amir' }, 'name'));
-var DataStorage = /** @class */ (function () {
-    function DataStorage() {
+class DataStorage {
+    constructor() {
         this.data = [];
     }
-    DataStorage.prototype.addItem = function (item) {
+    addItem(item) {
         this.data.push(item);
-    };
-    DataStorage.prototype.removeItem = function (item) {
+    }
+    removeItem(item) {
         this.data.splice(this.data.indexOf(item), 1);
-    };
-    DataStorage.prototype.getItems = function () {
-        return __spreadArray([], this.data);
-    };
-    return DataStorage;
-}());
-var textStorage = new DataStorage();
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
 textStorage.addItem('hello');
 textStorage.addItem('amir');
 textStorage.removeItem('hello');
 console.log(textStorage.getItems());
-var numberStorage = new DataStorage();
-var hybridStorage = new DataStorage();
+const numberStorage = new DataStorage();
+const hybridStorage = new DataStorage();
 function createGoalScore(title, description, completeUntil) {
-    var obj = {};
+    const obj = {};
     obj.title = title;
     obj.description = description;
     obj.completeUntil = completeUntil;
     return obj;
 }
-var myNames = ['Amir', 'Amirhossein', 'Ali'];
+const myNames = ['Amir', 'Amirhossein', 'Ali'];
 // myNames.push('new name');
 // myNames.pop();
+let Person = class Person {
+    constructor() {
+        this.name = 'Max';
+        console.log('Creating new person');
+    }
+};
+Person = __decorate([
+    WithTemplate('<h1>My person object</h1>', 'app'),
+    Logger('Log')
+], Person);
+const p = new Person();
+console.log(p);
+function Logger(logString) {
+    return function (constructor) {
+        console.log(logString);
+        console.log(constructor);
+    };
+}
+function WithTemplate(template, hookId) {
+    return function (constructor) {
+        console.log('Rendering template');
+        const hookElement = document.querySelector(`#${hookId}`);
+        const p = new constructor();
+        console.log(p.name);
+        document.querySelector('h2').textContent = p.name;
+        if (hookElement) {
+            hookElement.innerHTML = template;
+        }
+    };
+}
