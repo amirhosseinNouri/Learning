@@ -165,6 +165,7 @@ class Product {
         this.title = title;
         this._price = price;
     }
+    // @Log2
     set price(value) {
         if (value > 0) {
             this._price = value;
@@ -173,6 +174,7 @@ class Product {
             throw new Error('Invalid price');
         }
     }
+    // @Log3
     getPriceWithTax(tax) {
         return this._price * (1 + tax);
     }
@@ -190,4 +192,8 @@ function Log2(target, name, propertyDescriptor) {
     console.log(target);
     console.log(name);
     console.log(propertyDescriptor);
+}
+function Log3(target, name, propertyDescriptor) {
+    console.log('method decorator');
+    console.log({ target, name, propertyDescriptor });
 }

@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: sans-serif;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  label,
+  input,
+  textarea {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    font: inherit;
+    padding: 0.2rem 0.4rem;
+    width: 100%;
+    max-width: 30rem;
+    border: 1px solid #ccc;
+  }
+  
+  input:focus,
+  textarea:focus {
+    outline: none;
+    background: #fff5f9;
+  }
+  
+  button {
+    font: inherit;
+    background: #ff0062;
+    border: 1px solid #ff0062;
+    cursor: pointer;
+    color: white;
+    padding: 0.75rem 1rem;
+  }
+  
+  button:focus {
+    o

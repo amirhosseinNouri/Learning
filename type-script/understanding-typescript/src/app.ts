@@ -265,7 +265,7 @@ class Product {
     this._price = price;
   }
 
-  @Log2
+  // @Log2
   set price(value: number) {
     if (value > 0) {
       this._price = value;
@@ -274,7 +274,7 @@ class Product {
     }
   }
 
-  @Log3
+  // @Log3
   getPriceWithTax(tax: number) {
     return this._price * (1 + tax);
   }
