@@ -38,7 +38,31 @@ class ProjectInput {
     }
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.titleInput.value);
+        const userInput = this.gatherUserInput();
+        if (Array.isArray(userInput)) {
+            console.log(userInput);
+            this.clearInputs();
+        }
+    }
+    gatherUserInput() {
+        const title = this.titleInput.value;
+        const description = this.descriptionInput.value;
+        const people = this.peopleInput.value;
+        if (this.hasAnyEmptyInput([title, description, people])) {
+            alert('Invalid input. Please try again.');
+            return;
+        }
+        return [title, description, Number(people)];
+    }
+    /* This method can be called three times instead of using hasAntEmptyInput method */
+    //   private isEmptyInput(value: string): boolean {
+    //     return value.trim().length === 0;
+    //   }
+    hasAnyEmptyInput(values) {
+        return values.some((value) => value.trim().length === 0);
+    }
+    clearInputs() {
+        [this.titleInput, this.descriptionInput, this.peopleInput].forEach((input) => (input.value = ''));
     }
 }
 __decorate([
