@@ -1,3 +1,40 @@
+/* Validation */
+
+type ValidationOptions = {
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+};
+
+function validate(value: string | number, options: ValidationOptions): Boolean {
+  let isValid = true;
+  const { min, max, minLength, maxLength, required } = options;
+
+  if (required) {
+    isValid = isValid && value.toString().trim().length !== 0;
+  }
+
+  if (minLength != null && typeof value === 'string') {
+    isValid = isValid && value.trim().length > minLength;
+  }
+
+  if (maxLength != null && typeof value === 'string') {
+    isValid = isValid && value.trim().length < maxLength;
+  }
+
+  if (min !== null && min !== undefined && typeof value === 'number') {
+    isValid = isValid && value > min;
+  }
+
+  if (max !== null && max !== undefined && typeof value === 'number') {
+    isValid = isValid && value < max;
+  }
+
+  return isValid;
+}
+
 /* AutoBind Decorator */
 function autoBind(_: any, _2: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
@@ -66,21 +103,19 @@ class ProjectInput {
     const description = this.descriptionInput.value;
     const people = this.peopleInput.value;
 
-    if (this.hasAnyEmptyInput([title, description, people])) {
+    const isTitleValid = validate(title, { required: true });
+    const isDescriptionValid = validate(description, {
+      required: true,
+      minLength: 5,
+    });
+    const isPeopleValid = validate(people, { min: 1, max: 5, required: true });
+
+    if (!isTitleValid || !isDescriptionValid || !isPeopleValid) {
       alert('Invalid input. Please try again.');
       return;
     }
 
     return [title, description, Number(people)];
-  }
-
-  /* This method can be called three times instead of using hasAntEmptyInput method */
-  //   private isEmptyInput(value: string): boolean {
-  //     return value.trim().length === 0;
-  //   }
-
-  private hasAnyEmptyInput(values: string[]): Boolean {
-    return values.some((value) => value.trim().length === 0);
   }
 
   private clearInputs() {
