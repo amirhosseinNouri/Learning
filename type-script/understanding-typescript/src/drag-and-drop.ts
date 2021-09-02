@@ -1,13 +1,28 @@
 /* Project State Management */
+
+enum ProjectStatus {
+  Active,
+  Finished,
+}
+
+type Listener = (items: Project[]) => void;
+
+class Project {
+  constructor(
+    public id: string,
+    public title: string,
+    public description: string,
+    public people: number,
+    public status: ProjectStatus,
+  ) {}
+}
+
 class ProjectState {
-  private listeners: any[] = [];
-  private projects: any[] = [];
+  private listeners: Listener[] = [];
+  private projects: Project[] = [];
   private static instance: ProjectState;
 
-  private constructor() {
-    {
-    }
-  }
+  private constructor() {}
 
   static getInstance() {
     if (this.instance) {
@@ -17,17 +32,18 @@ class ProjectState {
     return this.instance;
   }
 
-  addListener(listener: Function) {
+  addListener(listener: Listener) {
     this.listeners.push(listener);
   }
 
   addProject(title: string, description: string, people: number) {
-    const newProject = {
-      id: Math.random().toString(),
+    const newProject = new Project(
+      Math.random().toString(),
       title,
       description,
       people,
-    };
+      ProjectStatus.Active,
+    );
 
     this.projects.push(newProject);
 
@@ -166,19 +182,15 @@ class ProjectInput {
   }
 }
 
-type ProjectListType = 'active' | 'finished';
+type ProjectType = 'finished' | 'active';
 
 class ProjectList {
   templateElement: HTMLTemplateElement;
   root: HTMLDivElement;
   element: HTMLElement;
-  assignedProjects: any[];
+  assignedProjects: Project[];
 
-  constructor(
-    templateId: string,
-    rootId: string,
-    private type: ProjectListType,
-  ) {
+  constructor(templateId: string, rootId: string, private type: ProjectType) {
     this.templateElement = document.querySelector(`#${templateId}`)!;
     this.root = document.querySelector(`#${rootId}`)!;
     this.assignedProjects = [];
@@ -190,7 +202,7 @@ class ProjectList {
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${type}-projects`;
 
-    projectState.addListener((projects: any[]) => {
+    projectState.addListener((projects: Project[]) => {
       this.assignedProjects = projects;
       this.renderProjects();
     });
@@ -218,10 +230,8 @@ class ProjectList {
     const listId = `${this.type}-projects-list`;
     this.element.querySelector('ul')!.id = listId;
     this.element.querySelector('h2')!.textContent =
-      this.type.toUpperCase() + ' PROJECTS';
+      this.type.toString().toUpperCase() + ' PROJECTS';
   }
-
-  addProject() {}
 }
 
 const projectInput = new ProjectInput('project-input', 'app');
