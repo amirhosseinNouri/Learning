@@ -1,5 +1,4 @@
 "use strict";
-/* Validation */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -88,4 +87,27 @@ class ProjectInput {
 __decorate([
     autoBind
 ], ProjectInput.prototype, "handleSubmit", null);
+class ProjectList {
+    constructor(templateId, rootId, type) {
+        this.type = type;
+        this.templateElement = document.querySelector(`#${templateId}`);
+        this.root = document.querySelector(`#${rootId}`);
+        const importedNode = document.importNode(this.templateElement.content, true);
+        this.element = importedNode.firstElementChild;
+        this.element.id = `${type}-projects`;
+        this.attach();
+        this.renderContent();
+    }
+    attach() {
+        this.root.insertAdjacentElement('beforeend', this.element);
+    }
+    renderContent() {
+        const listId = `${this.type}-projects-list`;
+        this.element.querySelector('ul').id = listId;
+        this.element.querySelector('h2').textContent =
+            this.type.toUpperCase() + ' PROJECTS';
+    }
+}
 const projectInput = new ProjectInput('project-input', 'app');
+const activeProjectList = new ProjectList('project-list', 'app', 'active');
+const finishedProjectList = new ProjectList('project-list', 'app', 'finished');

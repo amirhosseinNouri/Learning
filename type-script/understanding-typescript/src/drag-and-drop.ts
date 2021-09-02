@@ -1,5 +1,4 @@
 /* Validation */
-
 type ValidationOptions = {
   required?: boolean;
   minLength?: number;
@@ -125,4 +124,43 @@ class ProjectInput {
   }
 }
 
+type ProjectListType = 'active' | 'finished';
+
+class ProjectList {
+  templateElement: HTMLTemplateElement;
+  root: HTMLDivElement;
+  element: HTMLElement;
+
+  constructor(
+    templateId: string,
+    rootId: string,
+    private type: ProjectListType,
+  ) {
+    this.templateElement = document.querySelector(`#${templateId}`)!;
+    this.root = document.querySelector(`#${rootId}`)!;
+
+    const importedNode = document.importNode(
+      this.templateElement.content,
+      true,
+    );
+    this.element = importedNode.firstElementChild as HTMLElement;
+    this.element.id = `${type}-projects`;
+    this.attach();
+    this.renderContent();
+  }
+
+  private attach() {
+    this.root.insertAdjacentElement('beforeend', this.element);
+  }
+
+  private renderContent() {
+    const listId = `${this.type}-projects-list`;
+    this.element.querySelector('ul')!.id = listId;
+    this.element.querySelector('h2')!.textContent =
+      this.type.toUpperCase() + ' PROJECTS';
+  }
+}
+
 const projectInput = new ProjectInput('project-input', 'app');
+const activeProjectList = new ProjectList('project-list', 'app', 'active');
+const finishedProjectList = new ProjectList('project-list', 'app', 'finished');
