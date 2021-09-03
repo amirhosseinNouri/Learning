@@ -84,3 +84,6 @@
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
+
+## Babel Preset and Plugins
+- [What are Babel "plugins" and "presets"? (And how to use them)](https://www.newline.co/fullstack-react/articles/what-are-babel-plugins-and-presets/)
