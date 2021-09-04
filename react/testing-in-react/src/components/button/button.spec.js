@@ -1,32 +1,18 @@
 import React from 'react';
+import { shallow, configure } from 'enzyme';
 import Button from './button';
-import renderer, { create, act } from 'react-test-renderer';
-import TestUtils from 'react-dom/test-utils';
+import { beforeAll } from '@jest/globals';
+import Adapter from 'enzyme-adapter-react-16';
 
-// test('Works', () => {
-//   expect(true).toBe(true);
-// });
-
-// test('Renders the text', () => {
-//   const text = 'text';
-//   const component = renderer.create(<Button text={text} />);
-//   expect(component.root.props.text).toBe(text);
-// });
-
-test('shit test', () => {
-  let root;
-  act(() => {
-    root = create(<Button text={'text1'} />);
-  });
-
-  // make assertions on root
-  expect(root.toJSON()).toMatchSnapshot();
-
-  // update with some different props
-  act(() => {
-    root.update(<Button text={'text2'} />);
-  });
-
-  // make assertions on root
-  expect(root.toJSON()).toMatchSnapshot();
+beforeAll(() => {
+  configure({ adapter: new Adapter() });
+});
+test('Testing button component', () => {
+  const text = 'text';
+  const onClick = jest.fn();
+  const button = shallow(<Button onClick={onClick} text={text} />);
+  expect(button.type()).toBe('button');
+  expect(button.text()).toBe(text);
+  button.simulate('click');
+  expect(onClick).toBeCalled();
 });

@@ -2,6 +2,6 @@ import React, { Component } from 'react';
 
 export default class Button extends Component {
   render() {
-    return <div></div>;
+    return <button onClick={this.props.onClick}>{this.props.text}</button>;
   }
 }

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[` 1`] = `<div />`;
-
-exports[` 2`] = `<div />`;
-
-exports[`shit test 1`] = `<div />`;
-
-exports[`shit test 2`] = `<div />`;
