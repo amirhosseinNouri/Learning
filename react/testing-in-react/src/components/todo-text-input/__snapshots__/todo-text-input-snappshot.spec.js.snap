@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test 1`] = `
+<input
+  autoFocus={true}
+  className="edit"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  type="text"
+  value=""
+/>
+`;
