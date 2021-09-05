@@ -81,6 +81,8 @@
 - [Transmission Control Protocol (TCP)](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/transmission-control-protocol--tcp)
 - [The Evolution of HTTP – HTTP/2 Deep Dive](https://ably.com/topic/http2)
 - [WebSockets - A Conceptual Deep Dive](https://ably.com/topic/websockets)
+- [WebSockets vs Long Polling](https://ably.com/blog/websockets-vs-long-polling)
+- []()
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
