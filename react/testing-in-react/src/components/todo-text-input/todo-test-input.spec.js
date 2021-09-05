@@ -60,3 +60,19 @@ test('Fires onSave onBlur if not new', () => {
   wrapper.simulate('blur', { target: { value } });
   expect(onSave).toHaveBeenCalledWith(value);
 });
+
+test('Typing inside input should call onChange and update the value state', () => {
+  const onSave = jest.fn();
+  const value = 'h';
+  const wrapper = shallow(<TodoTextInput onSave={onSave} />);
+  wrapper.simulate('change', { target: { value } });
+  expect(wrapper.props('value').value).toBe(value);
+});
+
+test('Test handleBlur when todo is not new', () => {
+  const onSave = jest.fn();
+  const value = 'value';
+  const wrapper = shallow(<TodoTextInput onSave={onSave} newTodo />);
+  wrapper.simulate('blur', { target: { value } });
+  expect(onSave).not.toBeCalled();
+});

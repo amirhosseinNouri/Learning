@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1630830054466" clover="3.2.0">
+  <project timestamp="1630830054466" name="All files">
+    <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5" elements="28" coveredelements="28" complexity="0" loc="15" ncloc="15" packages="2" files="2" classes="2"/>
+    <package name="button">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="button.js" path="/Users/snapp/Learning/react/testing-in-react/src/components/button/button.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="todo-text-input">
+      <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+      <file name="todo-text-input.js" path="/Users/snapp/Learning/react/testing-in-react/src/components/todo-text-input/todo-text-input.js">
+        <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+        <line num="18" count="10" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="28" count="10" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="32" count="10" type="stmt"/>
+        <line num="33" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="39" count="12" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
