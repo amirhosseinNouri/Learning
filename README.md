@@ -82,7 +82,7 @@
 - [The Evolution of HTTP – HTTP/2 Deep Dive](https://ably.com/topic/http2)
 - [WebSockets - A Conceptual Deep Dive](https://ably.com/topic/websockets)
 - [WebSockets vs Long Polling](https://ably.com/blog/websockets-vs-long-polling)
-- []()
+- [WebSockets vs. HTTP](https://ably.com/topic/websockets-vs-http)
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
