@@ -76,13 +76,16 @@
 - [JavaScript Symbols: But Why?](https://medium.com/intrinsic-blog/javascript-symbols-but-why-6b02768f4a5c)
 
 
-## HTTP and Web Socket
+## HTTP, Web Socket, Polling, MQTT and SSE
 - [What is Realtime?](https://ably.com/blog/what-is-realtime)
 - [Transmission Control Protocol (TCP)](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/transmission-control-protocol--tcp)
 - [The Evolution of HTTP – HTTP/2 Deep Dive](https://ably.com/topic/http2)
 - [WebSockets - A Conceptual Deep Dive](https://ably.com/topic/websockets)
 - [WebSockets vs Long Polling](https://ably.com/blog/websockets-vs-long-polling)
 - [WebSockets vs. HTTP](https://ably.com/topic/websockets-vs-http)
+- [Server-Sent Events (SSE): A Conceptual Deep Dive](https://ably.com/topic/server-sent-events)
+- [Long Polling - Concepts and Considerations](https://ably.com/topic/long-polling)
+- [MQTT: A Conceptual Deep-Dive](https://ably.com/topic/mqtt)
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
