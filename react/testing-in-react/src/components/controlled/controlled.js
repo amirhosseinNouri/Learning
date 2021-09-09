@@ -48,3 +48,4 @@ export default class Controlled extends Component {
     );
   }
 }
+

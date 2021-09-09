@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1631177252223" clover="3.2.0">
-  <project timestamp="1631177252224" name="All files">
+<coverage generated="1631177598396" clover="3.2.0">
+  <project timestamp="1631177598396" name="All files">
     <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="8" methods="9" coveredmethods="9" elements="41" coveredelements="41" complexity="0" loc="24" ncloc="24" packages="3" files="3" classes="3"/>
     <package name="button">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -13,15 +13,15 @@
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="controlled.js" path="/Users/snapp/Learning/react/testing-in-react/src/components/controlled/controlled.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
       </file>
     </package>
     <package name="todo-text-input">
