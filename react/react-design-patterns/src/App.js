@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Nice />
-      <Evil />
+      {/* <Evil /> */}
       <Nice />
     </div>
   );
