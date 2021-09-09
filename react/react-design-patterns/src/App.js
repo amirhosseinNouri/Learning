@@ -1,10 +1,10 @@
 import './App.css';
-import Counter from './components/counter';
+import MutateList from './components/mutate-list';
 
 function App() {
   return (
     <div>
-      <Counter initialState={1} />
+      <MutateList />
     </div>
   );
 }
