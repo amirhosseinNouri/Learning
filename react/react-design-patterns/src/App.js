@@ -1,13 +1,10 @@
 import './App.css';
-import Evil from './components/evil';
-import Nice from './components/nice';
+import Counter from './components/counter';
 
 function App() {
   return (
     <div>
-      <Nice />
-      {/* <Evil /> */}
-      <Nice />
+      <Counter initialState={1} />
     </div>
   );
 }

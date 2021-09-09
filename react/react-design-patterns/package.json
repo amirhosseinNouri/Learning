@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "typescript": "^4.4.2",
     "why-did-you-update": "^1.0.8"
   }
 }
