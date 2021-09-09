@@ -11,20 +11,23 @@ export default class MutateList extends PureComponent {
   }
 
   handleClick() {
-    this.state.items.push('baz');
     this.setState({
-      items: this.state.items,
-    });  // This will create inconsistent state
-    
-    // this.setState({
-    //   items: [...this.state.items, 'baz'],
-    // });
+      items: ['baz', ...this.state.items],
+    });
   }
 
   render() {
     return (
       <div>
-        {this.state.items.length}
+        <ul>
+          {this.state.items.map((item, index) => (
+            //   Using index as key will cause unexpected behaviour.
+            <li key={index}> 
+              {item}
+              <input type="text" />
+            </li>
+          ))}
+        </ul>
         <button onClick={this.handleClick}>+</button>
       </div>
     );
