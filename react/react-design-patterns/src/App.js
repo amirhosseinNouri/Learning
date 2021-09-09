@@ -1,12 +1,13 @@
 import './App.css';
-// import Circle from './components/circle';
-// import PerformanceList from './components/performance-list';
-import Todos from './components/todos';
+import Evil from './components/evil';
+import Nice from './components/nice';
 
 function App() {
   return (
     <div>
-      <Todos />
+      <Nice />
+      <Evil />
+      <Nice />
     </div>
   );
 }
