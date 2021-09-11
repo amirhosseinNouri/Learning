@@ -92,3 +92,6 @@
 
 ## Babel Preset and Plugins
 - [What are Babel "plugins" and "presets"? (And how to use them)](https://www.newline.co/fullstack-react/articles/what-are-babel-plugins-and-presets/)
+
+## UseMemo
+- [Should You Really Use useMemo in React? Let’s Find Out.](https://medium.com/swlh/should-you-use-usememo-in-react-a-benchmarked-analysis-159faf6609b7)
