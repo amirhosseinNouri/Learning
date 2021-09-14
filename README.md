@@ -95,3 +95,9 @@
 
 ## UseMemo
 - [Should You Really Use useMemo in React? Let’s Find Out.](https://medium.com/swlh/should-you-use-usememo-in-react-a-benchmarked-analysis-159faf6609b7)
+- [Understanding when to use useMemo](https://maxrozen.com/understanding-when-use-usememo)
+- [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback)
+- [React.useMemo and when you should use it](https://everyday.codes/javascript/react-usememo-and-when-you-should-use-it/)
+
+## UseCallback
+- [Stop useEffect from running on every render with useCallback](https://maxrozen.com/stop-useeffect-running-every-render-with-usecallback)
