@@ -18,3 +18,10 @@ for (let y = 10; y < 100; y += 10) {
 }
 
 pathCanvas.stroke();
+
+const triangle = document.querySelector('.triangle').getContext('2d');
+triangle.beginPath();
+triangle.moveTo(50, 10);
+triangle.lineTo(10, 70);
+triangle.lineTo(90, 70);
+triangle.fill();
