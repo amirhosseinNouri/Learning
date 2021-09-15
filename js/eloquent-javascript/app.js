@@ -34,7 +34,7 @@ curve.lineTo(60, 10);
 curve.closePath();
 curve.stroke();
 
-const bezier = document.querySelector('.bezier');
+const bezier = document.querySelector('.bezier').getContext('2d');
 
 bezier.beginPath();
 bezier.moveTo(10, 90);
