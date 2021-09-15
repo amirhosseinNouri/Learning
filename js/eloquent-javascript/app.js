@@ -43,3 +43,9 @@ bezier.lineTo(10, 10);
 bezier.lineTo(90, 10);
 bezier.closePath();
 bezier.stroke();
+
+const arc = document.querySelector('.arc').getContext('2d');
+arc.beginPath();
+arc.arc(50, 50, 40, 0, 0.5 * Math.PI);
+arc.closePath();
+arc.fill();
