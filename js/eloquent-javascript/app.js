@@ -49,3 +49,28 @@ arc.beginPath();
 arc.arc(50, 50, 40, 0, 0.5 * Math.PI);
 arc.closePath();
 arc.fill();
+
+const results = [
+  { name: 'Satisfied', count: 1043, color: 'lightBlue' },
+  { name: 'Neutral', count: 563, color: 'lightGreen' },
+  { name: 'Unsatisfied', count: 510, color: 'pink' },
+  { name: 'No Comment', count: 175, color: 'silver' },
+];
+
+//  (count / total) * 2π
+
+const total = results.reduce((sum, { count }) => sum + count, 0);
+
+const chart = document.querySelector('.chart').getContext('2d');
+
+let currentAngle = 0;
+
+for (let result of results) {
+  const sliceAngle = (result.count / total) * 2 * Math.PI;
+  chart.beginPath();
+  chart.arc(100, 100, 100, currentAngle, currentAngle + sliceAngle);
+  currentAngle += sliceAngle;
+  chart.lineTo(100, 100);
+  chart.fillStyle = result.color;
+  chart.fill();
+}
