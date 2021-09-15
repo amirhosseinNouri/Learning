@@ -25,3 +25,21 @@ triangle.moveTo(50, 10);
 triangle.lineTo(10, 70);
 triangle.lineTo(90, 70);
 triangle.fill();
+
+const curve = document.querySelector('.curve').getContext('2d');
+curve.beginPath();
+curve.moveTo(10, 90);
+curve.quadraticCurveTo(60, 10, 90, 90);
+curve.lineTo(60, 10);
+curve.closePath();
+curve.stroke();
+
+const bezier = document.querySelector('.bezier');
+
+bezier.beginPath();
+bezier.moveTo(10, 90);
+bezier.bezierCurveTo(10, 10, 90, 10, 50, 90);
+bezier.lineTo(10, 10);
+bezier.lineTo(90, 10);
+bezier.closePath();
+bezier.stroke();
