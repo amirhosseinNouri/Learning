@@ -1,3 +1,7 @@
+const { RTCPeerConnection, RTCSessionDescription } = window;
+
+const peerConnection = new RTCPeerConnection();
+
 const socket = io('http://localhost:5000');
 socket.on('update-user-list', ({ users }) => {
   updateUserList(users);
@@ -52,7 +56,15 @@ function createUserItemContainer(socketId) {
 
 function unselectUsersFormList() {}
 
-function callUser() {}
+async function callUser(socketId) {
+  const offer = await peerConnection.createOffer();
+  await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+
+  socket.emit('call-user', {
+    offer,
+    to: socketId,
+  });
+}
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
