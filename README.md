@@ -92,7 +92,8 @@
 - [HiveMQ - MQTT over Websockets](https://www.hivemq.com/blog/mqtt-over-websockets-with-hivemq/)
 - [What are the pros and cons of WebSockets versus MQTT as real-time web infrastructure for the Internet of Things?](https://www.quora.com/What-are-the-pros-and-cons-of-WebSockets-versus-MQTT-as-real-time-web-infrastructure-for-the-Internet-of-Things)
 - [MQTT over WebSockets with example](https://iotbytes.wordpress.com/mqtt-over-websockets/)
-- 
+- [Quality of Service 0,1 & 2 - MQTT Essentials: Part 6](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
+- [Authenticating Websockets ](https://dev.to/kleeut/authenticating-websockets-21lo)
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
