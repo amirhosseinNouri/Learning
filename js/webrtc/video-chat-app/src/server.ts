@@ -52,6 +52,20 @@ export class Server {
           socketId: socket.id,
         });
       });
+
+      socket.on('call-user', (data) => {
+        socket.to(data.to).emit('call-made', {
+          offer: data.offer,
+          socket: socket.id,
+        });
+      });
+
+      socket.on('make-answer', (data) => {
+        socket.to(data.to).emit('answer-made', {
+          socket: socket.id,
+          answer: data.answer,
+        });
+      });
     });
   }
 

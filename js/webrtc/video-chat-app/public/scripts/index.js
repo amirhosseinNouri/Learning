@@ -1,5 +1,7 @@
 const { RTCPeerConnection, RTCSessionDescription } = window;
 
+let isAlreadyCalling = false;
+
 const peerConnection = new RTCPeerConnection();
 
 const socket = io('http://localhost:5000');
@@ -14,6 +16,28 @@ socket.on('remove-user', ({ socketId }) => {
 
   if (elementToRemove) {
     elementToRemove.remove();
+  }
+});
+
+socket.on('call-made', async (data) => {
+  await peerConnection.setRemoteDescription(
+    new RTCSessionDescription(data.offer),
+  );
+  const answer = await peerConnection.createAnswer();
+  await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+
+  socket.emit('make-answer', {
+    answer,
+    to: data.socket,
+  });
+});
+
+socket.on('make-answer', async (data) => {
+  await peerConnection.setRemoteDescription(new RTCPeerConnection(data.answer));
+
+  if (!isAlreadyCalling) {
+    callUser(data.socket);
+    isAlreadyCalling = true;
   }
 });
 
