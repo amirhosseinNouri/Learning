@@ -94,6 +94,8 @@
 - [MQTT over WebSockets with example](https://iotbytes.wordpress.com/mqtt-over-websockets/)
 - [Quality of Service 0,1 & 2 - MQTT Essentials: Part 6](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
 - [Authenticating Websockets ](https://dev.to/kleeut/authenticating-websockets-21lo)
+- [Quality of Service 0,1 & 2](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
+- [Persistent Session and Queuing Messages - MQTT](https://www.hivemq.com/blog/mqtt-essentials-part-7-persistent-session-queuing-messages/)
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
