@@ -2,7 +2,23 @@ const { RTCPeerConnection, RTCSessionDescription } = window;
 
 let isAlreadyCalling = false;
 
+const configuration = {
+  iceServers: [
+    {
+      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+    },
+  ],
+  iceCandidatePoolSize: 10,
+};
+
 const peerConnection = new RTCPeerConnection();
+
+peerConnection.ontrack = ({ streams: [stream] }) => {
+  const remoteVideo = document.getElementById('remote-video');
+  if (remoteVideo) {
+    remoteVideo.srcObject = stream;
+  }
+};
 
 const socket = io('http://localhost:5000');
 socket.on('update-user-list', ({ users }) => {
@@ -20,11 +36,9 @@ socket.on('remove-user', ({ socketId }) => {
 });
 
 socket.on('call-made', async (data) => {
-  await peerConnection.setRemoteDescription(
-    new RTCSessionDescription(data.offer),
-  );
+  await peerConnection.setRemoteDescription(data.offer);
   const answer = await peerConnection.createAnswer();
-  await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+  await peerConnection.setLocalDescription(answer);
 
   socket.emit('make-answer', {
     answer,
@@ -32,8 +46,8 @@ socket.on('call-made', async (data) => {
   });
 });
 
-socket.on('make-answer', async (data) => {
-  await peerConnection.setRemoteDescription(new RTCPeerConnection(data.answer));
+socket.on('answer-made', async (data) => {
+  await peerConnection.setRemoteDescription(data.answer);
 
   if (!isAlreadyCalling) {
     callUser(data.socket);
@@ -82,7 +96,7 @@ function unselectUsersFormList() {}
 
 async function callUser(socketId) {
   const offer = await peerConnection.createOffer();
-  await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+  await peerConnection.setLocalDescription(offer);
 
   socket.emit('call-user', {
     offer,
@@ -94,9 +108,13 @@ navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then((stream) => {
     const localVideo = document.getElementById('local-video');
-
+    alert('here');
     if (localVideo) {
       localVideo.srcObject = stream;
     }
+
+    stream
+      .getTracks()
+      .forEach((track) => peerConnection.addTrack(track, stream));
   })
-  .catch(console.error);
+  .catch((err) => alert(err.message));
