@@ -111,3 +111,6 @@
 
 ## UseCallback
 - [Stop useEffect from running on every render with useCallback](https://maxrozen.com/stop-useeffect-running-every-render-with-usecallback)
+
+## Deploying
+- [Deploying Typescript Node.js applications to Heroku (with static files)](https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0)
