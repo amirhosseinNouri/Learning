@@ -86,6 +86,16 @@
 - [Server-Sent Events (SSE): A Conceptual Deep Dive](https://ably.com/topic/server-sent-events)
 - [Long Polling - Concepts and Considerations](https://ably.com/topic/long-polling)
 - [MQTT: A Conceptual Deep-Dive](https://ably.com/topic/mqtt)
+- [MQTT vs WebSocket](https://www.educba.com/mqtt-vs-websocket/)
+- [MQTT vs WebSocket](https://iot.stackexchange.com/questions/1492/what-is-the-difference-between-mqtt-and-web-sockets-and-when-should-i-use-them/1493)
+- [MQTT vs MQTT over WebSocket](https://stackoverflow.com/questions/30624897/direct-mqtt-vs-mqtt-over-websocket/30625067)
+- [HiveMQ - MQTT over Websockets](https://www.hivemq.com/blog/mqtt-over-websockets-with-hivemq/)
+- [What are the pros and cons of WebSockets versus MQTT as real-time web infrastructure for the Internet of Things?](https://www.quora.com/What-are-the-pros-and-cons-of-WebSockets-versus-MQTT-as-real-time-web-infrastructure-for-the-Internet-of-Things)
+- [MQTT over WebSockets with example](https://iotbytes.wordpress.com/mqtt-over-websockets/)
+- [Quality of Service 0,1 & 2 - MQTT Essentials: Part 6](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
+- [Authenticating Websockets ](https://dev.to/kleeut/authenticating-websockets-21lo)
+- [Quality of Service 0,1 & 2](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
+- [Persistent Session and Queuing Messages - MQTT](https://www.hivemq.com/blog/mqtt-essentials-part-7-persistent-session-queuing-messages/)
 
 ## React Pure Component
 - [What are Pure Components in React](https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48)
@@ -101,3 +111,6 @@
 
 ## UseCallback
 - [Stop useEffect from running on every render with useCallback](https://maxrozen.com/stop-useeffect-running-every-render-with-usecallback)
+
+## Deploying
+- [Deploying Typescript Node.js applications to Heroku (with static files)](https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0)
