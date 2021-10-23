@@ -114,3 +114,11 @@
 
 ## Deploying
 - [Deploying Typescript Node.js applications to Heroku (with static files)](https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0)
+
+## How does JS work
+- [How JavaScript works: an overview of the engine, the runtime, and the call stack](How JavaScript works: an overview of the engine, the runtime, and the call stack)
+- [How JavaScript works: inside the V8 engine + 5 tips on how to write optimized code](https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e)
+- [How JavaScript works: memory management + how to handle 4 common memory leaks](https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec)
+
+## React Memory Leak
+- [How to fix the React memory leak warning ](https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i)
