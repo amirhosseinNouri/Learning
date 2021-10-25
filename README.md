@@ -122,3 +122,9 @@
 
 ## React Memory Leak
 - [How to fix the React memory leak warning ](https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i)
+
+## Hidden Classes and Inline Caching in V8
+- [Writing Optimized Code in JS By Understanding Hidden Classes](https://medium.com/swlh/writing-optimized-code-in-js-by-understanding-hidden-classes-3dd42862ad1d)
+- [V8 Hidden class](https://engineering.linecorp.com/en/blog/v8-hidden-class/)
+- [Javascript Hidden Classes and Inline Caching in V8](https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html)
+- [V8 optimizations behind the scenes](https://medium.com/@yashschandra/hidden-v8-optimizations-hidden-classes-and-inline-caching-736a09c2e9eb)
