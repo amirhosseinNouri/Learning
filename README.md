@@ -128,3 +128,7 @@
 - [V8 Hidden class](https://engineering.linecorp.com/en/blog/v8-hidden-class/)
 - [Javascript Hidden Classes and Inline Caching in V8](https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html)
 - [V8 optimizations behind the scenes](https://medium.com/@yashschandra/hidden-v8-optimizations-hidden-classes-and-inline-caching-736a09c2e9eb)
+
+## Just In Time Compilation
+- [What Is Just-In-Time (JIT) Compilation?](https://www.cloudsavvyit.com/6872/what-is-just-in-time-jit-compilation/)
+- [Just in Time Compilation Explained](https://www.freecodecamp.org/news/just-in-time-compilation-explained/)
