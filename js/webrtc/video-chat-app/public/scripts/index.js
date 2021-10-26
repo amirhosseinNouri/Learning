@@ -20,7 +20,7 @@ peerConnection.ontrack = ({ streams: [stream] }) => {
   }
 };
 
-const socket = io('http://localhost:5000');
+const socket = io('https://simple-signaling-server-1.herokuapp.com:5000');
 socket.on('update-user-list', ({ users }) => {
   updateUserList(users);
 });
