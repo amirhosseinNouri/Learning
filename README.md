@@ -132,3 +132,6 @@
 ## Just In Time Compilation
 - [What Is Just-In-Time (JIT) Compilation?](https://www.cloudsavvyit.com/6872/what-is-just-in-time-jit-compilation/)
 - [Just in Time Compilation Explained](https://www.freecodecamp.org/news/just-in-time-compilation-explained/)
+
+## Define Private Variable Using Closure
+- [Using closures in JavaScript to create private variables](http://ritzcovan.com/index.php/2019/12/19/using-closure-in-javascript-to-create-private-variables/)
