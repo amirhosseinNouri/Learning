@@ -114,3 +114,24 @@
 
 ## Deploying
 - [Deploying Typescript Node.js applications to Heroku (with static files)](https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0)
+
+## How does JS work
+- [How JavaScript works: an overview of the engine, the runtime, and the call stack](https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf)
+- [How JavaScript works: inside the V8 engine + 5 tips on how to write optimized code](https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e)
+- [How JavaScript works: memory management + how to handle 4 common memory leaks](https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec)
+
+## React Memory Leak
+- [How to fix the React memory leak warning ](https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i)
+
+## Hidden Classes and Inline Caching in V8
+- [Writing Optimized Code in JS By Understanding Hidden Classes](https://medium.com/swlh/writing-optimized-code-in-js-by-understanding-hidden-classes-3dd42862ad1d)
+- [V8 Hidden class](https://engineering.linecorp.com/en/blog/v8-hidden-class/)
+- [Javascript Hidden Classes and Inline Caching in V8](https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html)
+- [V8 optimizations behind the scenes](https://medium.com/@yashschandra/hidden-v8-optimizations-hidden-classes-and-inline-caching-736a09c2e9eb)
+
+## Just In Time Compilation
+- [What Is Just-In-Time (JIT) Compilation?](https://www.cloudsavvyit.com/6872/what-is-just-in-time-jit-compilation/)
+- [Just in Time Compilation Explained](https://www.freecodecamp.org/news/just-in-time-compilation-explained/)
+
+## Define Private Variable Using Closure
+- [Using closures in JavaScript to create private variables](http://ritzcovan.com/index.php/2019/12/19/using-closure-in-javascript-to-create-private-variables/)
