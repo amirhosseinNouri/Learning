@@ -22,6 +22,11 @@ ul {
   border: 10px dotted #9b2226;
   width: 900px;
   height: 500px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start ;
 }
 /* set a border and background color to see each LI. Min-width and min-height are not necessarily a good idea in flexbox, but they are needed for the demo to better see the properties work. */
 li {
