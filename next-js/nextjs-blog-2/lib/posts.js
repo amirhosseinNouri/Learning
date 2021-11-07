@@ -37,3 +37,15 @@ export function getAllPostIds() {
     params: { id: fileName.replace(/\.md/, '') },
   }));
 }
+
+export function getPostData(id) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContent = fs.readFileSync(fullPath, 'utf-8');
+
+  const matterResult = matter(fileContent);
+
+  return {
+    id,
+    ...matterResult.data,
+  };
+}
