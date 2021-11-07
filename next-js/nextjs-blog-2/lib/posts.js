@@ -29,3 +29,11 @@ export function getSortedPostsData() {
     }
   });
 }
+
+export function getAllPostIds() {
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  return fileNames.map((fileName) => ({
+    params: { id: fileName.replace(/\.md/, '') },
+  }));
+}
