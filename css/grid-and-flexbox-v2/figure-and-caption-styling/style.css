@@ -1,0 +1,66 @@
+/* Remember what's outside the media query is for mobile devices. The fundamental row declaration doesn't change. */
+
+/* Basic figure and caption styling */
+/* Turn off margin, set by browser */
+figure {
+  margin: 0;
+  padding: 0;
+}
+/* caption styling  */
+figcaption {
+  background-color: #001219;
+  color: white;
+  padding: 1rem;
+}
+/* reduces the top margin on the h2, bottom on the p, and leaves a 0.5rem gap between the two */
+figcaption * {
+  margin: 0.5rem;
+}
+/* hack to make images flexible */
+img {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    gap: 1%;
+  }
+  figure {
+    flex-basis: 48%;
+  }
+}
+
+/* outside the MQ's since they apply at all dimensions */
+.reverse {
+  flex-flow: row-reverse wrap;
+}
+.order-1 {
+  order: 1;
+}
+.order-2 {
+  order: 2;
+}
+.order-3 {
+  order: 3;
+}
+
+/* default styling, no changes needed here, even with responsive design */
+
+/* set the layout to border box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* set font family and background gradient */
+body {
+  padding: 0;
+  border: 0;
+  font-family: Tahoma, Arial, sans-serif;
+}
