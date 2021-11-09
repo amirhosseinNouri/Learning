@@ -59,4 +59,37 @@ figure > div {
 }
 
 .row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 4%;
+  margin-bottom: 1rem;
+}
+
+figure {
+  flex-basis: 22%;
+}
+
+.span-2 {
+  flex-basis: 48%;
+}
+
+.span-3 {
+  flex-basis: 74%;
+}
+
+.span-4 {
+  flex-basis: 100%;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-3 {
+  order: 3;
 }
