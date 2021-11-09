@@ -62,3 +62,27 @@ figure > div {
 .five {
   background-color: #002533;
 }
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2%;
+  min-height: 100vh;
+}
+
+figure {
+  flex-basis: 32%;
+}
+
+@media (min-width: 850px) {
+  .row {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  figure {
+    flex-basis: 18.4%;
+  }
+}
