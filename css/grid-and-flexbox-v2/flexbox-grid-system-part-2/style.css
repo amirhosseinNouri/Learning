@@ -1,0 +1,64 @@
+.row {
+  min-height: 100vh;
+}
+
+/* default styling, no changes needed here, even with responsive design */
+
+/* set the layout to border box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* set font family and background gradient */
+body {
+  padding: 0;
+  border: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    353deg,
+    rgba(148, 210, 189, 1) 40%,
+    rgba(61, 147, 151, 1) 100%
+  );
+}
+
+/* Turn off margin, set by browser */
+figure {
+  margin: 0;
+  padding: 0;
+}
+/* caption styling  */
+figcaption {
+  background-color: #001219;
+  color: white;
+  padding: 1rem;
+}
+/* reduces the top margin on the h2, bottom on the p, and leaves a 0.5rem gap between the two */
+figcaption * {
+  margin: 0.5rem;
+}
+/* sets the background SVG for all divs, regardless of color */
+figure > div {
+  background-image: url('data:image/svg+xml,%3Csvg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z" fill="%239C92AC" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E');
+  width: 100%;
+  min-height: 250px;
+}
+/* sets a specific background color for each div */
+.one {
+  background-color: #9b2226;
+}
+.two {
+  background-color: #bb3e03;
+}
+.three {
+  background-color: #ee9b00;
+}
+.four {
+  background-color: #005f73;
+}
+.five {
+  background-color: #002533;
+}
