@@ -290,6 +290,15 @@ footer address {
   font-weight: bold;
 }
 
+#popart figure {
+  border-color: var(--color8);
+}
+
+#popart figure img {
+  object-fit: cover;
+  object-position: 0;
+}
+
 /* turn on flexbox here - prior to this, elements stacked individually as blocks */
 
 @media (min-width: 550px) {
@@ -377,6 +386,10 @@ footer address {
 
   figure {
     height: 100%;
+  }
+
+  .rowspan2 figure {
+    max-height: unset;
   }
 }
 
