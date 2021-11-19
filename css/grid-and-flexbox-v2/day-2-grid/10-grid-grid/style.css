@@ -11,6 +11,7 @@ html {
 }
 /* set font family and background gradient */
 body {
+  margin: 0;
   padding: 0;
   border: 0;
   font-family: Arial, sans-serif;
@@ -56,21 +57,55 @@ figure > div {
   background-color: #005f73;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  gap: 4%;
+@media (min-width: 600px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 1% 2%;
+  }
+
+  figure {
+    grid-column: span 2;
+  }
+
+  .span-3,
+  .span-1-lg,
+  .span-4-md {
+    grid-column: span 4;
+  }
+
+  .span-4 {
+    grid-column: span 4;
+  }
 }
 
-.span-2 {
-  grid-column: span 2;
-}
+@media (min-width: 800px) {
+  .wrapper {
+    gap: 4%;
+  }
+  figure,
+  .span-1-lg {
+    grid-column: span 1;
+  }
+  .span-2,
+  .span-4-md {
+    grid-column: span 2;
+  }
 
-.span-3 {
-  grid-column: span 3;
-}
+  .span-3 {
+    grid-column: span 3;
+  }
 
-.span-4 {
-  grid-column: span 4;
+  .order-2 {
+    order: 2;
+  }
+
+  .order-1 {
+    order: 1;
+  }
+
+  .order-3 {
+    order: 3;
+  }
 }
