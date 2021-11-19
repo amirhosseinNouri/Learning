@@ -1,0 +1,50 @@
+figcaption {
+  opacity: 0.7;
+}
+
+/* Basic figure and caption styling */
+/* Turn off margin, set by browser */
+figure {
+  margin: 0;
+  padding: 0;
+}
+/* caption styling  */
+figcaption {
+  background-color: #001219;
+  color: white;
+  padding: 1rem;
+}
+/* reduces the top margin on the h2, bottom on the p, and leaves a 0.5rem gap between the two */
+figcaption * {
+  margin: 0.5rem;
+}
+/* hack to make images flexible */
+img {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2%;
+  }
+}
+
+/* default styling, no changes needed here, even with responsive design */
+
+/* set the layout to border box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* set font family and background gradient */
+body {
+  padding: 0;
+  border: 0;
+  font-family: Tahoma, Arial, sans-serif;
+}
