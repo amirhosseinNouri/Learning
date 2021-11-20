@@ -10,44 +10,64 @@ figcaption {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     gap: 1%;
+    grid-template-areas:
+      'featured featured featured featured'
+      '... ... main main';
   }
+}
 
-  /* default styling, no changes needed here */
+.featured {
+  grid-area: featured;
+}
 
-  /* set the layout to border box model */
-  html {
-    box-sizing: border-box;
-  }
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-  /* set font family and background gradient */
-  body {
-    padding: 0;
-    border: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(
-      353deg,
-      rgba(148, 210, 189, 1) 40%,
-      rgba(61, 147, 151, 1) 100%
-    );
-  }
+.main {
+  grid-area: main;
+}
 
-  /* Turn off margin, set by browser */
-  figure {
-    margin: 0;
-    padding: 0;
-  }
-  /* caption styling  */
-  figcaption {
-    background-color: #001219;
-    color: white;
-    padding: 1rem;
-  }
-  /* reduces the top margin on the h2, bottom on the p, and leaves a 0.5rem gap between the two */
-  figcaption * {
-    margin: 0.5rem;
-  }
+.top {
+  z-index: 100;
+}
+
+.middle {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+
+/* default styling, no changes needed here */
+
+/* set the layout to border box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* set font family and background gradient */
+body {
+  padding: 0;
+  border: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    353deg,
+    rgba(148, 210, 189, 1) 40%,
+    rgba(61, 147, 151, 1) 100%
+  );
+}
+
+/* Turn off margin, set by browser */
+figure {
+  margin: 0;
+  padding: 0;
+}
+/* caption styling  */
+figcaption {
+  background-color: #001219;
+  color: white;
+  padding: 1rem;
+}
+/* reduces the top margin on the h2, bottom on the p, and leaves a 0.5rem gap between the two */
+figcaption * {
+  margin: 0.5rem;
 }
