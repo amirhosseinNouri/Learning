@@ -1,0 +1,20 @@
+/* default styling, no changes needed here */
+
+/* set the layout to border box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* set font family and background gradient */
+body {
+  padding: 0;
+  border: 0;
+  font-family: Arial, sans-serif;
+}
+img {
+  width: 100%;
+}
