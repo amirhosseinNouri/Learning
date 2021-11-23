@@ -18,3 +18,65 @@ body {
 img {
   width: 100%;
 }
+
+#artists h4 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+#artists h3 {
+  margin-top: 0.3em;
+}
+
+.article-wrap {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+}
+
+.article-wrap article {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto);
+  gap: 0 1rem;
+}
+
+.article-wrap article * {
+  grid-column: 2/3;
+  margin-top: 0;
+}
+
+.article-wrap article img {
+  grid-column: 1/2;
+  grid-row: 1/6;
+}
+
+@media (min-width: 650px) {
+  .article-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10px, 1fr));
+  }
+}
+
+@media (min-width: 800px) {
+  .article-wrap {
+    grid-template-columns: repeat(4, minmax(10px, 1fr));
+  }
+
+  .article-wrap article {
+    grid-template-columns: minmax(100px, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 0 1em;
+  }
+
+  .article-wrap article * {
+    grid-column: 1/2;
+  }
+
+  .article-wrap article img {
+    grid-column: 1/2;
+    grid-row: auto;
+    margin-bottom: 1rem;
+  }
+}
