@@ -299,6 +299,20 @@ footer address {
   font-weight: bold;
 }
 
+#donut img {
+  width: 100%;
+}
+
+#donut ul {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.d3 {
+  grid-row: 1/2;
+}
+
 /* turn on flexbox here - prior to this, elements stacked individually as blocks */
 
 @media (min-width: 550px) {
@@ -392,6 +406,53 @@ footer address {
   /* for some reason, the figures don't always fill their LI container. This keeps them evenly sized */
   figure {
     height: 100%;
+  }
+
+  #donut ul {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+
+  .d1 {
+    grid-column: 1/2;
+    grid-row: 1/4;
+  }
+
+  .d2 {
+    grid-column: 1/2;
+    grid-row: 4/6;
+  }
+
+  .d3 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .d4 {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .d5 {
+    grid-column: 2/3;
+    grid-row: 3/6;
+  }
+
+  .d3 img,
+  .author {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .d3 img {
+    opacity: 0.2;
+  }
+
+  .author {
+    padding: 1rem;
+    z-index: 1000;
   }
 }
 
