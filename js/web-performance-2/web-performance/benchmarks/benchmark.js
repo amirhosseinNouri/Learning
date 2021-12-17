@@ -2,24 +2,30 @@ const { performance } = require('perf_hooks');
 
 // SETUP 🏁
 
-let iterations = 1e7;
+let iterations = 1e5;
 
-const a = 1;
-const b = 2;
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
 
-const add = (x, y) => x + y;
+const test = () => {
+  const add = (point) => point.x + point.y;
 
+  const point = new Point(2, 3);
+  add(point);
+};
 // 🔚 SETUP
 
 performance.mark('start');
 
 // EXERCISE 💪
 
-%NeverOptimizeFunction(add);
-
 while (iterations--) {
-  add(a, b);}
-
+  test();
+}
 
 // 🔚 EXERCISE
 
