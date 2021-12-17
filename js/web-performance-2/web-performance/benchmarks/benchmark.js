@@ -11,12 +11,9 @@ class Point {
   }
 }
 
-const test = () => {
-  const add = (point) => point.x + point.y;
+const square = (x) => x * x;
+const sumOfSquares = (a, b) => square(a) + square(b);
 
-  const point = new Point(2, 3);
-  add(point);
-};
 // 🔚 SETUP
 
 performance.mark('start');
@@ -24,7 +21,7 @@ performance.mark('start');
 // EXERCISE 💪
 
 while (iterations--) {
-  test();
+  sumOfSquares(iterations, iterations + 1);
 }
 
 // 🔚 EXERCISE
