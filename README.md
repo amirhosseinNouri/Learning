@@ -135,3 +135,8 @@
 
 ## Define Private Variable Using Closure
 - [Using closures in JavaScript to create private variables](http://ritzcovan.com/index.php/2019/12/19/using-closure-in-javascript-to-create-private-variables/)
+
+## Docker
+- [Docker tutorial for beginners through examples - a step by step tutorial ](https://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/)
+- [Dockerfile tutorial by example - basics and best practices [2018] ](https://takacsmark.com/dockerfile-tutorial-by-example-dockerfile-best-practices-2018/)
+- [Multi Stage Build](https://docs.docker.com/develop/develop-images/multistage-build/)
