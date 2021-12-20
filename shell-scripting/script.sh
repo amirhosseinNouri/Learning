@@ -9,3 +9,15 @@ then
 else
     echo "It was not true"
 fi
+
+for COLOR in red green blue
+do
+    echo "COLOR: $COLOR"
+done
+
+CHARACTERS="A B C D"
+
+for CHARACTER in $CHARACTERS
+do
+    echo "Character: $CHARACTERS"
+done
