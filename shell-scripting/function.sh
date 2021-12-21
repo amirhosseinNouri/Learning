@@ -15,7 +15,7 @@
 # hello amirhossein amir ali
 
 function backup_file(){
-    FILE=$1
+    local FILE=$1
     if [ -f $FILE ]
     then
         BACKUP_FILE="/tmp/$(basename ${FILE}).$(date +%F).$$"
@@ -23,16 +23,17 @@ function backup_file(){
         cp $FILE $BACKUP_FILE
 
     else
-        echo "No such a file"
+        echo "${FILE} doesn't exists"
         return 1   
     fi
 }
 
-backup_file /etc/hosts
+backup_file $1
 
 if [ $? -eq 0 ]
 then
     echo "Backup succeeded!"
 else
     echo "Backup failed"
+    exit 1
 fi
