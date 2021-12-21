@@ -1,11 +1,10 @@
 #!/bin/bash
-echo "Hello bash script" > output.txt
-cat > output.txt
 
-: '
-Multiline comment
-Multiline comment
-Multiline comment
-Multiline comment
-Multiline comment'
+COUNT=10
 
+if [ $COUNT -ne 10 ]
+then
+    echo "It is true"
+else
+    echo "It is false"    
+fi
