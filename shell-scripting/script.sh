@@ -1,8 +1,13 @@
 #!/bin/bash
 
-CHARACTERS="A B C D"
 
-for CHARACTER in $CHARACTERS
+ENVS=$(ls .env*)
+echo $NVS
+DATE=$(date +%F)
+
+
+for ENV in $ENVS 
 do
-    echo "Character: $CHARACTER"
+    echo "Renaiming ${ENV} to ${DATE}-${ENV}"
+    mv ${ENV} ${DATE}-${ENV}
 done
