@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import store from './store'
+import store from './my-store'
 
 import './api/server'
+
+console.log(store)
 
 console.log(store.getState())
 
