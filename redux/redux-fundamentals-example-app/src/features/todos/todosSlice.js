@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect'
+
 const initialState = []
 
 function nextTodoId(todos) {
@@ -48,3 +50,20 @@ export const todoAdded = (todo) => {
     payload: todo,
   }
 }
+
+export const todoIdsSelector = createSelector(
+  (state) => state.todos,
+  (todos) => todos.map((todo) => todo.id)
+)
+
+export const filteredTodosSelector = createSelector(
+  (state) => state.todos,
+  (state) => state.filters.status,
+  (todos, status) => {
+    if (status === 'All') {
+      return todos
+    }
+
+    return todos.filter((todo) => todo.status === 'Completed')
+  }
+)

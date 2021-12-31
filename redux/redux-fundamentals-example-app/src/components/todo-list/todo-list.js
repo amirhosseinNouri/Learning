@@ -1,11 +1,10 @@
 import React from 'react'
 import TodoListItem from '../todo-list-item'
 import { useSelector } from 'react-redux'
-
-const todosSelector = (state) => state.todos
+import { todoIdsSelector } from '../../features/todos/todosSlice'
 
 export default function TodoList() {
-  const todos = useSelector(todosSelector)
+  const todos = useSelector(todoIdsSelector)
 
   return (
     <ul className="todo-list">
