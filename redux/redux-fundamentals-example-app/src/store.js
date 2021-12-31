@@ -4,9 +4,19 @@ import {
   sayHiOnDispatch,
   includeMeaningOfLife,
 } from './exampleAddons/enhancers'
-import { print1, print2, print3 } from './exampleAddons/middleware'
+import {
+  print1,
+  print2,
+  print3,
+  exampleMiddleware,
+} from './exampleAddons/middleware'
 
-const middlewareEnhancer = applyMiddleware(print1, print2, print3)
+const middlewareEnhancer = applyMiddleware(
+  exampleMiddleware,
+  print1,
+  print2,
+  print3
+)
 const composedEnhancer = compose(
   sayHiOnDispatch,
   includeMeaningOfLife,
