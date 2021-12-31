@@ -11,7 +11,7 @@ export default function Header() {
     const trimmedText = e.target.value.trim()
 
     if (e.key === 'Enter' && trimmedText) {
-      dispatch({ type: 'todo/todoAdded', payload: trimmedText })
+      dispatch({ type: 'todos/todoAdded', payload: trimmedText })
       setValue('')
     }
   }
