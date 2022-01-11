@@ -140,3 +140,6 @@
 - [Docker tutorial for beginners through examples - a step by step tutorial ](https://takacsmark.com/getting-started-with-docker-in-your-project-step-by-step-tutorial/)
 - [Dockerfile tutorial by example - basics and best practices [2018] ](https://takacsmark.com/dockerfile-tutorial-by-example-dockerfile-best-practices-2018/)
 - [Multi Stage Build](https://docs.docker.com/develop/develop-images/multistage-build/)
+
+## SetInterval in useEffect Hook
+- [Making setInterval Declarative with React Hooks](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)
