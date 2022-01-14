@@ -1,9 +1,6 @@
-import { render } from './utils.js';
+import { render, createTextElement } from './utils.js';
 
-const textElement = {
-  type: 'TEXT_ELEMENT',
-  props: { nodeValue: 'Hello' },
-};
+const textElement = createTextElement('Hello');
 
 const container = document.getElementById('root');
 
