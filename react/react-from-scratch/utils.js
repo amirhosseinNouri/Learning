@@ -16,9 +16,7 @@ export function render(element, container) {
       dom[name] = element.props[name];
     });
 
-  console.log({ finalNodeValue: dom.nodeValue });
-
-  element.props.children?.forEach((child) => render(child, element));
+  element.props.children?.forEach((child) => render(child, dom));
 
   container.appendChild(dom);
 }
