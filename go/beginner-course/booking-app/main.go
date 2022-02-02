@@ -12,4 +12,12 @@ func main(){
 	fmt.Println("Get you tickets here.")
 
 
-}
+	var username string
+	var userTickets int
+
+	
+
+	username = "Amir"
+	userTickets = 2
+	fmt.Printf("User %v booked %v tickets.\n" , username, userTickets)
+}	
