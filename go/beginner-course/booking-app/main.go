@@ -27,6 +27,7 @@ func main() {
 			bookTicket(userTickets, firstname, lastname, email)
 
 			firstnames := getFirstNames()
+			fmt.Printf("The first names of bookings are: %v\n", firstnames)
 
 			fmt.Printf("These are all the bookings %v\n", bookings)
 
@@ -108,11 +109,11 @@ func bookTicket(userTickets uint, firstname string, lastname string, email strin
 
 }
 
-func createUser(firsname string, lastname string, email string, userTickets uint) map[string]string {
+func createUser(firstname string, lastname string, email string, userTickets uint) map[string]string {
 	var user = make(map[string]string)
-	user[firsname] = firsname
-	user[lastname] = lastname
-	user[email] = email
+	user["firstname"] = firstname
+	user["lastname"] = lastname
+	user["email"] = email
 	user["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
 
 	return user
