@@ -15,31 +15,14 @@ func main() {
 	var bookings []string
 
 	for {
-		var firstname string
-		var lastname string
-		var email string
-		var userTickets uint
 
-		fmt.Print("Enter your first name: ")
-		fmt.Scan(&firstname)
-
-		fmt.Print("Enter your last name: ")
-		fmt.Scan(&lastname)
-
-		fmt.Print("Enter your Email address: ")
-		fmt.Scan(&email)
-
-		fmt.Print("Enter the number of tickets: ")
-		fmt.Scan(&userTickets)
+		firstname, lastname, email, userTickets := getUserInputs()
 
 		isNameValid, isEmailValid, isUserTicketsValid := validateUserInput(firstname, lastname, email, userTickets, remainingTickets)
 
 		if isNameValid && isEmailValid && isUserTicketsValid {
-			remainingTickets = remainingTickets - userTickets
-			bookings = append(bookings, firstname+" "+lastname)
 
-			fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation Email at %v\n", firstname, lastname, userTickets, email)
-			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+			bookings := bookTicket(remainingTickets, userTickets, bookings, firstname, lastname, email, conferenceName)
 
 			firstnames := getFirstNames(bookings)
 			fmt.Printf("The first names of bookings are: %v\n", firstnames)
@@ -96,4 +79,35 @@ func validateUserInput(firstName string, lastName string, email string, userTick
 	isUserTicketsValid := userTickets > 0 && userTickets <= remainingTickets
 
 	return isNameValid, isEmailValid, isUserTicketsValid
+}
+
+func getUserInputs() (string, string, string, uint) {
+	var firstname string
+	var lastname string
+	var email string
+	var userTickets uint
+
+	fmt.Print("Enter your first name: ")
+	fmt.Scan(&firstname)
+
+	fmt.Print("Enter your last name: ")
+	fmt.Scan(&lastname)
+
+	fmt.Print("Enter your Email address: ")
+	fmt.Scan(&email)
+
+	fmt.Print("Enter the number of tickets: ")
+	fmt.Scan(&userTickets)
+
+	return firstname, lastname, email, userTickets
+}
+
+func bookTicket(remainingTickets uint, userTickets uint, bookings []string, firstname string, lastname string, email string, conferenceName string) []string {
+	remainingTickets = remainingTickets - userTickets
+	bookings = append(bookings, firstname+" "+lastname)
+
+	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation Email at %v\n", firstname, lastname, userTickets, email)
+	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+
+	return bookings
 }
