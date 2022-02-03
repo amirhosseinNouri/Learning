@@ -18,7 +18,7 @@ func main() {
 
 	var bookings []string
 
-	for {
+	for remainingTickets > 0 && len(bookings) < 50 {
 		var firstname string
 		var lastname string
 		var email string
