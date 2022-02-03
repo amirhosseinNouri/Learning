@@ -43,7 +43,8 @@ func main() {
 			fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation Email at %v\n", firstname, lastname, userTickets, email)
 			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
 
-			printFirstNames(bookings)
+			firstnames := getFirstNames(bookings)
+			fmt.Printf("The first names of bookings are: %v\n", firstnames)
 
 			fmt.Printf("These are all the bookings %v\n", bookings)
 
@@ -80,7 +81,7 @@ func greetUsers(name string, totalTickets int, remainTickets int) {
 	fmt.Println("Get you tickets here.")
 }
 
-func printFirstNames(bookings []string) {
+func getFirstNames(bookings []string) []string {
 	firstNames := []string{}
 
 	for _, booking := range bookings {
@@ -88,5 +89,5 @@ func printFirstNames(bookings []string) {
 		firstNames = append(firstNames, names[0])
 	}
 
-	fmt.Printf("The first names of bookings are: %v\n", firstNames)
+	return firstNames
 }
