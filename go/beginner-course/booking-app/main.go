@@ -1,16 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"strings"
 	"booking-app/helper"
+	"fmt"
+	"strconv"
 )
 
 const conferenceTickets = 50
 
 var conferenceName = "Go conference"
 var remainingTickets uint = conferenceTickets
-var bookings []string
+var bookings = make([]map[string]string, 0)
 
 func main() {
 
@@ -24,10 +24,9 @@ func main() {
 
 		if isNameValid && isEmailValid && isUserTicketsValid {
 
-			bookings := bookTicket(userTickets, firstname, lastname, email)
+			bookTicket(userTickets, firstname, lastname, email)
 
 			firstnames := getFirstNames()
-			fmt.Printf("The first names of bookings are: %v\n", firstnames)
 
 			fmt.Printf("These are all the bookings %v\n", bookings)
 
@@ -68,14 +67,11 @@ func getFirstNames() []string {
 	firstNames := []string{}
 
 	for _, booking := range bookings {
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstname"])
 	}
 
 	return firstNames
 }
-
-
 
 func getUserInputs() (string, string, string, uint) {
 	var firstname string
@@ -98,12 +94,26 @@ func getUserInputs() (string, string, string, uint) {
 	return firstname, lastname, email, userTickets
 }
 
-func bookTicket(userTickets uint, firstname string, lastname string, email string) []string {
+func bookTicket(userTickets uint, firstname string, lastname string, email string) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstname+" "+lastname)
+
+	// create a map for user
+	var userData = createUser(firstname, lastname, email, userTickets)
+
+	bookings = append(bookings, userData)
+	fmt.Printf("List of booking is: %v\n", bookings)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation Email at %v\n", firstname, lastname, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
 
-	return bookings
+}
+
+func createUser(firsname string, lastname string, email string, userTickets uint) map[string]string {
+	var user = make(map[string]string)
+	user[firsname] = firsname
+	user[lastname] = lastname
+	user[email] = email
+	user["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
+	return user
 }
