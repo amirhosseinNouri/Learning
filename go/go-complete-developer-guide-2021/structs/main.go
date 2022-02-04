@@ -15,24 +15,7 @@ type person struct {
 
 func main(){
 
-
-	// p := person {
-	// 	 "Amirhossein",
-	// 	 "Nouri",
-	// }
-
-
-	// p := person {
-	// 	firstName: "Amirhossein",
-	// 	lastName: "Nouri",
-	// }
-
-	// var p person;
-
-	// p.firstName  ="Amirhossein"
-	// p.lastName = "Nouri"
-
-	p := person {
+	amir := person {
 		firstName: "Amirhossein",
 		lastName: "Nouri",
 		contactInfo: contactInfo{
@@ -41,6 +24,18 @@ func main(){
 		},
 	}
 
+	amir.print()
+	amir.updateName("Amir")
+	amir.print()
+
+
+}
+
+func (p person) print(){
 	fmt.Printf("%+v\n", p)
 
+}
+
+func (p person) updateName(newFirstName string){
+	p.firstName = newFirstName
 }
