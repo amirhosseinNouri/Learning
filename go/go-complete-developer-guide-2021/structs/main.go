@@ -24,9 +24,9 @@ func main(){
 		},
 	}
 
-	amir.print()
+	amir.printFirstName()
 	amir.updateName("Amir")
-	amir.print()
+	amir.printFirstName()
 
 
 }
@@ -36,6 +36,10 @@ func (p person) print(){
 
 }
 
-func (p person) updateName(newFirstName string){
-	p.firstName = newFirstName
+func (p person) printFirstName(){
+	fmt.Println(p.firstName)
+}
+
+func (p *person) updateName(newFirstName string){
+	(*p).firstName = newFirstName
 }
