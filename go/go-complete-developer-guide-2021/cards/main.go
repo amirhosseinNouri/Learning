@@ -7,10 +7,12 @@ func main() {
 	// fmt.Println("--")
 	// remainingDeck.print()
 
-	// cards := newDeck()
 	// cards.saveToFile("cards.txt")
 
-	cards := newDeckFromFile("cards.txt")
+	// cards := newDeckFromFile("cards.txt")
+	cards := newDeck()
+	cards.print()
+	cards.shuffle()
 	cards.print()
 
 }
