@@ -20,7 +20,7 @@ func newDeck() deck {
 	for _, suit := range cardSuits {
 
 		for _, value := range cardValues {
-			cards = append(cards, fmt.Sprintf("%v of %v", suit, value))
+			cards = append(cards, fmt.Sprintf("%v of %v", value, suit))
 		}
 	}
 
