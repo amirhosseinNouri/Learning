@@ -15,7 +15,7 @@ func main() {
 	}
 
 	for _, host := range hosts {
-		ping(host)
+		go ping(host)
 	}
 }
 
