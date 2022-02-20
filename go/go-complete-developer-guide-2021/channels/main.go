@@ -14,19 +14,26 @@ func main() {
 		"http://downloadly.ir",
 	}
 
+	c := make(chan string)
+
 	for _, host := range hosts {
-		go ping(host)
+		go ping(host, c)
 	}
+
+	fmt.Println(<-c)
 }
 
-func ping(host string) {
+func ping(host string, c chan string) {
 	_, err := http.Get(host)
 
 	if err != nil {
-		fmt.Printf("%v might be down\n", host)
+		message := fmt.Sprintf("%v might be down\n", host)
+		fmt.Print(message)
+		c <- message
 		return
 	}
 
-	fmt.Printf("%v is up\n", host)
+	message := fmt.Sprintf("%v is up\n", host)
+	fmt.Print(message)
 
 }
