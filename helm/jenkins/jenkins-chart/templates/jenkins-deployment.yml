@@ -15,9 +15,6 @@ spec:
       containers:
         - name: jenkins
           image: bitnami/jenkins:latest
-          env:
-            - name: JENKINS_USERNAME
-              value: test
           ports:
             - name: http
               containerPort: 8080
