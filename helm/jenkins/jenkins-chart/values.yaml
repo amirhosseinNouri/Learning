@@ -3,3 +3,4 @@ image:
   tag: 'latest'
 
 jenkinsUsername: ""
+jenkinsPassword: ""
