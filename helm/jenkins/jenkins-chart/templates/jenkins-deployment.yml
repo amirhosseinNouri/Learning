@@ -25,5 +25,7 @@ spec:
               value: testPassword
               {{- end }}
           ports:
-            - name: http
-              containerPort: 8080
+            {{- range .Values.containerPorts  }}
+            - name: {{  .name }}
+              containerPort: {{ .port }}
+            {{- end}}
