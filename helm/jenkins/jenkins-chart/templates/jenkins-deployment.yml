@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  name: {{ printf "%s-%s" .Release.Name .Chart.Name }}
 spec:
   replicas: 1
   selector:
@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+          env:
+            - name: JENKINS_USERNAME
+              value: {{ default "test" .Values.jenkinsUsername | quote }}
           ports:
             - name: http
               containerPort: 8080

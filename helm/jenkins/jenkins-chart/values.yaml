@@ -1,3 +1,5 @@
 image:
   repository: bitnami/jenkins
   tag: 'latest'
+
+jenkinsUsername: ""
