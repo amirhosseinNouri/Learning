@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   replicas: 1
   selector:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: bitnami/jenkins:latest
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - name: http
               containerPort: 8080
