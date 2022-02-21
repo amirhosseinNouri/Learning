@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ printf "%s-%s" .Release.Name .Chart.Name }}
+  name: {{ template "jenkins-chart.fullname" . }}
 spec:
   replicas: 1
   selector:

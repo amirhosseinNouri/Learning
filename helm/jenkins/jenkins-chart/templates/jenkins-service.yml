@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins
+  name: {{ template "jenkins-chart.fullname" . }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
     - name: http
       port: 8080
       targetPort: http
-      nodePort: 30080
+      nodePort: {{ .Values.service.NodePort }}
   selector:
     app: jenkins
