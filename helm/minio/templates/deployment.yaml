@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "minio.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "minio.selectorLabels" . | nindent 6 }}
@@ -31,22 +29,39 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: {{ printf "%s/%s:%s" .Values.image.registry .Values.image.repository .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MINIO_FORCE_NEW_KEYS:
+              value: "yes"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ include "minio.fullname" }}
+                  key: access-key
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "minio.fullname" }}
+                  key: secret-key
+            - name: MINIO_DEFAULT_BUCKETS
+              value: {{ default "" (join "," .Values.defaultBuckets) | quote }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 9000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /minio/health/live
               port: http
           readinessProbe:
             httpGet:
-              path: /
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -59,3 +74,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentValumeClaim:
+            claimName: {{ include "minio.fullname" }}
+          {{- else  }}
+          emptyDir: {}
+          {{- end }}

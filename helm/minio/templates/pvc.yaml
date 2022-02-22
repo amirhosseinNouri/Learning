@@ -1,10 +1,14 @@
+{{- if .Values.persistence.enabled }} 
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-    name: MINIO-PVC
+  name: {{ include "minio.fullname" . }}
+  labels:
+    {{- include "minio.labels" . | nindent 4 }}
 spec:
     accessModes:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 1Gi
+            storage: {{ .Values.persistence.size | quote }}
+{{- end }}
