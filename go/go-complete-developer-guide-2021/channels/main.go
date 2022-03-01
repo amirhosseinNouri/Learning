@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -21,7 +22,10 @@ func main() {
 	}
 
 	for host := range c {
-		go ping(host, c)
+		go func(h string) {
+			time.Sleep(time.Second * 5)
+			ping(h, c)
+		}(host)
 	}
 }
 
