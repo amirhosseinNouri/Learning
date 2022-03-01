@@ -20,8 +20,8 @@ func main() {
 		go ping(host, c)
 	}
 
-	for {
-		go ping(<-c, c)
+	for host := range c {
+		go ping(host, c)
 	}
 }
 
