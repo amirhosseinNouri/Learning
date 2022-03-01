@@ -21,6 +21,12 @@ func main() {
 	}
 
 	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
 }
 
 func ping(host string, c chan string) {
@@ -34,6 +40,7 @@ func ping(host string, c chan string) {
 	}
 
 	message := fmt.Sprintf("%v is up\n", host)
-	fmt.Print(message)
+	// fmt.Print(message)
+	c <- message
 
 }
