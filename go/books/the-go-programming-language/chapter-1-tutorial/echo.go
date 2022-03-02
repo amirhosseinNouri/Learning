@@ -16,5 +16,9 @@ func main() {
 	// }
 	// fmt.Println(s)
 
-	fmt.Println(strings.Join(os.Args[1:], " "))
+	// fmt.Println(strings.Join(os.Args[1:], " "))
+
+	// Ex-1
+	fmt.Println(strings.Join(os.Args, " "))
+
 }
