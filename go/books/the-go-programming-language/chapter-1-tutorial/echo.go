@@ -8,7 +8,10 @@ import (
 
 func main() {
 
+	s, sep := "", ""
 	for _, arg := range os.Args[1:] {
-		fmt.Println(arg)
+		s += sep + arg
+		sep = " "
 	}
+	fmt.Println(s)
 }
