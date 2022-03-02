@@ -4,7 +4,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -19,6 +18,11 @@ func main() {
 	// fmt.Println(strings.Join(os.Args[1:], " "))
 
 	// Ex-1
-	fmt.Println(strings.Join(os.Args, " "))
+	// fmt.Println(strings.Join(os.Args, " "))
+
+	// Ex-2
+	for index, arg := range os.Args[1:] {
+		fmt.Printf("[%v]: %v\n", index, arg)
+	}
 
 }
