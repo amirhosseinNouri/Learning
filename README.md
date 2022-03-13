@@ -143,3 +143,6 @@
 
 ## SetInterval in useEffect Hook
 - [Making setInterval Declarative with React Hooks](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)
+
+## Publish Package on NPM
+- [The complete guide to publishing a React package to npm](https://blog.logrocket.com/the-complete-guide-to-publishing-a-react-package-to-npm/)
