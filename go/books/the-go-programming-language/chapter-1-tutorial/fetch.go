@@ -24,6 +24,8 @@ func main() {
 		fmt.Printf("Going to fetch %v\n", url)
 		response, err := http.Get(url)
 
+		fmt.Printf("STATUS: %v\n", response.Status)
+
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Fetch: %v\n", err)
 			os.Exit(1)
