@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -15,6 +16,12 @@ func main() {
 	}
 
 	for _, url := range os.Args[1:] {
+
+		if strings.HasPrefix(url, "http") == false {
+			url = appendProtocol(url)
+		}
+
+		fmt.Printf("Going to fetch %v\n", url)
 		response, err := http.Get(url)
 
 		if err != nil {
@@ -31,4 +38,8 @@ func main() {
 		}
 		fmt.Printf("%s\n", body)
 	}
+}
+
+func appendProtocol(url string) string {
+	return "http://" + url
 }
