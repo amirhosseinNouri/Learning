@@ -146,3 +146,10 @@
 
 ## Publish Package on NPM
 - [The complete guide to publishing a React package to npm](https://blog.logrocket.com/the-complete-guide-to-publishing-a-react-package-to-npm/)
+
+## Atomic CSS
+- [Let’s Define Exactly What Atomic CSS is ](https://css-tricks.com/lets-define-exactly-atomic-css/)
+
+## Import Alias
+- [Absolute import in CRA projects](https://engineering.snapp.ir/cra-absolute-import-yeva6ol2apr3)
+- [How to configure import aliases in Vite, TypeScript and Jest](https://divotion.com/blog/how-to-configure-import-aliases-in-vite-typescript-and-jest)
