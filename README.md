@@ -153,3 +153,6 @@
 ## Import Alias
 - [Absolute import in CRA projects](https://engineering.snapp.ir/cra-absolute-import-yeva6ol2apr3)
 - [How to configure import aliases in Vite, TypeScript and Jest](https://divotion.com/blog/how-to-configure-import-aliases-in-vite-typescript-and-jest)
+
+## Git hooks
+- [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
