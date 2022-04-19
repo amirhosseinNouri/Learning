@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import store from './store';
-import { addTodo, createPost } from './actions';
+import { addTodo } from './actions';
+import {createPost} from './postsSlice';
 
 window.store = store;
 
