@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import store from './store';
-import { addTodo } from './actions';
+import { addTodo, createPost } from './actions';
 
 window.store = store;
 
@@ -13,9 +13,17 @@ function App() {
     setValue((curr) => !curr);
   };
 
+  const handleCreatePostClick = () => {
+    store.dispatch(
+      createPost({ author: 'Amirhossein', likes: 0, body: 'lorem' }),
+    );
+    setValue((curr) => !curr);
+  };
+
   return (
     <div>
       <button onClick={handleAddTodoClick}>Add Todo</button>
+      <button onClick={handleCreatePostClick}>Create Post</button>
     </div>
   );
 }
