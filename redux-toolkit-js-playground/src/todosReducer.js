@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { addTodo, remoteTodo, toggleTodo } from './actions';
 
 const initialState = {
   todos: [],
@@ -6,15 +7,15 @@ const initialState = {
 
 const todosReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase('ADD_TODO', (state, action) => {
+    .addCase(addTodo, (state, action) => {
       console.log('here');
       state.todos.push(action.payload);
     })
-    .addCase('TOGGLE_TODO', (state, action) => {
+    .addCase(toggleTodo, (state, action) => {
       const todo = state.todos[action.payload.index];
       todo.completed = !todo.completed;
     })
-    .addCase('REMOTE_TODO', (state, action) => {
+    .addCase(remoteTodo, (state, action) => {
       return state.todos.filter((todo, i) => i !== action.payload.index);
     })
     .addDefaultCase(() => {
