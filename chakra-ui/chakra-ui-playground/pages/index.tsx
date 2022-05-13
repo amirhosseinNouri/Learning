@@ -7,7 +7,7 @@ function IndexPage() {
     <Container maxW="container.xl" p={0}>
       <Flex h="100vh" py={20}>
         <Details />
-        {/* <Cart /> */}
+        <Cart />
       </Flex>
     </Container>
   );
