@@ -1,25 +1,14 @@
 {
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2019,
+    "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "project": "./tsconfig.json"
+    }
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "eslint-config-prettier",
-    "eslint-config-prettier/@typescript-eslint"
-  ],
+  "extends": ["eslint:recommended"],
   "rules": {
     "strict": ["error", "never"]
   },
-  "env": {
-    "browser": true
-  }
+  "env": {"browser": true}
 }
