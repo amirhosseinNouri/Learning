@@ -1,0 +1,30 @@
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+  border-radius: 50%;
+  animation: anim 500ms linear infinite alternate;
+}
+
+@keyframes anim {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.7);
+  }
+}
