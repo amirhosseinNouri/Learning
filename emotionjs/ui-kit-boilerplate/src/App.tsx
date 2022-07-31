@@ -5,7 +5,9 @@ import Button from './components/button';
 function App() {
   return (
     <div>
-      <Button></Button>
+      <Button color="primary">
+        Click <strong>me</strong>
+      </Button>
     </div>
   );
 }
