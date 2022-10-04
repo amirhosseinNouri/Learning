@@ -1,0 +1,56 @@
+.box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  background-color: #44d980;
+  padding: 1rem 2rem;
+  font-family: 'Roboto' sans-serif;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.ripple {
+  left: 50%;
+  right: 50%;
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.ripple-enter {
+  opacity: 1;
+  transform: scale(0);
+  transition: 300ms;
+}
+
+.ripple-exit-active {
+  transition: 300ms;
+  opacity: 0;
+  transform: scale(4);
+}
+
+.example-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.example-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.example-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.example-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms, transform 300ms;
+}

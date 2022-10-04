@@ -1,0 +1,34 @@
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-entering {
+  opacity: 0.3;
+  transform: scale(1);
+  animation: ripple-enter 500ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+.ripple-exiting {
+  opacity: 0;
+  animation: ripple-exit 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes ripple-enter {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+@keyframes ripple-exit {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
