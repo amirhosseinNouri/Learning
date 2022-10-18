@@ -81,24 +81,53 @@ func main() {
 	// delete(dumbMap, "hello")
 	// fmt.Println(value, ok)
 
-	intSet := map[int]bool{}
+	// intSet := map[int]bool{}
 
-	values := []int{1, 1, 1, 1, 1, 1, 2}
+	// values := []int{1, 1, 1, 1, 1, 1, 2}
 
-	for _, v := range values {
-		intSet[v] = true
+	// for _, v := range values {
+	// 	intSet[v] = true
+	// }
+
+	// fmt.Println(len(values), len(intSet))
+
+	// fmt.Println(intSet[100])
+
+	// if intSet[1] {
+	// 	fmt.Println("1 is in the set")
+	// }
+
+	// if intSet[100] {
+	// 	fmt.Println("100 is in the set")
+	// }
+
+	type person struct {
+		name string
+		age  int
+		pet  string
 	}
 
-	fmt.Println(len(values), len(intSet))
+	// fred := person{
+	// 	name: "fred",
+	// 	age:  22,
+	// 	pet:  "dooneh",
+	// }
 
-	fmt.Println(intSet[100])
-
-	if intSet[1] {
-		fmt.Println("1 is in the set")
+	fred := person{
+		"fred", 22, "dooneh",
 	}
 
-	if intSet[100] {
-		fmt.Println("100 is in the set")
+	fmt.Println(fred.pet)
+
+	fmt.Println(fred)
+
+	var car struct {
+		name  string
+		color string
 	}
 
+	car.name = "BMW"
+	car.color = "red"
+
+	fmt.Println(car)
 }
