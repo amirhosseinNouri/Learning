@@ -1,12 +1,6 @@
 const Money = require('./money');
 const Portfolio = require('./portfolio');
-
 const assert = require('assert');
-
-const fiveDollars = new Money(5, 'USD');
-const tenDollars = new Money(10, 'USD');
-
-assert.deepStrictEqual(fiveDollars.times(2), tenDollars);
 
 const tenEuros = new Money(10, 'EUR');
 const twentyEuros = new Money(20, 'EUR');
@@ -19,6 +13,8 @@ const expectedMoneyAfterDivision = new Money(1000.5, 'KRW');
 
 assert.deepStrictEqual(actualMoneyAfterDivision, expectedMoneyAfterDivision);
 
+const fiveDollars = new Money(5, 'USD');
+const tenDollars = new Money(10, 'USD');
 const fifteenDollars = new Money(15, 'USD');
 const portfolio = new Portfolio();
 portfolio.add(fiveDollars, tenDollars);
