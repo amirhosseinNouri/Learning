@@ -20,14 +20,30 @@ class Portfolio {
 
     const exchangeKey = `${money.currency}->${currency}`;
 
-    return money.amount * exchangeRates.get(exchangeKey);
+    const exchangeRate = exchangeRates.get(exchangeKey);
+
+    if (exchangeRate === undefined) {
+      return undefined;
+    }
+
+    return money.amount * exchangeRate;
   }
 
   evaluate(currency) {
-    const total = this.moneys.reduce(
-      (sum, current) => sum + this.convert(current, currency),
-      0,
-    );
+    const failures = [];
+    const total = this.moneys.reduce((sum, current) => {
+      const convertedValue = this.convert(current, currency);
+      if (convertedValue === undefined) {
+        failures.push(`${current.currency}->${currency}`);
+        return sum;
+      }
+      return sum + convertedValue;
+    }, 0);
+
+    if (failures.length > 0) {
+      throw new Error(`Missing exchange rate(s):[${failures.join()}]`);
+    }
+
     return new Money(total, currency);
   }
 }
