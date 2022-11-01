@@ -10,11 +10,17 @@ class Portfolio {
   }
 
   convert(money, currency) {
+    const exchangeRates = new Map();
+    exchangeRates.set('EUR->USD', 1.2);
+    exchangeRates.set('USD->KRW', 1100);
+
     if (money.currency === currency) {
       return money.amount;
     }
 
-    return money.amount * 1.2;
+    const exchangeKey = `${money.currency}->${currency}`;
+
+    return money.amount * exchangeRates.get(exchangeKey);
   }
 
   evaluate(currency) {

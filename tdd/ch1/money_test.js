@@ -39,6 +39,15 @@ class MoneyTest {
     assert.deepStrictEqual(portfolio.evaluate('USD'), expectedValue);
   }
 
+  testAdditionOfDollarsAndWons() {
+    const oneDollar = new Money('1', 'USD');
+    const elevenHundredWon = new Money(1100, 'KRW');
+    const portfolio = new Portfolio();
+    portfolio.add(oneDollar, elevenHundredWon);
+    const expectedValue = new Money(2200, 'KRW');
+    assert.deepStrictEqual(portfolio.evaluate('KRW'), expectedValue);
+  }
+
   getAllTestMethods() {
     const moneyTestPrototype = MoneyTest.prototype;
 
