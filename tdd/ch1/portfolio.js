@@ -9,26 +9,6 @@ class Portfolio {
     this.moneys = [...this.moneys, ...moneys];
   }
 
-  convert(money, currency) {
-    const exchangeRates = new Map();
-    exchangeRates.set('EUR->USD', 1.2);
-    exchangeRates.set('USD->KRW', 1100);
-
-    if (money.currency === currency) {
-      return money.amount;
-    }
-
-    const exchangeKey = `${money.currency}->${currency}`;
-
-    const exchangeRate = exchangeRates.get(exchangeKey);
-
-    if (exchangeRate === undefined) {
-      return undefined;
-    }
-
-    return money.amount * exchangeRate;
-  }
-
   evaluate(bank, currency) {
     const failures = [];
     const total = this.moneys.reduce((sum, current) => {
