@@ -29,15 +29,16 @@ class Portfolio {
     return money.amount * exchangeRate;
   }
 
-  evaluate(currency) {
+  evaluate(bank, currency) {
     const failures = [];
     const total = this.moneys.reduce((sum, current) => {
-      const convertedValue = this.convert(current, currency);
-      if (convertedValue === undefined) {
-        failures.push(`${current.currency}->${currency}`);
+      try {
+        const convertedMoney = bank.convert(current, currency);
+        return sum + convertedMoney.amount;
+      } catch (error) {
+        failures.push(error.message);
         return sum;
       }
-      return sum + convertedValue;
     }, 0);
 
     if (failures.length > 0) {
