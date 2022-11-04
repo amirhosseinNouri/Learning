@@ -4,7 +4,7 @@ const Bank = require('./bank');
 const assert = require('assert');
 
 class MoneyTest {
-  constructor() {
+  setup() {
     this.bank = new Bank();
     this.bank.addExchangeRate('EUR', 'USD', 1.2);
     this.bank.addExchangeRate('USD', 'KRW', 1100);
@@ -89,6 +89,27 @@ class MoneyTest {
     assert.throws(() => bank.convert(tenEuros, 'Kalganid'), expectedError);
   }
 
+  testConversionWithDifferentRatesBetweenTwoCurrencies() {
+    const tenEuros = new Money(10, 'EUR');
+    const expectedValue = new Money(12, 'USD');
+    assert.deepStrictEqual(this.bank.convert(tenEuros, 'USD'), expectedValue);
+
+    const newExpectedValue = new Money(13, 'USD');
+    this.bank.addExchangeRate('EUR', 'USD', 1.3);
+    assert.deepStrictEqual(
+      this.bank.convert(tenEuros, 'USD'),
+      newExpectedValue,
+    );
+  }
+
+  testWhatIsTheConversionRateFromEURToUSD() {
+    const tenEuros = new Money(10, 'EUR');
+    assert.deepStrictEqual(
+      this.bank.convert(tenEuros, 'USD'),
+      new Money(12, 'USD'),
+    );
+  }
+
   getAllTestMethods() {
     const moneyTestPrototype = MoneyTest.prototype;
 
@@ -108,6 +129,7 @@ class MoneyTest {
       console.log(`Running ${test}()`);
       const method = Reflect.get(this, test);
       try {
+        this.setup();
         Reflect.apply(method, this, []);
       } catch (error) {
         if (error instanceof assert.AssertionError) {
