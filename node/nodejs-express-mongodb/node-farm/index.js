@@ -34,7 +34,7 @@ const replaceTemplate = (template, product) => {
 };
 
 const server = http.createServer((req, res) => {
-  const { url: pathname } = req;
+  const { query, pathname } = url.parse(req.url, true);
 
   /**
    * Overview page
@@ -54,7 +54,15 @@ const server = http.createServer((req, res) => {
      * Product page
      */
   } else if (pathname === '/product') {
-    res.end('product');
+    res.writeHead(200, {
+      'Content-type': 'text/html',
+    });
+
+    const product = dataObject[query.id];
+
+    const output = replaceTemplate(productTemplate, product);
+
+    res.end(output);
     /**
      * API
      */
