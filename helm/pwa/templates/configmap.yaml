@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
+  {{- template "pwa.labels" . }}
 data:
   myValues: "Hello world"
   {{- $releaseName := .Release.Name -}}
