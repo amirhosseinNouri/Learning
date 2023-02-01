@@ -159,3 +159,12 @@
 
 ## NPM Typescript Package
 - [Step by step: Building and publishing an NPM Typescript package](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c)
+
+## Yalm
+- [Yaml tutorial](https://youtu.be/1uFVr15xDGg)
+
+## Go template language
+- [Go template](https://pkg.go.dev/text/template)
+
+## Helm
+- [Helm documentation](https://helm.sh/docs/chart_template_guide/getting_started/)
