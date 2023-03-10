@@ -1,7 +1,9 @@
 package main
 
+import "fmt"
+
 func main() {
-	cards := readDeckFromFile("cards.txt")
-	cards.shuffle()
-	cards.print()
+	d := createNewDeck()
+
+	fmt.Println(d[:0])
 }

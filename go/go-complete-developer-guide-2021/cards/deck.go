@@ -8,6 +8,8 @@ import (
 
 type deck []string
 
+var DeckLength = 16
+
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
