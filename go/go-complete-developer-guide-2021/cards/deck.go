@@ -54,3 +54,10 @@ func readDeckFromFile(filename string) deck {
 	return deck(s)
 
 }
+
+func (d deck) shuffle() {
+	for i := range d {
+		newIndex := generateRandomInt(len(d) - 1)
+		d[i], d[newIndex] = d[newIndex], d[i]
+	}
+}
