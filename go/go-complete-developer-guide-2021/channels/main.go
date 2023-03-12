@@ -18,8 +18,8 @@ func main() {
 		go ping(url, c)
 	}
 
-	for {
-		go ping(<-c, c)
+	for l := range c {
+		go ping(l, c)
 	}
 }
 
