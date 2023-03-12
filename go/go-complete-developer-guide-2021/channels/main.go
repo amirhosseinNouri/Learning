@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -19,7 +20,10 @@ func main() {
 	}
 
 	for l := range c {
-		go ping(l, c)
+		go func(url string) {
+			time.Sleep(5 * time.Second)
+			ping(url, c)
+		}(l)
 	}
 }
 
