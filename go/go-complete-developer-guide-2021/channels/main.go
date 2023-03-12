@@ -18,8 +18,8 @@ func main() {
 		go ping(url, c)
 	}
 
-	for i := 0; i < len(urls); i++ {
-		fmt.Println(<-c)
+	for {
+		go ping(<-c, c)
 	}
 }
 
@@ -28,9 +28,9 @@ func ping(url string, c chan string) {
 
 	if err != nil {
 		fmt.Printf("❌️ %v might be down!\n", url)
-		c <- "Might be down"
+		c <- url
 		return
 	}
 	fmt.Printf("✅ %v is up!\n", url)
-	c <- "It is up"
+	c <- url
 }
