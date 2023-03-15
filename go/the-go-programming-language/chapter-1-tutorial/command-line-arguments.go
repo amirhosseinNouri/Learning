@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
+	"time"
 )
 
 func main() {
@@ -31,7 +33,26 @@ func main() {
 
 	//	Exercise 2
 
-	for i, arg := range os.Args[1:] {
-		fmt.Printf("index=%d arg=%v\n", i, arg)
+	//for i, arg := range os.Args[1:] {
+	//	fmt.Printf("index=%d arg=%v\n", i, arg)
+	//}
+
+	//	 Exercise 3
+	start := time.Now().Unix()
+	fmt.Println(start)
+	var arguments, separator string
+
+	for i := 1; i < len(os.Args); i++ {
+		arguments += separator + os.Args[i]
+		separator = " "
 	}
+
+	fmt.Printf("Solution 1 took %v to run", time.Now().Unix()-start)
+
+	start = time.Now().Unix()
+
+	fmt.Println(strings.Join(os.Args[1:], " "))
+
+	fmt.Printf("Solution 2 took %v to run", time.Now().Unix()-start)
+
 }
