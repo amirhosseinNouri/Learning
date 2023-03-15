@@ -6,12 +6,22 @@ import (
 )
 
 func main() {
-	var arguments, separator string
+	//var arguments, separator string
+	//
+	//for i := 1; i < len(os.Args); i++ {
+	//	arguments += separator + os.Args[i]
+	//	separator = " "
+	//}
+	//
+	//fmt.Println(arguments)
 
-	for i := 1; i < len(os.Args); i++ {
-		arguments += separator + os.Args[i]
+	arguments, separator := "", ""
+
+	for _, arg := range os.Args[1:] {
+		arguments += separator + arg
 		separator = " "
 	}
 
 	fmt.Println(arguments)
+
 }
