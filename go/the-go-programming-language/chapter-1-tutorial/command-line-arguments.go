@@ -25,6 +25,9 @@ func main() {
 	//
 	//fmt.Println(arguments)
 
+	//fmt.Println(strings.Join(os.Args[1:], " "))
+
+	// Exercise 1
 	fmt.Println(strings.Join(os.Args, " "))
 
 }
