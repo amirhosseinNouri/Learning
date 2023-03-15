@@ -14,5 +14,31 @@ func main() {
 	fmt.Println(r)
 
 	var b bool = true
-	fmt.Printf("%T", b)
+	fmt.Printf("%T\n", b)
+
+	var numbers = [4]int{1, 2, 3, 4}
+	fmt.Println(numbers)
+
+	var cities = []string{"London", "New York"}
+	fmt.Println(cities)
+
+	balances := map[string]float64{
+		"UDS": 2332,
+		"EUR": 233,
+	}
+
+	fmt.Println(balances)
+
+	type person struct {
+		name string
+		age  int
+	}
+
+	p := person{
+		age:  23,
+		name: "Amirhossein",
+	}
+
+	fmt.Println(p)
+
 }
