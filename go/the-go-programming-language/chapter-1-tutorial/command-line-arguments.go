@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -28,6 +27,11 @@ func main() {
 	//fmt.Println(strings.Join(os.Args[1:], " "))
 
 	// Exercise 1
-	fmt.Println(strings.Join(os.Args, " "))
+	//fmt.Println(strings.Join(os.Args, " "))
 
+	//	Exercise 2
+
+	for i, arg := range os.Args[1:] {
+		fmt.Printf("index=%d arg=%v\n", i, arg)
+	}
 }
