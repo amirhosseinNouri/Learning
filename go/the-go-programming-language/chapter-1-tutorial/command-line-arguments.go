@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -15,13 +16,15 @@ func main() {
 	//
 	//fmt.Println(arguments)
 
-	arguments, separator := "", ""
+	//arguments, separator := "", ""
+	//
+	//for _, arg := range os.Args[1:] {
+	//	arguments += separator + arg
+	//	separator = " "
+	//}
+	//
+	//fmt.Println(arguments)
 
-	for _, arg := range os.Args[1:] {
-		arguments += separator + arg
-		separator = " "
-	}
-
-	fmt.Println(arguments)
+	fmt.Println(strings.Join(os.Args[1:], " "))
 
 }
