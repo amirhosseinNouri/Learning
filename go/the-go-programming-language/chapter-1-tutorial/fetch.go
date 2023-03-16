@@ -22,7 +22,9 @@ func main() {
 			os.Exit(1)
 		}
 
+		fmt.Printf("Fetching %s resulted in %s status code\n", url, resp.Status)
 		_, err = io.Copy(os.Stdout, resp.Body)
+		fmt.Println()
 
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%v\n", err)
