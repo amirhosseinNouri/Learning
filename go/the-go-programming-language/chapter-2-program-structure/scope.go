@@ -9,7 +9,8 @@ import (
 var cwd string
 
 func init() {
-	cwd, err := os.Getwd()
+	var err error
+	cwd, err = os.Getwd()
 
 	if err != nil {
 		log.Fatalf("os.GetWd failed: %v", err)
