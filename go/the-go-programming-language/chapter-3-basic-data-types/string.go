@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 )
@@ -26,6 +27,7 @@ func main() {
 	fmt.Println(simpleBasename("abc") == "abc")
 	fmt.Println(comma("123") == "123")
 	fmt.Println(comma("1234") == "1,234")
+	fmt.Println(intsToString([]int{1, 2, 3, 4}) == "[1 2 3 4]")
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -82,4 +84,20 @@ func comma(s string) string {
 	}
 
 	return comma(s[:n-3]) + "," + s[n-3:]
+}
+
+func intsToString(values []int) string {
+	var buf bytes.Buffer
+	buf.WriteRune('[')
+
+	for i, v := range values {
+		if i > 0 {
+			buf.WriteString(" ")
+		}
+
+		fmt.Fprintf(&buf, "%d", v)
+	}
+
+	buf.WriteRune(']')
+	return buf.String()
 }
