@@ -15,6 +15,9 @@ func main() {
 	fmt.Println(hasSuffix("ABCD", "CA") == false)
 	fmt.Println(contains("ABCDEFG", "EF") == true)
 	fmt.Println(contains("ABCDEFG", "FB") == false)
+	fmt.Println(basename("a/b/c.go") == "c")
+	fmt.Println(basename("c.d.go") == "c.d")
+	fmt.Println(basename("abc") == "abc")
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -32,4 +35,22 @@ func contains(s, substr string) bool {
 		}
 	}
 	return false
+}
+
+func basename(s string) string {
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] == '/' {
+			s = s[i+1:]
+		}
+	}
+
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] == '.' {
+			s = s[:i]
+			break
+		}
+	}
+
+	return s
+
 }
