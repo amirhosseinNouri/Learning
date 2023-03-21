@@ -28,6 +28,8 @@ func main() {
 	fmt.Println(comma("123") == "123")
 	fmt.Println(comma("1234") == "1,234")
 	fmt.Println(intsToString([]int{1, 2, 3, 4}) == "[1 2 3 4]")
+	fmt.Println(nonRecersiveComma("123") == "123")
+	fmt.Println(nonRecersiveComma("1234") == "1,234")
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -100,4 +102,23 @@ func intsToString(values []int) string {
 
 	buf.WriteRune(']')
 	return buf.String()
+}
+
+func nonRecersiveComma(s string) string {
+	l := len(s)
+
+	if l <= 3 {
+		return s
+	}
+
+	var b bytes.Buffer
+
+	for i, v := range s {
+		if i > 0 && (l-i)%3 == 0 {
+			b.WriteRune(',')
+		}
+		b.WriteRune(v)
+	}
+
+	return b.String()
 }
