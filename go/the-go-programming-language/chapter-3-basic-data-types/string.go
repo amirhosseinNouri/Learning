@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -18,6 +21,9 @@ func main() {
 	fmt.Println(basename("a/b/c.go") == "c")
 	fmt.Println(basename("c.d.go") == "c.d")
 	fmt.Println(basename("abc") == "abc")
+	fmt.Println(simpleBasename("a/b/c.go") == "c")
+	fmt.Println(simpleBasename("c.d.go") == "c.d")
+	fmt.Println(simpleBasename("abc") == "abc")
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -53,4 +59,15 @@ func basename(s string) string {
 
 	return s
 
+}
+
+func simpleBasename(s string) string {
+	slash := strings.LastIndex(s, "/")
+	s = s[slash+1:]
+
+	if dot := strings.LastIndex(s, "."); dot >= 0 {
+		s = s[:dot]
+	}
+
+	return s
 }
