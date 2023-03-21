@@ -127,6 +127,10 @@ func nonRecersiveComma(s string) string {
 
 func isAnagram(s1, s2 string) bool {
 
+	if len(s1) != len(s1) {
+		return false
+	}
+
 	for _, v := range s1 {
 		if strings.IndexRune(s2, v) == -1 {
 			return false
