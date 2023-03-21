@@ -24,6 +24,8 @@ func main() {
 	fmt.Println(simpleBasename("a/b/c.go") == "c")
 	fmt.Println(simpleBasename("c.d.go") == "c.d")
 	fmt.Println(simpleBasename("abc") == "abc")
+	fmt.Println(comma("123") == "123")
+	fmt.Println(comma("1234") == "1,234")
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -70,4 +72,14 @@ func simpleBasename(s string) string {
 	}
 
 	return s
+}
+
+func comma(s string) string {
+	n := len(s)
+
+	if n <= 3 {
+		return s
+	}
+
+	return comma(s[:n-3]) + "," + s[n-3:]
 }
