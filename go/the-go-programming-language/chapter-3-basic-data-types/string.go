@@ -30,6 +30,8 @@ func main() {
 	fmt.Println(intsToString([]int{1, 2, 3, 4}) == "[1 2 3 4]")
 	fmt.Println(nonRecersiveComma("123") == "123")
 	fmt.Println(nonRecersiveComma("1234") == "1,234")
+	fmt.Println(isAnagram("ABCD", "DCBA") == true)
+	fmt.Println(isAnagram("ABCD", "DDDD") == false)
 }
 
 func hasPrefix(s, prefix string) bool {
@@ -121,4 +123,16 @@ func nonRecersiveComma(s string) string {
 	}
 
 	return b.String()
+}
+
+func isAnagram(s1, s2 string) bool {
+
+	for _, v := range s1 {
+		if strings.IndexRune(s2, v) == -1 {
+			return false
+		}
+	}
+
+	return true
+
 }
