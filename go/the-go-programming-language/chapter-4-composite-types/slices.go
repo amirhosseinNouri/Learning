@@ -33,10 +33,31 @@ func main() {
 	reverse(s)
 	fmt.Println(s)
 
+	a := []string{"A", "B", "C"}
+	b := []string{"A", "B"}
+	c := []string{"A", "B", "C"}
+
+	fmt.Println(compare(a, b) == false)
+	fmt.Println(compare(a, c) == true)
+
 }
 
 func reverse(s []int) {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
 	}
+}
+
+func compare(x, y []string) bool {
+	if len(x) != len(y) {
+		return false
+	}
+
+	for i := range x {
+		if x[i] != y[i] {
+			return false
+		}
+	}
+
+	return true
 }
