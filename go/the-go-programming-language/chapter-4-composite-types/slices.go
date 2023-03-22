@@ -40,6 +40,22 @@ func main() {
 	fmt.Println(compare(a, b) == false)
 	fmt.Println(compare(a, c) == true)
 
+	fmt.Println("--- appendInt ---")
+	//t1 := []int{1, 2, 3}
+	t1 := make([]int, 3, 5)
+	t1[0] = 1
+	t1[1] = 2
+	t1[2] = 3
+	fmt.Printf("t1 len=%d t1 cap=%d\n", len(t1), cap(t1))
+	fmt.Println(t1)
+	t2 := appendInt(t1, 4)
+	fmt.Println(t2)
+
+	fmt.Println("after modification")
+	t2[0] = -1
+	fmt.Println(t1)
+	fmt.Println(t2)
+
 }
 
 func reverse(s []int) {
@@ -60,4 +76,27 @@ func compare(x, y []string) bool {
 	}
 
 	return true
+}
+
+func appendInt(x []int, y int) []int {
+	var z []int
+
+	xLen := len(x)
+	zLen := xLen + 1
+
+	if zLen < cap(x) {
+		z = x[:zLen]
+	} else {
+		zCap := zLen
+		if zCap < 2*xLen {
+			zCap = 2 * xLen
+		}
+
+		z = make([]int, zLen, zCap)
+		copy(z, x)
+	}
+
+	z[xLen] = y
+
+	return z
 }
