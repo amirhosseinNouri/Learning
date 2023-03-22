@@ -10,8 +10,6 @@ import (
 	"os"
 )
 
-type HashFunction string
-
 func main() {
 
 	fn := flag.String("hash", "sha256", "Specifies the hash function. You can pass down sha384 or sha512")
