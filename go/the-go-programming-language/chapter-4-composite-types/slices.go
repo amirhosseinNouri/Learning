@@ -66,6 +66,15 @@ func main() {
 		x = y
 	}
 
+	fmt.Println("--- non empty function ---")
+	n := []string{"One", "", "Three"}
+	n = nonEmpty(n)
+	fmt.Printf("%q\n", n)
+
+	n2 := []string{"One", "", "Three"}
+	n2 = nonEmpty2(n2)
+	fmt.Printf("%q\n", n2)
+
 }
 
 func reverse(s []int) {
@@ -111,4 +120,29 @@ func appendInt(x []int, y int) []int {
 	z[xLen] = y
 
 	return z
+}
+
+func nonEmpty(s []string) []string {
+	i := 0
+
+	for _, v := range s {
+		if v != "" {
+			s[i] = v
+			i++
+		}
+	}
+
+	return s[:i]
+}
+
+func nonEmpty2(s []string) []string {
+	out := s[:0]
+
+	for _, v := range s {
+		if v != "" {
+			out = append(out, v)
+		}
+	}
+
+	return out
 }
