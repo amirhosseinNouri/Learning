@@ -29,3 +29,11 @@ func main() {
 	c := [2]int{1, 3}
 	fmt.Println(t == s, t == c, s == c)
 }
+
+func zero(ptr *[32]byte) {
+	//for i := range ptr {
+	//	ptr[i] = 0
+	//}
+
+	*ptr = [32]byte{}
+}
