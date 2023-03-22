@@ -23,4 +23,9 @@ func main() {
 
 	r := [...]int{99: -1}
 	fmt.Println(r)
+
+	t := [2]int{1, 2}
+	s := [...]int{1, 2}
+	c := [2]int{1, 3}
+	fmt.Println(t == s, t == c, s == c)
 }
