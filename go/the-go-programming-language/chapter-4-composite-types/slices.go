@@ -56,6 +56,16 @@ func main() {
 	fmt.Println(t1)
 	fmt.Println(t2)
 
+	fmt.Println("--- multiple appends ---")
+
+	var x, y []int
+
+	for i := 0; i < 10; i++ {
+		y = appendInt(x, i)
+		fmt.Printf("%d\tcap=%d\t%v\n", i, cap(y), y)
+		x = y
+	}
+
 }
 
 func reverse(s []int) {
@@ -85,8 +95,10 @@ func appendInt(x []int, y int) []int {
 	zLen := xLen + 1
 
 	if zLen < cap(x) {
+		fmt.Println("*** using the same slice ***")
 		z = x[:zLen]
 	} else {
+		fmt.Println("*** Expanding the slice ***")
 		zCap := zLen
 		if zCap < 2*xLen {
 			zCap = 2 * xLen
