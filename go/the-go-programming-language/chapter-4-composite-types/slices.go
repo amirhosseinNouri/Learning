@@ -75,6 +75,12 @@ func main() {
 	n2 = nonEmpty2(n2)
 	fmt.Printf("%q\n", n2)
 
+	fmt.Println("--- reverse array ---")
+	arr := [4]int{1, 2, 3, 4}
+	fmt.Println(arr)
+	reverseArray(&arr)
+	fmt.Println(arr)
+
 }
 
 func reverse(s []int) {
@@ -145,4 +151,10 @@ func nonEmpty2(s []string) []string {
 	}
 
 	return out
+}
+
+func reverseArray(a *[4]int) {
+	for i, j := 0, len(*a)-1; i < j; i, j = i+1, j-1 {
+		(*a)[i], (*a)[j] = (*a)[j], (*a)[i]
+	}
 }
