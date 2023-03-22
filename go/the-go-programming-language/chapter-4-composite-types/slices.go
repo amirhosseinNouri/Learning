@@ -81,6 +81,12 @@ func main() {
 	reverseArray(&arr)
 	fmt.Println(arr)
 
+	fmt.Println("--- rotate ---")
+	r := []int{1, 2, 3, 4, 5}
+	fmt.Println(r)
+	rotate(r, 2)
+	fmt.Println(r)
+
 }
 
 func reverse(s []int) {
@@ -157,4 +163,13 @@ func reverseArray(a *[4]int) {
 	for i, j := 0, len(*a)-1; i < j; i, j = i+1, j-1 {
 		(*a)[i], (*a)[j] = (*a)[j], (*a)[i]
 	}
+}
+
+func rotate(nums []int, k int) {
+	n := len(nums)
+	k %= n
+
+	reverse(nums[:n-k])
+	reverse(nums[n-k:])
+	reverse(nums)
 }
