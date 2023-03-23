@@ -45,4 +45,37 @@ func main() {
 		fmt.Printf("Amirhossein age is %d\n", age)
 	}
 
+	m1 := map[string]int{
+		"A": 1,
+		"B": 2,
+	}
+
+	m2 := map[string]int{
+		"A": 1,
+		"B": 2,
+	}
+
+	m3 := map[string]int{
+		"A": 1,
+		"B": 2,
+		"C": 3,
+	}
+
+	fmt.Println(equal(m1, m2) == true)
+	fmt.Println(equal(m1, m3) == false)
+
+}
+
+func equal(a, b map[string]int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	for k, va := range a {
+		if vb, ok := b[k]; !ok || vb != va {
+			return false
+		}
+	}
+
+	return true
 }
