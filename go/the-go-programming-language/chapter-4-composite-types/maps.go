@@ -5,6 +5,8 @@ import (
 	"sort"
 )
 
+var m = make(map[string]int)
+
 func main() {
 	//ages := make(map[string]int)
 
@@ -64,6 +66,30 @@ func main() {
 	fmt.Println(equal(m1, m2) == true)
 	fmt.Println(equal(m1, m3) == false)
 
+	l1 := []string{"A", "B", "C"}
+	l2 := []string{"A", "B", "D"}
+
+	add(l1)
+	add(l1)
+	add(l1)
+	add(l2)
+	add(l2)
+
+	fmt.Printf("count l1=%d\n", count(l1))
+	fmt.Printf("count l2=%d\n", count(l2))
+
+}
+
+func k(list []string) string {
+	return fmt.Sprintf("%q", list)
+}
+
+func add(list []string) {
+	m[k(list)]++
+}
+
+func count(list []string) int {
+	return m[k(list)]
 }
 
 func equal(a, b map[string]int) bool {
