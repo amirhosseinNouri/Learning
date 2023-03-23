@@ -1,0 +1,5 @@
+This is a sample text
+text
+text
+sample text
+this file will be processed by wordFreq
