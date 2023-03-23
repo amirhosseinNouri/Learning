@@ -87,6 +87,12 @@ func main() {
 	rotate(r, 2)
 	fmt.Println(r)
 
+	fmt.Println("--- delete adjacent duplicates ---")
+	d := []string{"A", "B", "B", "B", "C", "C", "D", "E", "E"}
+	fmt.Println(d)
+	deleteAdjacentDuplicates(&d)
+	fmt.Println(d)
+
 }
 
 func reverse(s []int) {
@@ -172,4 +178,18 @@ func rotate(nums []int, k int) {
 	reverse(nums[:n-k])
 	reverse(nums[n-k:])
 	reverse(nums)
+}
+
+func deleteAdjacentDuplicates(s *[]string) {
+	writeIndex := 0
+
+	arr := *s
+
+	for i := 0; i < len(arr); i++ {
+		if i == 0 || arr[i] != arr[i-1] {
+			arr[writeIndex] = arr[i]
+			writeIndex++
+		}
+	}
+	*s = arr[:writeIndex]
 }
