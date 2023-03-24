@@ -38,16 +38,34 @@ var employees = []Employee{dan, albert}
 
 func main() {
 
+	//
+	//position := &albert.Position
+	//*position = "Senior " + *position
+	//
+	//fmt.Println(albert.Position)
+	//
+	//employeeOfTheMonth := &albert
+	//employeeOfTheMonth.Position = "Proactive team player"
+	//
+	//fmt.Println(*employeeOfTheMonth)
+	//fmt.Println(albert)
+
 	fmt.Println(albert)
 
-	position := &albert.Position
-	*position = "Senior " + *position
+	if e, ok := getEmployeeByID(1); ok {
+		e.Salary = 500
+	}
 
-	fmt.Println(albert.Position)
-
-	employeeOfTheMonth := &albert
-	employeeOfTheMonth.Position = "Proactive team player"
-
-	fmt.Println(*employeeOfTheMonth)
 	fmt.Println(albert)
+
+}
+
+func getEmployeeByID(id int) (*Employee, bool) {
+	for _, e := range employees {
+		if e.ID == id {
+			return &e, true
+		}
+	}
+
+	return nil, false
 }
