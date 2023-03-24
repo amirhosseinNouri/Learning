@@ -6,13 +6,12 @@ import (
 )
 
 type Employee struct {
-	ID        int
-	Name      string
-	Address   string
-	DoB       time.Time
-	Position  string
-	Salary    int
-	ManagerID int
+	ID            int
+	Name, Address string
+	DoB           time.Time
+	Position      string
+	Salary        int
+	ManagerID     int
 }
 
 var albert = Employee{
