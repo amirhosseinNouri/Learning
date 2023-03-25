@@ -7,22 +7,26 @@ type Point struct {
 }
 
 type Circle struct {
-	Center Point
+	Point
 	Radius int
 }
 
 type Wheel struct {
-	Circle Circle
+	Circle
 	Spokes int
 }
 
 func main() {
 
 	var w Wheel
-	w.Circle.Center.X = 8
-	w.Circle.Center.Y = 8
-	w.Circle.Radius = 5
+	//w.Circle.X = 8
+	//w.Circle.Y = 8
+	//w.Circle.Radius = 5
+	//w.Spokes = 20
+	w.X = 8
+	w.Y = 8
+	w.Radius = 5
 	w.Spokes = 20
 
-	fmt.Println(w)
+	fmt.Printf("%#v\n", w)
 }
