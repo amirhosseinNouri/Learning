@@ -33,6 +33,11 @@ var dan = Employee{
 	ManagerID: 3,
 }
 
+type address struct {
+	hostname string
+	port     int
+}
+
 var employees = []Employee{dan, albert}
 
 func main() {
@@ -56,6 +61,13 @@ func main() {
 	}
 
 	fmt.Println(albert)
+
+	fmt.Println("--- struct literals ---")
+
+	hits := make(map[address]int)
+	hits[address{hostname: "golang.org", port: 443}]++
+
+	fmt.Println(hits)
 
 }
 
