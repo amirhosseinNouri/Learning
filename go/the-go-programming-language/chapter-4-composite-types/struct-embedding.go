@@ -29,4 +29,10 @@ func main() {
 	w.Spokes = 20
 
 	fmt.Printf("%#v\n", w)
+
+	x := Wheel{Spokes: 2,
+		Circle: Circle{Radius: 5, Point: Point{X: 8, Y: 8}},
+	}
+
+	fmt.Println(x)
 }
