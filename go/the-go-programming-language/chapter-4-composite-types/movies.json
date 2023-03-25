@@ -1,0 +1,28 @@
+[
+  {
+    "Title": "Casablanca",
+    "released": 1942,
+    "Actors": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "Title": "Cool hand Like",
+    "released": 1967,
+    "color": true,
+    "Actors": [
+      "C",
+      "D"
+    ]
+  },
+  {
+    "Title": "Bullitt",
+    "released": 1968,
+    "color": true,
+    "Actors": [
+      "E",
+      "F"
+    ]
+  }
+]

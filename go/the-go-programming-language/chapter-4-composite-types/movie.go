@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 )
 
 type Movie struct {
@@ -27,4 +28,17 @@ func main() {
 	}
 
 	fmt.Printf("%s\n", data)
+
+	data, err = os.ReadFile("movies.json")
+
+	if err != nil {
+		log.Fatalf("Failed to read the json: %s", err)
+	}
+
+	var titles []struct{ Title string }
+	if err := json.Unmarshal(data, &titles); err != nil {
+		log.Fatalf("Failed to unmarshal the json: %s", err)
+	}
+
+	fmt.Println(titles)
 }
