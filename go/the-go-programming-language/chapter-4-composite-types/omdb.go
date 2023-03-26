@@ -11,8 +11,10 @@ import (
 	"strings"
 )
 
-const APIURL = "http://www.omdbapi.com"
-const ApiKey = "afb7bb8"
+const (
+	APIURL = "http://www.omdbapi.com"
+	ApiKey = "afb7bb8"
+)
 
 type SearchResponse struct {
 	Title    string
