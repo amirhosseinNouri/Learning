@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 )
 
 const APIURL = "http://www.omdbapi.com"
@@ -18,6 +21,7 @@ type SearchResponse struct {
 	Year     string
 	Poster   string
 	Response string
+	Error    string
 }
 
 var name = flag.String("name", "", "The movie name")
@@ -36,11 +40,16 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(resp)
+	if err := DownloadPoster(resp.Title, resp.Poster); err != nil {
+		log.Fatalf("Failed to download the poster: %s", err)
+	}
 
+	fmt.Println("Done.")
 }
 
 func SearchMovie(name string) (*SearchResponse, error) {
+
+	fmt.Println("Searching the movies...")
 
 	params := map[string]string{
 		"apikey": ApiKey,
@@ -73,7 +82,48 @@ func SearchMovie(name string) (*SearchResponse, error) {
 		return nil, err
 	}
 
+	if result.Response == "False" {
+		_ = resp.Body.Close()
+		return nil, fmt.Errorf(result.Error)
+	}
+
+	fmt.Println("Found the movie!")
+
 	_ = resp.Body.Close()
 	return &result, nil
 
+}
+
+func DownloadPoster(title, poster string) error {
+
+	fmt.Println("Downloading the poster...")
+
+	resp, err := http.Get(poster)
+
+	if err != nil {
+		return err
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("failed to download the image. status code: %d", resp.StatusCode)
+	}
+	e := ExtractExtension(poster)
+
+	file, err := os.Create(title + e)
+
+	if err != nil {
+		return err
+	}
+
+	if _, err = io.Copy(file, resp.Body); err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
+func ExtractExtension(u string) string {
+	dotIndex := strings.LastIndex(u, ".")
+	return u[dotIndex:]
 }
