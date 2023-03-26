@@ -14,8 +14,6 @@ import (
 const APIURL = "http://www.omdbapi.com"
 const ApiKey = "afb7bb8"
 
-//http://www.omdbapi.com/?apikey=[yourkey]&
-
 type SearchResponse struct {
 	Title    string
 	Year     string
