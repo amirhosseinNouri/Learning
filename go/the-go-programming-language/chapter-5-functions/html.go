@@ -20,14 +20,18 @@ func main() {
 
 func visit(links []string, n *html.Node) []string {
 	if isAnchor(n) {
-		for _, a := range n.Attr {
-			if a.Key == "href" && shouldCollectLink(a.Val) {
-				links = append(links, a.Val)
-			}
-		}
+		links = visitAnchor(links, n)
 	}
 
 	links = traversChildren(links, n.FirstChild)
+
+	return links
+}
+
+func visitAnchor(links []string, n *html.Node) []string {
+	if l := extractAnchorHref(n); l != "" {
+		links = append(links, l)
+	}
 
 	return links
 }
@@ -38,6 +42,15 @@ func isAnchor(n *html.Node) bool {
 	}
 
 	return false
+}
+
+func extractAnchorHref(n *html.Node) string {
+	for _, a := range n.Attr {
+		if a.Key == "href" && shouldCollectLink(a.Val) {
+			return a.Val
+		}
+	}
+	return ""
 }
 
 func traversChildren(links []string, n *html.Node) []string {
