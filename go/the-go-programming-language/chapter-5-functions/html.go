@@ -27,11 +27,20 @@ func visit(links []string, n *html.Node) []string {
 		}
 	}
 
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		links = visit(links, c)
-	}
+	links = traversChildren(links, n.FirstChild)
 
 	return links
+}
+
+func traversChildren(links []string, n *html.Node) []string {
+	if n == nil {
+		return links
+	}
+
+	links = visit(links, n)
+
+	return traversChildren(links, n.NextSibling)
+
 }
 
 func shouldCollectLink(l string) bool {
