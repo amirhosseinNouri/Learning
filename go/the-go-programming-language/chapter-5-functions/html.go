@@ -7,6 +7,13 @@ import (
 	"os"
 )
 
+var mapElementToAttr = map[string]string{
+	"img":    "src",
+	"link":   "href",
+	"script": "src",
+	"a":      "href",
+}
+
 func main() {
 	doc, err := html.Parse(os.Stdin)
 	if err != nil {
@@ -24,15 +31,15 @@ func visit(links []string, n *html.Node) []string {
 	}
 
 	if isTag(n, "img") {
-		links = visitImage(links, n)
+		links = visitElement(links, n, "img")
 	}
 
 	if isTag(n, "link") {
-		links = visitStyleTag(links, n)
+		links = visitElement(links, n, "link")
 	}
 
 	if isTag(n, "script") {
-		links = visitScriptTag(links, n)
+		links = visitElement(links, n, "script")
 	}
 
 	links = traversChildren(links, n.FirstChild)
@@ -40,24 +47,11 @@ func visit(links []string, n *html.Node) []string {
 	return links
 }
 
-func visitImage(links []string, n *html.Node) []string {
-	if s := extractAttr(n, "src"); s != "" {
-		links = append(links, s)
-	}
+func visitElement(links []string, n *html.Node, element string) []string {
 
-	return links
-}
+	attr := mapElementToAttr[element]
 
-func visitStyleTag(links []string, n *html.Node) []string {
-	if s := extractAttr(n, "href"); s != "" {
-		links = append(links, s)
-	}
-
-	return links
-}
-
-func visitScriptTag(links []string, n *html.Node) []string {
-	if s := extractAttr(n, "src"); s != "" {
+	if s := extractAttr(n, attr); s != "" {
 		links = append(links, s)
 	}
 
