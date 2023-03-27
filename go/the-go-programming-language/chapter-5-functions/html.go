@@ -19,33 +19,25 @@ func main() {
 }
 
 func visit(links []string, n *html.Node) []string {
-	if isAnchor(n) {
+	if isTag(n, "a") {
 		links = visitAnchor(links, n)
 	}
 
-	if isImage(n) {
+	if isTag(n, "img") {
 		links = visitImage(links, n)
 	}
 
-	if isLinkTag(n) {
+	if isTag(n, "link") {
 		links = visitStyleTag(links, n)
 	}
 
-	if isScriptTag(n) {
+	if isTag(n, "script") {
 		links = visitScriptTag(links, n)
 	}
 
 	links = traversChildren(links, n.FirstChild)
 
 	return links
-}
-
-func isImage(n *html.Node) bool {
-	if n.Data == "img" {
-		return true
-	}
-
-	return false
 }
 
 func visitImage(links []string, n *html.Node) []string {
@@ -90,24 +82,8 @@ func visitAnchor(links []string, n *html.Node) []string {
 	return links
 }
 
-func isAnchor(n *html.Node) bool {
-	if n.Type == html.ElementNode && n.Data == "a" {
-		return true
-	}
-
-	return false
-}
-
-func isLinkTag(n *html.Node) bool {
-	if n.Type == html.ElementNode && n.Data == "link" {
-		return true
-	}
-
-	return false
-}
-
-func isScriptTag(n *html.Node) bool {
-	if n.Type == html.ElementNode && n.Data == "script" {
+func isTag(n *html.Node, tag string) bool {
+	if n.Type == html.ElementNode && n.Data == tag {
 		return true
 	}
 
