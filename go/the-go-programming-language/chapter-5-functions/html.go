@@ -41,16 +41,16 @@ func isImage(n *html.Node) bool {
 }
 
 func visitImage(links []string, n *html.Node) []string {
-	if s := extractImageSRC(n); s != "" {
+	if s := extractAttr(n, "src"); s != "" {
 		links = append(links, s)
 	}
 
 	return links
 }
 
-func extractImageSRC(n *html.Node) string {
+func extractAttr(n *html.Node, attr string) string {
 	for _, a := range n.Attr {
-		if a.Key == "src" {
+		if a.Key == attr {
 			return a.Val
 		}
 	}
@@ -59,7 +59,7 @@ func extractImageSRC(n *html.Node) string {
 }
 
 func visitAnchor(links []string, n *html.Node) []string {
-	if l := extractAnchorHref(n); l != "" {
+	if l := extractAttr(n, "href"); l != "" && shouldCollectLink(l) {
 		links = append(links, l)
 	}
 
@@ -72,15 +72,6 @@ func isAnchor(n *html.Node) bool {
 	}
 
 	return false
-}
-
-func extractAnchorHref(n *html.Node) string {
-	for _, a := range n.Attr {
-		if a.Key == "href" && shouldCollectLink(a.Val) {
-			return a.Val
-		}
-	}
-	return ""
 }
 
 func traversChildren(links []string, n *html.Node) []string {
