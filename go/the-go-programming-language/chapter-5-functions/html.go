@@ -1,10 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"golang.org/x/net/html"
-	"log"
-	"os"
 )
 
 var mapElementToAttr = map[string]string{
@@ -12,17 +9,6 @@ var mapElementToAttr = map[string]string{
 	"link":   "href",
 	"script": "src",
 	"a":      "href",
-}
-
-func main() {
-	doc, err := html.Parse(os.Stdin)
-	if err != nil {
-		log.Fatalf("failed to find links: %s", err)
-	}
-
-	for _, link := range visit(nil, doc) {
-		fmt.Println(link)
-	}
 }
 
 func visit(links []string, n *html.Node) []string {
