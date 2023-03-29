@@ -26,6 +26,8 @@ func waitForServer(url string) error {
 			return nil
 		}
 
+		log.SetPrefix("wait: ")
+		log.SetFlags(0)
 		log.Printf("server is not responding (%s); trying...\n", err)
 		time.Sleep(time.Second << uint(tries))
 	}
