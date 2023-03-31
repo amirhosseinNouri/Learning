@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+var depth int
+
 func main() {
 	doc, err := html.Parse(os.Stdin)
 
@@ -14,18 +16,23 @@ func main() {
 		log.Fatalf("failed to parse the HTML: %s", err)
 	}
 
-	outline(nil, doc)
+	//outline(nil, doc)
+
+	forEachNode(doc, startElement, endElement)
 
 }
 
-func outline(stack []string, n *html.Node) {
+func startElement(n *html.Node) {
 	if n.Type == html.ElementNode {
-		stack = append(stack, n.Data)
-		fmt.Println(stack)
+		fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
+		depth++
 	}
+}
 
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		outline(stack, c)
+func endElement(n *html.Node) {
+	if n.Type == html.ElementNode {
+		depth--
+		fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
 	}
 }
 
