@@ -19,3 +19,27 @@ func TestMax(t *testing.T) {
 		t.Errorf("expected the max to be %d, but got %d\n", 5, m)
 	}
 }
+
+func TestMinWithNoValue(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("expected the min to panic. but it did not.")
+		}
+	}()
+
+	Min([]int{}...)
+
+}
+
+func TestMaxWithNoValue(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("expected the max to panic, but it did not.")
+		}
+	}()
+
+	Max([]int{}...)
+
+}
