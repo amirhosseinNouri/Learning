@@ -2,6 +2,7 @@
 package links
 
 import (
+	htmlParser "chapter-5-functions/html"
 	"fmt"
 	"golang.org/x/net/html"
 	"net/http"
@@ -48,7 +49,7 @@ func Extract(url string) ([]string, error) {
 
 	}
 
-	forEachNode(doc, visitNode, nil)
+	htmlParser.ForEachNode(doc, visitNode, nil)
 
 	return links, nil
 
@@ -70,19 +71,4 @@ func isTag(n *html.Node, tag string) bool {
 	}
 
 	return false
-}
-
-func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
-
-	if pre != nil {
-		pre(n)
-	}
-
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		forEachNode(c, pre, post)
-	}
-
-	if post != nil {
-		post(n)
-	}
 }
