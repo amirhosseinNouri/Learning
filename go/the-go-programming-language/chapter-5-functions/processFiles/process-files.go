@@ -18,16 +18,24 @@ func main() {
 
 func process(files []string) error {
 	for _, fileName := range files {
-		f, err := os.Open(fileName)
-
-		if err != nil {
+		if err := printFileName(fileName); err != nil {
 			return err
 		}
-
-		defer f.Close()
-
-		fmt.Printf("%s opend successfully.\n", f.Name())
 	}
+
+	return nil
+}
+
+func printFileName(fileName string) error {
+	f, err := os.Open(fileName)
+
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	fmt.Printf("%s opend successfully.\n", f.Name())
 
 	return nil
 }
