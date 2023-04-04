@@ -24,16 +24,16 @@ func title(url string) error {
 		return err
 	}
 
+	defer resp.Body.Close()
+
 	ct := resp.Header.Get("Content-Type")
 
 	if ct != "text/html" && !strings.HasPrefix(ct, "text/html") {
-		_ = resp.Body.Close()
 		return fmt.Errorf("the resonse of %s has type %s, not text/html", url, ct)
 
 	}
 
 	doc, err := html.Parse(resp.Body)
-	_ = resp.Body.Close()
 
 	if err != nil {
 		return fmt.Errorf("failed to parse the documenent retreived from %s: %s", url, err)
