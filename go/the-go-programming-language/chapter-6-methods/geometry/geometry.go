@@ -1,27 +1,31 @@
-package main
+package geometry
 
 import (
-	"fmt"
 	"math"
 )
 
-func main() {
-
-	p := Point{1, 2}
-	q := Point{4, 6}
-
-	fmt.Println(Distance(p, q))
-	fmt.Println(p.Distance(q))
-}
-
 type Point struct {
-	x, y float64
+	X, Y float64
 }
+
+type Path []Point
 
 func Distance(p, q Point) float64 {
-	return math.Hypot(q.x-p.x, q.y-p.y)
+	return math.Hypot(q.X-p.X, q.Y-p.Y)
 }
 
 func (p Point) Distance(q Point) float64 {
-	return math.Hypot(q.x-p.x, q.y-p.y)
+	return math.Hypot(q.X-p.X, q.Y-p.Y)
+}
+
+func (path Path) Distance() float64 {
+	sum := 0.0
+
+	for i := range path {
+		if i > 0 {
+			sum += path[i-1].Distance(path[i])
+		}
+	}
+
+	return sum
 }
