@@ -1,12 +1,11 @@
 import type { UsersProps } from './users.types';
+import User from '@/components/user';
 
 const Users = ({ users }: UsersProps) => {
   return (
     <>
       {users.map((user) => (
-        <div key={user.id}>
-          {user.name} {user.email}
-        </div>
+        <User key={user.id} user={user} />
       ))}
     </>
   );

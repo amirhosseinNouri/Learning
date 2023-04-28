@@ -1,8 +1,4 @@
-export type User = {
-  name: string;
-  email: string;
-  id: number;
-};
+import type { User } from '@/components/user';
 
 export type UsersProps = {
   users: User[];
