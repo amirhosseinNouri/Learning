@@ -31,12 +31,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  // API call to get the number of static paths
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const data = (await response.json()) as Post[];
+  const paths = data.map(({ id }) => ({ params: { postId: String(id) } }));
+
   return {
-    paths: [
-      { params: { postId: '1' } },
-      { params: { postId: '2' } },
-      { params: { postId: '3' } },
-    ],
+    paths,
     fallback: false,
   };
 };
