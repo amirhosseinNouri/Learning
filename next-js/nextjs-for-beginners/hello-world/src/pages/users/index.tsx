@@ -1,5 +1,9 @@
-import type { UsersProps } from './users.types';
 import User from '@/components/user';
+import type { User as UserType } from '@/components/user';
+
+export type UsersProps = {
+  users: UserType[];
+};
 
 const Users = ({ users }: UsersProps) => {
   return (
