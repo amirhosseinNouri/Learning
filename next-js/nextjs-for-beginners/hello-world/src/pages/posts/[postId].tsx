@@ -52,7 +52,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { postId: '2' } },
       { params: { postId: '3' } },
     ],
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
