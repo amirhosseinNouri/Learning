@@ -34,6 +34,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: { product: data },
+    revalidate: 10,
   };
 };
 

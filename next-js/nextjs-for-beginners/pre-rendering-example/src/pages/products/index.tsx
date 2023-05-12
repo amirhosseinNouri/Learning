@@ -22,6 +22,7 @@ const ProductList = ({ products }: ProductsProps) => {
 };
 
 export const getStaticProps: GetStaticProps<ProductsProps> = async () => {
+  console.log('Generating / regenerating product list');
   const response = await fetch('http://localhost:4000/products');
   const data = (await response.json()) as ProductType[];
 
@@ -29,6 +30,7 @@ export const getStaticProps: GetStaticProps<ProductsProps> = async () => {
     props: {
       products: data,
     },
+    revalidate: 30,
   };
 };
 
