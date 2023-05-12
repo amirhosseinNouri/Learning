@@ -5,9 +5,11 @@ export type Product = {
   description: string;
 };
 
+export type NewsCategory = 'politics' | 'sports';
+
 export type News = {
   id: number;
   title: string;
   description: string;
-  category: string;
+  category: NewsCategory;
 };
