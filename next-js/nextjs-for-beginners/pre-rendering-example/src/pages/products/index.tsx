@@ -1,15 +1,20 @@
 import type { GetStaticProps } from 'next';
 import type { Product as ProductType } from '@/types';
-import type { ProductsProps } from './products.types';
 import Link from 'next/link';
+
+export type ProductsProps = {
+  products: ProductType[];
+};
 
 const ProductList = ({ products }: ProductsProps) => {
   return (
     <>
       <h2>Product List</h2>
-      {products.map(({ id, title }) => (
+      {products.map(({ id, title, price }) => (
         <Link key={id} href={`/products/${id}`}>
-          <h3>{title}</h3>
+          <h3>
+            {title} - ${price}
+          </h3>
         </Link>
       ))}
     </>
