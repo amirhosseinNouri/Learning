@@ -34,7 +34,10 @@ export const getServerSideProps: GetServerSideProps<
   ArticleListByCategoryProps,
   ArticleListByCategoryParams
 > = async (context) => {
-  const { params } = context;
+  const { params, req, res, query } = context;
+  console.log(req.headers.cookie);
+  console.log({ query });
+  res.setHeader('Set-Cookie', ['name = Amirhossein']);
   const category = params?.category;
   const response = await fetch(
     `http://localhost:4000/news?category=${params?.category}`,
