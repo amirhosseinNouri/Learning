@@ -27,13 +27,25 @@ const CommentList = () => {
     console.log(data);
   };
 
+  const deleteComment = async (id: number) => {
+    const response = await fetch(`/api/comments/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    console.log(data);
+    fetchComments();
+  };
+
   return (
     <>
       <input type="text" value={comment} onChange={handleCommentChange} />
       <button onClick={submitComment}>Submit comment</button>
       <button onClick={fetchComments}>Fetch comments</button>
       {comments.map((comment) => (
-        <div key={comment.id}>{comment.text}</div>
+        <div key={comment.id}>
+          <h4>{comment.text}</h4>
+          <button onClick={() => deleteComment(comment.id)}>Delete</button>
+        </div>
       ))}
     </>
   );

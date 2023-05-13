@@ -17,6 +17,7 @@ const handler: NextApiHandler = (req, res) => {
     };
     comments.push(newComment);
     res.status(201).json(newComment);
+    return;
   }
 };
 
