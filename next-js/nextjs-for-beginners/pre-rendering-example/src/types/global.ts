@@ -13,3 +13,10 @@ export type News = {
   description: string;
   category: NewsCategory;
 };
+
+export type DashboardData = {
+  posts: number;
+  likes: number;
+  followers: number;
+  following: number;
+};
