@@ -1,0 +1,12 @@
+.commentsContainer {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.comment {
+  display: flex;
+  gap: 4px;
+  padding: 8px 4px;
+  margin-top: 4px;
+}

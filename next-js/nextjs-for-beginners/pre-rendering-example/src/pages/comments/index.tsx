@@ -1,5 +1,6 @@
 import { Comment } from '@/types';
 import { ChangeEvent, useState } from 'react';
+import s from '@/styles/comments.module.css';
 
 const CommentList = () => {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -41,13 +42,18 @@ const CommentList = () => {
     <>
       <input type="text" value={comment} onChange={handleCommentChange} />
       <button onClick={submitComment}>Submit comment</button>
-      <button onClick={fetchComments}>Fetch comments</button>
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <h4>{comment.text}</h4>
-          <button onClick={() => deleteComment(comment.id)}>Delete</button>
-        </div>
-      ))}
+      <div className={s.commentsContainer}>
+        <h4>Comments</h4>
+        <button onClick={fetchComments}>Fetch comments</button>
+      </div>
+      <div>
+        {comments.map((comment) => (
+          <div key={comment.id} className={s.comment}>
+            <h4>{comment.text}</h4>
+            <button onClick={() => deleteComment(comment.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
