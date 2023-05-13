@@ -25,6 +25,7 @@ const CommentList = () => {
     });
     const data = await response.json();
     console.log(data);
+    fetchComments();
   };
 
   const deleteComment = async (id: number) => {
