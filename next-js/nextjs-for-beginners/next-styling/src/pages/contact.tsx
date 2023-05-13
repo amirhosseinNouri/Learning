@@ -1,5 +1,7 @@
+import styles from '@/styles/contact.module.css';
+
 const Contact = () => {
-  return <h2>Contact page</h2>;
+  return <div className={styles.highlight}>Contact page</div>;
 };
 
 export default Contact;
