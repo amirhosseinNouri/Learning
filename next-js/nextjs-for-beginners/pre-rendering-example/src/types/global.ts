@@ -28,3 +28,8 @@ export type Event = {
   category: string;
   date: string;
 };
+
+export type Comment = {
+  id: number;
+  text: string;
+};
