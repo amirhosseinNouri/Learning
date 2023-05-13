@@ -20,3 +20,11 @@ export type DashboardData = {
   followers: number;
   following: number;
 };
+
+export type Event = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+};
