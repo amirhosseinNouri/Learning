@@ -5,6 +5,7 @@ import s from '@/styles/comments.module.css';
 const CommentList = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [comment, setComment] = useState('');
+  const [editingComment, setEditingComment] = useState<number>();
 
   const fetchComments = async () => {
     const response = await fetch('/api/comments');
@@ -38,10 +39,35 @@ const CommentList = () => {
     fetchComments();
   };
 
+  const editComment = (comment: Comment) => {
+    setComment(comment.text);
+    setEditingComment(comment.id);
+  };
+
+  const handleSubmitEditingComment = async () => {
+    const response = await fetch(`/api/comments/${editingComment}`, {
+      method: 'PATCH',
+      body: JSON.stringify(comment),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    setEditingComment(undefined);
+    setComment('');
+    fetchComments();
+  };
+
   return (
     <>
       <input type="text" value={comment} onChange={handleCommentChange} />
-      <button onClick={submitComment}>Submit comment</button>
+      {editingComment ? (
+        <button onClick={handleSubmitEditingComment}>Done</button>
+      ) : (
+        <button onClick={submitComment}>Submit comment</button>
+      )}
+
       <div className={s.commentsContainer}>
         <h4>Comments</h4>
         <button onClick={fetchComments}>Fetch comments</button>
@@ -51,6 +77,7 @@ const CommentList = () => {
           <div key={comment.id} className={s.comment}>
             <h4>{comment.text}</h4>
             <button onClick={() => deleteComment(comment.id)}>Delete</button>
+            <button onClick={() => editComment(comment)}>Edit</button>
           </div>
         ))}
       </div>

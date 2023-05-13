@@ -25,6 +25,18 @@ const handler: NextApiHandler = (req, res) => {
     });
     return;
   }
+
+  if (req.method === 'PATCH') {
+    const commentToEdit = findComment(commentId);
+
+    if (!commentToEdit) {
+      res.status(404).json('Comment not found');
+      return;
+    }
+
+    commentToEdit.text = req.body;
+    res.status(201).json(commentToEdit);
+  }
 };
 
 export default handler;
