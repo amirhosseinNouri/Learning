@@ -4,6 +4,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import type { NextPage } from 'next';
 import type { ReactNode, ReactElement } from 'react';
+import Head from 'next/head';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,6 +21,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <Head>
+        <title>App Title</title>
+        <meta name="description" content="this is the _app description" />
+      </Head>
       <Header />
       <Component {...pageProps} />
       <Footer />
