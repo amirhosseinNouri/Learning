@@ -1,17 +1,20 @@
 const express = require('express');
+const fs = require('fs');
 
 const PORT = 3000;
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res
-    .status(200)
-    .json({ message: 'Hello from the server side!', app: 'Natours' });
-});
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
+);
 
-app.post('/', (req, res) => {
-  res.status(200).send('You can post to this endpoint');
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json({
+    ok: true,
+    results: tours.length,
+    data: { tours },
+  });
 });
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
