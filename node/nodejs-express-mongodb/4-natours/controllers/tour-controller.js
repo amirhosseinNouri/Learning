@@ -1,4 +1,3 @@
-const express = require('express');
 const fs = require('fs');
 
 const tours = JSON.parse(
@@ -83,10 +82,10 @@ const deleteTour = (req, res) => {
   res.status(204).json({ ok: true, data: null });
 };
 
-const router = express.Router();
-
-router.route('/').get(getAllTours).post(createTour);
-
-router.route('/:id').get(getSingleTour).patch(updateTour).delete(deleteTour);
-
-module.exports = router;
+module.exports = {
+  getAllTours,
+  getSingleTour,
+  createTour,
+  updateTour,
+  deleteTour,
+};

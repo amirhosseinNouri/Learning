@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const tourRouter = require('./routes/tour');
-const userRouter = require('./routes/user');
+const tourRouter = require('./routes/tour-route');
+const userRouter = require('./routes/user-route');
 
 const PORT = 3000;
 
