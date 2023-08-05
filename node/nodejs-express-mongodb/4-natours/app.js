@@ -9,7 +9,6 @@ const app = express();
 /**
  * Middleware
  */
-
 app.use(morgan('dev'));
 
 app.use(express.json());
@@ -33,7 +32,6 @@ const getTour = (id) => tours.find((item) => item.id === Number(id));
 /**
  * Route handlers
  */
-
 const getAllTours = (req, res) => {
   console.log(req.requestTime);
   res.status(200).json({
@@ -110,10 +108,44 @@ const deleteTour = (req, res) => {
   res.status(204).json({ ok: true, data: null });
 };
 
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    error: true,
+    data: { message: 'Not implemented yet 😢' },
+  });
+};
+
+const getUser = (req, res) => {
+  res.status(500).json({
+    error: true,
+    data: { message: 'Not implemented yet 😢' },
+  });
+};
+
+const createUser = (req, res) => {
+  res.status(500).json({
+    error: true,
+    data: { message: 'Not implemented yet 😢' },
+  });
+};
+
+const updateUser = (req, res) => {
+  res.status(500).json({
+    error: true,
+    data: { message: 'Not implemented yet 😢' },
+  });
+};
+
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    error: true,
+    data: { message: 'Not implemented yet 😢' },
+  });
+};
+
 /**
  * Routes
  */
-
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
 
 app
@@ -121,5 +153,13 @@ app
   .get(getSingleTour)
   .patch(updateTour)
   .delete(deleteTour);
+
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
