@@ -71,4 +71,21 @@ app.patch('/api/v1/tours/:id', (req, res) => {
   res.status(200).json({ ok: true, data: { tour } });
 });
 
+app.delete('/api/v1/tours/:id', (req, res) => {
+  const { id } = req.params;
+  const tour = getTour(id);
+
+  if (!tour) {
+    res.status(401).json({
+      ok: false,
+      error: { message: 'Tour not found' },
+    });
+    return;
+  }
+
+  // update in FS
+
+  res.status(204).json({ ok: true, data: null });
+});
+
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
