@@ -68,7 +68,7 @@ app.patch('/api/v1/tours/:id', (req, res) => {
   }
 
   // update in FS
-  res.status(200).json({ ok: true, tour });
+  res.status(200).json({ ok: true, data: { tour } });
 });
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
