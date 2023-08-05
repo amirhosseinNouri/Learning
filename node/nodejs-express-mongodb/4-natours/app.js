@@ -13,15 +13,15 @@ const tours = JSON.parse(
 
 const getTour = (id) => tours.find((item) => item.id === Number(id));
 
-app.get('/api/v1/tours', (req, res) => {
+const getAllTours = (req, res) => {
   res.status(200).json({
     ok: true,
     results: tours.length,
     data: { tours },
   });
-});
+};
 
-app.get('/api/v1/tours/:id', (req, res) => {
+const getSingleTour = (req, res) => {
   const { id } = req.params;
   const tour = getTour(id);
 
@@ -37,9 +37,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
     ok: false,
     error: { message: 'Tour not found' },
   });
-});
+};
 
-app.post('/api/v1/tours', (req, res) => {
+const createTour = (req, res) => {
   const newId = tours[tours.length - 1].id + 1 || Date.now();
   const newTour = { ...req.body, id: newId };
   tours.push(newTour);
@@ -53,9 +53,9 @@ app.post('/api/v1/tours', (req, res) => {
       });
     },
   );
-});
+};
 
-app.patch('/api/v1/tours/:id', (req, res) => {
+const updateTour = (req, res) => {
   const { id } = req.params;
   const tour = getTour(id);
 
@@ -69,9 +69,9 @@ app.patch('/api/v1/tours/:id', (req, res) => {
 
   // update in FS
   res.status(200).json({ ok: true, data: { tour } });
-});
+};
 
-app.delete('/api/v1/tours/:id', (req, res) => {
+const deleteTour = (req, res) => {
   const { id } = req.params;
   const tour = getTour(id);
 
@@ -86,6 +86,27 @@ app.delete('/api/v1/tours/:id', (req, res) => {
   // update in FS
 
   res.status(204).json({ ok: true, data: null });
-});
+};
+
+/**
+ * GET
+ */
+app.get('/api/v1/tours', getAllTours);
+app.get('/api/v1/tours/:id', getSingleTour);
+
+/**
+ * POST
+ */
+app.post('/api/v1/tours', createTour);
+
+/**
+ * PATCH
+ */
+app.patch('/api/v1/tours/:id', updateTour);
+
+/**
+ * DELETE
+ */
+app.delete('/api/v1/tours/:id', deleteTour);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
