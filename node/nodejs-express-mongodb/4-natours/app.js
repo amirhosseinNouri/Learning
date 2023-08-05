@@ -30,7 +30,7 @@ const tours = JSON.parse(
 const getTour = (id) => tours.find((item) => item.id === Number(id));
 
 /**
- * Route handlers
+ * Tour route handlers
  */
 const getAllTours = (req, res) => {
   console.log(req.requestTime);
@@ -108,6 +108,9 @@ const deleteTour = (req, res) => {
   res.status(204).json({ ok: true, data: null });
 };
 
+/**
+ * User route handler
+ */
 const getAllUsers = (req, res) => {
   res.status(500).json({
     error: true,
@@ -144,22 +147,30 @@ const deleteUser = (req, res) => {
 };
 
 /**
+ * Routers
+ */
+const tourRouter = express.Router();
+const userRouter = express.Router();
+
+/**
  * Routes
  */
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
+tourRouter.route('/').get(getAllTours).post(createTour);
 
-app
-  .route('/api/v1/tours/:id')
+tourRouter
+  .route('/:id')
   .get(getSingleTour)
   .patch(updateTour)
   .delete(deleteTour);
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
+userRouter.route('/').get(getAllUsers).post(createUser);
 
-app
-  .route('/api/v1/users/:id')
-  .get(getUser)
-  .patch(updateUser)
-  .delete(deleteUser);
+userRouter.route(':id').get(getUser).patch(updateUser).delete(deleteUser);
+
+/**
+ * Mounting routers
+ */
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
