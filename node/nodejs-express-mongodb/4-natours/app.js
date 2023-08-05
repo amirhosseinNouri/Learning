@@ -88,25 +88,12 @@ const deleteTour = (req, res) => {
   res.status(204).json({ ok: true, data: null });
 };
 
-/**
- * GET
- */
-app.get('/api/v1/tours', getAllTours);
-app.get('/api/v1/tours/:id', getSingleTour);
+app.route('/api/v1/tours').get(getAllTours).post(createTour);
 
-/**
- * POST
- */
-app.post('/api/v1/tours', createTour);
-
-/**
- * PATCH
- */
-app.patch('/api/v1/tours/:id', updateTour);
-
-/**
- * DELETE
- */
-app.delete('/api/v1/tours/:id', deleteTour);
+app
+  .route('/api/v1/tours/:id')
+  .get(getSingleTour)
+  .patch(updateTour)
+  .delete(deleteTour);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
