@@ -135,5 +135,6 @@
     "startDates": ["2021-12-16,10:00", "2022-01-16,10:00", "2022-12-12,10:00"]
   },
   { "name": "Test tour", "duration": 10, "difficulty": "easy", "id": 9 },
-  { "name": "Test tour", "duration": 10, "difficulty": "easy", "id": 10 }
+  { "name": "Test tour", "duration": 10, "difficulty": "easy", "id": 10 },
+  { "name": "Test tour", "duration": 10, "difficulty": "easy", "id": 11 }
 ]

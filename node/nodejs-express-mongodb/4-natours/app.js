@@ -11,6 +11,8 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
 
+const getTour = (id) => tours.find((item) => item.id === Number(id));
+
 app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({
     ok: true,
@@ -21,7 +23,7 @@ app.get('/api/v1/tours', (req, res) => {
 
 app.get('/api/v1/tours/:id', (req, res) => {
   const { id } = req.params;
-  const tour = tours.find((item) => item.id === Number(id));
+  const tour = getTour(id);
 
   if (tour) {
     res.status(200).json({
@@ -51,6 +53,22 @@ app.post('/api/v1/tours', (req, res) => {
       });
     },
   );
+});
+
+app.patch('/api/v1/tours/:id', (req, res) => {
+  const { id } = req.params;
+  const tour = getTour(id);
+
+  if (!tour) {
+    res.status(401).json({
+      ok: false,
+      error: { message: 'Tour not found' },
+    });
+    return;
+  }
+
+  // update in FS
+  res.status(200).json({ ok: true, tour });
 });
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
