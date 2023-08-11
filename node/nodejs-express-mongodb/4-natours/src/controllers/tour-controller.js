@@ -39,7 +39,7 @@ const createTour = (req, res) => {
   fs.writeFile(
     `${__dirname}/mock/data/tours-simple.json`,
     JSON.stringify(tours),
-    (err) => {
+    () => {
       res.status(201).json({
         ok: true,
         data: { tour: newTour },
