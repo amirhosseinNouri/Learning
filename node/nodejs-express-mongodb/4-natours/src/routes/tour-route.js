@@ -5,9 +5,12 @@ const {
   createTour,
   updateTour,
   deleteTour,
+  validateTourId,
 } = require('../controllers/tour-controller');
 
 const router = express.Router();
+
+router.param('id', validateTourId);
 
 router.route('/').get(getAllTours).post(createTour);
 

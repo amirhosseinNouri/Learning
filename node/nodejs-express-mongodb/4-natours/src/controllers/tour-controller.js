@@ -4,6 +4,18 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../mock/data/tours-simple.json`),
 );
 
+const validateTourId = (req, res, next) => {
+  if (Number(req.params.id) > tours.length) {
+    res.status(401).json({
+      ok: false,
+      error: { message: 'Tour not found' },
+    });
+    return;
+  }
+
+  next();
+};
+
 const getTour = (id) => tours.find((item) => item.id === Number(id));
 
 const getAllTours = (req, res) => {
@@ -53,14 +65,6 @@ const updateTour = (req, res) => {
   const { id } = req.params;
   const tour = getTour(id);
 
-  if (!tour) {
-    res.status(401).json({
-      ok: false,
-      error: { message: 'Tour not found' },
-    });
-    return;
-  }
-
   // update in FS
   res.status(200).json({ ok: true, data: { tour } });
 };
@@ -68,14 +72,6 @@ const updateTour = (req, res) => {
 const deleteTour = (req, res) => {
   const { id } = req.params;
   const tour = getTour(id);
-
-  if (!tour) {
-    res.status(401).json({
-      ok: false,
-      error: { message: 'Tour not found' },
-    });
-    return;
-  }
 
   // update in FS
 
@@ -88,4 +84,5 @@ module.exports = {
   createTour,
   updateTour,
   deleteTour,
+  validateTourId,
 };
