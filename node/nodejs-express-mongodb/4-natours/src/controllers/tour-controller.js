@@ -7,7 +7,6 @@ const tours = JSON.parse(
 const getTour = (id) => tours.find((item) => item.id === Number(id));
 
 const getAllTours = (req, res) => {
-  console.log(req.requestTime);
   res.status(200).json({
     ok: true,
     results: tours.length,
