@@ -2,18 +2,20 @@ const Tour = require('../models/tour-model');
 
 const getAllTours = async (req, res) => {
   try {
+    // Filtering by properties
     const queryObject = { ...req.query };
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
     excludedFields.forEach((item) => delete queryObject[item]);
 
-    const query = Tour.find(queryObject);
-    const tours = await query;
+    // Range filtering
+    const queryString = JSON.stringify(queryObject);
+    const withMongoOperatorsQueryString = queryString.replace(
+      /\b(gte|gt|lte|lt)\b/g,
+      (match) => `$${match}`,
+    );
 
-    // const tours = await Tour.find()
-    //   .where('duration')
-    //   .equals(5)
-    //   .where('difficulty')
-    //   .equals('easy');
+    const query = Tour.find(JSON.parse(withMongoOperatorsQueryString));
+    const tours = await query;
 
     res.status(200).json({
       ok: true,
