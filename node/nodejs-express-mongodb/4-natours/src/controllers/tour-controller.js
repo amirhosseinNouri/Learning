@@ -33,17 +33,6 @@ const getSingleTour = async (req, res) => {
       error: { message: 'Tour not found' },
     });
   }
-
-  // const { id } = req.params;
-  // const tour = getTour(id);
-
-  // if (tour) {
-  //   res.status(200).json({
-  //     ok: true,
-  //     data: { tour },
-  //   });
-  //   return;
-  // }
 };
 
 const createTour = async (req, res) => {
