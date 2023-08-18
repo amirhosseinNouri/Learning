@@ -14,7 +14,7 @@ const getAllTours = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       ok: false,
-      data: { message: error },
+      error: { message: error },
     });
   }
 };
@@ -46,7 +46,7 @@ const createTour = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       ok: false,
-      data: { message: error },
+      error: { message: error },
     });
   }
 };
