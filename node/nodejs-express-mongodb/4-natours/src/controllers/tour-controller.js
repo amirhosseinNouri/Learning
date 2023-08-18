@@ -19,7 +19,21 @@ const getAllTours = async (req, res) => {
   }
 };
 
-const getSingleTour = (req, res) => {
+const getSingleTour = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tour = await Tour.findById(id);
+    res.status(200).json({
+      ok: true,
+      data: { tour },
+    });
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      error: { message: 'Tour not found' },
+    });
+  }
+
   // const { id } = req.params;
   // const tour = getTour(id);
 
@@ -30,11 +44,6 @@ const getSingleTour = (req, res) => {
   //   });
   //   return;
   // }
-
-  res.status(404).json({
-    ok: false,
-    error: { message: 'Tour not found' },
-  });
 };
 
 const createTour = async (req, res) => {
