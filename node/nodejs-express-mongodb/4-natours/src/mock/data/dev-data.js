@@ -34,9 +34,9 @@ const deleteOldDocuments = async () => {
   }
 };
 
-if (process.argv[2] === '--import') {
-  importData();
-} else if (process.argv[2] === '--drop') {
+if (process.argv.includes('--drop')) {
   deleteOldDocuments();
 }
-console.log(process.argv);
+if (process.argv.includes('--import')) {
+  importData();
+}
