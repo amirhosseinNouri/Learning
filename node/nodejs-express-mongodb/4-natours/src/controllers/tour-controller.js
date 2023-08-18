@@ -2,12 +2,21 @@ const Tour = require('../models/tour-model');
 
 // const getTour = (id) => tours.find((item) => item.id === Number(id));
 
-const getAllTours = (req, res) => {
-  res.status(200).json({
-    ok: true,
-    // results: tours.length,
-    // data: { tours, requestedAt: req.requestTime },
-  });
+const getAllTours = async (req, res) => {
+  try {
+    const tours = await Tour.find();
+
+    res.status(200).json({
+      ok: true,
+      results: tours.length,
+      data: { tours },
+    });
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      data: { message: error },
+    });
+  }
 };
 
 const getSingleTour = (req, res) => {
