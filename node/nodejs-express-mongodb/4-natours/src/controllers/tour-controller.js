@@ -28,20 +28,20 @@ const getSingleTour = (req, res) => {
   });
 };
 
-const createTour = (req, res) => {
-  // const newId = tours[tours.length - 1].id + 1 || Date.now();
-  // const newTour = { ...req.body, id: newId };
-  // tours.push(newTour);
-  // fs.writeFile(
-  //   `${__dirname}/mock/data/tours-simple.json`,
-  //   JSON.stringify(tours),
-  //   () => {
-  //     res.status(201).json({
-  //       ok: true,
-  //       data: { tour: newTour },
-  //     });
-  //   },
-  // );
+const createTour = async (req, res) => {
+  try {
+    const newTour = await Tour.create(req.body);
+
+    res.status(201).json({
+      ok: true,
+      data: { tour: newTour },
+    });
+  } catch (error) {
+    res.status(400).json({
+      ok: false,
+      data: { message: error },
+    });
+  }
 };
 
 const updateTour = (req, res) => {
