@@ -1,7 +1,5 @@
 const Tour = require('../models/tour-model');
 
-// const getTour = (id) => tours.find((item) => item.id === Number(id));
-
 const getAllTours = async (req, res) => {
   try {
     const tours = await Tour.find();
@@ -68,10 +66,17 @@ const updateTour = async (req, res) => {
   }
 };
 
-const deleteTour = (req, res) => {
-  // update in FS
-
-  res.status(204).json({ ok: true, data: null });
+const deleteTour = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Tour.findByIdAndDelete(id);
+    res.status(204).json({ ok: true });
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      error: { message: error },
+    });
+  }
 };
 
 module.exports = {
