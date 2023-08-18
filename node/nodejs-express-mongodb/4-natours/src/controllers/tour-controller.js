@@ -51,13 +51,21 @@ const createTour = async (req, res) => {
   }
 };
 
-const updateTour = (req, res) => {
-  // const { id } = req.params;
-  // const tour = getTour(id);
+const updateTour = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tour = await Tour.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
-  // update in FS
-  // res.status(200).json({ ok: true, data: { tour } });
-  res.status(200).json({ ok: true });
+    res.status(200).json({ ok: true, data: { tour } });
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      error: { message: error },
+    });
+  }
 };
 
 const deleteTour = (req, res) => {
