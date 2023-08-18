@@ -7,13 +7,13 @@ const {
   deleteTour,
 } = require('../controllers/tour-controller');
 const {
-  validateTourId,
+  // validateTourId,
   validateCreateTourParams,
 } = require('../validators/tour-validators');
 
 const router = express.Router();
 
-router.param('id', validateTourId);
+// router.param('id', validateTourId);
 
 router.route('/').get(getAllTours).post(validateCreateTourParams, createTour);
 
