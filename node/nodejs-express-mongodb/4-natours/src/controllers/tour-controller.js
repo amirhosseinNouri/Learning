@@ -16,13 +16,23 @@ const getAllTours = async (req, res) => {
 
     let query = Tour.find(JSON.parse(withMongoOperatorsQueryString));
 
+    const { sort, fields } = req.query;
+
     // Sorting
-    const { sort } = req.query;
     if (sort) {
       const sortBy = sort.split(',').join(' ');
       query = query.sort(sortBy);
     } else {
       query = query.sort('-createdAt');
+    }
+
+    // Field limiting
+    if (fields) {
+      const selectingFields = fields.split(',').join(' ');
+      query = query.select(selectingFields);
+    } else {
+      // Excluding
+      query = query.select('-__v');
     }
 
     const tours = await query;
