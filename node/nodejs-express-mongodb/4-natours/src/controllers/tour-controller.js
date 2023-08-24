@@ -1,5 +1,8 @@
 const Tour = require('../models/tour-model');
 
+const DEFAULT_PAGINATION_PAGE = 1;
+const DEFAULT_PAGINATION_LIMIT = 100;
+
 const getAllTours = async (req, res) => {
   try {
     // Filtering by properties
@@ -16,7 +19,12 @@ const getAllTours = async (req, res) => {
 
     let query = Tour.find(JSON.parse(withMongoOperatorsQueryString));
 
-    const { sort, fields } = req.query;
+    const {
+      sort,
+      fields,
+      page = DEFAULT_PAGINATION_PAGE,
+      limit = DEFAULT_PAGINATION_LIMIT,
+    } = req.query;
 
     // Sorting
     if (sort) {
@@ -35,6 +43,17 @@ const getAllTours = async (req, res) => {
       query = query.select('-__v');
     }
 
+    // Pagination
+
+    const skip = (page - 1) * limit;
+    query = query.skip(skip).limit(limit);
+
+    const numberOfTours = await Tour.countDocuments();
+    console.log({ page, limit, skip, numberOfTours });
+    if (skip >= numberOfTours) {
+      throw new Error('This page does not exist');
+    }
+
     const tours = await query;
 
     res.status(200).json({
@@ -43,9 +62,10 @@ const getAllTours = async (req, res) => {
       data: { tours },
     });
   } catch (error) {
+    console.log(error);
     res.status(404).json({
       ok: false,
-      error: { message: error },
+      error: { message: error.message },
     });
   }
 };
