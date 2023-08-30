@@ -94,6 +94,46 @@ const aliasTopTours = (req, res, next) => {
   next();
 };
 
+const getTourStats = async (req, res) => {
+  try {
+    /**
+     * Executes each state on each document
+     */
+    const stats = await Tour.aggregate([
+      { $match: { ratingsAverage: { $gte: 4.5 } } },
+      {
+        $group: {
+          /**
+           * Create groups based on this field.
+           * If `null`, we get a single group
+           */
+          _id: { $toUpper: '$difficulty' },
+          numOfRatings: { $sum: '$ratingsQuantity' },
+          numOfTours: { $sum: 1 }, // Add one for each document
+          averageRating: { $avg: '$ratingsAverage' },
+          averagePrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+      {
+        $sort: { averagePrice: 1 },
+      },
+      // { $match: { _id: { $ne: 'EASY' } } },
+    ]);
+
+    res.status(200).json({
+      ok: true,
+      data: { stats },
+    });
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      error: { message: error },
+    });
+  }
+};
+
 module.exports = {
   getAllTours,
   getSingleTour,
@@ -101,4 +141,5 @@ module.exports = {
   updateTour,
   deleteTour,
   aliasTopTours,
+  getTourStats,
 };
