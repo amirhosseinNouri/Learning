@@ -1,60 +1,15 @@
 const Tour = require('../models/tour-model');
-
-const DEFAULT_PAGINATION_PAGE = 1;
-const DEFAULT_PAGINATION_LIMIT = 100;
+const APIFeatures = require('../utils/api-features');
 
 const getAllTours = async (req, res) => {
   try {
-    // Filtering by properties
-    const queryObject = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach((item) => delete queryObject[item]);
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
 
-    // Range filtering
-    const queryString = JSON.stringify(queryObject);
-    const withMongoOperatorsQueryString = queryString.replace(
-      /\b(gte|gt|lte|lt)\b/g,
-      (match) => `$${match}`,
-    );
-
-    let query = Tour.find(JSON.parse(withMongoOperatorsQueryString));
-
-    const {
-      sort,
-      fields,
-      page = DEFAULT_PAGINATION_PAGE,
-      limit = DEFAULT_PAGINATION_LIMIT,
-    } = req.query;
-
-    // Sorting
-    if (sort) {
-      const sortBy = sort.split(',').join(' ');
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort('-createdAt');
-    }
-
-    // Field limiting
-    if (fields) {
-      const selectingFields = fields.split(',').join(' ');
-      query = query.select(selectingFields);
-    } else {
-      // Excluding
-      query = query.select('-__v');
-    }
-
-    // Pagination
-
-    const skip = (page - 1) * limit;
-    query = query.skip(skip).limit(limit);
-
-    const numberOfTours = await Tour.countDocuments();
-    console.log({ page, limit, skip, numberOfTours });
-    if (skip >= numberOfTours) {
-      throw new Error('This page does not exist');
-    }
-
-    const tours = await query;
+    const tours = await features.query;
 
     res.status(200).json({
       ok: true,
