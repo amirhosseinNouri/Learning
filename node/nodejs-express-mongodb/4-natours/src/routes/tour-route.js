@@ -8,11 +8,14 @@ const {
   aliasTopTours,
   getTourStats,
   getMonthlyPlan,
+  purgeTestDocuments,
 } = require('../controllers/tour-controller');
 
 const router = express.Router();
 
 router.route('/tour-stats').get(getTourStats);
+
+router.route('/purge-test-documents').delete(purgeTestDocuments);
 
 router.route('/monthly-plan/:year').get(getMonthlyPlan);
 

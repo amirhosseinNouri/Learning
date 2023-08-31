@@ -179,6 +179,14 @@ const getMonthlyPlan = async (req, res) => {
   }
 };
 
+const purgeTestDocuments = async (req, res) => {
+  const { deletedCount } = await Tour.deleteMany({ name: { $regex: /^test/ } });
+  res.status(204).json({
+    ok: true,
+    data: { deletedCount },
+  });
+};
+
 module.exports = {
   getAllTours,
   getSingleTour,
@@ -188,4 +196,5 @@ module.exports = {
   aliasTopTours,
   getTourStats,
   getMonthlyPlan,
+  purgeTestDocuments,
 };
