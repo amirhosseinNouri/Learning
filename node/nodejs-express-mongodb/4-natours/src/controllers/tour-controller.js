@@ -114,6 +114,7 @@ const getTourStats = async (req, res) => {
           averagePrice: { $avg: '$price' },
           minPrice: { $min: '$price' },
           maxPrice: { $max: '$price' },
+          tours: { $push: '$name' },
         },
       },
       {
