@@ -1,7 +1,7 @@
 const DEFAULT_ERROR_STATUS_CODE = 500;
 
 module.exports = (err, req, res, next) => {
-  const { statusCode } = err || DEFAULT_ERROR_STATUS_CODE;
+  const { statusCode = DEFAULT_ERROR_STATUS_CODE } = err;
 
   res.status(statusCode).json({
     ok: false,
