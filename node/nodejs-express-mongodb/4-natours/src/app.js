@@ -23,9 +23,19 @@ app.use(express.static(`${__dirname}/../public`));
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.all('*', (req, res, next) => {
-  res.status(404).json({
+  const error = new Error(`Route ${req.originalUrl} not implemented.`);
+  error.statusCode = 404;
+  next(error);
+});
+
+const DEFAULT_ERROR_STATUS_CODE = 500;
+
+app.use((err, req, res, next) => {
+  const { statusCode } = err || DEFAULT_ERROR_STATUS_CODE;
+
+  res.status(statusCode).json({
     ok: false,
-    error: { message: `Can not find ${req.originalUrl} on this server.` },
+    error: { message: err.message },
   });
 });
 
