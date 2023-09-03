@@ -8,7 +8,8 @@
     "start": "nodemon src/server.js",
     "start:production": "NODE_ENV=production nodemon src/server.js ",
     "lint": "eslint src",
-    "lint:fix": "eslint --fix src"
+    "lint:fix": "eslint --fix src",
+    "debug": "ndb src/server.js"
   },
   "keywords": [],
   "author": "",
