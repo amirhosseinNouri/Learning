@@ -1,6 +1,16 @@
-const { ERROR_INTERNAL_SERVER_ERROR } = require('../constants/error-codes');
+const {
+  ERROR_INTERNAL_SERVER_ERROR,
+  ERROR_BAD_REQUEST,
+} = require('../constants/error-codes');
+const { ERROR_MONGO_CAST_ERROR } = require('../constants/mongo-errors');
+const AppError = require('../utils/app-error');
 
 const DEFAULT_ERROR_STATUS_CODE = 500;
+
+const handleMongoCaseError = (err) => {
+  const message = `Invalid ${err.path}: ${err.value}`;
+  return new AppError(message, ERROR_BAD_REQUEST);
+};
 
 const sendDevelopmentError = (err, res) => {
   const { statusCode = DEFAULT_ERROR_STATUS_CODE } = err;
@@ -23,7 +33,7 @@ const sendProductionError = (err, res) => {
     return;
   }
 
-  console.error(`🔴 ERROR: ${err}`);
+  console.error(`🔴 ERROR: ${JSON.stringify(err)}`);
 
   // programming errors
   res.status(ERROR_INTERNAL_SERVER_ERROR).json({
@@ -38,5 +48,11 @@ module.exports = (err, req, res, next) => {
     return;
   }
 
-  sendProductionError(err, res);
+  let error = { ...err.toJSON() };
+
+  if (error.name === ERROR_MONGO_CAST_ERROR) {
+    error = handleMongoCaseError(error);
+  }
+
+  sendProductionError(error, res);
 };
