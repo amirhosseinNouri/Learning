@@ -2,13 +2,21 @@ const {
   ERROR_INTERNAL_SERVER_ERROR,
   ERROR_BAD_REQUEST,
 } = require('../constants/error-codes');
-const { ERROR_MONGO_CAST_ERROR } = require('../constants/mongo-errors');
+const {
+  ERROR_MONGO_CAST_ERROR,
+  ERROR_MONGO_DUPLICATE_FIELD,
+} = require('../constants/mongo-errors');
 const AppError = require('../utils/app-error');
 
 const DEFAULT_ERROR_STATUS_CODE = 500;
 
 const handleMongoCaseError = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
+  return new AppError(message, ERROR_BAD_REQUEST);
+};
+
+const handleMongoDuplicateFieldError = (err) => {
+  const message = `Duplicate field value: ${err.keyValue.name}. Please use another value.`;
   return new AppError(message, ERROR_BAD_REQUEST);
 };
 
@@ -48,10 +56,14 @@ module.exports = (err, req, res, next) => {
     return;
   }
 
-  let error = { ...err.toJSON() };
+  let error = { ...err, name: err.name };
 
   if (error.name === ERROR_MONGO_CAST_ERROR) {
     error = handleMongoCaseError(error);
+  }
+
+  if (error.code === ERROR_MONGO_DUPLICATE_FIELD) {
+    error = handleMongoDuplicateFieldError(error);
   }
 
   sendProductionError(error, res);
