@@ -5,6 +5,7 @@ const {
 const {
   ERROR_MONGO_CAST_ERROR,
   ERROR_MONGO_DUPLICATE_FIELD,
+  ERROR_MONGO_VALIDATION_ERROR,
 } = require('../constants/mongo-errors');
 const AppError = require('../utils/app-error');
 
@@ -12,6 +13,12 @@ const DEFAULT_ERROR_STATUS_CODE = 500;
 
 const handleMongoCaseError = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
+  return new AppError(message, ERROR_BAD_REQUEST);
+};
+
+const handleMongoValidationError = (err) => {
+  const errors = Object.values(err.errors).map((item) => item.message);
+  const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, ERROR_BAD_REQUEST);
 };
 
@@ -60,6 +67,10 @@ module.exports = (err, req, res, next) => {
 
   if (error.name === ERROR_MONGO_CAST_ERROR) {
     error = handleMongoCaseError(error);
+  }
+
+  if (error.name === ERROR_MONGO_VALIDATION_ERROR) {
+    error = handleMongoValidationError(error);
   }
 
   if (error.code === ERROR_MONGO_DUPLICATE_FIELD) {
