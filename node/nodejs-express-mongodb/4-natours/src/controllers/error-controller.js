@@ -7,6 +7,11 @@ const {
   ERROR_MONGO_DUPLICATE_FIELD,
   ERROR_MONGO_VALIDATION_ERROR,
 } = require('../constants/mongo-errors');
+const {
+  JWT_TOKEN_ERROR,
+  JWT_TOKEN_EXPIRED_ERROR,
+} = require('../constants/jwt-errors');
+const { STATUS_CODE_UNAUTHORIZED } = require('../constants/status-codes');
 const AppError = require('../utils/app-error');
 
 const DEFAULT_ERROR_STATUS_CODE = 500;
@@ -27,7 +32,14 @@ const handleMongoDuplicateFieldError = (err) => {
   return new AppError(message, ERROR_BAD_REQUEST);
 };
 
+const handleJWTInvalidSignatureError = () =>
+  new AppError('Invalid token. Please login again', STATUS_CODE_UNAUTHORIZED);
+
+const handleJWTTokenExpiredError = () =>
+  new AppError('Token expired. Please login again', STATUS_CODE_UNAUTHORIZED);
+
 const sendDevelopmentError = (err, res) => {
+  console.log(err);
   const { statusCode = DEFAULT_ERROR_STATUS_CODE } = err;
 
   res.status(statusCode).json({
@@ -71,6 +83,15 @@ module.exports = (err, req, res, next) => {
 
   if (error.name === ERROR_MONGO_VALIDATION_ERROR) {
     error = handleMongoValidationError(error);
+  }
+
+  // JWT errors
+  if (error.name === JWT_TOKEN_ERROR) {
+    error = handleJWTInvalidSignatureError(error);
+  }
+
+  if (error.name === JWT_TOKEN_EXPIRED_ERROR) {
+    error = handleJWTTokenExpiredError(error);
   }
 
   if (error.code === ERROR_MONGO_DUPLICATE_FIELD) {

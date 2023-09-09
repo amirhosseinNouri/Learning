@@ -1,3 +1,4 @@
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 
 const signToken = (id) => {
@@ -8,6 +9,12 @@ const signToken = (id) => {
   return token;
 };
 
+const decodeToken = (token, secret) => {
+  const promisifiedVerify = promisify(jwt.verify);
+  return promisifiedVerify(token, secret);
+};
+
 module.exports = {
   signToken,
+  decodeToken,
 };

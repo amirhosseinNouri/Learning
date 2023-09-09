@@ -7,7 +7,7 @@ const {
 } = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
-const { signToken } = require('../services/auth');
+const { signToken, decodeToken } = require('../services/auth');
 
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
@@ -61,4 +61,43 @@ const login = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { signup, login };
+const isAuthenticated = catchAsync(async (req, res, next) => {
+  const { authorization } = req.headers;
+
+  let token;
+
+  // Check if JWT token is present inside the header
+  if (authorization && authorization.startsWith('Bearer')) {
+    // eslint-disable-next-line no-undef
+    [_, token] = authorization.split(' ');
+  }
+
+  if (!token) {
+    throw new AppError('You are not logged in.', STATUS_CODE_UNAUTHORIZED);
+  }
+
+  // Token verification
+  const decodedToken = await decodeToken(token, process.env.JWT_SECRET);
+
+  // { id: '64fc4593c1b47c9506548ba6', iat: 1694275790, exp: 1702051790 }
+
+  // Check if user still exits
+  const freshUser = await User.findById(decodedToken.id);
+
+  if (!freshUser) {
+    throw new AppError('User no longer exits', STATUS_CODE_UNAUTHORIZED);
+  }
+
+  // Check if users has changed the password after token creation
+  if (freshUser.hasChangedPasswordAfterTokenCreation(decodedToken.iat)) {
+    throw new AppError(
+      'User has changes the password recently. Please login again',
+      STATUS_CODE_UNAUTHORIZED,
+    );
+  }
+
+  req.user = freshUser;
+  next();
+});
+
+module.exports = { signup, login, isAuthenticated };

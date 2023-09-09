@@ -1,28 +1,28 @@
 const express = require('express');
-const {
-  getAllTours,
-  getSingleTour,
-  createTour,
-  updateTour,
-  deleteTour,
-  aliasTopTours,
-  getTourStats,
-  getMonthlyPlan,
-  purgeTestDocuments,
-} = require('../controllers/tour-controller');
+const tourController = require('../controllers/tour-controller');
+const authenticationController = require('../controllers/authentication-controller');
 
 const router = express.Router();
 
-router.route('/tour-stats').get(getTourStats);
+router.route('/tour-stats').get(tourController.getTourStats);
 
-router.route('/purge-test-documents').delete(purgeTestDocuments);
+router.route('/purge-test-documents').delete(tourController.purgeTestDocuments);
 
-router.route('/monthly-plan/:year').get(getMonthlyPlan);
+router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
 
-router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
+router
+  .route('/top-5-cheap')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
 
-router.route('/').get(getAllTours).post(createTour);
+router
+  .route('/')
+  .get(authenticationController.isAuthenticated, tourController.getAllTours)
+  .post(tourController.createTour);
 
-router.route('/:id').get(getSingleTour).patch(updateTour).delete(deleteTour);
+router
+  .route('/:id')
+  .get(tourController.getSingleTour)
+  .patch(tourController.updateTour)
+  .delete(tourController.deleteTour);
 
 module.exports = router;

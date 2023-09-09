@@ -4,6 +4,7 @@ const bcript = require('bcrypt');
 const {
   isPasswordConfirmationValid,
 } = require('../validators/user-validators');
+const { convertLocalTimeZoneToUnix } = require('../utils/date');
 
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_SALT_ROUNDS = 12;
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema({
       'Password confirmation is not the same as the password',
     ],
   },
+  passwordChangedAt: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -54,6 +56,21 @@ userSchema.methods.isPasswordCorrect = function (
   userPassword,
 ) {
   return bcript.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.hasChangedPasswordAfterTokenCreation = function (
+  JwtTimestamp,
+) {
+  if (this.passwordChangedAt) {
+    const passwordChangedAtInUnix = convertLocalTimeZoneToUnix(
+      this.passwordChangedAt,
+    );
+
+    console.log(JwtTimestamp, passwordChangedAtInUnix);
+
+    return JwtTimestamp < passwordChangedAtInUnix;
+  }
+  return false;
 };
 
 const userModel = mongoose.model('User', userSchema);
