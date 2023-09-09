@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: 'The password is required',
     minLength: PASSWORD_MIN_LENGTH,
+    select: false,
   },
   passwordConfirm: {
     type: String,
@@ -47,6 +48,13 @@ userSchema.pre('save', async function (next) {
   this.passwordConfirm = undefined;
   next();
 });
+
+userSchema.methods.isPasswordCorrect = function (
+  candidatePassword,
+  userPassword,
+) {
+  return bcript.compare(candidatePassword, userPassword);
+};
 
 const userModel = mongoose.model('User', userSchema);
 
