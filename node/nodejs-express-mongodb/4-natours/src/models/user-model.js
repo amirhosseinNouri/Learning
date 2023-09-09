@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const {
+  isPasswordConfirmationValid,
+} = require('../validators/user-validators');
 
 const PASSWORD_MIN_LENGTH = 8;
 
@@ -26,6 +29,10 @@ const userSchema = new mongoose.Schema({
   passwordConfirm: {
     type: String,
     required: 'Please confirm your password',
+    validate: [
+      isPasswordConfirmationValid,
+      'Password confirmation is not the same as the password',
+    ],
   },
 });
 
