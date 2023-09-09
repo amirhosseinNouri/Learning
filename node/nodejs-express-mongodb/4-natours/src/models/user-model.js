@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcript = require('bcrypt');
 const {
   isPasswordConfirmationValid,
 } = require('../validators/user-validators');
 
 const PASSWORD_MIN_LENGTH = 8;
+const PASSWORD_SALT_ROUNDS = 12;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -34,6 +36,16 @@ const userSchema = new mongoose.Schema({
       'Password confirmation is not the same as the password',
     ],
   },
+});
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+
+  this.password = await bcript.hash(this.password, PASSWORD_SALT_ROUNDS);
+  this.passwordConfirm = undefined;
+  next();
 });
 
 const userModel = mongoose.model('User', userSchema);
