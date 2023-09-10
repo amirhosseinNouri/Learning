@@ -4,6 +4,7 @@ const {
   STATUS_CODE_BAD_REQUEST,
   STATUS_CODE_OK,
   STATUS_CODE_UNAUTHORIZED,
+  STATUS_CODE_FORBIDDEN,
 } = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
@@ -98,4 +99,15 @@ const isAuthenticated = catchAsync(async (req, res, next) => {
   next();
 });
 
-module.exports = { signup, login, isAuthenticated };
+const restrictTo = (...roles) =>
+  catchAsync(async (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      throw new AppError(
+        'You do not have permission to perform this action',
+        STATUS_CODE_FORBIDDEN,
+      );
+    }
+
+    next();
+  });
+module.exports = { signup, login, isAuthenticated, restrictTo };

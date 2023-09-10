@@ -5,6 +5,7 @@ const {
   isPasswordConfirmationValid,
 } = require('../validators/user-validators');
 const { convertLocalTimeZoneToUnix } = require('../utils/date');
+const { ADMIN, GUIDE, LEAD_GUIDE, USER } = require('../constants/roles');
 
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_SALT_ROUNDS = 12;
@@ -39,6 +40,11 @@ const userSchema = new mongoose.Schema({
     ],
   },
   passwordChangedAt: Date,
+  role: {
+    type: String,
+    enum: [ADMIN, GUIDE, LEAD_GUIDE, USER],
+    default: USER,
+  },
 });
 
 userSchema.pre('save', async function (next) {
