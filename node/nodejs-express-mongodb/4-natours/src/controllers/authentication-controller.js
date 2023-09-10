@@ -79,8 +79,6 @@ const isAuthenticated = catchAsync(async (req, res, next) => {
   // Token verification
   const decodedToken = await decodeToken(token, process.env.JWT_SECRET);
 
-  // { id: '64fc4593c1b47c9506548ba6', iat: 1694275790, exp: 1702051790 }
-
   // Check if user still exits
   const freshUser = await User.findById(decodedToken.id);
 

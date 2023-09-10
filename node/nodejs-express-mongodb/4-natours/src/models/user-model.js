@@ -66,8 +66,6 @@ userSchema.methods.hasChangedPasswordAfterTokenCreation = function (
       this.passwordChangedAt,
     );
 
-    console.log(JwtTimestamp, passwordChangedAtInUnix);
-
     return JwtTimestamp < passwordChangedAtInUnix;
   }
   return false;
