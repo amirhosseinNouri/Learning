@@ -14,6 +14,7 @@ const RESET_PASSWORD_TOKEN_BYTE_SIZE = 32;
 const RESET_PASSWORD_EXPIRATION_MIN = 10;
 const SECONDS_IN_ONE_MINUTE = 60;
 const MIL_SECONDS_IN_ONE_SECOND = 1000;
+const PASSWORD_CHANGED_MARGIN_IN_MIL_SECONDS = 1000;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -64,6 +65,15 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.pre('save', function (next) {
+  if (this.isModified('password')) {
+    this.passwordChangedAt =
+      Date.now() - PASSWORD_CHANGED_MARGIN_IN_MIL_SECONDS;
+  }
+
+  next();
+});
+
 userSchema.methods.isPasswordCorrect = function (
   candidatePassword,
   userPassword,
@@ -100,12 +110,6 @@ userSchema.methods.generatePasswordResetToken = function () {
     RESET_PASSWORD_EXPIRATION_MIN *
       SECONDS_IN_ONE_MINUTE *
       MIL_SECONDS_IN_ONE_SECOND;
-
-  console.log({
-    passwordResetExpire,
-    token,
-    encrypted: this.passwordResetToken,
-  });
 
   this.passwordResetExpire = passwordResetExpire;
 

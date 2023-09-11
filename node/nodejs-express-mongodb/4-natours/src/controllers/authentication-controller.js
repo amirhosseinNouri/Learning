@@ -11,6 +11,7 @@ const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
 const sendEmail = require('../services/email');
+const crypto = require('crypto');
 
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
@@ -155,7 +156,41 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   });
 });
 
-const resetPassword = catchAsync((req, res, next) => {});
+const resetPassword = catchAsync(async (req, res, next) => {
+  // Get user based on the token
+  const { token } = req.params;
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+  // Set new password if only token is not expired and there is user
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    throw new AppError(
+      'Reset password token is invalid or has expired.',
+      STATUS_CODE_BAD_REQUEST,
+    );
+  }
+
+  const { password, passwordConfirm } = req.body;
+
+  // Update user properties
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpire = undefined;
+  await user.save();
+
+  // Log the user in
+  const newLoginToken = signToken(user._id);
+
+  res.status(STATUS_CODE_OK).json({
+    ok: true,
+    data: { token: newLoginToken },
+  });
+});
 
 module.exports = {
   signup,
