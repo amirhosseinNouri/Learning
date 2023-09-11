@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const User = require('../models/user-model');
 const {
   STATUS_CODE_CREATED,
@@ -11,7 +12,6 @@ const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
 const sendEmail = require('../services/email');
-const crypto = require('crypto');
 
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
