@@ -5,10 +5,12 @@ const {
   STATUS_CODE_OK,
   STATUS_CODE_UNAUTHORIZED,
   STATUS_CODE_FORBIDDEN,
+  STATUS_CODE_INTERNAL_SERVER_ERROR,
 } = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
+const sendEmail = require('../services/email');
 
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
@@ -110,4 +112,56 @@ const restrictTo = (...roles) =>
 
     next();
   });
-module.exports = { signup, login, isAuthenticated, restrictTo };
+
+const forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new AppError(`There is no user with ${email} email address`);
+  }
+
+  const resetToken = user.generatePasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  const resetUrl = `${req.protocol}://${req.get(
+    'host',
+  )}/api/v1/users/reset-password/${resetToken}`;
+
+  const message = `Forgot your password? Submit a PATCH request with your new password and password confirm to ${resetUrl}.
+  If you did not ignore your password, please ignore this email`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Your password reset token (valid for 10 mins)',
+      message,
+    });
+  } catch (error) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpire = undefined;
+    await user.save({ validateBeforeSave: false });
+
+    throw new AppError(
+      'There was an error sending the email. Please try again',
+      STATUS_CODE_INTERNAL_SERVER_ERROR,
+    );
+  }
+
+  res.status(STATUS_CODE_OK).json({
+    ok: true,
+    data: { message: 'Token sent to email' },
+  });
+});
+
+const resetPassword = catchAsync((req, res, next) => {});
+
+module.exports = {
+  signup,
+  login,
+  isAuthenticated,
+  restrictTo,
+  forgotPassword,
+  resetPassword,
+};
