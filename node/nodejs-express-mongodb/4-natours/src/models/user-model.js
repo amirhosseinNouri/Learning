@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcript = require('bcrypt');
@@ -9,6 +10,10 @@ const { ADMIN, GUIDE, LEAD_GUIDE, USER } = require('../constants/roles');
 
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_SALT_ROUNDS = 12;
+const RESET_PASSWORD_TOKEN_BYTE_SIZE = 32;
+const RESET_PASSWORD_EXPIRATION_MIN = 10;
+const SECONDS_IN_ONE_MINUTE = 60;
+const MIL_SECONDS_IN_ONE_SECOND = 1000;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -45,6 +50,8 @@ const userSchema = new mongoose.Schema({
     enum: [ADMIN, GUIDE, LEAD_GUIDE, USER],
     default: USER,
   },
+  passwordResetToken: String,
+  passwordResetExpire: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -75,6 +82,34 @@ userSchema.methods.hasChangedPasswordAfterTokenCreation = function (
     return JwtTimestamp < passwordChangedAtInUnix;
   }
   return false;
+};
+
+userSchema.methods.generatePasswordResetToken = function () {
+  const token = crypto
+    .randomBytes(RESET_PASSWORD_TOKEN_BYTE_SIZE)
+    .toString('hex');
+
+  // We store the encrypted version in the DB
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(token)
+    .digest('hex');
+
+  const passwordResetExpire =
+    Date.now() +
+    RESET_PASSWORD_EXPIRATION_MIN *
+      SECONDS_IN_ONE_MINUTE *
+      MIL_SECONDS_IN_ONE_SECOND;
+
+  console.log({
+    passwordResetExpire,
+    token,
+    encrypted: this.passwordResetToken,
+  });
+
+  this.passwordResetExpire = passwordResetExpire;
+
+  return token;
 };
 
 const userModel = mongoose.model('User', userSchema);
