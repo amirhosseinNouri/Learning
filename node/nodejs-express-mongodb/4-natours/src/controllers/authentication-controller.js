@@ -13,6 +13,15 @@ const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
 const sendEmail = require('../services/email');
 
+const createAndSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  res.status(statusCode).json({
+    ok: true,
+    data: { token },
+  });
+};
+
 const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
 
@@ -23,13 +32,7 @@ const signup = catchAsync(async (req, res, next) => {
     passwordConfirm,
   });
 
-  const token = signToken(newUser._id);
-
-  res.status(STATUS_CODE_CREATED).json({
-    ok: true,
-    token,
-    data: { user: newUser },
-  });
+  createAndSendToken(newUser, STATUS_CODE_CREATED, res);
 });
 
 const login = catchAsync(async (req, res) => {
@@ -57,12 +60,7 @@ const login = catchAsync(async (req, res) => {
     throw new AppError('Incorrect email or password', STATUS_CODE_UNAUTHORIZED);
   }
 
-  const token = signToken(user._id);
-
-  res.status(STATUS_CODE_OK).json({
-    ok: true,
-    data: { token },
-  });
+  createAndSendToken(user, STATUS_CODE_OK, res);
 });
 
 const isAuthenticated = catchAsync(async (req, res, next) => {
@@ -184,12 +182,29 @@ const resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // Log the user in
-  const newLoginToken = signToken(user._id);
+  createAndSendToken(user, STATUS_CODE_OK, res);
+});
 
-  res.status(STATUS_CODE_OK).json({
-    ok: true,
-    data: { token: newLoginToken },
-  });
+const updatePassword = catchAsync(async (req, res, next) => {
+  // Get user from the collection
+  const user = await User.findById(req.user.id).select('+password');
+
+  // Check if posted password is correct
+  const { password, newPassword, newPasswordConfirm } = req.body;
+  const isPasswordCorrect = user.isPasswordCorrect(password, user.password);
+
+  if (!isPasswordCorrect) {
+    throw new AppError('Incorrect password', STATUS_CODE_UNAUTHORIZED);
+  }
+
+  // Update the password
+  user.password = newPassword;
+  user.passwordConfirm = newPasswordConfirm;
+
+  await user.save();
+
+  // Log the user in with the new password
+  createAndSendToken(user, STATUS_CODE_OK, res);
 });
 
 module.exports = {
@@ -199,4 +214,5 @@ module.exports = {
   restrictTo,
   forgotPassword,
   resetPassword,
+  updatePassword,
 };
