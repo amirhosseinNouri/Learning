@@ -105,6 +105,10 @@ userSchema.methods.hasChangedPasswordAfterTokenCreation = function (
   return false;
 };
 
+userSchema.methods.isAccountDeactivated = function () {
+  return this.active === false;
+};
+
 userSchema.methods.generatePasswordResetToken = function () {
   const token = crypto
     .randomBytes(RESET_PASSWORD_TOKEN_BYTE_SIZE)

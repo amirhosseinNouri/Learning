@@ -96,6 +96,10 @@ const isAuthenticated = catchAsync(async (req, res, next) => {
     );
   }
 
+  if (freshUser.isAccountDeactivated()) {
+    throw new AppError('This account in deactivated.');
+  }
+
   req.user = freshUser;
   next();
 });
