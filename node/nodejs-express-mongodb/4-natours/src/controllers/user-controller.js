@@ -1,6 +1,7 @@
 const {
   STATUS_CODE_OK,
   STATUS_CODE_BAD_REQUEST,
+  STATUS_CODE_NO_CONTENT,
 } = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const User = require('../models/user-model');
@@ -29,13 +30,6 @@ const createUser = (req, res) => {
 };
 
 const updateUser = (req, res) => {
-  res.status(500).json({
-    error: true,
-    data: { message: 'Not implemented yet 😢' },
-  });
-};
-
-const deleteUser = (req, res) => {
   res.status(500).json({
     error: true,
     data: { message: 'Not implemented yet 😢' },
@@ -79,11 +73,19 @@ const updateUserProfile = catchAsync(async (req, res, next) => {
   });
 });
 
+const deleteUserAccount = catchAsync(async (req, res, next) => {
+  await User.findByIdAndUpdate(req.user.id, { active: false });
+
+  res.status(STATUS_CODE_NO_CONTENT).json({
+    ok: true,
+  });
+});
+
 module.exports = {
   getAllUsers,
   getUser,
   createUser,
   updateUser,
-  deleteUser,
   updateUserProfile,
+  deleteUserAccount,
 };

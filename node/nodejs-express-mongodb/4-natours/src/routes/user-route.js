@@ -22,6 +22,12 @@ router.patch(
   userController.updateUserProfile,
 );
 
+router.delete(
+  '/delete-user-account',
+  authenticationController.isAuthenticated,
+  userController.deleteUserAccount,
+);
+
 router
   .route('/')
   .get(userController.getAllUsers)
@@ -30,7 +36,6 @@ router
 router
   .route('/:id')
   .get(userController.getUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+  .patch(userController.updateUser);
 
 module.exports = router;
