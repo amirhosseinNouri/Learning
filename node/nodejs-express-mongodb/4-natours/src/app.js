@@ -5,6 +5,7 @@ const tourRouter = require('./routes/tour-route');
 const userRouter = require('./routes/user-route');
 const AppError = require('./utils/app-error');
 const globalErrorHandler = require('./controllers/error-controller');
+const helmet = require('helmet');
 
 const app = express();
 
@@ -12,10 +13,15 @@ const app = express();
  * Global Middleware
  */
 
+// Set security HTTP headers
+app.use(helmet());
+
+// Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Rate limiting
 const limiter = rateLimit({
   max: process.env.RATE_LIMIT_REQUEST,
   windowMs: Number(process.env.RATE_LIMIT_WINDOW),
@@ -24,8 +30,10 @@ const limiter = rateLimit({
 
 app.use('/api', limiter);
 
-app.use(express.json());
+// Body parser
+app.use(express.json({ limit: '10kb' }));
 
+// Serving static files
 app.use(express.static(`${__dirname}/../public`));
 
 /**
