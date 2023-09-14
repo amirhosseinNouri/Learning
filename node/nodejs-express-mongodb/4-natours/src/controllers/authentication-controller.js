@@ -12,9 +12,18 @@ const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
 const sendEmail = require('../services/email');
+const { calculateCookieJWTExpirationTime } = require('../services/auth');
 
 const createAndSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+
+  const cookieOptions = {
+    expires: calculateCookieJWTExpirationTime(),
+    httpOnly: true,
+    ...{ secure: process.env.NODE_ENV === 'production' },
+  };
+
+  res.cookie('jwt', token, cookieOptions);
 
   res.status(statusCode).json({
     ok: true,

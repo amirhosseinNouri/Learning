@@ -1,0 +1,6 @@
+module.exports = {
+  HOURS_IN_A_DAY: 24,
+  MINUTES_IN_AN_HOUR: 60,
+  SECONDS_IN_A_MINUTE: 60,
+  MIL_SECONDS_IN_A_SECOND: 100,
+};
