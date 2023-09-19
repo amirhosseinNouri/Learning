@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const tourRouter = require('./routes/tour-route');
 const userRouter = require('./routes/user-route');
+const reviewRouter = require('./routes/review-route');
 const AppError = require('./utils/app-error');
 const globalErrorHandler = require('./controllers/error-controller');
 
@@ -63,6 +64,7 @@ app.use(express.static(`${__dirname}/../public`));
  */
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} not implemented.`, 404));
 });
