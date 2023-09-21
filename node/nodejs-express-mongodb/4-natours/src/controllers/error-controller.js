@@ -1,7 +1,4 @@
-const {
-  ERROR_INTERNAL_SERVER_ERROR,
-  ERROR_BAD_REQUEST,
-} = require('../constants/error-codes');
+const STATUS_CODE = require('../constants/status-codes');
 const {
   ERROR_MONGO_CAST_ERROR,
   ERROR_MONGO_DUPLICATE_FIELD,
@@ -11,32 +8,31 @@ const {
   JWT_TOKEN_ERROR,
   JWT_TOKEN_EXPIRED_ERROR,
 } = require('../constants/jwt-errors');
-const { STATUS_CODE_UNAUTHORIZED } = require('../constants/status-codes');
 const AppError = require('../utils/app-error');
 
 const DEFAULT_ERROR_STATUS_CODE = 500;
 
 const handleMongoCaseError = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
-  return new AppError(message, ERROR_BAD_REQUEST);
+  return new AppError(message, STATUS_CODE.BadRequest);
 };
 
 const handleMongoValidationError = (err) => {
   const errors = Object.values(err.errors).map((item) => item.message);
   const message = `Invalid input data. ${errors.join('. ')}`;
-  return new AppError(message, ERROR_BAD_REQUEST);
+  return new AppError(message, STATUS_CODE.BadRequest);
 };
 
 const handleMongoDuplicateFieldError = (err) => {
   const message = `Duplicate field value: ${err.keyValue.name}. Please use another value.`;
-  return new AppError(message, ERROR_BAD_REQUEST);
+  return new AppError(message, STATUS_CODE.BadRequest);
 };
 
 const handleJWTInvalidSignatureError = () =>
-  new AppError('Invalid token. Please login again', STATUS_CODE_UNAUTHORIZED);
+  new AppError('Invalid token. Please login again', STATUS_CODE.Unauthorized);
 
 const handleJWTTokenExpiredError = () =>
-  new AppError('Token expired. Please login again', STATUS_CODE_UNAUTHORIZED);
+  new AppError('Token expired. Please login again', STATUS_CODE.Unauthorized);
 
 const sendDevelopmentError = (err, res) => {
   console.log(err);
@@ -63,7 +59,7 @@ const sendProductionError = (err, res) => {
   console.error(`🔴 ERROR: ${JSON.stringify(err)}`);
 
   // programming errors
-  res.status(ERROR_INTERNAL_SERVER_ERROR).json({
+  res.status(STATUS_CODE.InternalServerError).json({
     ok: false,
     error: { message: 'Something went wrong!.' },
   });

@@ -1,13 +1,6 @@
 const crypto = require('crypto');
 const User = require('../models/user-model');
-const {
-  STATUS_CODE_CREATED,
-  STATUS_CODE_BAD_REQUEST,
-  STATUS_CODE_OK,
-  STATUS_CODE_UNAUTHORIZED,
-  STATUS_CODE_FORBIDDEN,
-  STATUS_CODE_INTERNAL_SERVER_ERROR,
-} = require('../constants/status-codes');
+const STATUS_CODE = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const AppError = require('../utils/app-error');
 const { signToken, decodeToken } = require('../services/auth');
@@ -41,7 +34,7 @@ const signup = catchAsync(async (req, res, next) => {
     passwordConfirm,
   });
 
-  createAndSendToken(newUser, STATUS_CODE_CREATED, res);
+  createAndSendToken(newUser, STATUS_CODE.Created, res);
 });
 
 const login = catchAsync(async (req, res) => {
@@ -50,14 +43,14 @@ const login = catchAsync(async (req, res) => {
   if (!email || !password) {
     throw new AppError(
       'Please provide email and password',
-      STATUS_CODE_BAD_REQUEST,
+      STATUS_CODE.BadRequest,
     );
   }
 
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    throw new AppError('Incorrect email or password', STATUS_CODE_UNAUTHORIZED);
+    throw new AppError('Incorrect email or password', STATUS_CODE.Unauthorized);
   }
 
   const isPasswordCorrect = await user.isPasswordCorrect(
@@ -66,10 +59,10 @@ const login = catchAsync(async (req, res) => {
   );
 
   if (!isPasswordCorrect) {
-    throw new AppError('Incorrect email or password', STATUS_CODE_UNAUTHORIZED);
+    throw new AppError('Incorrect email or password', STATUS_CODE.Unauthorized);
   }
 
-  createAndSendToken(user, STATUS_CODE_OK, res);
+  createAndSendToken(user, STATUS_CODE.Ok, res);
 });
 
 const isAuthenticated = catchAsync(async (req, res, next) => {
@@ -84,7 +77,7 @@ const isAuthenticated = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    throw new AppError('You are not logged in.', STATUS_CODE_UNAUTHORIZED);
+    throw new AppError('You are not logged in.', STATUS_CODE.Unauthorized);
   }
 
   // Token verification
@@ -94,14 +87,14 @@ const isAuthenticated = catchAsync(async (req, res, next) => {
   const freshUser = await User.findById(decodedToken.id);
 
   if (!freshUser) {
-    throw new AppError('User no longer exits', STATUS_CODE_UNAUTHORIZED);
+    throw new AppError('User no longer exits', STATUS_CODE.Unauthorized);
   }
 
   // Check if users has changed the password after token creation
   if (freshUser.hasChangedPasswordAfterTokenCreation(decodedToken.iat)) {
     throw new AppError(
       'User has changes the password recently. Please login again',
-      STATUS_CODE_UNAUTHORIZED,
+      STATUS_CODE.Unauthorized,
     );
   }
 
@@ -118,7 +111,7 @@ const restrictTo = (...roles) =>
     if (!roles.includes(req.user.role)) {
       throw new AppError(
         'You do not have permission to perform this action',
-        STATUS_CODE_FORBIDDEN,
+        STATUS_CODE.Forbidden,
       );
     }
 
@@ -157,11 +150,11 @@ const forgotPassword = catchAsync(async (req, res, next) => {
 
     throw new AppError(
       'There was an error sending the email. Please try again',
-      STATUS_CODE_INTERNAL_SERVER_ERROR,
+      STATUS_CODE.InternalServerError,
     );
   }
 
-  res.status(STATUS_CODE_OK).json({
+  res.status(STATUS_CODE.Ok).json({
     ok: true,
     data: { message: 'Token sent to email' },
   });
@@ -181,7 +174,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
   if (!user) {
     throw new AppError(
       'Reset password token is invalid or has expired.',
-      STATUS_CODE_BAD_REQUEST,
+      STATUS_CODE.BadRequest,
     );
   }
 
@@ -195,7 +188,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // Log the user in
-  createAndSendToken(user, STATUS_CODE_OK, res);
+  createAndSendToken(user, STATUS_CODE.Ok, res);
 });
 
 const updatePassword = catchAsync(async (req, res, next) => {
@@ -207,7 +200,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
   const isPasswordCorrect = user.isPasswordCorrect(password, user.password);
 
   if (!isPasswordCorrect) {
-    throw new AppError('Incorrect password', STATUS_CODE_UNAUTHORIZED);
+    throw new AppError('Incorrect password', STATUS_CODE.Unauthorized);
   }
 
   // Update the password
@@ -217,7 +210,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // Log the user in with the new password
-  createAndSendToken(user, STATUS_CODE_OK, res);
+  createAndSendToken(user, STATUS_CODE.Ok, res);
 });
 
 module.exports = {

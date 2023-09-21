@@ -1,6 +1,6 @@
 const catchAsync = require('../utils/catch-async');
 const Review = require('../models/review-model');
-const { STATUS_CODE } = require('../constants/status-codes');
+const STATUS_CODE = require('../constants/status-codes');
 const factory = require('../utils/handler-factory');
 
 const getAllReviews = catchAsync(async (req, res) => {
@@ -34,12 +34,14 @@ const setTourAndUserId = (req, res, next) => {
 };
 
 const createReview = factory.createOne(Review);
+const getReview = factory.getOne(Review);
 const deleteReview = factory.deleteOne(Review);
 const updateReview = factory.updateOne(Review);
 
 module.exports = {
   getAllReviews,
   createReview,
+  getReview,
   deleteReview,
   updateReview,
   setTourAndUserId,

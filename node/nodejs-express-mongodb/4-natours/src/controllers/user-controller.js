@@ -1,8 +1,4 @@
-const {
-  STATUS_CODE_OK,
-  STATUS_CODE_BAD_REQUEST,
-  STATUS_CODE_NO_CONTENT,
-} = require('../constants/status-codes');
+const STATUS_CODE = require('../constants/status-codes');
 const catchAsync = require('../utils/catch-async');
 const User = require('../models/user-model');
 const AppError = require('../utils/app-error');
@@ -11,17 +7,12 @@ const factory = require('../utils/handler-factory');
 const getAllUsers = catchAsync(async (req, res) => {
   const users = await User.find();
 
-  res.status(STATUS_CODE_OK).json({
+  res.status(STATUS_CODE.Ok).json({
     ok: true,
     data: { users },
   });
 });
-const getUser = (req, res) => {
-  res.status(500).json({
-    error: true,
-    data: { message: 'Not implemented yet 😢' },
-  });
-};
+const getUser = factory.getOne(User);
 
 // Do not update password wit this
 const updateUser = factory.updateOne(User);
@@ -45,7 +36,7 @@ const updateUserProfile = catchAsync(async (req, res, next) => {
   if (password || passwordConfirm) {
     throw new AppError(
       'This route is not for updating the password. Please use /update-password',
-      STATUS_CODE_BAD_REQUEST,
+      STATUS_CODE.BadRequest,
     );
   }
 
@@ -57,7 +48,7 @@ const updateUserProfile = catchAsync(async (req, res, next) => {
   });
 
   // update user document
-  res.status(STATUS_CODE_OK).json({
+  res.status(STATUS_CODE.Ok).json({
     ok: true,
     data: { user },
   });
@@ -68,7 +59,7 @@ const deleteUser = factory.deleteOne(User);
 const deleteUserAccount = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
 
-  res.status(STATUS_CODE_NO_CONTENT).json({
+  res.status(STATUS_CODE.NoContent).json({
     ok: true,
   });
 });
