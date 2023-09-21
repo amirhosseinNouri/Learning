@@ -30,12 +30,8 @@ const createUser = (req, res) => {
   });
 };
 
-const updateUser = (req, res) => {
-  res.status(500).json({
-    error: true,
-    data: { message: 'Not implemented yet 😢' },
-  });
-};
+// Do not update password wit this
+const updateUser = factory.updateOne(User);
 
 const filterObject = (obj, ...allowedFields) => {
   const filteredObject = {};
