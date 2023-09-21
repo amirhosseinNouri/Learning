@@ -6,7 +6,15 @@ const {
 } = require('../constants/status-codes');
 
 const getAllReviews = catchAsync(async (req, res) => {
-  const reviews = await Review.find();
+  let queryFilters = {};
+
+  const { tourId } = req.params;
+
+  if (tourId) {
+    queryFilters = { tour: tourId };
+  }
+
+  const reviews = await Review.find(queryFilters);
 
   res.status(STATUS_CODE_OK).json({
     ok: true,
