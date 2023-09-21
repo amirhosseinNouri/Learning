@@ -3,7 +3,7 @@ const reviewController = require('../controllers/review-controller');
 const authenticationController = require('../controllers/authentication-controller');
 const { USER } = require('../constants/roles');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')

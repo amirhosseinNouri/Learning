@@ -1,10 +1,12 @@
 const express = require('express');
 const tourController = require('../controllers/tour-controller');
 const authenticationController = require('../controllers/authentication-controller');
-const { ADMIN, LEAD_GUIDE, USER } = require('../constants/roles');
-const reviewController = require('../controllers/review-controller');
+const { ADMIN, LEAD_GUIDE } = require('../constants/roles');
+const reviewRouter = require('./review-route');
 
 const router = express.Router();
+
+router.use('/:tourId/reviews', reviewRouter);
 
 router.route('/tour-stats').get(tourController.getTourStats);
 
@@ -29,14 +31,6 @@ router
     authenticationController.isAuthenticated,
     authenticationController.restrictTo(ADMIN, LEAD_GUIDE),
     tourController.deleteTour,
-  );
-
-router
-  .route('/:tourId/review')
-  .post(
-    authenticationController.isAuthenticated,
-    authenticationController.restrictTo(USER),
-    reviewController.createReview,
   );
 
 module.exports = router;
