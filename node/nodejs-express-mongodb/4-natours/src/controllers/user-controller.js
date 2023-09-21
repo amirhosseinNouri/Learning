@@ -4,18 +4,11 @@ const User = require('../models/user-model');
 const AppError = require('../utils/app-error');
 const factory = require('../utils/handler-factory');
 
-const getAllUsers = catchAsync(async (req, res) => {
-  const users = await User.find();
-
-  res.status(STATUS_CODE.Ok).json({
-    ok: true,
-    data: { users },
-  });
-});
-const getUser = factory.getOne(User);
-
 // Do not update password wit this
+const getAllUsers = factory.getAll(User);
+const getUser = factory.getOne(User);
 const updateUser = factory.updateOne(User);
+const deleteUser = factory.deleteOne(User);
 
 const filterObject = (obj, ...allowedFields) => {
   const filteredObject = {};
@@ -53,8 +46,6 @@ const updateUserProfile = catchAsync(async (req, res, next) => {
     data: { user },
   });
 });
-
-const deleteUser = factory.deleteOne(User);
 
 const deleteUserAccount = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });

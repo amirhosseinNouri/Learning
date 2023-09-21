@@ -1,25 +1,13 @@
-const catchAsync = require('../utils/catch-async');
 const Review = require('../models/review-model');
-const STATUS_CODE = require('../constants/status-codes');
 const factory = require('../utils/handler-factory');
 
-const getAllReviews = catchAsync(async (req, res) => {
-  let queryFilters = {};
-
+const getTourIdBasedOnQueryParams = (req) => {
   const { tourId } = req.params;
 
   if (tourId) {
-    queryFilters = { tour: tourId };
+    return { tour: tourId };
   }
-
-  const reviews = await Review.find(queryFilters);
-
-  res.status(STATUS_CODE.Ok).json({
-    ok: true,
-    results: reviews.length,
-    dat: { reviews },
-  });
-});
+};
 
 // Nested routes
 const setTourAndUserId = (req, res, next) => {
@@ -33,6 +21,7 @@ const setTourAndUserId = (req, res, next) => {
   next();
 };
 
+const getAllReviews = factory.getAll(Review, getTourIdBasedOnQueryParams);
 const createReview = factory.createOne(Review);
 const getReview = factory.getOne(Review);
 const deleteReview = factory.deleteOne(Review);

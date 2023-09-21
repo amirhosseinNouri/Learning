@@ -1,6 +1,7 @@
 const catchAsync = require('./catch-async');
 const AppError = require('./app-error');
 const STATUS_CODE = require('../constants/status-codes');
+const APIFeatures = require('./api-features');
 
 const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -70,9 +71,32 @@ const getOne = (Model, populateOptions) =>
     });
   });
 
+const getAll = (Model, queryFilterCreator) =>
+  catchAsync(async (req, res) => {
+    let queryFilters = {};
+
+    if (queryFilterCreator) {
+      queryFilters = queryFilterCreator(req);
+    }
+    const features = new APIFeatures(Model.find(queryFilters), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const document = await features.query;
+
+    res.status(200).json({
+      ok: true,
+      results: document.length,
+      data: { document },
+    });
+  });
+
 module.exports = {
   deleteOne,
   updateOne,
   createOne,
   getOne,
+  getAll,
 };
