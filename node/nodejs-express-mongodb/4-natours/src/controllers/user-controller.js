@@ -6,6 +6,7 @@ const {
 const catchAsync = require('../utils/catch-async');
 const User = require('../models/user-model');
 const AppError = require('../utils/app-error');
+const factory = require('../utils/handler-factory');
 
 const getAllUsers = catchAsync(async (req, res) => {
   const users = await User.find();
@@ -73,6 +74,8 @@ const updateUserProfile = catchAsync(async (req, res, next) => {
   });
 });
 
+const deleteUser = factory.deleteOne(User);
+
 const deleteUserAccount = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
 
@@ -88,4 +91,5 @@ module.exports = {
   updateUser,
   updateUserProfile,
   deleteUserAccount,
+  deleteUser,
 };

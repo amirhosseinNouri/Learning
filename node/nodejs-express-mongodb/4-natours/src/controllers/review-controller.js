@@ -4,6 +4,7 @@ const {
   STATUS_CODE_OK,
   STATUS_CODE_CREATED,
 } = require('../constants/status-codes');
+const factory = require('../utils/handler-factory');
 
 const getAllReviews = catchAsync(async (req, res) => {
   let queryFilters = {};
@@ -41,7 +42,10 @@ const createReview = catchAsync(async (req, res) => {
   });
 });
 
+const deleteReview = factory.deleteOne(Review);
+
 module.exports = {
   getAllReviews,
   createReview,
+  deleteReview,
 };
