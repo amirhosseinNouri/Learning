@@ -1,14 +1,20 @@
 const express = require('express');
 const tourController = require('../controllers/tour-controller');
 const authenticationController = require('../controllers/authentication-controller');
-const { ADMIN, LEAD_GUIDE } = require('../constants/roles');
+const { ADMIN, LEAD_GUIDE, GUIDE } = require('../constants/roles');
 const reviewRouter = require('./review-route');
 
 const router = express.Router();
 
 router.use('/:tourId/reviews', reviewRouter);
 
-router.route('/tour-stats').get(tourController.getTourStats);
+router
+  .route('/tour-stats')
+  .get(
+    authenticationController.isAuthenticated,
+    authenticationController.restrictTo(ADMIN, LEAD_GUIDE, GUIDE),
+    tourController.getTourStats,
+  );
 
 router.route('/purge-test-documents').delete(tourController.purgeTestDocuments);
 
@@ -20,13 +26,21 @@ router
 
 router
   .route('/')
-  .get(authenticationController.isAuthenticated, tourController.getAllTours)
-  .post(tourController.createTour);
+  .get(tourController.getAllTours)
+  .post(
+    authenticationController.isAuthenticated,
+    authenticationController.restrictTo(ADMIN, LEAD_GUIDE),
+    tourController.createTour,
+  );
 
 router
   .route('/:id')
   .get(tourController.getSingleTour)
-  .patch(tourController.updateTour)
+  .patch(
+    authenticationController.isAuthenticated,
+    authenticationController.restrictTo(ADMIN, LEAD_GUIDE),
+    tourController.updateTour,
+  )
   .delete(
     authenticationController.isAuthenticated,
     authenticationController.restrictTo(ADMIN, LEAD_GUIDE),

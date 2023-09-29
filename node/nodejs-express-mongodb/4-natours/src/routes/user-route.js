@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/user-controller');
 const authenticationController = require('../controllers/authentication-controller');
+const { ADMIN } = require('../constants/roles');
 
 const router = express.Router();
 
@@ -10,30 +11,19 @@ router.post('/login', authenticationController.login);
 router.post('/forgot-password', authenticationController.forgotPassword);
 router.patch('/reset-password/:token', authenticationController.resetPassword);
 
-router.patch(
-  '/update-password',
-  authenticationController.isAuthenticated,
-  authenticationController.updatePassword,
-);
+// Adding middleware so that all the following actions are authenticated.
+router.use(authenticationController.isAuthenticated);
 
-router.get(
-  '/me',
-  authenticationController.isAuthenticated,
-  userController.getMe,
-  userController.getUser,
-);
+router.patch('/update-password', authenticationController.updatePassword);
 
-router.patch(
-  '/update-user-profile',
-  authenticationController.isAuthenticated,
-  userController.updateUserProfile,
-);
+router.get('/me', userController.getMe, userController.getUser);
 
-router.delete(
-  '/delete-user-account',
-  authenticationController.isAuthenticated,
-  userController.deleteUserAccount,
-);
+router.patch('/update-user-profile', userController.updateUserProfile);
+
+router.delete('/delete-user-account', userController.deleteUserAccount);
+
+// Restrict the following actions
+router.use(authenticationController.restrictTo(ADMIN));
 
 router.route('/').get(userController.getAllUsers);
 
