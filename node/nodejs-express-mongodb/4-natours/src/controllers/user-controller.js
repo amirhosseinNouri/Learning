@@ -55,6 +55,11 @@ const deleteUserAccount = catchAsync(async (req, res, next) => {
   });
 });
 
+const getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -62,4 +67,5 @@ module.exports = {
   updateUserProfile,
   deleteUserAccount,
   deleteUser,
+  getMe,
 };
