@@ -46,7 +46,7 @@ reviewSchema.post('save', function () {
 });
 
 reviewSchema.statics.calculateAverageRatings = async function (tourId) {
-  const [stats] = await this.aggregate([
+  const aggregationResult = await this.aggregate([
     { $match: { tour: tourId } },
     {
       $group: {
@@ -57,6 +57,15 @@ reviewSchema.statics.calculateAverageRatings = async function (tourId) {
     },
   ]);
 
+  if (aggregationResult.length === 0) {
+    await Tour.findByIdAndUpdate(tourId, {
+      ratingsAverage: 4.5,
+      ratingsQuantity: 0,
+    });
+    return;
+  }
+
+  const [stats] = aggregationResult;
   const { ratingsQuantity, ratingsAverage } = stats;
 
   await Tour.findByIdAndUpdate(tourId, {
@@ -64,6 +73,18 @@ reviewSchema.statics.calculateAverageRatings = async function (tourId) {
     ratingsQuantity,
   });
 };
+
+// findByIdAndUpdate
+// findByIdAndDelete
+reviewSchema.pre(/^findOneAnd/, async function (next) {
+  this.review = await this.clone().findOne();
+  next();
+});
+
+reviewSchema.post(/^findOneAnd/, async function () {
+  const { constructor, tour } = this.review;
+  constructor.calculateAverageRatings(tour);
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 
