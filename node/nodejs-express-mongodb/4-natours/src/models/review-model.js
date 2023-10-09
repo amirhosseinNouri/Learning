@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Tour = require('../models/tour-model');
+const Tour = require('./tour-model');
 
 const reviewSchema = new mongoose.Schema(
   {
