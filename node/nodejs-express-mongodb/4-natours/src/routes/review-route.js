@@ -14,6 +14,10 @@ router
     authenticationController.restrictTo(USER),
     reviewController.setTourAndUserId,
     reviewController.createReview,
+  )
+  .delete(
+    authenticationController.restrictTo(ADMIN),
+    reviewController.deleteTourReviews,
   );
 
 router
