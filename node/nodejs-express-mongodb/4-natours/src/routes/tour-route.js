@@ -21,6 +21,10 @@ router.route('/purge-test-documents').delete(tourController.purgeTestDocuments);
 router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
 
 router
+  .route('/tours-within/:distance/center/:latlng/unit/:unit')
+  .get(tourController.getToursWithin);
+
+router
   .route('/top-5-cheap')
   .get(tourController.aliasTopTours, tourController.getAllTours);
 

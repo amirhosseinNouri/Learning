@@ -1,0 +1,7 @@
+const EARTH_RADIUS_IN_MILE = 3963.2;
+const EARTH_RADIUS_IN_KM = 6378.1;
+
+module.exports = {
+  EARTH_RADIUS_IN_KM,
+  EARTH_RADIUS_IN_MILE,
+};

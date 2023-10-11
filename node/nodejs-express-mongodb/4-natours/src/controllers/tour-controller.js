@@ -1,6 +1,9 @@
+const STATUS_CODE = require('../constants/status-codes');
 const Tour = require('../models/tour-model');
+const AppError = require('../utils/app-error');
 const catchAsync = require('../utils/catch-async');
 const factory = require('../utils/handler-factory');
+const { getEarthRadius } = require('../utils/geo');
 
 const getAllTours = factory.getAll(Tour);
 const getSingleTour = factory.getOne(Tour, { path: 'reviews' });
@@ -94,6 +97,28 @@ const purgeTestDocuments = catchAsync(async (req, res, next) => {
   });
 });
 
+const getToursWithin = catchAsync(async (req, res) => {
+  const { distance, unit, latlng } = req.params;
+  // -40,40
+  const [lat, lng] = latlng.split(',');
+
+  if (!lat || !lng) {
+    throw new AppError('latlng is required in the format of lat,lng.');
+  }
+
+  const radius = distance / getEarthRadius(unit);
+
+  const tours = await Tour.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+  });
+
+  res.status(STATUS_CODE.Ok).json({
+    ok: true,
+    results: tours.length,
+    data: { tours },
+  });
+});
+
 module.exports = {
   getAllTours,
   getSingleTour,
@@ -104,4 +129,5 @@ module.exports = {
   getTourStats,
   getMonthlyPlan,
   purgeTestDocuments,
+  getToursWithin,
 };
