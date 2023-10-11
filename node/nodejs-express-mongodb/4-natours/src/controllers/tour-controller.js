@@ -4,6 +4,7 @@ const AppError = require('../utils/app-error');
 const catchAsync = require('../utils/catch-async');
 const factory = require('../utils/handler-factory');
 const { getEarthRadius } = require('../utils/geo');
+const { ONE_METER_IN_MI, ONE_METER_IN_KM } = require('../constants/geo');
 
 const getAllTours = factory.getAll(Tour);
 const getSingleTour = factory.getOne(Tour, { path: 'reviews' });
@@ -119,6 +120,43 @@ const getToursWithin = catchAsync(async (req, res) => {
   });
 });
 
+const getDistances = catchAsync(async (req, res) => {
+  const { unit, latlng } = req.params;
+  // -40,40
+  const [lat, lng] = latlng.split(',');
+
+  if (!lat || !lng) {
+    throw new AppError('latlng is required in the format of lat,lng.');
+  }
+
+  const multiplier = unit === 'mi' ? ONE_METER_IN_MI : ONE_METER_IN_KM;
+
+  const distances = await Tour.aggregate([
+    {
+      // Should be the first stage in the pipeline
+      $geoNear: {
+        // The point that will used in calculation
+        near: { type: 'Point', coordinates: [Number(lng), Number(lat)] },
+        // calculation result will be stored here
+        distanceField: 'distance',
+        distanceMultiplier: multiplier,
+      },
+    },
+    {
+      $project: {
+        distance: 1,
+        name: 1,
+      },
+    },
+  ]);
+
+  res.status(STATUS_CODE.Ok).json({
+    ok: true,
+    results: distances.length,
+    data: { distances },
+  });
+});
+
 module.exports = {
   getAllTours,
   getSingleTour,
@@ -130,4 +168,5 @@ module.exports = {
   getMonthlyPlan,
   purgeTestDocuments,
   getToursWithin,
+  getDistances,
 };
