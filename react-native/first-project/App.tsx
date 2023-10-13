@@ -4,7 +4,7 @@ import ColorBox from './components/color-box';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView>
       <View style={[styles.container]}>
         <Text style={styles.title}>
           Here are some boxes with different colors
@@ -22,9 +22,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   container: {
     paddingHorizontal: 10,
     paddingVertical: 40,
