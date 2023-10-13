@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, View, FlatList } from 'react-native';
 import ColorBox from './components/color-box';
 import type { ColorBoxProps } from './components/color-box';
 import Separator from './components/separator';
+import ColorBoxHeader from './components/color-box-header';
 
 export default function App() {
   const colors: Array<ColorBoxProps['color']> = [
@@ -27,15 +28,12 @@ export default function App() {
   return (
     <SafeAreaView>
       <View style={[styles.container]}>
-        <Text style={styles.title}>
-          Here are some boxes with different colors
-        </Text>
-
         <FlatList
           data={colors}
           keyExtractor={(item) => item}
           renderItem={({ item }) => <ColorBox color={item} />}
           ItemSeparatorComponent={Separator}
+          ListHeaderComponent={ColorBoxHeader}
         />
       </View>
     </SafeAreaView>
@@ -47,9 +45,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 40,
     gap: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
