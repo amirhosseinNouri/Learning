@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
+import type { ColorBoxHeaderProps } from './color-box-header.types';
 
-const ColorBoxHeader = () => (
-  <Text style={styles.header}>Here are some boxes with different colors</Text>
+const ColorBoxHeader = ({ header }: ColorBoxHeaderProps) => (
+  <Text style={styles.header}>{header}</Text>
 );
 
 const styles = StyleSheet.create({

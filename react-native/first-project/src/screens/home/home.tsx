@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import type { HomeProps } from './home.types';
+import { Palette } from '@/types/palette';
+import PaletteList from '../../components/palette-list';
 
 const Home = ({ navigation }: HomeProps) => {
-  const handleSolarizedPress = () => {
-    navigation.navigate('ColorPalette');
+  const handleSolarizedPress = (palette: Palette) => {
+    navigation.navigate('ColorPalette', {
+      paletteName: palette,
+    });
   };
   return (
     <View>
-      <TouchableOpacity onPress={handleSolarizedPress}>
-        <Text>Solarized</Text>
-      </TouchableOpacity>
+      <PaletteList onPress={handleSolarizedPress} />
     </View>
   );
 };

@@ -1,30 +1,16 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import Separator from '../../components/separator/separator';
-import type { ColorBoxProps } from '../../components/color-box';
 import ColorBox from '../../components/color-box';
 import ColorBoxHeader from '../../components/color-box-header';
+import type { ColorPaletteProps } from './color-palette.types';
+import { MAP_PALETTE_TO_COLORS_ARRAY } from '../../constants/palettes';
 
-const colors: Array<ColorBoxProps['color']> = [
-  'Base03',
-  'Base02',
-  'Base01',
-  'Base00',
-  'Base0',
-  'Base1',
-  'Base2',
-  'Base3',
-  'Yellow',
-  'Orange',
-  'Red',
-  'Magenta',
-  'Violet',
-  'Blue',
-  'Cyan',
-  'Green',
-];
+const ColorPalette = ({ route }: ColorPaletteProps) => {
+  const { paletteName } = route.params;
 
-const ColorPalette = () => {
+  const colors = MAP_PALETTE_TO_COLORS_ARRAY[paletteName];
+
   return (
     <View style={[styles.container]}>
       <FlatList
@@ -32,7 +18,7 @@ const ColorPalette = () => {
         keyExtractor={(item) => item}
         renderItem={({ item }) => <ColorBox color={item} />}
         ItemSeparatorComponent={Separator}
-        ListHeaderComponent={ColorBoxHeader}
+        ListHeaderComponent={<ColorBoxHeader header={paletteName} />}
       />
     </View>
   );
