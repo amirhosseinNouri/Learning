@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import type { ColorBoxProps } from './color-box.types';
+import { MAP_COLOR_TO_HEX } from './color-box.constants';
 
 const ColorBox = ({ color }: ColorBoxProps) => {
   const boxColor = {
-    backgroundColor: color,
+    backgroundColor: MAP_COLOR_TO_HEX[color],
   };
   return (
     <View style={[styles.box, boxColor]}>
