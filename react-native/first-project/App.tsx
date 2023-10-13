@@ -14,6 +14,7 @@ export default function App() {
           <ColorBox color="blue" />
           <ColorBox color="magenta" />
           <ColorBox color="orange" />
+          <ColorBox color="red" />
         </View>
       </View>
     </SafeAreaView>

@@ -3,9 +3,12 @@ import { View, Text, StyleSheet } from 'react-native';
 import type { ColorBoxProps } from './color-box.types';
 
 const ColorBox = ({ color }: ColorBoxProps) => {
+  const boxColor = {
+    backgroundColor: color,
+  };
   return (
-    <View style={[styles.box, styles[color]]}>
-      <Text>{color}</Text>
+    <View style={[styles.box, boxColor]}>
+      <Text style={styles.text}>{color}</Text>
     </View>
   );
 };
@@ -16,17 +19,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontWeight: 'bold',
   },
-  orange: {
-    backgroundColor: 'orange',
-  },
-  cyan: {
-    backgroundColor: 'cyan',
-  },
-  magenta: {
-    backgroundColor: 'magenta',
-  },
-  blue: {
-    backgroundColor: 'blue',
+  text: {
+    color: 'white',
   },
 });
 
