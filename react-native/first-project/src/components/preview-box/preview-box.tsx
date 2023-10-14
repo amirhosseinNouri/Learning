@@ -15,6 +15,12 @@ const styles = StyleSheet.create({
   box: {
     width: 40,
     height: 40,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    borderRadius: 2,
+    elevation: 2,
   },
 });
 
