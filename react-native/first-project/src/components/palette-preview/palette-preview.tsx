@@ -25,6 +25,7 @@ const PalettePreview = ({
         keyExtractor={(item) => item}
         renderItem={({ item }) => <PreviewBox color={item} />}
         numColumns={preview}
+        columnWrapperStyle={styles.columnWrapper}
       />
     </TouchableOpacity>
   );
@@ -39,6 +40,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  columnWrapper: {
+    gap: 5,
   },
 });
 
