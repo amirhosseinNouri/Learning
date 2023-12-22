@@ -14,4 +14,13 @@ const unsignedInt8 = 1000
 
 func main() {
 	fmt.Printf("%v\t%T\n", unsignedInt8, unsignedInt8)
+
+	const (
+		A1 = iota
+		B1
+		C1
+	)
+
+	fmt.Println(A1, B1, C1)
+
 }
