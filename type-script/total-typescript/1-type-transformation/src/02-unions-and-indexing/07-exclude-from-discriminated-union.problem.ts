@@ -1,27 +1,27 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 export type Event =
   | {
-      type: "click";
+      type: 'click';
       event: MouseEvent;
     }
   | {
-      type: "focus";
+      type: 'focus';
       event: FocusEvent;
     }
   | {
-      type: "keydown";
+      type: 'keydown';
       event: KeyboardEvent;
     };
 
-type NonKeyDownEvents = unknown;
+type NonKeyDownEvents = Exclude<Event, { type: 'keydown' }>;
 
 type tests = [
   Expect<
     Equal<
       NonKeyDownEvents,
-      | { type: "click"; event: MouseEvent }
-      | { type: "focus"; event: FocusEvent }
+      | { type: 'click'; event: MouseEvent }
+      | { type: 'focus'; event: FocusEvent }
     >
   >,
 ];
