@@ -1,17 +1,17 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const testingFrameworks = {
   vitest: {
-    label: "Vitest",
+    label: 'Vitest',
   },
   jest: {
-    label: "Jest",
+    label: 'Jest',
   },
   mocha: {
-    label: "Mocha",
+    label: 'Mocha',
   },
 };
 
-type TestingFramework = unknown;
+type TestingFramework = keyof typeof testingFrameworks;
 
-type tests = [Expect<Equal<TestingFramework, "vitest" | "jest" | "mocha">>];
+type tests = [Expect<Equal<TestingFramework, 'vitest' | 'jest' | 'mocha'>>];
