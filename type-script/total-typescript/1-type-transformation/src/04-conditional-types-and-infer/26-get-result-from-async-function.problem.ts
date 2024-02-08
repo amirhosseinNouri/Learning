@@ -1,7 +1,7 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const getServerSideProps = async () => {
-  const data = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  const data = await fetch('https://jsonplaceholder.typicode.com/todos/1');
   const json: { title: string } = await data.json();
   return {
     props: {
@@ -10,7 +10,10 @@ const getServerSideProps = async () => {
   };
 };
 
-type InferPropsFromServerSideFunction = unknown;
+type InferPropsFromServerSideFunction<T extends (...args: any) => any> =
+  Awaited<ReturnType<T>> extends { props: infer P } ? P : never;
+
+type T = InferPropsFromServerSideFunction<typeof getServerSideProps>;
 
 type tests = [
   Expect<
@@ -18,5 +21,5 @@ type tests = [
       InferPropsFromServerSideFunction<typeof getServerSideProps>,
       { json: { title: string } }
     >
-  >
+  >,
 ];
