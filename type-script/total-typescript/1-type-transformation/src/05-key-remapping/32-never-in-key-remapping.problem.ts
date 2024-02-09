@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 interface Example {
   name: string;
@@ -8,7 +8,11 @@ interface Example {
   groupId: string;
 }
 
-type OnlyIdKeys<T> = unknown;
+type SearchForId = `${string}${'id' | 'Id'}${string}`;
+
+type OnlyIdKeys<T> = {
+  [K in keyof T as K extends SearchForId ? K : never]: T[K];
+};
 
 type tests = [
   Expect<
@@ -21,5 +25,5 @@ type tests = [
       }
     >
   >,
-  Expect<Equal<OnlyIdKeys<{}>, {}>>
+  Expect<Equal<OnlyIdKeys<{}>, {}>>,
 ];
