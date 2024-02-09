@@ -13,7 +13,7 @@ type Route =
   | { route: '/admin/users'; search: {} };
 
 type RoutesObject = {
-  [K in Route['route']]: Extract<Route, { route: K }>['search'];
+  [R in Route as R['route']]: R['search'];
 };
 
 type tests = [
