@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 interface Attributes {
   firstName: string;
@@ -7,7 +7,7 @@ interface Attributes {
 }
 
 type AttributeGetters = {
-  [K in keyof Attributes]: () => Attributes[K];
+  [K in keyof Attributes as `get${Capitalize<K>}`]: () => Attributes[K];
 };
 
 type tests = [
@@ -20,5 +20,5 @@ type tests = [
         getAge: () => number;
       }
     >
-  >
+  >,
 ];
