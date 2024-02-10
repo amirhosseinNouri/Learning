@@ -1,6 +1,8 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
-type DeepPartial<T> = unknown;
+type DeepPartial<T> = T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : { [K in keyof T]?: DeepPartial<T[K]> };
 
 type MyType = {
   a: string;
@@ -38,5 +40,5 @@ type tests = [
         };
       }
     >
-  >
+  >,
 ];
