@@ -2,8 +2,8 @@ import { expect, it } from 'vitest';
 import { Equal, Expect } from '../helpers/type-utils';
 
 const fetchData = async <TResponse>(url: string) => {
-  const data = await fetch(url).then((response) => response.json());
-  return data as TResponse;
+  const data: TResponse = await fetch(url).then((response) => response.json());
+  return data;
 };
 
 it('Should fetch data from an API', async () => {
