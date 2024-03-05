@@ -1,5 +1,5 @@
-import { it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
 interface AnonymousPrivileges {
   sitesCanVisit: string[];
@@ -13,17 +13,20 @@ interface AdminPrivileges extends UserPrivileges {
   sitesCanDelete: string[];
 }
 
-function getRolePrivileges(role: "admin"): AdminPrivileges;
-function getRolePrivileges(role: "user"): UserPrivileges;
-function getRolePrivileges(role: string): AnonymousPrivileges {
+function getRolePrivileges(role: 'admin'): AdminPrivileges;
+function getRolePrivileges(role: 'user'): UserPrivileges;
+function getRolePrivileges(role: string): AnonymousPrivileges;
+function getRolePrivileges(
+  role: string,
+): AdminPrivileges | UserPrivileges | AnonymousPrivileges {
   switch (role) {
-    case "admin":
+    case 'admin':
       return {
         sitesCanDelete: [],
         sitesCanEdit: [],
         sitesCanVisit: [],
       };
-    case "user":
+    case 'user':
       return {
         sitesCanEdit: [],
         sitesCanVisit: [],
@@ -35,11 +38,11 @@ function getRolePrivileges(role: string): AnonymousPrivileges {
   }
 }
 
-it("Should return the correct privileges", () => {
-  const adminPrivileges = getRolePrivileges("admin");
+it('Should return the correct privileges', () => {
+  const adminPrivileges = getRolePrivileges('admin');
 
-  const userPrivileges = getRolePrivileges("user");
-  const anonymousPrivileges = getRolePrivileges("anonymous");
+  const userPrivileges = getRolePrivileges('user');
+  const anonymousPrivileges = getRolePrivileges('anonymous');
 
   type tests = [
     Expect<Equal<typeof adminPrivileges, AdminPrivileges>>,
