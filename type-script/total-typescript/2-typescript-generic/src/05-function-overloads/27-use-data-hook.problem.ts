@@ -1,7 +1,13 @@
-import { it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
 // You'll need to use function overloads to figure this out!
+function useData<T>(params: { fetchData: () => Promise<T>; initialData: T }): {
+  getData: () => T;
+};
+function useData<T>(params: { fetchData: () => Promise<T>; initialData?: T }): {
+  getData: () => T | undefined;
+};
 function useData<T>(params: { fetchData: () => Promise<T>; initialData?: T }): {
   getData: () => T | undefined;
 } {
@@ -16,7 +22,7 @@ function useData<T>(params: { fetchData: () => Promise<T>; initialData?: T }): {
   };
 }
 
-it("Should return undefined if no initial data is passed", () => {
+it('Should return undefined if no initial data is passed', () => {
   const numData = useData({
     fetchData: () => Promise.resolve(1),
   });
@@ -26,7 +32,7 @@ it("Should return undefined if no initial data is passed", () => {
   type Test1 = Expect<Equal<typeof data, number | undefined>>;
 });
 
-it("Should NOT return undefined if initial data is passed", () => {
+it('Should NOT return undefined if initial data is passed', () => {
   const numData = useData({
     fetchData: () => Promise.resolve(1),
     initialData: 2,
