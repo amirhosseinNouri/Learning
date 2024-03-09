@@ -7,7 +7,7 @@ type DocsPageProps = {
 };
 
 const DocsPage = ({ params }: DocsPageProps) => {
-  if (params.slug.length === 2) {
+  if (params.slug?.length === 2) {
     return (
       <h1>
         Viewing docs for feature {params.slug[0]} and concept {params.slug[1]}
@@ -15,7 +15,7 @@ const DocsPage = ({ params }: DocsPageProps) => {
     );
   }
 
-  if (params.slug.length == 1) {
+  if (params.slug?.length == 1) {
     return <h1>Viewing docs for {params.slug[0]}</h1>;
   }
 
