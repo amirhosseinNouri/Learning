@@ -5,21 +5,29 @@ export default function ComplexDashboardLayout({
   analytics,
   notifications,
   revenue,
+  login,
 }: {
   children: ReactNode;
   analytics: ReactNode;
   notifications: ReactNode;
   revenue: ReactNode;
+  login: ReactNode;
 }) {
-  return (
-    <div>
-      {children}
+  const isLoggedIn = false;
 
-      <div className="flex">
-        {analytics}
-        {notifications}
-        {revenue}
+  if (isLoggedIn) {
+    return (
+      <div>
+        {children}
+
+        <div className="flex">
+          {analytics}
+          {notifications}
+          {revenue}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return login;
 }
