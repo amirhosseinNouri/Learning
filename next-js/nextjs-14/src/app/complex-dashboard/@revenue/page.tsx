@@ -1,5 +1,6 @@
+import Box from '@/components/box';
 import React from 'react';
 
 export default function RevenuePage() {
-  return <div>RevenuePage</div>;
+  return <Box>RevenuePage</Box>;
 }

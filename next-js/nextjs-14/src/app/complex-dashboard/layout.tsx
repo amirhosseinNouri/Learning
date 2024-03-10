@@ -15,9 +15,11 @@ export default function ComplexDashboardLayout({
     <div>
       {children}
 
-      {analytics}
-      {notifications}
-      {revenue}
+      <div className="flex">
+        {analytics}
+        {notifications}
+        {revenue}
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ type BoxProps = {
 };
 
 const Box = ({ children }: BoxProps) => (
-  <div className="p-10 shadow-md rounded-md w-64 bg-gray-600 text-white">
+  <div className="p-10 shadow-md rounded-md w-64 bg-slate-400 text-white">
     {children}
   </div>
 );
