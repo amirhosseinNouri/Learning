@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+'use client';
 
 type ReviewDetailsProps = {
   params: { reviewId: string };
