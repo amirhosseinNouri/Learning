@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -22,8 +23,13 @@ const navLink = [
 export default function AuthLayout({ children }: AuthLayoutProps) {
   const pathname = usePathname();
 
+  const [input, setInput] = useState('');
+
   return (
     <div>
+      <div>
+        <input value={input} onChange={(e) => setInput(e.target.value)} />
+      </div>
       {navLink.map((link, index) => (
         <div key={index}>
           <Link
