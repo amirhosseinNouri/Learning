@@ -1,21 +1,24 @@
-import { expect, it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { expect, it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
-const pick = (obj: {}, picked: string[]) => {
+const pick = <TObject extends {}, TPicked extends keyof TObject>(
+  obj: TObject,
+  picked: Array<TPicked>,
+) => {
   return picked.reduce((acc, key) => {
     acc[key] = obj[key];
     return acc;
-  }, {});
+  }, {} as Pick<TObject, TPicked>);
 };
 
-it("Should pick the keys from the object", () => {
+it('Should pick the keys from the object', () => {
   const result = pick(
     {
       a: 1,
       b: 2,
       c: 3,
     },
-    ["a", "b"]
+    ['a', 'b'],
   );
 
   expect(result).toEqual({ a: 1, b: 2 });
@@ -23,7 +26,7 @@ it("Should pick the keys from the object", () => {
   type test = Expect<Equal<typeof result, { a: number; b: number }>>;
 });
 
-it("Should not allow you to pass keys which do not exist in the object", () => {
+it('Should not allow you to pass keys which do not exist in the object', () => {
   pick(
     {
       a: 1,
@@ -31,10 +34,10 @@ it("Should not allow you to pass keys which do not exist in the object", () => {
       c: 3,
     },
     [
-      "a",
-      "b",
+      'a',
+      'b',
       // @ts-expect-error
-      "d",
-    ]
+      'd',
+    ],
   );
 });
