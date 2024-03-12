@@ -10,7 +10,9 @@ interface Events {
 
 export const sendEvent = <TEventKey extends keyof Events>(
   event: TEventKey,
-  ...args: Events[TEventKey] extends undefined ? [] : [Events[TEventKey]]
+  ...args: Events[TEventKey] extends undefined
+    ? []
+    : [payload: Events[TEventKey]]
 ) => {
   // Send the event somewhere!
 };
