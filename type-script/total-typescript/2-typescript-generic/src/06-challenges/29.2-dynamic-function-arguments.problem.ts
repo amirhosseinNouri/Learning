@@ -8,9 +8,9 @@ interface Events {
   focus: undefined;
 }
 
-export const sendEvent = <TEvent extends keyof Events>(
-  event: TEvent,
-  ...args: TEvent extends 'click' ? [any, ...any[]] : any[]
+export const sendEvent = <TEventKey extends keyof Events>(
+  event: TEventKey,
+  ...args: Events[TEventKey] extends undefined ? [] : [Events[TEventKey]]
 ) => {
   // Send the event somewhere!
 };
@@ -20,12 +20,17 @@ it('Should force you to pass a second argument when you choose an event with a p
   sendEvent('click');
 
   sendEvent('click', {
+    // @ts-expect-error
     x: 'oh dear',
   });
 
-  sendEvent('click', {
-    y: 1,
-  });
+  sendEvent(
+    'click',
+    // @ts-expect-error
+    {
+      y: 1,
+    },
+  );
 
   sendEvent('click', {
     x: 1,
@@ -36,5 +41,9 @@ it('Should force you to pass a second argument when you choose an event with a p
 it('Should prevent you from passing a second argument when you choose an event without a payload', () => {
   sendEvent('focus');
 
-  sendEvent('focus', {});
+  sendEvent(
+    'focus',
+    // @ts-expect-error
+    {},
+  );
 });
