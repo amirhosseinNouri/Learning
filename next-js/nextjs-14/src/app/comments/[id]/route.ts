@@ -1,4 +1,5 @@
 import { comments } from '../data';
+import { redirect } from 'next/navigation';
 
 type Context = {
   params: {
@@ -10,10 +11,7 @@ export async function GET(_: Request, { params }: Context) {
   const comment = comments.find((comment) => comment.id === Number(params.id));
 
   if (!comment) {
-    return new Response(
-      JSON.stringify({ data: { message: 'Comment not found' } }),
-      { status: 404 },
-    );
+    redirect('/comments');
   }
 
   return new Response(JSON.stringify({ data: { comment } }), { status: 200 });
