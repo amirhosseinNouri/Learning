@@ -1,8 +1,11 @@
 import { NextRequest } from 'next/server';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 export async function GET(request: NextRequest) {
   const requestHeaders = headers();
-  console.log(requestHeaders.get('Authorization'));
+  const theme = cookies().get('theme');
+  console.log({ theme });
+
+  cookies().set('theme', 'light');
   return new Response('Profile');
 }
