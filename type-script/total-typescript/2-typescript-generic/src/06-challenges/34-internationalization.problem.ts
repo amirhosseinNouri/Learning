@@ -1,6 +1,6 @@
-import { expect, it } from "vitest";
+import { expect, it } from 'vitest';
 
-type GetParamKeys<TTranslation extends string> = TTranslation extends ""
+type GetParamKeys<TTranslation extends string> = TTranslation extends ''
   ? []
   : TTranslation extends `${string}{${infer Param}}${infer Tail}`
   ? [Param, ...GetParamKeys<Tail>]
@@ -9,7 +9,17 @@ type GetParamKeys<TTranslation extends string> = TTranslation extends ""
 type GetParamKeysAsUnion<TTranslation extends string> =
   GetParamKeys<TTranslation>[number];
 
-const translate = (translations: unknown, key: unknown, ...args: unknown[]) => {
+const translate = <
+  TObject extends Record<string, string>,
+  TKey extends keyof TObject,
+  TArgKeys = GetParamKeysAsUnion<TObject[TKey]>,
+>(
+  translations: TObject,
+  key: TKey,
+  ...args: TArgKeys extends string
+    ? [dynamicArgs: Record<TArgKeys, string>]
+    : []
+) => {
   const translation = translations[key];
   const params: any = args[0] || {};
 
@@ -19,31 +29,31 @@ const translate = (translations: unknown, key: unknown, ...args: unknown[]) => {
 // TESTS
 
 const translations = {
-  title: "Hello, {name}!",
-  subtitle: "You have {count} unread messages.",
-  button: "Click me!",
+  title: 'Hello, {name}!',
+  subtitle: 'You have {count} unread messages.',
+  button: 'Click me!',
 } as const;
 
-it("Should translate a translation without parameters", () => {
-  const buttonText = translate(translations, "button");
+it('Should translate a translation without parameters', () => {
+  const buttonText = translate(translations, 'button');
 
-  expect(buttonText).toEqual("Click me!");
+  expect(buttonText).toEqual('Click me!');
 });
 
-it("Should translate a translation WITH parameters", () => {
-  const subtitle = translate(translations, "subtitle", {
-    count: "2",
+it('Should translate a translation WITH parameters', () => {
+  const subtitle = translate(translations, 'subtitle', {
+    count: '2',
   });
 
-  expect(subtitle).toEqual("You have 2 unread messages.");
+  expect(subtitle).toEqual('You have 2 unread messages.');
 });
 
-it("Should force you to provide parameters if required", () => {
+it('Should force you to provide parameters if required', () => {
   // @ts-expect-error
-  translate(translations, "title");
+  translate(translations, 'title');
 });
 
-it("Should not let you pass parameters if NOT required", () => {
+it('Should not let you pass parameters if NOT required', () => {
   // @ts-expect-error
-  translate(translations, "button", {});
+  translate(translations, 'button', {});
 });
