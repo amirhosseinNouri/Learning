@@ -1,7 +1,7 @@
-import { it } from "vitest";
-import { Brand } from "../helpers/Brand";
+import { it } from 'vitest';
+import { Brand } from '../helpers/Brand';
 
-type Valid<T> = unknown;
+type Valid<T> = Brand<T, 'valid'>;
 
 interface PasswordValues {
   password: string;
@@ -10,24 +10,24 @@ interface PasswordValues {
 
 const validatePassword = (values: PasswordValues) => {
   if (values.password !== values.confirmPassword) {
-    throw new Error("Passwords do not match");
+    throw new Error('Passwords do not match');
   }
 
-  return values;
+  return values as Valid<PasswordValues>;
 };
 
 const createUserOnApi = (values: Valid<PasswordValues>) => {
   // Imagine this function creates the user on the API
 };
 
-it("Should fail if you do not validate the values before calling createUserOnApi", () => {
+it('Should fail if you do not validate the values before calling createUserOnApi', () => {
   const onSubmitHandler = (values: PasswordValues) => {
     // @ts-expect-error
     createUserOnApi(values);
   };
 });
 
-it("Should succeed if you DO validate the values before calling createUserOnApi", () => {
+it('Should succeed if you DO validate the values before calling createUserOnApi', () => {
   const onSubmitHandler = (values: PasswordValues) => {
     const validatedValues = validatePassword(values);
     createUserOnApi(validatedValues);
