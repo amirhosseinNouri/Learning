@@ -30,5 +30,5 @@ export async function PATCH(
     data: { ...body },
   });
 
-  return NextResponse.json(updatedTicket, { status: 204 });
+  return NextResponse.json(updatedTicket);
 }
