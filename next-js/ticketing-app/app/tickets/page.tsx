@@ -14,14 +14,14 @@ interface TicketsPageProps {
 }
 
 const FIRST_PAGE = 1;
+const PAGE_SIZE = 10;
 
 export default async function TicketsPage({ searchParams }: TicketsPageProps) {
-  const pageSize = 10;
   const currentPage = parseInt(searchParams.page) || FIRST_PAGE;
 
   const tickets = await prisma.ticket.findMany({
-    take: pageSize,
-    skip: (currentPage - 1) * pageSize,
+    take: PAGE_SIZE,
+    skip: (currentPage - 1) * PAGE_SIZE,
   });
 
   const ticketCount = await prisma.ticket.count();
@@ -37,7 +37,7 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
       <DataTable tickets={tickets} />
       <Pagination
         itemCount={ticketCount}
-        pageSize={pageSize}
+        pageSize={PAGE_SIZE}
         currentPage={currentPage}
       />
     </div>
