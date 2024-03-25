@@ -1,39 +1,25 @@
-'use client';
 import Link from 'next/link';
 import React from 'react';
 import ToggleMode from '@/components/toggle-mode';
 import { usePathname } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+import options from '@/app/api/auth/[...nextauth]/options';
+import NavigationLinks from '@/components/navigation-links';
 
-type NavigationLink = { label: string; url: string };
-
-const LINKS: NavigationLink[] = [
-  { label: 'Dashboard', url: '/' },
-  { label: 'Tickets', url: '/tickets' },
-  { label: 'Users', url: '/users' },
-];
-
-export default function MainNav() {
-  const currentPath = usePathname();
+export default async function MainNav() {
+  const session = await getServerSession(options);
 
   return (
     <div className="flex flex-row justify-between">
-      <div className="flex items-center gap-2">
-        {LINKS.map((link) => (
-          <Link
-            className={`font-medium text-md ${
-              currentPath === link.url &&
-              'text-primary/70 hover:text-primary/60'
-            }`}
-            key={link.label}
-            href={link.url}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
+      <NavigationLinks />
 
       <div className="flex items-center gap-2">
-        <Link href="/">Logout</Link>
+        {session ? (
+          <Link href="/api/auth/signout?callbackUrl=/">Logout</Link>
+        ) : (
+          <Link href="/api/auth/signin">Login</Link>
+        )}
+
         <ToggleMode />
       </div>
     </div>
