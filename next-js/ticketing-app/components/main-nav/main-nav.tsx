@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import ToggleMode from '@/components/toggle-mode';
-import { usePathname } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import options from '@/app/api/auth/[...nextauth]/options';
 import NavigationLinks from '@/components/navigation-links';
