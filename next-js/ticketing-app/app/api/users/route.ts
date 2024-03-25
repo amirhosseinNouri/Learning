@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     where: { username: body.username },
   });
 
-  if (!duplicate) {
+  if (duplicate) {
     return NextResponse.json(
       { message: 'Duplicate username' },
       { status: 409 },
