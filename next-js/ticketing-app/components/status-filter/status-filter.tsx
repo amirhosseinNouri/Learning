@@ -1,5 +1,4 @@
 'use client';
-import { TICKET_STATUS } from '@/constants/ticket';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import {
@@ -10,24 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ExtractObjectValues } from '@/types';
+import { Status } from '@prisma/client';
 
-type Status = { label: string; value?: string };
-
-type StatusValue = ExtractObjectValues<typeof TICKET_STATUS>;
-
-const STATUSES: Status[] = [
+const STATUSES: { label: string; value?: string }[] = [
   { label: 'Open / Started' },
-  { label: 'Open', value: TICKET_STATUS.Open },
-  { label: 'Started', value: TICKET_STATUS.Started },
-  { label: 'Closed', value: TICKET_STATUS.Closed },
+  { label: 'Open', value: Status.OPEN },
+  { label: 'Started', value: Status.STARTED },
+  { label: 'Closed', value: Status.CLOSED },
 ];
 
 const StatusFilter = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleStatusChange = (status: StatusValue) => {
+  const handleStatusChange = (status: Status) => {
     const params = new URLSearchParams();
     params.append('status', status);
 
@@ -38,9 +33,9 @@ const StatusFilter = () => {
   return (
     <Select
       defaultValue={searchParams.get('status') || ''}
-      onValueChange={(status) => handleStatusChange(status as StatusValue)}
+      onValueChange={(status) => handleStatusChange(status as Status)}
     >
-      <SelectTrigger>
+      <SelectTrigger className="w-[200px]">
         <SelectValue placeholder="Filter by status..." />
       </SelectTrigger>
       <SelectContent>
