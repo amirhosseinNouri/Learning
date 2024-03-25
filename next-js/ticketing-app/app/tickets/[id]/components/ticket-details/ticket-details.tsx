@@ -13,6 +13,7 @@ import TicketPriority from '@/components/ticket-priority';
 import { formatDate } from '@/utils/date';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
+import ReactMarkDown from 'react-markdown';
 
 interface TicketDetailsProps {
   ticket: Ticket;
@@ -32,7 +33,9 @@ const TicketDetails = ({ ticket }: TicketDetailsProps) => {
             Created: {formatDate(ticket.createdAt)}
           </CardDescription>
         </CardHeader>
-        <CardContent>{ticket.description}</CardContent>
+        <CardContent className="prose dark:prose-invert">
+          <ReactMarkDown>{ticket.description}</ReactMarkDown>
+        </CardContent>
         <CardFooter>Updated: {formatDate(ticket.createdAt)}</CardFooter>
       </Card>
       <div className="mx-4 flex lg:flex-col lg:mx-0 gap-2">
