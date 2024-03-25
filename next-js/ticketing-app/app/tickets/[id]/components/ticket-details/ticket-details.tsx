@@ -14,6 +14,7 @@ import { formatDate } from '@/utils/date';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import ReactMarkDown from 'react-markdown';
+import DeleteButton from '../delete-button';
 
 interface TicketDetailsProps {
   ticket: Ticket;
@@ -45,12 +46,7 @@ const TicketDetails = ({ ticket }: TicketDetailsProps) => {
         >
           Edit Ticket
         </Link>
-        <Link
-          href={`/tickets/edit/${ticket.id}`}
-          className={`${buttonVariants({ variant: 'default' })}`}
-        >
-          Delete Ticket
-        </Link>
+        <DeleteButton ticketId={ticket.id} />
       </div>
     </div>
   );
