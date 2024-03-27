@@ -10,7 +10,7 @@ export default async function MainNav() {
 
   return (
     <div className="flex flex-row justify-between">
-      <NavigationLinks />
+      <NavigationLinks role={session?.user.role} />
 
       <div className="flex items-center gap-2">
         {session ? (
