@@ -31,7 +31,7 @@ export default async function Dashboard() {
     <div>
       <div className="grid gap-4 md:grid-cols-2 px-2">
         <div>
-          <DashboardRecentTickets />
+          <DashboardRecentTickets tickets={tickets} />
         </div>
         <div>
           <DashboardCharts />
