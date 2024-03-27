@@ -157,6 +157,7 @@ const TicketForm = ({ ticket }: TicketFormProps) => {
           </Button>
         </form>
       </Form>
+      <p className="text-destructive">{error}</p>
     </div>
   );
 };
