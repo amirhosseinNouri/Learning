@@ -4,7 +4,6 @@ import {
   Card,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardContent,
 } from '../ui/card';
 import TicketStatusBadge from '../ticket-status-badge';

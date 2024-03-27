@@ -25,7 +25,10 @@ export default async function Dashboard() {
     },
   });
 
-  console.log(groupTicket);
+  const data = groupTicket.map((item) => ({
+    name: item.status,
+    total: item._count.id,
+  }));
 
   return (
     <div>
@@ -34,7 +37,7 @@ export default async function Dashboard() {
           <DashboardRecentTickets tickets={tickets} />
         </div>
         <div>
-          <DashboardCharts />
+          <DashboardCharts data={data} />
         </div>
       </div>
     </div>
