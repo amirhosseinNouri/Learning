@@ -6,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button';
 import Pagination from '@/components/pagination';
 import StatusFilter from '@/components/status-filter';
 import { Status, Ticket } from '@prisma/client';
+import Spinner from '@/components/spinner';
 
 interface TicketsPageSearchParams {
   page: string;
@@ -42,6 +43,7 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
   const ticketCount = await prisma.ticket.count({
     where,
   });
+
   const tickets = await prisma.ticket.findMany({
     where,
     take: PAGE_SIZE,
