@@ -8,7 +8,7 @@ class CustomError extends Error {
 }
 
 // How do we type the 'error' parameter?
-const handleCustomError = (error: unknown) => {
+const handleCustomError = (error: CustomError) => {
   console.error(error.code);
 
   type test = Expect<Equal<typeof error.code, number>>;
