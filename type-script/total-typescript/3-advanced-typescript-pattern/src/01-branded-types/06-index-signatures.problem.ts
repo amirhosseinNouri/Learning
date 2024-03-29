@@ -1,9 +1,9 @@
-import { it } from "vitest";
-import { Brand } from "../helpers/Brand";
-import { Equal, Expect } from "../helpers/type-utils";
+import { it } from 'vitest';
+import { Brand } from '../helpers/Brand';
+import { Equal, Expect } from '../helpers/type-utils';
 
-type PostId = Brand<string, "PostId">;
-type UserId = Brand<string, "UserId">;
+type PostId = Brand<string, 'PostId'>;
+type UserId = Brand<string, 'UserId'>;
 
 interface User {
   id: UserId;
@@ -22,20 +22,20 @@ interface Post {
  * You'll need an index signature of some kind - or maybe
  * two!
  */
-const db: Record<string, User | Post> = {};
+const db: { [postId: PostId]: Post; [userId: UserId]: User } = {};
 
-it("Should let you add users and posts to the db by their id", () => {
-  const postId = "post_1" as PostId;
-  const userId = "user_1" as UserId;
+it('Should let you add users and posts to the db by their id', () => {
+  const postId = 'post_1' as PostId;
+  const userId = 'user_1' as UserId;
 
   db[postId] = {
     id: postId,
-    title: "Hello world",
+    title: 'Hello world',
   };
 
   db[userId] = {
     id: userId,
-    name: "Miles",
+    name: 'Miles',
   };
 
   const post = db[postId];
@@ -47,13 +47,13 @@ it("Should let you add users and posts to the db by their id", () => {
   ];
 });
 
-it("Should fail if you try to add a user under a post id", () => {
-  const postId = "post_1" as PostId;
-  const userId = "user_1" as UserId;
+it('Should fail if you try to add a user under a post id', () => {
+  const postId = 'post_1' as PostId;
+  const userId = 'user_1' as UserId;
 
   const user: User = {
     id: userId,
-    name: "Miles",
+    name: 'Miles',
   };
 
   // @ts-expect-error
