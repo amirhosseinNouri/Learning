@@ -12,7 +12,7 @@ export class SDK {
   }
 
   // How do we type this assertion function?
-  assertIsLoggedIn() {
+  assertIsLoggedIn(): asserts this is this & {loggedInUser: User} {
     if (!this.loggedInUser) {
       throw new Error("Not logged in");
     }
