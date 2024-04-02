@@ -7,7 +7,7 @@ import { expect, it } from "vitest";
  * Clue: it's somewhere inside class TypeSafeStringMap, and it's
  * on the type level - not the runtime level.
  */
-class TypeSafeStringMap<TMap extends Record<string, string>> {
+class TypeSafeStringMap<TMap extends Record<string, string> = {}> {
   private map: TMap;
   constructor() {
     this.map = {} as TMap;
