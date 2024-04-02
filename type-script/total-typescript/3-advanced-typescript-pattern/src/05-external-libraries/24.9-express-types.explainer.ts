@@ -1,4 +1,4 @@
-import express, { RequestHandler } from "express";
+import express, { RequestHandler } from 'express';
 
 const app = express();
 
@@ -16,8 +16,8 @@ const getUser: RequestHandler<
   req.query.id;
 };
 
-app.get("/user");
+app.get('/user');
 
-app.post("/user", (req, res) => {});
+app.post('/user', (req, res) => {});
 
 app.listen(3000);
