@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const addAllOfThisToWindow = {
   add: (a: number, b: number) => a + b,
@@ -8,6 +8,11 @@ const addAllOfThisToWindow = {
 };
 
 Object.assign(window, addAllOfThisToWindow);
+
+declare global {
+  type Method = typeof addAllOfThisToWindow;
+  interface Window extends Method {}
+}
 
 type tests = [
   Expect<Equal<typeof window.add, (a: number, b: number) => number>>,
