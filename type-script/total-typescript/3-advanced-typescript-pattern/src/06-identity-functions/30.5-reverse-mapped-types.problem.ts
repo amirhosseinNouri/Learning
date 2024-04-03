@@ -1,6 +1,8 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
-export function makeEventHandlers(obj: unknown) {
+export function makeEventHandlers<TEvent extends string>(obj: {
+  [K in TEvent]: (event: K) => void;
+}) {
   return obj;
 }
 
@@ -8,11 +10,11 @@ const obj = makeEventHandlers({
   click: (name) => {
     console.log(name);
 
-    type test = Expect<Equal<typeof name, "click">>;
+    type test = Expect<Equal<typeof name, 'click'>>;
   },
   focus: (name) => {
     console.log(name);
 
-    type test = Expect<Equal<typeof name, "focus">>;
+    type test = Expect<Equal<typeof name, 'focus'>>;
   },
 });
