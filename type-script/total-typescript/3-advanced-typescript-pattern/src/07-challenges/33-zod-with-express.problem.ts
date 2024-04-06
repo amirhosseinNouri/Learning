@@ -1,15 +1,15 @@
-import express, { RequestHandler } from "express";
-import { it } from "vitest";
-import { z, ZodError } from "zod";
-import { Equal, Expect } from "../helpers/type-utils";
+import express, { RequestHandler } from 'express';
+import { it } from 'vitest';
+import { z, ZodError } from 'zod';
+import { Equal, Expect } from '../helpers/type-utils';
 
-const makeTypeSafeHandler = (
+const makeTypeSafeHandler = <TQuery = any, TBody = any>(
   config: {
-    query?: z.Schema;
-    body?: z.Schema;
+    query?: z.Schema<TQuery>;
+    body?: z.Schema<TBody>;
   },
-  handler: RequestHandler
-): RequestHandler => {
+  handler: RequestHandler<any, any, TBody, TQuery>,
+): RequestHandler<any, any, TBody, TQuery> => {
   return (req, res, next) => {
     const { query, body } = req;
     if (config.query) {
@@ -32,9 +32,9 @@ const makeTypeSafeHandler = (
 
 const app = express();
 
-it("Should make the query AND body type safe", () => {
+it('Should make the query AND body type safe', () => {
   app.get(
-    "/users",
+    '/users',
     makeTypeSafeHandler(
       {
         query: z.object({
@@ -47,21 +47,21 @@ it("Should make the query AND body type safe", () => {
       (req, res) => {
         type tests = [
           Expect<Equal<typeof req.query, { id: string }>>,
-          Expect<Equal<typeof req.body, { name: string }>>
+          Expect<Equal<typeof req.body, { name: string }>>,
         ];
-      }
-    )
+      },
+    ),
   );
 });
 
-it("Should default them to any if not passed in config", () => {
+it('Should default them to any if not passed in config', () => {
   app.get(
-    "/users",
+    '/users',
     makeTypeSafeHandler({}, (req, res) => {
       type tests = [
         Expect<Equal<typeof req.query, any>>,
-        Expect<Equal<typeof req.body, any>>
+        Expect<Equal<typeof req.body, any>>,
       ];
-    })
+    }),
   );
 });
