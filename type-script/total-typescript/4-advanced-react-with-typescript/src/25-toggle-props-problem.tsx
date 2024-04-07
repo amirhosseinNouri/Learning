@@ -1,8 +1,14 @@
-type EmbeddedPlaygroundProps = {
-  useStackblits?: boolean;
-  stackblitzId?: string;
-  codeSandboxId?: string;
+type Stackblitz = {
+  useStackblits: true;
+  stackblitzId: string;
 };
+
+type CodeSandbox = {
+  useStackblits?: false;
+  codeSandboxId: string;
+};
+
+type EmbeddedPlaygroundProps = CodeSandbox | Stackblitz;
 
 const EmbeddedPlayground = (props: EmbeddedPlaygroundProps) => {
   if (props.useStackblits) {
@@ -12,7 +18,6 @@ const EmbeddedPlayground = (props: EmbeddedPlaygroundProps) => {
       />
     );
   }
-
   return <iframe src={`https://codesandbox.io/embed/${props.codeSandboxId}`} />;
 };
 
