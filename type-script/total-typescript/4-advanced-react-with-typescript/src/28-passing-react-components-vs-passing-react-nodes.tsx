@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Equal, Expect } from './helpers/type-utils';
 
 interface TableProps {
-  renderRow: ReactNode;
+  renderRow: (index: number) => ReactNode;
 }
 
 const Table = ({ renderRow }: TableProps) => {
