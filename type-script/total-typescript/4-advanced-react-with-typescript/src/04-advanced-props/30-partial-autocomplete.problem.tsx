@@ -1,6 +1,6 @@
 const presetSizes = {
-  xs: "0.5rem",
-  sm: "1rem",
+  xs: '0.5rem',
+  sm: '1rem',
 };
 
 type Size = keyof typeof presetSizes;
@@ -13,7 +13,7 @@ type Size = keyof typeof presetSizes;
  * a Size. But there's an issue (see below).
  */
 
-type LooseSize = Size | string;
+type LooseSize = Size | (string & {});
 
 export const Icon = (props: { size: LooseSize }) => {
   return (
