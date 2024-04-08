@@ -1,11 +1,11 @@
-import { ComponentProps } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { ComponentProps } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
 const buttonProps = {
-  type: "button",
+  type: 'button',
   // @ts-expect-error
-  illegalProperty: "I AM ILLEGAL",
-};
+  illegalProperty: 'I AM ILLEGAL',
+} satisfies ComponentProps<'button'>;
 
 <>
   <button {...buttonProps}>Click Me!</button>
@@ -13,4 +13,4 @@ const buttonProps = {
 
 const buttonPropType = buttonProps.type;
 
-type test = Expect<Equal<typeof buttonPropType, "button">>;
+type test = Expect<Equal<typeof buttonPropType, 'button'>>;
