@@ -1,28 +1,30 @@
-import { ComponentProps } from "react";
+import { ComponentProps } from 'react';
+
+type ButtonTypes = keyof typeof buttonPropsMap;
 
 const buttonPropsMap = {
   reset: {
-    className: "bg-blue-500 text-white",
-    type: "reset",
+    className: 'bg-blue-500 text-white',
+    type: 'reset',
     // @ts-expect-error
-    illegalProperty: "whatever",
+    illegalProperty: 'whatever',
   },
   submit: {
-    className: "bg-gray-200 text-black",
-    type: "submit",
+    className: 'bg-gray-200 text-black',
+    type: 'submit',
     // @ts-expect-error
-    illegalProperty: "whatever",
+    illegalProperty: 'whatever',
   },
   next: {
-    className: "bg-green-500 text-white",
-    type: "button",
+    className: 'bg-green-500 text-white',
+    type: 'button',
     // @ts-expect-error
-    illegalProperty: "whatever",
+    illegalProperty: 'whatever',
   },
-};
+} satisfies Record<string, ComponentProps<'button'>>;
 
 type ButtonProps = {
-  variant: keyof typeof buttonPropsMap;
+  variant: ButtonTypes;
 };
 
 /**
