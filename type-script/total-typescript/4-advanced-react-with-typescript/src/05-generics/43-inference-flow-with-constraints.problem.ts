@@ -1,19 +1,23 @@
-import { createUser } from "fake-external-lib";
-import { useState } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { createUser } from 'fake-external-lib';
+import { useState } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
-type Mutation = (...args: any[]) => Promise<any>;
+type Mutation<TArgs extends any[], TReturn> = (
+  ...args: TArgs
+) => Promise<TReturn>;
 
-interface UseMutationReturn {
-  mutate: Mutation;
+interface UseMutationReturn<TMutationFn extends (...args: any) => any> {
+  mutate: Mutation<Parameters<TMutationFn>, Awaited<ReturnType<TMutationFn>>>;
   isLoading: boolean;
 }
 
-interface UseMutationOptions {
-  mutation: Mutation;
+interface UseMutationOptions<TMutationFn extends (...args: any) => any> {
+  mutation: TMutationFn;
 }
 
-export const useMutation = (opts: UseMutationOptions): UseMutationReturn => {
+export const useMutation = <TMutationFn extends (...args: any) => any>(
+  opts: UseMutationOptions<TMutationFn>,
+): UseMutationReturn<TMutationFn> => {
   const [isLoading, setIsLoading] = useState(false);
 
   return {
@@ -37,20 +41,20 @@ const mutation = useMutation({
   mutation: createUser,
 });
 
-mutation.mutate({ name: "John Doe", email: "john@doe.com" });
+mutation.mutate({ name: 'John Doe', email: 'john@doe.com' });
 
 // @ts-expect-error email missing!
-mutation.mutate({ name: "John Doe" });
+mutation.mutate({ name: 'John Doe' });
 
 mutation.mutate(
   {
-    name: "John Doe",
-    email: "john@doe.com",
+    name: 'John Doe',
+    email: 'john@doe.com',
   },
   {
     throwOnError: true,
     // @ts-expect-error extra prop
-    extra: "oh dear",
+    extra: 'oh dear',
   },
 );
 
