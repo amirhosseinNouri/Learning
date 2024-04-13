@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { ReactNode } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
 interface TableProps<T> {
   rows: T[];
@@ -26,7 +26,7 @@ export const Table = <T,>(props: TableProps<T>) => {
 const data = [
   {
     id: 1,
-    name: "John",
+    name: 'John',
   },
 ];
 
