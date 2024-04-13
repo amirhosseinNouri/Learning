@@ -1,12 +1,16 @@
-import { ReactNode } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { ReactNode } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
-interface TableProps {
-  rows: any[];
-  renderRow: (row: any) => ReactNode;
+type WithId = { id: number };
+
+interface TableProps<TRow extends WithId> {
+  rows: TRow[];
+  renderRow: (row: TRow) => ReactNode;
 }
 
-export class Table extends React.Component<TableProps> {
+export class Table<TRow extends WithId> extends React.Component<
+  TableProps<TRow>
+> {
   render(): ReactNode {
     return (
       <table>
@@ -23,7 +27,7 @@ export class Table extends React.Component<TableProps> {
 const data = [
   {
     id: 1,
-    name: "John",
+    name: 'John',
   },
 ];
 
