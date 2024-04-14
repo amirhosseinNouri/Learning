@@ -1,5 +1,5 @@
-import React from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import React from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
 /**
  * Let's take a look at Context in React. Here, we're creating
@@ -14,20 +14,20 @@ import { Equal, Expect } from "../helpers/type-utils";
  *
  * 1. See if you can fix it!
  */
-const createRequiredContext = () => {
-  const context = React.createContext(null);
+const createRequiredContext = <TValue,>() => {
+  const context = React.createContext<TValue | null>(null);
 
   const useContext = () => {
     const contextValue = React.useContext(context);
 
     if (contextValue === null) {
-      throw new Error("Context value is null");
+      throw new Error('Context value is null');
     }
 
     return contextValue;
   };
 
-  return [useContext, context.Provider];
+  return [useContext, context.Provider] as const;
 };
 
 const [useUser, UserProvider] = createRequiredContext<{
@@ -67,10 +67,10 @@ const Child = () => {
 const Parent = () => {
   return (
     <>
-      <UserProvider value={{ name: "Matt" }}>
+      <UserProvider value={{ name: 'Matt' }}>
         <ThemeProvider
           value={{
-            primaryColor: "blue",
+            primaryColor: 'blue',
           }}
         >
           <Child />
