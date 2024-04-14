@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
-import { appendVideoToDomAndPlay, fetchVideo } from "fake-external-lib";
+import { useEffect, useState } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
+import { appendVideoToDomAndPlay, fetchVideo } from 'fake-external-lib';
 
 /**
  * This is a complex problem. We want to load a video from a URL and play it.
@@ -12,11 +12,14 @@ import { appendVideoToDomAndPlay, fetchVideo } from "fake-external-lib";
  *
  * 1. See if you can fix the errors below by making the type of state more specific.
  */
+
+type VideoLoadingState = 'loading' | 'loaded' | 'error';
+
 export const useLoadAsyncVideo = (src: string) => {
-  const [state, setState] = useState("loading");
+  const [state, setState] = useState<VideoLoadingState>('loading');
 
   useEffect(() => {
-    setState("loading");
+    setState('loading');
 
     let cancelled = false;
 
@@ -28,13 +31,13 @@ export const useLoadAsyncVideo = (src: string) => {
 
         appendVideoToDomAndPlay(blob);
 
-        setState("loaded");
+        setState('loaded');
       })
       .catch((error) => {
         if (cancelled) {
           return;
         }
-        setState("error");
+        setState('error');
       });
 
     return () => {
@@ -43,19 +46,19 @@ export const useLoadAsyncVideo = (src: string) => {
   }, [src]);
 
   // @ts-expect-error
-  if (state === "does-not-exist") {
+  if (state === 'does-not-exist') {
   }
 
-  if (state === "loading") {
-    return "loading...";
+  if (state === 'loading') {
+    return 'loading...';
   }
 
-  if (state === "loaded") {
-    return "loaded";
+  if (state === 'loaded') {
+    return 'loaded';
   }
 
-  if (state === "error") {
-    return "Error!";
+  if (state === 'error') {
+    return 'Error!';
   }
 
   // state should equal never! Because we've covered all the cases
