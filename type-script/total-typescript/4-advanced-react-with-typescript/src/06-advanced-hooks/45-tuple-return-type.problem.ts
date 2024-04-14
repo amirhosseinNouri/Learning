@@ -11,12 +11,10 @@ import { Equal, Expect } from '../helpers/type-utils';
  * 1. Find a way to fix the errors below.
  */
 
-export const useId = (
-  defaultId: string,
-): [string, React.Dispatch<React.SetStateAction<string>>] => {
+export const useId = (defaultId: string) => {
   const [id, setId] = useState(defaultId);
 
-  return [id, setId];
+  return [id, setId] as const;
 };
 
 const [id, setId] = useId('1');
