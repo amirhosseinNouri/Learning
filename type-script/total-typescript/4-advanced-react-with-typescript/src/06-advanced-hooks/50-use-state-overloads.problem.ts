@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { useState } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
 useState;
 // ^^^^^ CMD-click to see the implementation of useState
@@ -18,7 +18,8 @@ useState;
  *
  * HINT - you'll need to use the function keyword THREE times.
  */
-
+function maybeReturnsString(defaultString: string): string;
+function maybeReturnsString(): string | undefined;
 function maybeReturnsString(defaultString?: string) {
   // If you pass a string, it always returns a string
   if (defaultString) {
@@ -26,10 +27,10 @@ function maybeReturnsString(defaultString?: string) {
   }
 
   // Otherwise, it MIGHT return a string or undefined
-  return Math.random() > 0.5 ? "hello" : undefined;
+  return Math.random() > 0.5 ? 'hello' : undefined;
 }
 
-const example1 = maybeReturnsString("hello");
+const example1 = maybeReturnsString('hello');
 const example2 = maybeReturnsString();
 
 type tests = [
