@@ -48,6 +48,6 @@ const Component3 = (): React.ReactElement => {
 /**
  * 4b. ...but this one does?
  */
-const Component4 = (): React.ReactElement => {
-  return "hello!";
+const Component4 = (): React.ReactNode => {
+  return 'hello!';
 };
