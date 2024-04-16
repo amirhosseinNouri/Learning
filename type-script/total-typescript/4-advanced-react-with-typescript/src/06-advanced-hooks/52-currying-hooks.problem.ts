@@ -1,5 +1,5 @@
-import { DependencyList, useMemo, useState } from "react";
-import { Equal, Expect } from "../helpers/type-utils";
+import { DependencyList, useMemo, useState } from 'react';
+import { Equal, Expect } from '../helpers/type-utils';
 
 const useCustomState = <TValue>(initial: TValue) => {
   const [value, set] = useState<TValue>(initial);
@@ -15,7 +15,10 @@ const useCustomState = <TValue>(initial: TValue) => {
      * any type. We want to make sure that the type of the
      * thing returned is inferred properly.
      */
-    useComputed: (factory: (value: any) => any, deps?: DependencyList) => {
+    useComputed: <TComputed>(
+      factory: (value: TValue) => TComputed,
+      deps?: DependencyList,
+    ) => {
       return useMemo(() => {
         return factory(value);
       }, [value, ...(deps || [])]);
