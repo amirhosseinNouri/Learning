@@ -2,21 +2,26 @@ package main
 
 import "fmt"
 
-type example struct {
-	flag    bool
-	counter int16
-	pi      float32
+type Person struct {
+	id   int
+	name string
+	age  int
 }
 
 func main() {
-	var e1 example
-	fmt.Printf("%+v\n", e1)
+
+	var p Person
+
+	fmt.Printf("%v\n", p)
+	fmt.Printf("%+v\n", p)
+	fmt.Printf("%#v\n", p)
 
 	// Literal constructions
-	e2 := example{flag: true, counter: 10, pi: 3.14}
+	p2 := Person{
+		name: "Amirhossein",
+		age:  24,
+		id:   1,
+	}
 
-	fmt.Printf("%+v\n", e2)
-	fmt.Println(e2.flag)
-	fmt.Println(e2.counter)
-	fmt.Println(e2.pi)
+	fmt.Printf("%+v\n", p2)
 }
