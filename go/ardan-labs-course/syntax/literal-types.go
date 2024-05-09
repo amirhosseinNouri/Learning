@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	e := struct {
@@ -7,4 +9,5 @@ func main() {
 		flag bool
 	}{flag: true} // Literal construction
 
+	fmt.Println(e)
 }
