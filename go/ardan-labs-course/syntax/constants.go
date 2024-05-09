@@ -2,6 +2,17 @@ package main
 
 import "fmt"
 
+type color int
+
+const (
+	Red  = 10
+	Blue = 20
+)
+
+func printColor(color int) {
+	fmt.Println(color)
+}
+
 func main() {
 	const ui = 12345 // kind: integer
 	const uf = 3.13  // kind: floating point
@@ -15,4 +26,6 @@ func main() {
 	)
 
 	fmt.Println(A1, B1, C3)
+
+	printColor(10)
 }
