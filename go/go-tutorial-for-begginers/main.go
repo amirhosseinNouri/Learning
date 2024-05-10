@@ -1,6 +1,7 @@
 package main
 
 import (
+	"booking-app/helper"
 	"fmt"
 	"strings"
 )
@@ -21,17 +22,17 @@ func main() {
 
 	for {
 
-		if isValidName := validateFirstNameAndLastName(firstName, lastName); !isValidName {
+		if isValidName := helper.ValidateFirstNameAndLastName(firstName, lastName); !isValidName {
 			fmt.Println("Firstname and lastname should be at least 2 characters.")
 			continue
 		}
 
-		if isValidEmail := validateEmail(email); !isValidEmail {
+		if isValidEmail := helper.ValidateEmail(email); !isValidEmail {
 			fmt.Println("Invalid email address. Try again.")
 			continue
 		}
 
-		if isValidUserTickets := validateUserTickets(userTickets); !isValidUserTickets {
+		if isValidUserTickets := helper.ValidateUserTickets(userTickets, remainingTickets); !isValidUserTickets {
 			fmt.Println("Invalid number of tickets. Try again.")
 			continue
 		}
