@@ -4,6 +4,7 @@ import (
 	"booking-app/helper"
 	"fmt"
 	"strings"
+	"time"
 )
 
 type user struct {
@@ -22,12 +23,11 @@ var remainingTickets uint = conferenceTickets
 var bookings = make([]user, 0)
 
 func main() {
-
 	greetUsers()
 
-	firstName, lastName, email, userTickets := getUserInputs()
-
 	for {
+
+		firstName, lastName, email, userTickets := getUserInputs()
 
 		if isValidName := helper.ValidateFirstNameAndLastName(firstName, lastName); !isValidName {
 			fmt.Println("Firstname and lastname should be at least 2 characters.")
@@ -50,6 +50,7 @@ func main() {
 		}
 
 		bookTicket(userTickets, firstName, lastName, email)
+		go sendTicket(userTickets, firstName, lastName, email)
 
 		firstNames := getFirstNames()
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
@@ -82,16 +83,16 @@ func getUserInputs() (firstName, lastName, userEmail string, userTickets uint) {
 	var tickets uint
 
 	fmt.Printf("Enter your fist name: ")
-	fmt.Scan(&firstName)
+	fmt.Scan(&first)
 
 	fmt.Printf("Enter your last name: ")
-	fmt.Scan(&lastName)
+	fmt.Scan(&last)
 
 	fmt.Printf("Enter your email: ")
 	fmt.Scan(&email)
 
 	fmt.Printf("Enter the number of tickets you want: ")
-	fmt.Scan(&userTickets)
+	fmt.Scan(&tickets)
 
 	return first, last, email, tickets
 }
@@ -105,4 +106,12 @@ func bookTicket(userTickets uint, firstName, lastName, email string) {
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 
 	fmt.Printf("%v remained tickets.\n", remainingTickets)
+}
+
+func sendTicket(userTickets uint, firstName, lastName, email string) {
+	time.Sleep(10 * time.Second)
+	ticket := fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
+	fmt.Println("#######")
+	fmt.Printf("Sending %v ticket to email address %v\n", ticket, email)
+	fmt.Println("#######")
 }
