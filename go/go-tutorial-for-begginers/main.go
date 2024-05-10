@@ -15,7 +15,7 @@ var bookings []string
 
 func main() {
 
-	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+	greetUsers()
 
 	firstName, lastName, email, userTickets := getUserInputs()
 
@@ -31,7 +31,7 @@ func main() {
 			continue
 		}
 
-		if isValidUserTickets := validateUserTickets(userTickets, remainingTickets); !isValidUserTickets {
+		if isValidUserTickets := validateUserTickets(userTickets); !isValidUserTickets {
 			fmt.Println("Invalid number of tickets. Try again.")
 			continue
 		}
@@ -41,9 +41,9 @@ func main() {
 			continue
 		}
 
-		bookTicket(remainingTickets, userTickets, bookings, firstName, lastName, email)
+		bookTicket(userTickets, firstName, lastName, email)
 
-		firstNames := getFirstNames(bookings)
+		firstNames := getFirstNames()
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
 		if remainingTickets == 0 {
@@ -53,12 +53,12 @@ func main() {
 	}
 }
 
-func greetUsers(name string, conferenceTickets int, remainingTickets uint) {
-	fmt.Printf("Welcome to %v booking application.\n", name)
+func greetUsers() {
+	fmt.Printf("Welcome to %v booking application.\n", conferenceName)
 	fmt.Printf("We have total of %v tickets and %v are still available.\n", conferenceTickets, remainingTickets)
 }
 
-func getFirstNames(bookings []string) []string {
+func getFirstNames() []string {
 	var firstNames []string
 
 	for _, fullName := range bookings {
@@ -75,7 +75,7 @@ func validateEmail(email string) bool {
 	return strings.Contains(email, "@")
 }
 
-func validateUserTickets(userTickets, remainingTickets uint) bool {
+func validateUserTickets(userTickets uint) bool {
 	return userTickets > 0 && userTickets <= remainingTickets
 }
 
@@ -100,7 +100,7 @@ func getUserInputs() (firstName, lastName, userEmail string, userTickets uint) {
 	return first, last, email, tickets
 }
 
-func bookTicket(remainingTickets, userTickets uint, bookings []string, firstName, lastName, email string) {
+func bookTicket(userTickets uint, firstName, lastName, email string) {
 	remainingTickets -= userTickets
 	bookings = append(bookings, firstName+" "+lastName)
 
