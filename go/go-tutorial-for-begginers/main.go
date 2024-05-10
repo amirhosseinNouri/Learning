@@ -36,6 +36,26 @@ func main() {
 		fmt.Printf("Enter the number of tickets you want: ")
 		fmt.Scan(&userTickets)
 
+		if len(firstName) < 2 || len(lastName) < 2 {
+			fmt.Println("Firstname and lastname should be at least 2 characters.")
+			continue
+		}
+
+		if !strings.Contains(email, "@") {
+			fmt.Println("Invalid email address. Try again.")
+			continue
+		}
+
+		if userTickets < 0 || userTickets > remainingTickets {
+			fmt.Println("Invalid number of tickets. Try again.")
+			continue
+		}
+
+		if userTickets > remainingTickets {
+			fmt.Printf("We only have %v tickets remaining, so you can not book %v tickets.\n", remainingTickets, userTickets)
+			continue
+		}
+
 		remainingTickets -= userTickets
 		bookings = append(bookings, firstName+" "+lastName)
 
@@ -50,6 +70,11 @@ func main() {
 		}
 
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
+
+		if remainingTickets == 0 {
+			fmt.Printf("%v is booked out. Come back next year.\n", conferenceName)
+			break
+		}
 
 	}
 
