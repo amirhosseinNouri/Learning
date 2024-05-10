@@ -6,13 +6,20 @@ import (
 	"strings"
 )
 
+type user struct {
+	firstName       string
+	lastName        string
+	email           string
+	numberOfTickets uint
+}
+
 const (
 	conferenceTickets = 50
 	conferenceName    = "Go conference"
 )
 
 var remainingTickets uint = conferenceTickets
-var bookings []string
+var bookings = make([]user, 0)
 
 func main() {
 
@@ -62,8 +69,8 @@ func greetUsers() {
 func getFirstNames() []string {
 	var firstNames []string
 
-	for _, fullName := range bookings {
-		firstNames = append(firstNames, strings.Fields(fullName)[0])
+	for _, userData := range bookings {
+		firstNames = append(firstNames, strings.Fields(userData.firstName)[0])
 	}
 	return firstNames
 }
@@ -91,7 +98,9 @@ func getUserInputs() (firstName, lastName, userEmail string, userTickets uint) {
 
 func bookTicket(userTickets uint, firstName, lastName, email string) {
 	remainingTickets -= userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+
+	user := user{firstName: firstName, lastName: lastName, email: email, numberOfTickets: userTickets}
+	bookings = append(bookings, user)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 
