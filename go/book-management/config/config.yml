@@ -1,5 +1,0 @@
-app:
-  name: "Book Management"
-server:
-  host: "localhost"
-  port: "8000"
