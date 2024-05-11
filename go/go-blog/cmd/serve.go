@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"go-blog/pkg/config"
+	"go-blog/pkg/routing"
 	"net/http"
 )
 
@@ -19,14 +18,15 @@ var serverCmd = &cobra.Command{
 }
 
 func serve() {
-	configs := config.Get()
+	routing.Init()
 
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	router := routing.GetRouter()
+
+	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message":    "pong",
 			"x-app-name": viper.Get("App.Name"),
 		})
 	})
-	r.Run(fmt.Sprintf("%v:%v", configs.Server.Host, configs.Server.Port))
+	routing.Serve()
 }
