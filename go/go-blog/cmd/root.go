@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"go-blog/pkg/config"
 	"os"
 )
 
@@ -17,4 +18,8 @@ func Execute() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+}
+
+func init() {
+	cobra.OnInitialize(config.Set)
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"go-blog/config"
+	"go-blog/pkg/config"
 	"net/http"
 )
 
@@ -23,8 +23,7 @@ var serverCmd = &cobra.Command{
 }
 
 func serve() {
-
-	configs := setConfig()
+	configs := config.Get()
 
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
@@ -34,21 +33,4 @@ func serve() {
 		})
 	})
 	r.Run(fmt.Sprintf("%v:%v", configs.Server.Host, configs.Server.Port))
-}
-
-func setConfig() config.Config {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("config") // path to look for the config file in
-	if err := viper.ReadInConfig(); err != nil {
-		fmt.Println("Error reading configs")
-	}
-
-	var configs config.Config
-	err := viper.Unmarshal(&configs)
-	if err != nil {
-		fmt.Printf("Unable to decode config file into struct, %v", err)
-	}
-
-	return configs
 }
