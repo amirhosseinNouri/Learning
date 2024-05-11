@@ -15,6 +15,7 @@ type Book struct {
 var d *gorm.DB
 
 func init() {
+	db.Connect()
 	d := db.Get()
 	d.AutoMigrate(&Book{})
 }

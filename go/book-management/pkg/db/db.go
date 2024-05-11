@@ -9,7 +9,7 @@ import (
 
 var db *gorm.DB
 
-func Connect() {
+func Connect() *gorm.DB {
 	c := config.Get()
 	d, err := gorm.Open("mysql", fmt.Sprintf("%v:%v/book-management?charset=utf8&parseTime=True&loc=Local", c.DB.User, c.DB.Password))
 
@@ -18,6 +18,8 @@ func Connect() {
 	}
 
 	db = d
+
+	return d
 }
 
 func Get() *gorm.DB {
