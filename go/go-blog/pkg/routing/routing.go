@@ -1,6 +1,9 @@
 package routing
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"go-blog/internal/providers/routes"
+)
 
 func Init() {
 	router = gin.Default()
@@ -8,4 +11,9 @@ func Init() {
 
 func GetRouter() *gin.Engine {
 	return router
+}
+
+func RegisterRoutes() {
+	routes.RegisterRoutes(router)
+
 }
