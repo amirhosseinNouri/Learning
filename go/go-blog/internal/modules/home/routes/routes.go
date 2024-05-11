@@ -7,10 +7,17 @@ import (
 )
 
 func Routes(router *gin.Engine) {
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message":    "pong",
-			"x-app-name": viper.Get("App.Name"),
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "modules/home/html/home.tmpl", gin.H{
+			"title":   "Home Page",
+			"AppName": viper.Get("App.Name"),
+		})
+	})
+
+	router.GET("/about", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "modules/home/html/about.tmpl", gin.H{
+			"title":   "About Page",
+			"AppName": viper.Get("App.Name"),
 		})
 	})
 }
