@@ -9,10 +9,6 @@ import (
 	"net/http"
 )
 
-func init() {
-	rootCmd.AddCommand(serverCmd)
-}
-
 var serverCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Server app on dev server",
