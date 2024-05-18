@@ -115,7 +115,33 @@ func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (ts *TaskServer) DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {}
+func (ts *TaskServer) DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Handling DeleteTask at %s\n", r.URL.Path)
+
+	parts := strings.Split(r.URL.Path, "/")
+
+	if len(parts) < 3 {
+		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		return
+	}
+
+	id, err := strconv.Atoi(parts[2])
+
+	if err != nil {
+		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		return
+	}
+
+	err = ts.store.DeleteTask(id)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusNoContent)
+}
 
 func (ts *TaskServer) GetTaskByTagHandler(w http.ResponseWriter, r *http.Request) {}
 

@@ -36,6 +36,8 @@ func main() {
 			switch r.Method {
 			case "GET":
 				server.GetTaskHandler(w, r)
+			case "DELETE":
+				server.DeleteTaskHandler(w, r)
 			}
 		}
 
