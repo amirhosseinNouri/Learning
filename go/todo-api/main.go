@@ -1,13 +1,17 @@
 package main
 
 import (
+	"github.com/amirhosseinnouri/Learning/go/todo-api/docs"
 	taskServer "github.com/amirhosseinnouri/Learning/go/todo-api/internal/task-server"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"log"
 )
 
 func main() {
 	router := gin.Default()
+	docs.SwaggerInfo.BasePath = "/"
 	server := taskServer.NewTaskServer()
 
 	router.GET("/task/", server.GetAllTasksHandler)
@@ -20,33 +24,7 @@ func main() {
 	router.DELETE("/task/", server.DeleteAllTasksHandler)
 	router.DELETE("/task/:id", server.DeleteTaskHandler)
 
-	//mux.HandleFunc("/task/", func(w http.ResponseWriter, r *http.Request) {
-	//
-	//	path := strings.TrimSuffix(r.URL.Path, "/")
-	//
-	//	if path == "/task" {
-	//		switch r.Method {
-	//		case "POST":
-	//			server.CreateTaskHandler(w, r)
-	//		case "GET":
-	//			server.GetAllTasksHandler(w, r)
-	//		case "DELETE":
-	//			server.DeleteAllTasksHandler(w, r)
-	//		default:
-	//			http.Error(w, "Unsupported request method", http.StatusMethodNotAllowed)
-	//		}
-	//	} else {
-	//		switch r.Method {
-	//		case "GET":
-	//			server.GetTaskHandler(w, r)
-	//		case "DELETE":
-	//			server.DeleteTaskHandler(w, r)
-	//		default:
-	//			http.Error(w, "Unsupported request method", http.StatusMethodNotAllowed)
-	//		}
-	//	}
-	//
-	//})
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	log.Fatal(router.Run(":8080"))
 }

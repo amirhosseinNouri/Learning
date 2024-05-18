@@ -1,0 +1,53 @@
+definitions:
+  task_server.CreateTaskHandler.RequestTask:
+    properties:
+      due:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      text:
+        type: string
+    type: object
+  taskstore.Task:
+    properties:
+      due:
+        type: string
+      id:
+        type: integer
+      tags:
+        items:
+          type: string
+        type: array
+      text:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /task/:
+    post:
+      consumes:
+      - application/json
+      description: Create a new task
+      parameters:
+      - description: task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/task_server.CreateTaskHandler.RequestTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/taskstore.Task'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a new task
+swagger: "2.0"

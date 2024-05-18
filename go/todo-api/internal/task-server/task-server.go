@@ -18,6 +18,15 @@ func NewTaskServer() *TaskServer {
 	return &TaskServer{ts}
 }
 
+// CreateTaskHandler
+// @Summary Create a new task
+// @Description Create a new task
+// @Accept json
+// @Produce json
+// @Param task body task_server.CreateTaskHandler.RequestTask true "task"
+// @success 200 {object} struct{id string}
+// @Failure 400 {string} error
+// @Router /task/ [post]
 func (ts *TaskServer) CreateTaskHandler(c *gin.Context) {
 	type RequestTask struct {
 		Text string    `json:"text"`
