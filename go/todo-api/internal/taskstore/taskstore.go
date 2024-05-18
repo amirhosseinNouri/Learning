@@ -79,7 +79,7 @@ func (ts *TaskStore) GetAllTasks() []Task {
 	ts.Lock()
 	defer ts.Unlock()
 
-	tasks := make([]Task, len(ts.tasks))
+	tasks := make([]Task, 0, len(ts.tasks))
 
 	for _, t := range ts.tasks {
 		tasks = append(tasks, t)
