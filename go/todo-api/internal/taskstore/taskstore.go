@@ -92,7 +92,7 @@ func (ts *TaskStore) GetTasksByTag(tag string) []Task {
 	ts.Lock()
 	defer ts.Unlock()
 
-	var tasks []Task
+	var tasks = make([]Task, 0, len(ts.tasks))
 
 taskLoop:
 	for _, t := range ts.tasks {

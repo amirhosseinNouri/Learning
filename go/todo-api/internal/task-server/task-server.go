@@ -1,14 +1,11 @@
 package task_server
 
 import (
-	"encoding/json"
+	"fmt"
 	"github.com/amirhosseinnouri/Learning/go/todo-api/internal/taskstore"
-	jsonRenderer "github.com/amirhosseinnouri/Learning/go/todo-api/pkg/json"
-	"log"
-	"mime"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -21,114 +18,109 @@ func NewTaskServer() *TaskServer {
 	return &TaskServer{ts}
 }
 
-func (ts *TaskServer) CreateTaskHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling CreateTask at %s\n", r.URL.Path)
-
+func (ts *TaskServer) CreateTaskHandler(c *gin.Context) {
 	type RequestTask struct {
 		Text string    `json:"text"`
 		Tags []string  `json:"tags"`
 		Due  time.Time `json:"due"`
 	}
 
-	type ResponseId struct {
-		Id int `json:"id"`
-	}
-
-	contentType := r.Header.Get("Content-Type")
-	if mediaType, _, err := mime.ParseMediaType(contentType); err != nil || mediaType != "application/json" {
-		http.Error(w, "expected application/json Content-Type", http.StatusUnsupportedMediaType)
-	}
-
-	dec := json.NewDecoder(r.Body)
-	dec.DisallowUnknownFields()
-
 	var rt RequestTask
-	if err := dec.Decode(&rt); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+	if err := c.ShouldBindJSON(&rt); err != nil {
+		c.String(http.StatusBadRequest, err.Error())
 		return
 	}
 
 	id := ts.store.CreateTask(rt.Text, rt.Tags, rt.Due)
-
-	jsonRenderer.RenderJSON(w, ResponseId{id})
-
+	c.JSON(http.StatusOK, gin.H{"id": id})
 }
 
-func (ts *TaskServer) GetAllTasksHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling GetAllTasks at %s\n", r.URL.Path)
-
+func (ts *TaskServer) GetAllTasksHandler(c *gin.Context) {
 	tasks := ts.store.GetAllTasks()
-	jsonRenderer.RenderJSON(w, tasks)
+	c.JSON(http.StatusOK, tasks)
 }
 
-func (ts *TaskServer) DeleteAllTasksHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling DeleteAllTasks at %s\n", r.URL.Path)
-
+func (ts *TaskServer) DeleteAllTasksHandler(c *gin.Context) {
 	err := ts.store.DeleteAllTasks()
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		c.String(http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	w.WriteHeader(http.StatusNoContent)
+	c.Writer.WriteHeader(http.StatusNoContent)
 }
 
-func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling GetTask at %s\n", r.URL.Path)
-
-	parts := strings.Split(r.URL.Path, "/")
-
-	if len(parts) < 3 {
-		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
-		return
-	}
-
-	id, err := strconv.Atoi(parts[2])
+func (ts *TaskServer) GetTaskHandler(c *gin.Context) {
+	id, err := strconv.Atoi(c.Params.ByName("id"))
 
 	if err != nil {
-		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		c.String(http.StatusBadRequest, err.Error())
 		return
 	}
 
 	task, err := ts.store.GetTask(id)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		c.String(http.StatusNotFound, err.Error())
 		return
 	}
 
-	jsonRenderer.RenderJSON(w, task)
+	c.JSON(http.StatusOK, task)
 }
 
-func (ts *TaskServer) DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling DeleteTask at %s\n", r.URL.Path)
-
-	parts := strings.Split(r.URL.Path, "/")
-
-	if len(parts) < 3 {
-		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
-		return
-	}
-
-	id, err := strconv.Atoi(parts[2])
+func (ts *TaskServer) DeleteTaskHandler(c *gin.Context) {
+	id, err := strconv.Atoi(c.Params.ByName("id"))
 
 	if err != nil {
-		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		c.String(http.StatusBadRequest, err.Error())
 		return
 	}
 
 	err = ts.store.DeleteTask(id)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		c.String(http.StatusNotFound, err.Error())
+		return
+	}
+	c.Writer.WriteHeader(http.StatusNoContent)
+}
+
+func (ts *TaskServer) GetTaskByTagHandler(c *gin.Context) {
+	tag, ok := c.Params.Get("tag")
+
+	if !ok {
+		c.String(http.StatusBadRequest, fmt.Sprintf("invalid tag: %s", tag))
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusNoContent)
+	tasks := ts.store.GetTasksByTag(tag)
+	c.JSON(http.StatusOK, tasks)
 }
 
-func (ts *TaskServer) GetTaskByTagHandler(w http.ResponseWriter, r *http.Request) {}
+func (ts *TaskServer) GetTaskByDueDateHandler(c *gin.Context) {
+	badRequestError := func() {
+		c.String(http.StatusBadRequest, "expected /task/due/<year>/<month>/<day>, but got %v", c.FullPath())
+	}
 
-func (ts *TaskServer) GetTaskByDueDateHandler(w http.ResponseWriter, r *http.Request) {}
+	year, err := strconv.Atoi(c.Params.ByName("year"))
+	if err != nil {
+		badRequestError()
+		return
+	}
+
+	month, err := strconv.Atoi(c.Params.ByName("month"))
+	if err != nil {
+		badRequestError()
+		return
+	}
+
+	day, err := strconv.Atoi(c.Params.ByName("day"))
+	if err != nil {
+		badRequestError()
+		return
+	}
+
+	tasks := ts.store.GetTasksByDueDate(year, time.Month(month), day)
+	c.JSON(http.StatusOK, tasks)
+}
