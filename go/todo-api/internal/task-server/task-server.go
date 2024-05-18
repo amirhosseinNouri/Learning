@@ -77,7 +77,18 @@ func (ts *TaskServer) GetAllTasksHandler(w http.ResponseWriter, r *http.Request)
 	w.Write(response)
 }
 
-func (ts *TaskServer) DeleteAllTasksHandler(w http.ResponseWriter, r *http.Request) {}
+func (ts *TaskServer) DeleteAllTasksHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Handling DeleteAllTasks at %s\n", r.URL.Path)
+
+	err := ts.store.DeleteAllTasks()
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
 
 func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Handling GetTask at %s\n", r.URL.Path)
