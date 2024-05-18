@@ -6,6 +6,8 @@ import (
 	"log"
 	"mime"
 	"net/http"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -77,7 +79,41 @@ func (ts *TaskServer) GetAllTasksHandler(w http.ResponseWriter, r *http.Request)
 
 func (ts *TaskServer) DeleteAllTasksHandler(w http.ResponseWriter, r *http.Request) {}
 
-func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {}
+func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Handling GetTask at %s\n", r.URL.Path)
+
+	parts := strings.Split(r.URL.Path, "/")
+
+	if len(parts) < 3 {
+		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		return
+	}
+
+	id, err := strconv.Atoi(parts[2])
+
+	if err != nil {
+		http.Error(w, "Invalid URL or missing task ID", http.StatusBadRequest)
+		return
+	}
+
+	task, err := ts.store.GetTask(id)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+
+	response, err := json.Marshal(task)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(response)
+
+}
 
 func (ts *TaskServer) DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {}
 
