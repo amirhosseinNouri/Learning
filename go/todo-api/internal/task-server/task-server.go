@@ -3,6 +3,7 @@ package task_server
 import (
 	"encoding/json"
 	"github.com/amirhosseinnouri/Learning/go/todo-api/internal/taskstore"
+	jsonRenderer "github.com/amirhosseinnouri/Learning/go/todo-api/pkg/json"
 	"log"
 	"mime"
 	"net/http"
@@ -49,15 +50,7 @@ func (ts *TaskServer) CreateTaskHandler(w http.ResponseWriter, r *http.Request) 
 
 	id := ts.store.CreateTask(rt.Text, rt.Tags, rt.Due)
 
-	response, err := json.Marshal(ResponseId{id})
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(response)
+	jsonRenderer.RenderJSON(w, ResponseId{id})
 
 }
 
@@ -65,16 +58,7 @@ func (ts *TaskServer) GetAllTasksHandler(w http.ResponseWriter, r *http.Request)
 	log.Printf("Handling GetAllTasks at %s\n", r.URL.Path)
 
 	tasks := ts.store.GetAllTasks()
-
-	response, err := json.Marshal(tasks)
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(response)
+	jsonRenderer.RenderJSON(w, tasks)
 }
 
 func (ts *TaskServer) DeleteAllTasksHandler(w http.ResponseWriter, r *http.Request) {
@@ -114,16 +98,7 @@ func (ts *TaskServer) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := json.Marshal(task)
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(response)
-
+	jsonRenderer.RenderJSON(w, task)
 }
 
 func (ts *TaskServer) DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {
