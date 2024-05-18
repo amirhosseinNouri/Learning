@@ -19,7 +19,7 @@ func NewTaskServer() *TaskServer {
 }
 
 func (ts *TaskServer) CreateTaskHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Handling task create at %s\n", r.URL.Path)
+	log.Printf("Handling CreateTask at %s\n", r.URL.Path)
 
 	type RequestTask struct {
 		Text string    `json:"text"`
