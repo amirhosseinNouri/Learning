@@ -31,3 +31,20 @@ const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({ canvas: canvas! });
 renderer.setSize(sizes.width, sizes.height);
 renderer.render(scene, camera);
+
+window.addEventListener('resize', () => {
+  // Update sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // Update camera
+  camera.updateProjectionMatrix();
+  camera.aspect = sizes.width / sizes.height;
+  renderer.setSize(sizes.width, sizes.height);
+});
+
+const loop = () => {
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(loop);
+};
+loop();
