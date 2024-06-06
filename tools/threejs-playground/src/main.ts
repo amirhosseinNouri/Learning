@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import './style.css';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import gsap from 'gsap';
 
 // scene
 const scene = new THREE.Scene();
@@ -59,3 +60,39 @@ const loop = () => {
   window.requestAnimationFrame(loop);
 };
 loop();
+
+// Timeline
+const timeline = gsap.timeline({
+  defaults: {
+    duration: 1,
+  },
+});
+
+timeline.fromTo(mesh.scale, { z: 0, x: 0, y: 0 }, { z: 1, x: 1, y: 1 });
+timeline.fromTo('nav', { y: '-100%' }, { y: '0%' });
+timeline.fromTo('.title', { opacity: 0 }, { opacity: 1 });
+
+// Mouse animations
+let mouseDown = false;
+let rgb = [];
+window.addEventListener('mousedown', () => {
+  mouseDown = true;
+});
+
+window.addEventListener('mouseup', () => {
+  mouseDown = false;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (mouseDown) {
+    rgb = [
+      Math.round((e.pageX / sizes.width) * 255),
+      Math.round((e.pageY / sizes.height) * 255),
+      150,
+    ];
+
+    const { r, g, b } = new THREE.Color(`rgb(${rgb.join(',')})`);
+
+    gsap.to(mesh.material.color, { r, g, b });
+  }
+});
