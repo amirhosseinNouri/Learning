@@ -41,13 +41,19 @@ const sketch = ({ context }) => {
   const moonTexture = loader.load('moon.jpg');
 
   // Setup a material
-  const material = new THREE.MeshBasicMaterial({
+  const material = new THREE.MeshStandardMaterial({
     map: texture,
+    roughness: 1,
+    metalnes: 0,
   });
 
   const moonGroup = new THREE.Group();
 
-  const moonMaterial = new THREE.MeshBasicMaterial({ map: moonTexture });
+  const moonMaterial = new THREE.MeshStandardMaterial({
+    map: moonTexture,
+    roughness: 1,
+    metalnes: 0,
+  });
 
   // Setup a mesh with geometry + material
   const mesh = new THREE.Mesh(geometry, material);
@@ -59,6 +65,10 @@ const sketch = ({ context }) => {
   moonGroup.add(moonMesh);
 
   scene.add(moonGroup);
+
+  const light = new THREE.PointLight('white', 3);
+  light.position.set(2, 2, 2);
+  scene.add(light);
 
   // draw each frame
   return {
