@@ -67,8 +67,10 @@ const sketch = ({ context }) => {
   scene.add(moonGroup);
 
   const light = new THREE.PointLight('white', 3);
-  light.position.set(2, 2, 2);
+  light.position.set(0, 2, 0);
   scene.add(light);
+
+  scene.add(new THREE.PointLightHelper(light, 0.5));
 
   // draw each frame
   return {
