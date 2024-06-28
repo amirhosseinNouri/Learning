@@ -3,42 +3,43 @@ import { Canvas } from '@react-three/fiber';
 import Polyhedron from './components/polyhedron';
 import * as THREE from 'three';
 import { Stats, OrbitControls } from '@react-three/drei';
-import { useControls } from 'leva';
-
-const polyhedron = [
-  new THREE.BoxGeometry(),
-  new THREE.SphereGeometry(0.785398),
-  new THREE.DodecahedronGeometry(0.785398),
-];
+import Lights from './components/lights';
 
 function App() {
   return (
     <Canvas
-      camera={{ position: [-1, 4, 2.5] }}
+      camera={{ position: [4, 4, 1.5] }}
       style={{ width: window.innerWidth, height: window.innerHeight }}
     >
-      <directionalLight position={[1, 1, 1]} />
+      <Lights />
       <Polyhedron
         name="meshBasicMaterial"
         position={[-3, 1, 0]}
-        material={new THREE.MeshBasicMaterial()}
+        material={new THREE.MeshBasicMaterial({ color: 'yellow' })}
       />
       <Polyhedron
         name="meshNormalMaterial"
         position={[-1, 1, 0]}
-        material={new THREE.MeshNormalMaterial()}
-      /> 
+        material={new THREE.MeshNormalMaterial({ flatShading: true })}
+      />
       <Polyhedron
         name="meshPhongMaterial"
         position={[1, 1, 0]}
-        material={new THREE.MeshPhongMaterial()}
+        material={
+          new THREE.MeshPhongMaterial({ color: 'lime', flatShading: true })
+        }
       />
       <Polyhedron
         name="meshStandardMaterial"
         position={[3, 1, 0]}
-        material={new THREE.MeshStandardMaterial()}
+        material={
+          new THREE.MeshStandardMaterial({
+            color: '0xff0033',
+            flatShading: true,
+          })
+        }
       />
-      <OrbitControls target-y={1} />
+      <OrbitControls target={[2, 2, 0]} />
       <axesHelper args={[5]} />
       <gridHelper />
       <Stats />

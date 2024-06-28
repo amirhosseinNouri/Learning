@@ -1,14 +1,13 @@
-import { useRef, useState } from 'react';
-import { MeshProps, ThreeElements, useFrame } from '@react-three/fiber';
+import { useRef } from 'react';
+import { MeshProps, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useControls } from 'leva';
 
 type PolyHedronProps = MeshProps & {
-  color: string;
   name: string;
 };
 
-export default function Polyhedron({ color, ...props }: PolyHedronProps) {
+export default function Polyhedron(props: PolyHedronProps) {
   useFrame((_, delta) => {
     if (ref.current && ref.current.rotation) {
       ref.current.rotation.x += 0.2 * delta;
@@ -44,7 +43,7 @@ export default function Polyhedron({ color, ...props }: PolyHedronProps) {
     },
   });
 
-  const ref = useRef<ThreeElements['mesh']>();
+  const ref = useRef<THREE.Mesh>(null);
 
   return (
     <mesh {...props} ref={ref}>
