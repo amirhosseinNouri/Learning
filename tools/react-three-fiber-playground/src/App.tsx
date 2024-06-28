@@ -23,7 +23,7 @@ function App() {
       <OrbitControls />
       <Stats />
       <axesHelper args={[5]} />
-      <gridHelper args={[20, 20, 0xff0000, 'teal']} />
+      <gridHelper />
     </Canvas>
   );
 }
