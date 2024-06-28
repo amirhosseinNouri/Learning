@@ -2,7 +2,7 @@ import './App.css';
 import { Canvas } from '@react-three/fiber';
 import Polyhedron from './components/polyhedron';
 import * as THREE from 'three';
-import { Stats } from '@react-three/drei';
+import { Stats, OrbitControls } from '@react-three/drei';
 
 function App() {
   const polyhedron = [
@@ -20,6 +20,7 @@ function App() {
       <Polyhedron position={[0.75, -0.75, 0]} polyhedron={polyhedron} />
       <Polyhedron position={[-0.75, 0.75, 0]} polyhedron={polyhedron} />
       <Polyhedron position={[0.75, 0.75, 0]} polyhedron={polyhedron} />
+      <OrbitControls />
       <Stats />
     </Canvas>
   );
