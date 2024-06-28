@@ -11,44 +11,37 @@ const polyhedron = [
   new THREE.DodecahedronGeometry(0.785398),
 ];
 
-const options = {
-  x: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
-  y: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
-  z: { value: 0, min: 0, max: Math.PI * 2, step: 0.01 },
-  visible: true,
-  color: { value: 'lime' },
-};
-
 function App() {
-  const color = useControls({ value: 'black' });
-
-  const pA = useControls('Polyhedron A', options);
-  const pB = useControls('Polyhedron B', options);
-
   return (
     <Canvas
-      camera={{ position: [0, 0, 3] }}
+      camera={{ position: [-1, 4, 2.5] }}
       style={{ width: window.innerWidth, height: window.innerHeight }}
     >
-      <color attach="background" args={[color.value]} />
+      <directionalLight position={[1, 1, 1]} />
       <Polyhedron
+        name="meshBasicMaterial"
+        position={[-3, 1, 0]}
+        material={new THREE.MeshBasicMaterial()}
+      />
+      <Polyhedron
+        name="meshNormalMaterial"
         position={[-1, 1, 0]}
-        rotation={[pA.x, pA.y, pA.z]}
-        visible={pA.visible}
-        color={pA.color}
-        polyhedron={polyhedron}
+        material={new THREE.MeshNormalMaterial()}
+      /> 
+      <Polyhedron
+        name="meshPhongMaterial"
+        position={[1, 1, 0]}
+        material={new THREE.MeshPhongMaterial()}
       />
       <Polyhedron
-        position={[1, 1, 0]}
-        rotation={[pB.x, pB.y, pB.z]}
-        visible={pB.visible}
-        color={pB.color}
-        polyhedron={polyhedron}
+        name="meshStandardMaterial"
+        position={[3, 1, 0]}
+        material={new THREE.MeshStandardMaterial()}
       />
-      <OrbitControls />
-      <Stats />
+      <OrbitControls target-y={1} />
       <axesHelper args={[5]} />
       <gridHelper />
+      <Stats />
     </Canvas>
   );
 }
