@@ -1,5 +1,5 @@
 import './App.css';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import Polyhedron from './components/polyhedron';
 import * as THREE from 'three';
 import { Stats, OrbitControls } from '@react-three/drei';
@@ -7,6 +7,8 @@ import Lights from './components/lights';
 import Floor from './components/floor';
 
 function App() {
+  const texture = useLoader(THREE.TextureLoader, './img/grid.png');
+
   return (
     <Canvas
       camera={{ position: [4, 4, 1.5] }}
@@ -17,7 +19,7 @@ function App() {
       <Polyhedron
         name="meshBasicMaterial"
         position={[-3, 1, 0]}
-        material={new THREE.MeshBasicMaterial({ color: 'yellow' })}
+        material={new THREE.MeshBasicMaterial({ map: texture })}
       />
       <Polyhedron
         name="meshNormalMaterial"
@@ -28,7 +30,7 @@ function App() {
         name="meshPhongMaterial"
         position={[1, 1, 0]}
         material={
-          new THREE.MeshPhongMaterial({ color: 'lime', flatShading: true })
+          new THREE.MeshPhongMaterial({ map: texture, flatShading: true })
         }
       />
       <Polyhedron
@@ -36,7 +38,7 @@ function App() {
         position={[3, 1, 0]}
         material={
           new THREE.MeshStandardMaterial({
-            color: '0xff0033',
+            map: texture,
             flatShading: true,
           })
         }
