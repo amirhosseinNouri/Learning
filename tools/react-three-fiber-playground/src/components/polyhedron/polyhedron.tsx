@@ -1,34 +1,30 @@
 import { useRef, useState } from 'react';
-import { MeshProps, ThreeElements, useFrame } from '@react-three/fiber';
+import { MeshProps, ThreeElements } from '@react-three/fiber';
 import * as THREE from 'three';
 
 type PolyHedronProps = MeshProps & {
   polyhedron: THREE.BufferGeometry[];
+  color: string;
 };
 
-export default function Polyhedron({ position, polyhedron }: PolyHedronProps) {
+export default function Polyhedron({
+  polyhedron,
+  color,
+  ...props
+}: PolyHedronProps) {
   const ref = useRef<ThreeElements['mesh']>();
-  const [count, setCount] = useState(0);
-
-  console.log(polyhedron);
-
-  useFrame((_, delta) => {
-    if (ref.current && ref.current.rotation) {
-      ref.current.rotation.x += delta;
-      ref.current.rotation.y += 0.5 * delta;
-    }
-  });
+  const [count, setCount] = useState(2);
 
   return (
     <mesh
-      position={position}
+      {...props}
       ref={ref}
       onPointerDown={() => {
         setCount((count + 1) % 3);
       }}
       geometry={polyhedron[count]}
     >
-      <meshBasicMaterial color={'lime'} wireframe />
+      <meshBasicMaterial color={color} wireframe />
     </mesh>
   );
 }
