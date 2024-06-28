@@ -10,7 +10,9 @@ function App() {
       style={{ width: window.innerWidth, height: window.innerHeight }}
       shadows
     >
-      <Box position={[0, 0.5, 0]} />
+      <Box position={[-1.5, 0.5, 0]} />
+      <Box position={[0, 0.5, 0]} selected />
+      <Box position={[1.5, 0.5, 0]} />
       <OrbitControls />
       <axesHelper args={[5]} />
       <gridHelper />
