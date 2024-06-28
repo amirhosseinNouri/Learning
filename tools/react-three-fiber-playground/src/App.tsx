@@ -22,6 +22,7 @@ function App() {
       <Polyhedron position={[0.75, 0.75, 0]} polyhedron={polyhedron} />
       <OrbitControls />
       <Stats />
+      <axesHelper args={[5]} />
     </Canvas>
   );
 }
