@@ -21,7 +21,7 @@ const Rig = () => {
 function App() {
   return (
     <Canvas
-      camera={{ position: [0, 0, 8] }}
+      camera={{ position: [0, 0, 5] }}
       style={{ width: window.innerWidth, height: window.innerHeight }}
       shadows
     >
