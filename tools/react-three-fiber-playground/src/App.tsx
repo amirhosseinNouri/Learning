@@ -5,9 +5,10 @@ import * as THREE from 'three';
 import { Stats, OrbitControls } from '@react-three/drei';
 import Lights from './components/lights';
 import Floor from './components/floor';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function App() {
-  const texture = useLoader(THREE.TextureLoader, './img/grid.png');
+  const gltf = useLoader(GLTFLoader, './model/monkey.glb');
 
   return (
     <Canvas
@@ -16,29 +17,20 @@ function App() {
       shadows
     >
       <Lights />
-      <Polyhedron
-        name="meshBasicMaterial"
-        position={[-3, 1, 0]}
-        material={new THREE.MeshBasicMaterial({ map: texture })}
+
+      <directionalLight position={[3.3, 1.0, 4.4]} castShadow />
+      <primitive
+        object={gltf.scene}
+        position={[0, 1, 0]}
+        children-0-castShadow
       />
-      <Polyhedron
-        name="meshNormalMaterial"
-        position={[-1, 1, 0]}
-        material={new THREE.MeshNormalMaterial({ flatShading: true })}
-      />
-      <Polyhedron
-        name="meshPhongMaterial"
-        position={[1, 1, 0]}
-        material={
-          new THREE.MeshPhongMaterial({ map: texture, flatShading: true })
-        }
-      />
+
       <Polyhedron
         name="meshStandardMaterial"
         position={[3, 1, 0]}
         material={
           new THREE.MeshStandardMaterial({
-            map: texture,
+            color: 'chocolate',
             flatShading: true,
           })
         }
