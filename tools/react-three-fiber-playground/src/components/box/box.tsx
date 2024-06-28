@@ -1,4 +1,9 @@
-import { MeshProps, ThreeElements, useFrame } from '@react-three/fiber';
+import {
+  MeshProps,
+  ThreeElements,
+  ThreeEvent,
+  useFrame,
+} from '@react-three/fiber';
 import { useRef } from 'react';
 
 const Box = (props: MeshProps) => {
@@ -11,8 +16,12 @@ const Box = (props: MeshProps) => {
     }
   });
 
+  const handlerPointerDown = (e: ThreeEvent<PointerEvent>) => {
+    console.log(e);
+  };
+
   return (
-    <mesh {...props} ref={ref}>
+    <mesh {...props} ref={ref} onPointerDown={handlerPointerDown}>
       <boxGeometry />
       <meshBasicMaterial color="chocolate" wireframe />
     </mesh>
