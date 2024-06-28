@@ -1,40 +1,21 @@
-import * as THREE from 'three';
 import { useControls } from 'leva';
-import { useRef } from 'react';
 
 function Lights() {
-  const ambientRef = useRef<THREE.AmbientLight>(null);
-  const directionalRef = useRef<THREE.DirectionalLight>(null);
-  const pointRef = useRef<THREE.PointLight>(null);
-  const spotRef = useRef<THREE.SpotLight>(null);
-
-  useControls('Ambient Light', {
+  const ambientLightControl = useControls('Ambient Light', {
     visible: {
       value: false,
-      onChange: (v) => {
-        if (ambientRef.current) {
-          ambientRef.current.visible = v;
-        }
-      },
     },
-    color: {
-      value: 'white',
-      onChange: (v) => {
-        if (ambientRef.current) {
-          ambientRef.current.color = new THREE.Color(v);
-        }
-      },
+    intensity: {
+      value: 1.0,
+      min: 0,
+      max: 1,
+      step: 0.1,
     },
   });
 
-  useControls('Directional Light', {
+  const directionalLightControl = useControls('Directional Light', {
     visible: {
       value: true,
-      onChange: (v) => {
-        if (directionalRef.current) {
-          directionalRef.current.visible = v;
-        }
-      },
     },
     position: {
       value: {
@@ -42,30 +23,13 @@ function Lights() {
         y: 0,
         z: 0,
       },
-      onChange: (v) => {
-        if (directionalRef.current) {
-          directionalRef.current.position.copy(v);
-        }
-      },
     },
-    color: {
-      value: 'white',
-      onChange: (v) => {
-        if (directionalRef.current) {
-          directionalRef.current.color = new THREE.Color(v);
-        }
-      },
-    },
+    castShadow: true,
   });
 
-  useControls('Point Light', {
+  const pointLightControl = useControls('Point Light', {
     visible: {
       value: false,
-      onChange: (v) => {
-        if (pointRef.current) {
-          pointRef.current.visible = v;
-        }
-      },
     },
     position: {
       value: {
@@ -73,30 +37,13 @@ function Lights() {
         y: 0,
         z: 0,
       },
-      onChange: (v) => {
-        if (pointRef.current) {
-          pointRef.current.position.copy(v);
-        }
-      },
     },
-    color: {
-      value: 'white',
-      onChange: (v) => {
-        if (pointRef.current) {
-          pointRef.current.color = new THREE.Color(v);
-        }
-      },
-    },
+    castShadow: true,
   });
 
-  useControls('Spot Light', {
+  const spotLightControl = useControls('Spot Light', {
     visible: {
       value: false,
-      onChange: (v) => {
-        if (spotRef.current) {
-          spotRef.current.visible = v;
-        }
-      },
     },
     position: {
       value: {
@@ -104,28 +51,44 @@ function Lights() {
         y: 0,
         z: 0,
       },
-      onChange: (v) => {
-        if (spotRef.current) {
-          spotRef.current.position.copy(v);
-        }
-      },
     },
-    color: {
-      value: 'white',
-      onChange: (v) => {
-        if (spotRef.current) {
-          spotRef.current.color = new THREE.Color(v);
-        }
-      },
-    },
+    castShadow: false,
   });
 
   return (
     <>
-      <ambientLight ref={ambientRef} />
-      <directionalLight ref={directionalRef} />
-      <pointLight ref={pointRef} />
-      <spotLight ref={spotRef} />
+      <ambientLight
+        visible={ambientLightControl.visible}
+        intensity={ambientLightControl.intensity}
+      />
+      <directionalLight
+        visible={directionalLightControl.visible}
+        position={[
+          directionalLightControl.position.x,
+          directionalLightControl.position.y,
+          directionalLightControl.position.z,
+        ]}
+        castShadow={directionalLightControl.castShadow}
+        intensity={1}
+      />
+      <pointLight
+        visible={pointLightControl.visible}
+        position={[
+          pointLightControl.position.x,
+          pointLightControl.position.y,
+          pointLightControl.position.z,
+        ]}
+        castShadow={pointLightControl.castShadow}
+      />
+      <spotLight
+        visible={spotLightControl.visible}
+        position={[
+          spotLightControl.position.x,
+          spotLightControl.position.y,
+          spotLightControl.position.z,
+        ]}
+        castShadow={spotLightControl.castShadow}
+      />
     </>
   );
 }

@@ -4,12 +4,14 @@ import Polyhedron from './components/polyhedron';
 import * as THREE from 'three';
 import { Stats, OrbitControls } from '@react-three/drei';
 import Lights from './components/lights';
+import Floor from './components/floor';
 
 function App() {
   return (
     <Canvas
       camera={{ position: [4, 4, 1.5] }}
       style={{ width: window.innerWidth, height: window.innerHeight }}
+      shadows
     >
       <Lights />
       <Polyhedron
@@ -39,6 +41,7 @@ function App() {
           })
         }
       />
+      <Floor />
       <OrbitControls target={[2, 2, 0]} />
       <axesHelper args={[5]} />
       <gridHelper />
