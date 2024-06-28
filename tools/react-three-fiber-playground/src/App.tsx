@@ -1,10 +1,6 @@
 import './App.css';
 import { Canvas, useLoader } from '@react-three/fiber';
-import Polyhedron from './components/polyhedron';
-import * as THREE from 'three';
-import { Stats, OrbitControls } from '@react-three/drei';
-import Lights from './components/lights';
-import Floor from './components/floor';
+import { Stats, OrbitControls, Environment } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function App() {
@@ -12,31 +8,16 @@ function App() {
 
   return (
     <Canvas
-      camera={{ position: [4, 4, 1.5] }}
+      camera={{ position: [-0.5, 1, 2] }}
       style={{ width: window.innerWidth, height: window.innerHeight }}
       shadows
     >
-      <Lights />
+      <directionalLight position={[3.3, 1.0, 4.4]} intensity={4} />
+      <Environment preset="sunset" background blur={0.5} />
 
-      <directionalLight position={[3.3, 1.0, 4.4]} castShadow />
-      <primitive
-        object={gltf.scene}
-        position={[0, 1, 0]}
-        children-0-castShadow
-      />
+      <primitive object={gltf.scene} position={[0, 1, 0]} />
 
-      <Polyhedron
-        name="meshStandardMaterial"
-        position={[3, 1, 0]}
-        material={
-          new THREE.MeshStandardMaterial({
-            color: 'chocolate',
-            flatShading: true,
-          })
-        }
-      />
-      <Floor />
-      <OrbitControls target={[2, 2, 0]} />
+      <OrbitControls target={[2, 2, 0]} autoRotate />
       <axesHelper args={[5]} />
       <gridHelper />
       <Stats />
