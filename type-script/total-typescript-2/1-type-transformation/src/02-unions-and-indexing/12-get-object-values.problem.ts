@@ -1,15 +1,17 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const frontendToBackendEnumMap = {
-  singleModule: "SINGLE_MODULE",
-  multiModule: "MULTI_MODULE",
-  sharedModule: "SHARED_MODULE",
+  singleModule: 'SINGLE_MODULE',
+  multiModule: 'MULTI_MODULE',
+  sharedModule: 'SHARED_MODULE',
 } as const;
 
-type BackendModuleEnum = unknown;
+type ExtractObjectValues<T> = T[keyof T];
+
+type BackendModuleEnum = ExtractObjectValues<typeof frontendToBackendEnumMap>;
 
 type tests = [
   Expect<
-    Equal<BackendModuleEnum, "SINGLE_MODULE" | "MULTI_MODULE" | "SHARED_MODULE">
+    Equal<BackendModuleEnum, 'SINGLE_MODULE' | 'MULTI_MODULE' | 'SHARED_MODULE'>
   >,
 ];
