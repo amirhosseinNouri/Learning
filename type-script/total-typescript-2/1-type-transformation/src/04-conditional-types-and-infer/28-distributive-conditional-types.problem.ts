@@ -2,8 +2,9 @@ import { Equal, Expect } from "../helpers/type-utils";
 
 type Fruit = "apple" | "banana" | "orange";
 
-type AppleOrBanana = Fruit extends "apple" | "banana"
+
+type AppleOrBanana<T> = T extends "apple" | "banana"
   ? "apple" | "banana"
   : never;
 
-type tests = [Expect<Equal<AppleOrBanana, "apple" | "banana">>];
+type tests = [Expect<Equal<AppleOrBanana<Fruit>, "apple" | "banana">>];
