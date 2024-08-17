@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const makeQuery = (
   url: string,
@@ -11,7 +11,7 @@ const makeQuery = (
   },
 ) => {};
 
-type MakeQueryParameters = unknown;
+type MakeQueryParameters = Parameters<typeof makeQuery>;
 
 type tests = [
   Expect<
