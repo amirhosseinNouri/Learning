@@ -1,23 +1,31 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 type Fruit =
   | {
-      name: "apple";
-      color: "red";
+      name: 'apple';
+      color: 'red';
     }
   | {
-      name: "banana";
-      color: "yellow";
+      name: 'banana';
+      color: 'yellow';
     }
   | {
-      name: "orange";
-      color: "orange";
+      name: 'orange';
+      color: 'orange';
     };
 
-type TransformedFruit = unknown;
+type Names = Fruit['name'];
+
+type Colors = Fruit['color'];
+
+type P = Extract<Fruit, { name: 'apple' }>;
+
+type TransformedFruit = {
+  [F in Fruit as F['name']]: `${F['name']}:${F['color']}`;
+}[Fruit['name']];
 
 type tests = [
   Expect<
-    Equal<TransformedFruit, "apple:red" | "banana:yellow" | "orange:orange">
+    Equal<TransformedFruit, 'apple:red' | 'banana:yellow' | 'orange:orange'>
   >,
 ];
