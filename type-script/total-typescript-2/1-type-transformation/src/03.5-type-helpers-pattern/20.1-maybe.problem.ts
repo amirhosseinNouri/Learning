@@ -1,6 +1,7 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Nullable } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
-type Maybe = unknown;
+type Maybe<T> = Nullable<T>;
 
 type tests = [
   Expect<Equal<Maybe<string>, string | null | undefined>>,
