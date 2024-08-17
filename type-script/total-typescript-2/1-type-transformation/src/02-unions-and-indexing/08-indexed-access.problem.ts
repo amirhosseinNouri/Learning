@@ -1,18 +1,20 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 export const fakeDataDefaults = {
-  String: "Default string",
+  String: 'Default string',
   Int: 1,
   Float: 1.14,
   Boolean: true,
-  ID: "id",
+  ID: 'id',
 };
 
-export type StringType = unknown;
-export type IntType = unknown;
-export type FloatType = unknown;
-export type BooleanType = unknown;
-export type IDType = unknown;
+type FakeData = typeof fakeDataDefaults;
+
+export type StringType = FakeData['String'];
+export type IntType = FakeData['Int'];
+export type FloatType = FakeData['Float'];
+export type BooleanType = FakeData['Boolean'];
+export type IDType = FakeData['ID'];
 
 type tests = [
   Expect<Equal<StringType, string>>,
