@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
+import Squares from './Squares';
 import blue from './blue.png';
 import purp from './purp.png';
 import black from './black.png';
@@ -43,6 +44,7 @@ function App() {
       </Header>
       <Container>
         <h2>Super Cool</h2>
+        <Squares />
 
         <button onClick={() => setIsToggled(true)}>Show</button>
         <input
