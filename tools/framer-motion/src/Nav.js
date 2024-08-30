@@ -12,13 +12,23 @@ const variants = {
   },
 };
 
+const ulVariants = {
+  open: {
+    scale: 1.04,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.5,
+      staggerDirection: -1,
+      when: 'afterChildren',
+    },
+  },
+  close: { scale: 1 },
+};
+
 const listItemVariants = {
   open: {
     y: 0,
     opacity: 1,
-    transition: {
-      delay: 0.2,
-    },
   },
   close: { y: '-20px', opacity: 0 },
 };
@@ -35,13 +45,13 @@ const Nav = ({ onClose, open }) => {
       transition={{ damping: 300 }}
     >
       <button onClick={onClose}>Close</button>
-      <ul>
+      <motion.ul variants={ulVariants}>
         {links.map((link) => (
           <motion.li variants={listItemVariants} key={link}>
             <a href="#">{link}</a>
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </MenuNav>
   );
 };
