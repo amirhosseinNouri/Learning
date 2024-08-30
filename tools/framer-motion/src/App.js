@@ -9,10 +9,12 @@ import green from './green.png';
 import { motion } from 'framer-motion';
 import Modal from './modal';
 import Accordion from './Accordion';
+import Nav from './Nav';
 
 function App() {
   const [value, setValue] = useState(0);
   const [isToggled, setIsToggled] = useState(false);
+  const [navVisibility, setNavVisibility] = useState(false);
 
   return (
     <motion.div
@@ -23,7 +25,8 @@ function App() {
       }}
     >
       <Header>
-        <Menu />
+        <Menu onClick={() => setNavVisibility(true)} />
+        <Nav open={navVisibility} onClose={() => setNavVisibility(false)} />
         <h2>Header</h2>
       </Header>
       <Container>
