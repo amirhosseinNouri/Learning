@@ -6,11 +6,12 @@ import blue from './blue.png';
 import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Modal from './modal';
 
 function App() {
   const [value, setValue] = useState(0);
-  const [isToggled, setIsToggled] = useState(1);
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <motion.div
@@ -25,21 +26,9 @@ function App() {
         <h2>Header</h2>
       </Header>
       <Container>
-        <AnimatePresence>
-          {isToggled && (
-            <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ x: `${value * 10}px`, opacity: 1 }}
-              transition={{ duration: 3 }}
-              exit={{ opacity: 0 }}
-            >
-              Super Cool
-            </motion.h2>
-          )}
-        </AnimatePresence>
-        <button onClick={() => setIsToggled((prev) => (prev ? 0 : 1))}>
-          Toggle
-        </button>
+        <h2>Super Cool</h2>
+
+        <button onClick={() => setIsToggled(true)}>Show</button>
         <input
           type="range"
           min="-100"
@@ -47,6 +36,12 @@ function App() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
+        <Modal open={isToggled} onClose={() => setIsToggled(false)}>
+          <Card style={{ background: 'var(--purp)' }}>
+            <h3>Some card</h3>
+            <img src={purp} />
+          </Card>
+        </Modal>
         <CardGrid>
           <Card style={{ background: 'var(--purp)' }}>
             <h3>Some card</h3>
