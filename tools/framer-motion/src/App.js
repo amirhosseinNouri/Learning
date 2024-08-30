@@ -16,6 +16,7 @@ import {
 import Modal from './modal';
 import Accordion from './Accordion';
 import Nav from './Nav';
+import Slideshow from './Slideshow';
 
 function App() {
   const [value, setValue] = useState(0);
@@ -44,6 +45,7 @@ function App() {
       </Header>
       <Container>
         <h2>Super Cool</h2>
+        <Slideshow />
         <Squares />
 
         <button onClick={() => setIsToggled(true)}>Show</button>
