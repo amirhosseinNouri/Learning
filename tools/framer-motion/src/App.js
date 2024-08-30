@@ -6,7 +6,7 @@ import blue from './blue.png';
 import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Modal from './modal';
 import Accordion from './Accordion';
 import Nav from './Nav';
@@ -15,6 +15,12 @@ function App() {
   const [value, setValue] = useState(0);
   const [isToggled, setIsToggled] = useState(false);
   const [navVisibility, setNavVisibility] = useState(false);
+
+  const x = useMotionValue(0);
+
+  const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0]);
+
+  console.log({ x });
 
   return (
     <motion.div
@@ -69,7 +75,11 @@ function App() {
               left: 0,
               right: 0,
             }}
-            style={{ background: 'var(--blue)' }}
+            style={{
+              x,
+              opacity,
+              background: 'var(--blue)',
+            }}
           >
             <h3>Some card</h3>
             <img src={blue} />
