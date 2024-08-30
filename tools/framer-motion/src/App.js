@@ -51,14 +51,26 @@ function App() {
 
         <CardGrid>
           <Card
-            whileHover={{ scale: [1.02, 0.8, 1.2] }}
-            whileTap={{ background: 'var(--red)' }}
+            drag
+            dragConstraints={{
+              top: -100,
+              left: -100,
+              bottom: 100,
+              right: 100,
+            }}
             style={{ background: 'var(--purp)' }}
           >
             <h3>Some card</h3>
             <img src={purp} />
           </Card>
-          <Card style={{ background: 'var(--blue)' }}>
+          <Card
+            drag="x"
+            dragConstraints={{
+              left: 0,
+              right: 0,
+            }}
+            style={{ background: 'var(--blue)' }}
+          >
             <h3>Some card</h3>
             <img src={blue} />
           </Card>
