@@ -6,7 +6,7 @@ import blue from './blue.png';
 import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
   const [value, setValue] = useState(0);
@@ -17,7 +17,7 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{
-        duration: 3,
+        duration: 1,
       }}
     >
       <Header>
@@ -25,9 +25,18 @@ function App() {
         <h2>Header</h2>
       </Header>
       <Container>
-        <motion.h2 animate={{ x: `${value * 10}px`, opacity: isToggled }}>
-          Super Cool
-        </motion.h2>
+        <AnimatePresence>
+          {isToggled && (
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ x: `${value * 10}px`, opacity: 1 }}
+              transition={{ duration: 3 }}
+              exit={{ opacity: 0 }}
+            >
+              Super Cool
+            </motion.h2>
+          )}
+        </AnimatePresence>
         <button onClick={() => setIsToggled((prev) => (prev ? 0 : 1))}>
           Toggle
         </button>
