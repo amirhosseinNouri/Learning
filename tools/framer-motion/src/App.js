@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
@@ -9,20 +9,35 @@ import green from './green.png';
 import { motion } from 'framer-motion';
 
 function App() {
+  const [value, setValue] = useState(0);
+  const [isToggled, setIsToggled] = useState(1);
+
   return (
     <motion.div
-      initial={{ x: 200, y: 100, opacity: 0 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
         duration: 3,
       }}
     >
       <Header>
         <Menu />
-        <h1>Header</h1>
+        <h2>Header</h2>
       </Header>
       <Container>
-        <h2>Super Cool</h2>
+        <motion.h2 animate={{ x: `${value * 10}px`, opacity: isToggled }}>
+          Super Cool
+        </motion.h2>
+        <button onClick={() => setIsToggled((prev) => (prev ? 0 : 1))}>
+          Toggle
+        </button>
+        <input
+          type="range"
+          min="-100"
+          max="100"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
         <CardGrid>
           <Card style={{ background: 'var(--purp)' }}>
             <h3>Some card</h3>
