@@ -13,7 +13,7 @@ type Size = keyof typeof presetSizes;
  * a Size. But there's an issue (see below).
  */
 
-type LooseSize = Size | string;
+type LooseSize = Size | `${number}px`;
 
 export const Icon = (props: { size: LooseSize }) => {
   return (
