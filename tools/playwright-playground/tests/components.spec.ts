@@ -29,4 +29,23 @@ test.describe('Form layout page', () => {
     // Locator assertion
     await expect(emailField).toHaveValue('test@gmail.com');
   });
+
+  test('radio buttons', async ({ page }) => {
+    const usingTheGridCard = await page.locator('nb-card').filter({
+      hasText: 'Using the Grid',
+    });
+
+    const firstRadioOption = await usingTheGridCard.getByLabel('Option 1');
+    const secondRadioOption = await usingTheGridCard.getByLabel('Option 2');
+
+    await firstRadioOption.check({ force: true });
+
+    await expect(firstRadioOption.isChecked()).toBeTruthy();
+
+    await secondRadioOption.check({ force: true });
+
+    expect(await firstRadioOption.isChecked()).toBe(false);
+    expect(await secondRadioOption.isChecked()).toBe(true);
+    await expect(firstRadioOption).not.toBeChecked();
+  });
 });
