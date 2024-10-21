@@ -25,3 +25,17 @@ test('alternative syntax', async ({ page }) => {
   const text = await successButton.allTextContents();
   expect(text).toContain('Data loaded with AJAX get request.');
 });
+
+test('timeouts', async ({ page }) => {
+  const successButton = await page.locator('.bg-success');
+
+  //   wait for element
+  //   await page.waitForSelector('.bg-success');
+
+  //   wait for API response
+  await page.waitForResponse('http://uitestingplayground.com/ajaxdata', {
+    timeout: 1000,
+  });
+  const text = await successButton.allTextContents();
+  expect(text).toContain('Data loaded with AJAX get request.');
+});
