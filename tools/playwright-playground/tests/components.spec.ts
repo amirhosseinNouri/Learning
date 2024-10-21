@@ -20,7 +20,7 @@ test.describe('Form layout page', () => {
 
     await emailField.fill('test@gmail.com');
     await emailField.clear();
-    await emailField.pressSequentially('test@gmail.com', { delay: 500 });
+    await emailField.pressSequentially('test@gmail.com', { delay: 200 });
 
     // Generic assertion
     const inputValue = await emailField.inputValue();
@@ -47,5 +47,36 @@ test.describe('Form layout page', () => {
     expect(await firstRadioOption.isChecked()).toBe(false);
     expect(await secondRadioOption.isChecked()).toBe(true);
     await expect(firstRadioOption).not.toBeChecked();
+  });
+});
+
+test.describe('Modal toaster', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Modal & Overlays').click();
+    await page.getByText('Toastr').click();
+  });
+
+  test('checkbox', async ({ page }) => {
+    const checkbox = await page.getByRole('checkbox', {
+      name: 'Hide on click',
+    });
+
+    await checkbox.check({ force: true });
+    await expect(checkbox).toBeChecked();
+
+    await checkbox.uncheck({ force: true });
+    await expect(checkbox).not.toBeChecked();
+
+    const allCheckboxes = await page.getByRole('checkbox');
+
+    for (const box of await allCheckboxes.all()) {
+      await box.check({ force: true });
+      await expect(box).toBeChecked();
+    }
+
+    for (const box of await allCheckboxes.all()) {
+      await box.uncheck({ force: true });
+      await expect(box).not.toBeChecked();
+    }
   });
 });
