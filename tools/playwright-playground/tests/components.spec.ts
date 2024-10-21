@@ -80,3 +80,31 @@ test.describe('Modal toaster', () => {
     }
   });
 });
+
+test('list and dropdowns', async ({ page }) => {
+  const dropdownMenu = await page.locator('ngx-header nb-select');
+  await dropdownMenu.click();
+
+  const options = await page.getByRole('list').locator('nb-option');
+  await expect(options).toHaveCount(4);
+  await expect(options).toHaveText(['Light', 'Dark', 'Cosmic', 'Corporate']);
+
+  await options.filter({ hasText: 'Cosmic' }).click();
+
+  const header = await page.locator('nb-layout-header');
+  await expect(header).toHaveCSS('background-color', 'rgb(50, 50, 89)');
+
+  const colors = {
+    Light: 'rgb(255, 255, 255)',
+    Dark: 'rgb(34, 43, 69)',
+    Cosmic: 'rgb(50, 50, 89)',
+    Corporate: 'rgb(255, 255, 255)',
+  };
+
+  for (const color in colors) {
+    await dropdownMenu.click();
+    const option = await options.filter({ hasText: color });
+    await option.click();
+    await expect(header).toHaveCSS('background-color', colors[color]);
+  }
+});
