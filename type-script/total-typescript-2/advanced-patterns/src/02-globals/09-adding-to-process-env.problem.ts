@@ -1,5 +1,5 @@
-import { expect, it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { expect, it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
 /**
  * Clues:
@@ -12,13 +12,21 @@ import { Equal, Expect } from "../helpers/type-utils";
  * MY_ENV_VAR property to the ProcessEnv interface
  */
 
-process.env.MY_ENV_VAR = "Hello, world!";
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      MY_ENV_VAR: string;
+    }
+  }
+}
 
-it("Should be declared as a string", () => {
-  expect(process.env.MY_ENV_VAR).toEqual("Hello, world!");
+process.env.MY_ENV_VAR = 'Hello, world!';
+
+it('Should be declared as a string', () => {
+  expect(process.env.MY_ENV_VAR).toEqual('Hello, world!');
 });
 
-it("Should NOT have undefined in the type", () => {
+it('Should NOT have undefined in the type', () => {
   const myVar = process.env.MY_ENV_VAR;
   type tests = [Expect<Equal<typeof myVar, string>>];
 });
