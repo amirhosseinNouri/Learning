@@ -3,7 +3,7 @@ import { Brand } from "../helpers/Brand";
 type Password = Brand<string, "Password">;
 type Email = Brand<string, "Email">;
 
-type UserObject = Brand<
+type UserObject =  Brand<
   {
     id: string;
     name: string;
