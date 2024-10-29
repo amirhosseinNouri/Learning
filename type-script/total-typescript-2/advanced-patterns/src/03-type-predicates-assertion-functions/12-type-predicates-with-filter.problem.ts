@@ -1,12 +1,15 @@
-import { expect, it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { expect, it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
-export const values = ["a", "b", undefined, "c", undefined];
+export const values = ['a', 'b', undefined, 'c', undefined];
 
-const filteredValues = values.filter((value) => Boolean(value));
+const   = (value: unknown): value is string =>
+  typeof value === 'string';
 
-it("Should filter out the undefined values", () => {
-  expect(filteredValues).toEqual(["a", "b", "c"]);
+const filteredValues = values.filter(onlyStrings);
+
+it('Should filter out the undefined values', () => {
+  expect(filteredValues).toEqual(['a', 'b', 'c']);
 });
 
 it('Should be of type "string[]"', () => {
