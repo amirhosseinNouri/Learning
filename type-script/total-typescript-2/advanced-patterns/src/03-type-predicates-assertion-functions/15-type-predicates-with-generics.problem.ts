@@ -1,14 +1,14 @@
-import { isBodyElement, isDivElement } from "fake-external-lib";
-import { it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { isBodyElement, isDivElement } from 'fake-external-lib';
+import { it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
 /**
  * By changing the type definition of this interface,
  * you can fix all the errors below.
  */
 interface DOMNodeExtractorConfig<T, Result> {
-  isNode: (node: unknown) => boolean;
-  transform: (node: T) => Result;
+  isNode: (node: unknown) => node is T;
+  transform: (node: T, index: number) => Result;
 }
 
 const createDOMNodeExtractor = <T, TResult>(
@@ -28,7 +28,7 @@ it('Should pick up that "extractDivs" is of type "HTMLDivElement[]"', () => {
     },
   });
 
-  const divs = extractDivs([document.createElement("div")]);
+  const divs = extractDivs([document.createElement('div')]);
 
   type test2 = Expect<Equal<typeof divs, string[]>>;
 });
@@ -43,7 +43,7 @@ it('Should pick up that "extractBodies" is of type "HTMLBodyElement[]"', () => {
     },
   });
 
-  const bodies = extractBodies([document.createElement("body")]);
+  const bodies = extractBodies([document.createElement('body')]);
 
   type test2 = Expect<Equal<typeof bodies, string[]>>;
 });
