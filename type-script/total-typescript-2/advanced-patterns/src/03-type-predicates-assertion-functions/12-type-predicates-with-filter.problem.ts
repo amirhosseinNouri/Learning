@@ -3,7 +3,7 @@ import { Equal, Expect } from '../helpers/type-utils';
 
 export const values = ['a', 'b', undefined, 'c', undefined];
 
-const   = (value: unknown): value is string =>
+const onlyStrings = (value: unknown): value is string =>
   typeof value === 'string';
 
 const filteredValues = values.filter(onlyStrings);
