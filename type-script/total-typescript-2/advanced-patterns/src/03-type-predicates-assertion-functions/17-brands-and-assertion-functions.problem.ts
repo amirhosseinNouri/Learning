@@ -1,7 +1,7 @@
-import { it } from "vitest";
-import { Brand } from "../helpers/Brand";
+import { it } from 'vitest';
+import { Brand } from '../helpers/Brand';
 
-type Valid<T> = Brand<T, "Valid">;
+type Valid<T> = Brand<T, 'Valid'>;
 
 interface PasswordValues {
   password: string;
@@ -11,9 +11,11 @@ interface PasswordValues {
 /**
  * 💡 You'll need to change this function...
  */
-function assertIsValidPassword(values: PasswordValues) {
+function assertIsValidPassword(
+  values: PasswordValues,
+): asserts values is Valid<PasswordValues> {
   if (values.password !== values.confirmPassword) {
-    throw new Error("Password is invalid");
+    throw new Error('Password is invalid');
   }
 }
 
@@ -21,14 +23,14 @@ const createUserOnApi = (values: Valid<PasswordValues>) => {
   // Imagine this function creates the user on the API
 };
 
-it("Should fail if you do not validate the passwords before calling createUserOnApi", () => {
+it('Should fail if you do not validate the passwords before calling createUserOnApi', () => {
   const onSubmitHandler = (values: PasswordValues) => {
     // @ts-expect-error
     createUserOnApi(values);
   };
 });
 
-it("Should succeed if you DO validate the passwords before calling createUserOnApi", () => {
+it('Should succeed if you DO validate the passwords before calling createUserOnApi', () => {
   const onSubmitHandler = (values: PasswordValues) => {
     assertIsValidPassword(values);
     createUserOnApi(values);
