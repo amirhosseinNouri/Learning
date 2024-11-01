@@ -1,4 +1,4 @@
-import { expect, it } from "vitest";
+import { expect, it } from 'vitest';
 
 /**
  * In this problem, we need to type the return type of the set()
@@ -18,7 +18,10 @@ class TypeSafeStringMap<TMap extends Record<string, string> = {}> {
     return this.map[key];
   }
 
-  set<K extends string>(key: K, value: string): unknown {
+  set<K extends string>(
+    key: K,
+    value: string,
+  ): TypeSafeStringMap<TMap & Record<K, string>> {
     (this.map[key] as any) = value;
 
     return this;
@@ -26,19 +29,19 @@ class TypeSafeStringMap<TMap extends Record<string, string> = {}> {
 }
 
 const map = new TypeSafeStringMap()
-  .set("matt", "pocock")
-  .set("jools", "holland")
-  .set("brandi", "carlile");
+  .set('matt', 'pocock')
+  .set('jools', 'holland')
+  .set('brandi', 'carlile');
 
-it("Should not allow getting values which do not exist", () => {
+it('Should not allow getting values which do not exist', () => {
   map.get(
     // @ts-expect-error
-    "jim",
+    'jim',
   );
 });
 
-it("Should return values from keys which do exist", () => {
-  expect(map.get("matt")).toBe("pocock");
-  expect(map.get("jools")).toBe("holland");
-  expect(map.get("brandi")).toBe("carlile");
+it('Should return values from keys which do exist', () => {
+  expect(map.get('matt')).toBe('pocock');
+  expect(map.get('jools')).toBe('holland');
+  expect(map.get('brandi')).toBe('carlile');
 });
