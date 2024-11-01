@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 interface User {
   id: string;
@@ -12,9 +12,9 @@ export class SDK {
   }
 
   // How do we type this assertion function?
-  assertIsLoggedIn() {
+  assertIsLoggedIn(): asserts this is SDK & { loggedInUser: User } {
     if (!this.loggedInUser) {
-      throw new Error("Not logged in");
+      throw new Error('Not logged in');
     }
   }
 
