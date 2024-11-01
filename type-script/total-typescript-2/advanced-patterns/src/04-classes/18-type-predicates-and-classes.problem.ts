@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 class Form<TValues> {
   error?: string;
@@ -8,10 +8,10 @@ class Form<TValues> {
     private validate: (values: TValues) => string | void,
   ) {}
 
-  isInvalid() {
+  isInvalid(): this is Form<TValues> & { error: string } {
     const result = this.validate(this.values);
 
-    if (typeof result === "string") {
+    if (typeof result === 'string') {
       this.error = result;
       return true;
     }
@@ -23,16 +23,16 @@ class Form<TValues> {
 
 const form = new Form(
   {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   },
   (values) => {
     if (!values.username) {
-      return "Username is required";
+      return 'Username is required';
     }
 
     if (!values.password) {
-      return "Password is required";
+      return 'Password is required';
     }
   },
 );
