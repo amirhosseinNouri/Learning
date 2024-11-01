@@ -1,8 +1,8 @@
-import { expect, it } from "vitest";
-import { fetchUser } from "fake-external-lib";
+import { expect, it } from 'vitest';
+import { fetchUser } from 'fake-external-lib';
 
 type Middleware<TInput, TOutput> = (
-  input: TInput
+  input: TInput,
 ) => TOutput | Promise<TOutput>;
 
 /**
@@ -21,7 +21,9 @@ class DynamicMiddleware<TInput, TOutput> {
   }
 
   // Clue: you'll need to make changes here!
-  use(middleware: Middleware<TInput, TOutput>): unknown {
+  use<TUseOutput>(
+    middleware: Middleware<TOutput, TUseOutput>,
+  ): DynamicMiddleware<TInput, TUseOutput> {
     this.middleware.push(middleware);
 
     return this as any;
@@ -43,11 +45,11 @@ const middleware = new DynamicMiddleware((req: Request) => {
   return {
     ...req,
     // Transforms /user/123 to 123
-    userId: req.url.split("/")[2],
+    userId: req.url.split('/')[2],
   };
 })
   .use((req) => {
-    if (req.userId === "123") {
+    if (req.userId === '123') {
       throw new Error();
     }
     return req;
@@ -59,14 +61,14 @@ const middleware = new DynamicMiddleware((req: Request) => {
     };
   });
 
-it("Should fail if the user id is 123", () => {
-  expect(middleware.run({ url: "/user/123" } as Request)).rejects.toThrow();
+it('Should fail if the user id is 123', () => {
+  expect(middleware.run({ url: '/user/123' } as Request)).rejects.toThrow();
 });
 
-it("Should return a request with a user", async () => {
-  const result = await middleware.run({ url: "/user/matt" } as Request);
+it('Should return a request with a user', async () => {
+  const result = await middleware.run({ url: '/user/matt' } as Request);
 
-  expect(result.user.id).toBe("matt");
-  expect(result.user.firstName).toBe("John");
-  expect(result.user.lastName).toBe("Doe");
+  expect(result.user.id).toBe('matt');
+  expect(result.user.firstName).toBe('John');
+  expect(result.user.lastName).toBe('Doe');
 });
