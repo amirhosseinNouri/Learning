@@ -1,4 +1,4 @@
-import { expect, it } from "vitest";
+import { expect, it } from 'vitest';
 
 /**
  * I've made a small change to the solution of the previous problem
@@ -7,7 +7,7 @@ import { expect, it } from "vitest";
  * Clue: it's somewhere inside class TypeSafeStringMap, and it's
  * on the type level - not the runtime level.
  */
-class TypeSafeStringMap<TMap extends Record<string, string>> {
+class TypeSafeStringMap<TMap extends Record<string, string> = {}> {
   private map: TMap;
   constructor() {
     this.map = {} as TMap;
@@ -28,19 +28,19 @@ class TypeSafeStringMap<TMap extends Record<string, string>> {
 }
 
 const map = new TypeSafeStringMap()
-  .set("matt", "pocock")
-  .set("jools", "holland")
-  .set("brandi", "carlile");
+  .set('matt', 'pocock')
+  .set('jools', 'holland')
+  .set('brandi', 'carlile');
 
-it("Should not allow getting values which do not exist", () => {
+it('Should not allow getting values which do not exist', () => {
   map.get(
     // @ts-expect-error
-    "jim",
+    'jim',
   );
 });
 
-it("Should return values from keys which do exist", () => {
-  expect(map.get("matt")).toBe("pocock");
-  expect(map.get("jools")).toBe("holland");
-  expect(map.get("brandi")).toBe("carlile");
+it('Should return values from keys which do exist', () => {
+  expect(map.get('matt')).toBe('pocock');
+  expect(map.get('jools')).toBe('holland');
+  expect(map.get('brandi')).toBe('carlile');
 });
