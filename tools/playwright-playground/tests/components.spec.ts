@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:4200/');
@@ -173,4 +173,28 @@ test('tables', async ({ page }) => {
   await page.locator('.nb-checkmark').click();
 
   await expect(targetRowById.locator('td').nth(5)).toHaveText('test@gmail.com');
+
+  const ages = ['20', '30', '40', '200'];
+
+  for (const age of ages) {
+    const ageInput = await page.locator('input-filter').getByPlaceholder('Age');
+    await ageInput.clear();
+    await ageInput.fill(age);
+
+    await page.waitForTimeout(1000);
+
+    const rows = await page.locator('tbody tr').all();
+
+    for (let row of rows) {
+      const value = await row.locator('td').last().textContent();
+
+      if (Number(age) === 200) {
+        expect(await page.getByRole('table').textContent()).toContain(
+          'No data found',
+        );
+      } else {
+        await expect(value).toEqual(age);
+      }
+    }
+  }
 });
