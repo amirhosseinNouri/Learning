@@ -26,6 +26,14 @@ test.beforeEach(async ({ page }) => {
     route.fulfill({ body: JSON.stringify(mockPosts) });
   });
 
+  await page.route('**/posts', async (route) => {
+    const response = await route.fetch();
+    const json = await response.json();
+    json[0].title = 'test 1';
+    json[0].body = 'test 1 body';
+    route.fulfill({ body: JSON.stringify(json) });
+  });
+
   await page.goto('https://jsonplaceholder.typicode.com/posts');
 });
 
@@ -34,3 +42,8 @@ test('shows posts page', async ({ page }) => {
 });
 
 test('mock posts api', async ({ page }) => {});
+
+test('modify posts API response', async ({ page }) => {
+  await expect(page.locator('pre')).toContainText('test 1');
+  await expect(page.locator('pre')).toContainText('test 1 body');
+});
