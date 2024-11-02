@@ -198,3 +198,26 @@ test('tables', async ({ page }) => {
     }
   }
 });
+
+test('datapicker', async ({ page }) => {
+  await page.getByText('Forms').click();
+  await page.getByText('Datepicker').click();
+
+  const datePicker = await page.getByPlaceholder('Form Picker');
+  await datePicker.click();
+
+  const date = new Date();
+  date.setDate(date.getDate() + 7);
+
+  const expectedDate = date.getDate().toString();
+  const expectedMonth = date.toLocaleString('en-US', { month: 'short' });
+  const expectedYear = date.getFullYear().toString();
+  await page
+    .locator('[class="day-cell ng-star-inserted"]')
+    .getByText(expectedDate, { exact: true })
+    .click();
+
+  await expect(datePicker).toHaveValue(
+    `${expectedMonth} ${expectedDate}, ${expectedYear}`,
+  );
+});
