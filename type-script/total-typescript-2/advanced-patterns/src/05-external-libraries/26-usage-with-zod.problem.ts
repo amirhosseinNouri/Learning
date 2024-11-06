@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { z } from 'zod';
 
 const makeZodSafeFunction = <TArg, TResult>(
-  schema: z.ZodObject<any, any, any, TArg>,
+  schema: z.ZodType<TArg>,
   func: (arg: TArg) => TResult,
 ) => {
   return (arg: TArg) => {
