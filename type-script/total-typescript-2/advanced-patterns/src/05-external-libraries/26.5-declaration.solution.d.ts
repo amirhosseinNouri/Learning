@@ -1,4 +1,4 @@
-declare module "fake-animation-lib-solution" {
+declare module "fake-animation-lib" {
   export type AnimatingState =
     | "before-animation"
     | "animating"
