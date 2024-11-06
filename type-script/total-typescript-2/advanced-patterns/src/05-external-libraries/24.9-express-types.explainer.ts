@@ -15,7 +15,7 @@ const getUser: RequestHandler<
 > = (req, res) => {
   req.query.id;
 };
-
+  
 app.get("/user");
 
 app.post("/user", (req, res) => {});

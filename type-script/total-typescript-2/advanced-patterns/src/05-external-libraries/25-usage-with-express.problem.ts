@@ -3,21 +3,25 @@ import express, {
   Request,
   RequestHandler,
   Response,
-} from "express";
-import { Equal, Expect } from "../helpers/type-utils";
+} from 'express';
+import { Equal, Expect } from '../helpers/type-utils';
 
 const app = express();
 
 const makeTypeSafeGet =
-  (
-    parser: (queryParams: Request["query"]) => unknown,
-    handler: RequestHandler
+  <TParsedQuery extends Request['query']>(
+    parser: (queryParams: Request['query']) => TParsedQuery,
+    handler: RequestHandler<any, any, any, TParsedQuery>,
   ) =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (
+    req: Request<any, any, any, TParsedQuery>,
+    res: Response,
+    next: NextFunction,
+  ) => {
     try {
       parser(req.query);
     } catch (e) {
-      res.status(400).send("Invalid query: " + (e as Error).message);
+      res.status(400).send('Invalid query: ' + (e as Error).message);
       return;
     }
 
@@ -26,8 +30,8 @@ const makeTypeSafeGet =
 
 const getUser = makeTypeSafeGet(
   (query) => {
-    if (typeof query.id !== "string") {
-      throw new Error("You must pass an id");
+    if (typeof query.id !== 'string') {
+      throw new Error('You must pass an id');
     }
 
     return {
@@ -37,13 +41,14 @@ const getUser = makeTypeSafeGet(
   (req, res) => {
     // req.query should be EXACTLY the type returned from
     // the parser above
+    req.query;
     type tests = [Expect<Equal<typeof req.query, { id: string }>>];
 
     res.json({
       id: req.query.id,
-      name: "Matt",
+      name: 'Matt',
     });
-  }
+  },
 );
 
-app.get("/user", getUser);
+app.get('/user', getUser);
