@@ -1,4 +1,5 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
+import { F } from 'ts-toolbelt';
 
 /**
  * This is an identity function. It takes a value and returns the same value.
@@ -14,15 +15,15 @@ import { Equal, Expect } from "../helpers/type-utils";
  *
  * So, we can use F.Narrow from ts-toolbelt instead.
  */
-export const asConst = <T>(t: T) => t;
+export const asConst = <T>(t: F.Narrow<T>) => t;
 
 const fruits = asConst([
   {
-    name: "apple",
+    name: 'apple',
     price: 1,
   },
   {
-    name: "banana",
+    name: 'banana',
     price: 2,
   },
 ]);
@@ -33,11 +34,11 @@ type tests = [
       typeof fruits,
       [
         {
-          name: "apple";
+          name: 'apple';
           price: 1;
         },
         {
-          name: "banana";
+          name: 'banana';
           price: 2;
         },
       ]
