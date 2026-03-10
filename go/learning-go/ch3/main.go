@@ -101,33 +101,63 @@ func main() {
 	// 	fmt.Println("100 is in the set")
 	// }
 
-	type person struct {
-		name string
-		age  int
-		pet  string
-	}
-
-	// fred := person{
-	// 	name: "fred",
-	// 	age:  22,
-	// 	pet:  "dooneh",
+	// type person struct {
+	// 	name string
+	// 	age  int
+	// 	pet  string
 	// }
 
-	fred := person{
-		"fred", 22, "dooneh",
-	}
+	// // fred := person{
+	// // 	name: "fred",
+	// // 	age:  22,
+	// // 	pet:  "dooneh",
+	// // }
 
-	fmt.Println(fred.pet)
+	// fred := person{
+	// 	"fred", 22, "dooneh",
+	// }
 
-	fmt.Println(fred)
+	// fmt.Println(fred.pet)
 
-	var car struct {
-		name  string
-		color string
-	}
+	// fmt.Println(fred)
 
-	car.name = "BMW"
-	car.color = "red"
+	// var car struct {
+	// 	name  string
+	// 	color string
+	// }
 
-	fmt.Println(car)
+	// car.name = "BMW"
+	// car.color = "red"
+
+	// fmt.Println(car)
+
+	// var x []int
+	// fmt.Println(len(x))
+
+	// var a []int
+	// b := append(a, 10)
+	// fmt.Println(a, b)
+
+	// x := make([]int, 0, 5)
+	// x = append(x, 1, 2, 3, 4)
+	// y := x[:2]
+	// z := x[2:]
+	// fmt.Printf("cap x=%d, cap y=%d, cap z=%d", cap(x), cap(y), cap(z))
+
+	// y = append(y, 30,40,50)
+	// x = append(x, 60)
+	// z = append(z, 70)
+
+	// fmt.Println()
+	// fmt.Println("x: ",x)
+	// fmt.Println("y: ",y)
+	// fmt.Println("z: ",z)
+
+	s := "Hello ✅"
+	var bs []byte = []byte(s)
+	var br []rune = []rune(s)
+
+	fmt.Println(bs)
+	fmt.Println(br)
+
 }
