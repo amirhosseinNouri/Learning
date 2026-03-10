@@ -153,11 +153,32 @@ func main() {
 	// fmt.Println("y: ",y)
 	// fmt.Println("z: ",z)
 
+	fmt.Println()
+	fmt.Println("------- Strings & runes -------")
 	s := "Hello ✅"
 	var bs []byte = []byte(s)
 	var br []rune = []rune(s)
 
 	fmt.Println(bs)
 	fmt.Println(br)
+
+	fmt.Println()
+	fmt.Println("------- Maps -------")
+
+	var nilMap map[string]int
+
+	fmt.Println(bs)
+	fmt.Println(len(nilMap))
+
+	nonEmptyMap := map[string]int{
+		"A": 10,
+		"B": 20,
+	}
+
+	fmt.Println(nonEmptyMap)
+
+	mapWithSize := make(map[string]int, 5)
+	fmt.Println(mapWithSize)
+	fmt.Println(len(mapWithSize))
 
 }
