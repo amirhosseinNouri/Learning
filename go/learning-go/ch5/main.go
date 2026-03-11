@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 	fmt.Println()
@@ -13,6 +16,14 @@ func main() {
 	fmt.Println(addTo(1, a...))
 	fmt.Println(addTo(1, []int{1, 2}...))
 
+	fmt.Println("------- Named return values -------")
+	res, rem, err := divAndReminder(10, 2)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(res, rem)
+
 }
 
 func addTo(base int, vals ...int) []int {
@@ -23,4 +34,16 @@ func addTo(base int, vals ...int) []int {
 	}
 
 	return result
+}
+
+func divAndReminder(a int, b int) (result int, reminder int, err error) {
+	// They act as pre-declared variables
+	if b == 0 {
+		err = errors.New("cannot divide by zero")
+		return result, reminder, err
+	}
+
+	result = a / b
+	reminder = a % b
+	return result, reminder, nil
 }
