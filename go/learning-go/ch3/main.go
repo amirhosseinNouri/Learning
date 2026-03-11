@@ -181,4 +181,40 @@ func main() {
 	fmt.Println(mapWithSize)
 	fmt.Println(len(mapWithSize))
 
+	fmt.Println()
+	fmt.Println("------- Maps -------")
+
+	type person struct {
+		name string
+		age  int
+	}
+
+	p1 := person{
+		name: "A",
+		age:  10,
+	}
+
+	p2 := person{
+		name: "A",
+		age:  10,
+	}
+
+	p3 := person{
+		name: "B",
+		age:  10,
+	}
+
+	fmt.Println(p1 == p2)
+	fmt.Println(p1 == p3)
+
+	p4 := struct {
+		name string
+		age  int
+	}{
+		name: "A",
+		age:  10,
+	}
+
+	p1 = p4
+
 }
