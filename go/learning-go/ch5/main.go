@@ -30,6 +30,19 @@ func main() {
 	fmt.Println("------- Functions are values -------")
 	calculator()
 
+	fmt.Println()
+	fmt.Println("------- Anonymous Functions -------")
+	anonymousFunc()
+
+}
+
+func anonymousFunc() {
+	for i := 0; i < 5; i++ {
+
+		func(j int) {
+			fmt.Println("Printing J from inside of an anonymous func: ", j)
+		}(i)
+	}
 }
 
 type OpFunc func(a int, b int) int
