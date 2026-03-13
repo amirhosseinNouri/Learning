@@ -49,7 +49,51 @@ func main() {
 	fmt.Println()
 	fmt.Println("------- Defer -------")
 	cat()
+	fmt.Println()
+	catV2()
 
+}
+
+func getFile(name string) (*os.File, func(), error) {
+	f, err := os.Open(name)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return f, func() {
+		f.Close()
+	}, err
+}
+
+func catV2() {
+	if len(os.Args) < 2 {
+		log.Fatal("No file specified")
+	}
+
+	f, closer, err := getFile(os.Args[1])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer closer()
+
+	data := make([]byte, 2048)
+
+	for {
+		c, err := f.Read(data)
+		os.Stdout.Write(data[:c])
+
+		if err != nil {
+
+			if err != io.EOF {
+				log.Fatal(err)
+			}
+
+			break
+		}
+	}
 }
 
 func cat() {
