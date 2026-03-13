@@ -10,6 +10,11 @@ import (
 	"strconv"
 )
 
+type Person struct {
+	name string
+	age  int
+}
+
 func main() {
 	fmt.Println()
 	fmt.Println("------- Variadic parameter -------")
@@ -52,6 +57,40 @@ func main() {
 	fmt.Println()
 	catV2()
 
+	fmt.Println()
+	fmt.Println("------- Call by value -------")
+	callByValue()
+
+}
+
+func callByValue() {
+	nums := []int{1, 2, 3, 4}
+	fmt.Println(nums)
+	mutateSlice(nums)
+	fmt.Println(nums)
+
+	p := Person{
+		name: "A",
+		age:  10,
+	}
+
+	fmt.Println(p)
+	mutatePerson(p)
+	fmt.Println(p)
+
+}
+
+func mutatePerson(p Person) {
+	p.name = "B"
+}
+
+func mutateSlice(s []int) {
+
+	for i, v := range s {
+		s[i] = v * 2
+	}
+
+	s = append(s, 10)
 }
 
 func getFile(name string) (*os.File, func(), error) {
