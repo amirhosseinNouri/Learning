@@ -3,6 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io"
+	"log"
+	"os"
 	"sort"
 	"strconv"
 )
@@ -42,6 +45,41 @@ func main() {
 	fmt.Println()
 	fmt.Println("------- Returning functions from functions -------")
 	returningFuncFromFunc()
+
+	fmt.Println()
+	fmt.Println("------- Defer -------")
+	cat()
+
+}
+
+func cat() {
+	if len(os.Args) < 2 {
+		log.Fatal("No file specified")
+	}
+
+	f, err := os.Open(os.Args[1])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	data := make([]byte, 2048)
+
+	for {
+		count, err := f.Read(data)
+		os.Stdout.Write(data[:count])
+
+		if err != nil {
+
+			if err != io.EOF {
+				log.Fatal(err)
+			}
+			break
+
+		}
+
+	}
 
 }
 
