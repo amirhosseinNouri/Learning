@@ -34,6 +34,26 @@ func main() {
 	fmt.Println("------- Anonymous Functions -------")
 	anonymousFunc()
 
+	fmt.Println()
+	fmt.Println("------- Pass functions as parameters -------")
+	passFuncAsParameter()
+
+}
+
+func passFuncAsParameter() {
+	type person struct {
+		FirstName string
+		LastName  string
+		Age       int
+	}
+
+	people := []person{
+		{FirstName: "A", LastName: "B", Age: 20},
+		{FirstName: "D", LastName: "S", Age: 21},
+		{FirstName: "Z", LastName: "G", Age: 22},
+	}
+
+	fmt.Println(people)
 }
 
 func anonymousFunc() {
