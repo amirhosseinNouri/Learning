@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"sort"
 	"strconv"
 )
 
@@ -54,6 +55,19 @@ func passFuncAsParameter() {
 	}
 
 	fmt.Println(people)
+
+	sort.Slice(people, func(i int, j int) bool {
+		return people[i].LastName < people[j].LastName
+	})
+
+	fmt.Println(people)
+
+	sort.Slice(people, func(i int, j int) bool {
+		return people[i].Age < people[j].Age
+	})
+
+	fmt.Println(people)
+
 }
 
 func anonymousFunc() {
