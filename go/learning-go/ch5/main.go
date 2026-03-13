@@ -39,6 +39,21 @@ func main() {
 	fmt.Println("------- Pass functions as parameters -------")
 	passFuncAsParameter()
 
+	fmt.Println()
+	fmt.Println("------- Returning functions from functions -------")
+	returningFuncFromFunc()
+
+}
+
+func makeMult(base int) func(int) int {
+	return func(factor int) int {
+		return factor * base
+	}
+}
+
+func returningFuncFromFunc() {
+	mult2 := makeMult(2)
+	fmt.Println(mult2(10))
 }
 
 func passFuncAsParameter() {
