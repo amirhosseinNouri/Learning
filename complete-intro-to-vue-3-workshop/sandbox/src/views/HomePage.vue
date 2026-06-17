@@ -59,6 +59,7 @@ export default {
 
 <template>
   <h1>Home Page</h1>
+  <BasicCounter />
   <ComposableCounter />
   <ComposableCounter />
   <BaseButton> ✋🏿 Hi </BaseButton>
