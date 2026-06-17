@@ -1,28 +1,26 @@
-<script lang="ts">
+<script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-export default {
-  async setup() {
-    const title = ref('Users')
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    const users = await fetch('https://jsonplaceholder.typicode.com/users')
-    const usersData = await users.json()
+type User = {
+  id: string
+  name: string
+  email: string
+}
 
-    const titleAllCaps = computed(() => {
-      return title.value.toUpperCase()
-    })
+const title = ref('Users')
+const users = ref<User[]>([])
 
-    return {
-      users: usersData,
-      title,
-      titleAllCaps,
-    }
-  },
-  methods: {
-    changeTitle() {
-      this.title = 'Title Updated'
-    },
-  },
+await new Promise((resolve) => setTimeout(resolve, 1000))
+const response = await fetch('https://jsonplaceholder.typicode.com/users')
+const usersData = await response.json()
+users.value = usersData
+
+const titleAllCaps = computed(() => {
+  return title.value.toUpperCase()
+})
+
+const changeTitle = () => {
+  title.value = 'Title Updated'
 }
 </script>
 
