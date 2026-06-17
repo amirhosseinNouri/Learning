@@ -1,17 +1,12 @@
 <script lang="ts">
 export default {
-  data: () => ({
-    users: [],
-  }),
-  methods: {
-    async fetchUsers() {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users')
-      const users = await response.json()
-      this.users = users
-    },
-  },
-  created() {
-    this.fetchUsers()
+  async setup() {
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const users = await fetch('https://jsonplaceholder.typicode.com/users')
+    const usersData = await users.json()
+    return {
+      users: usersData,
+    }
   },
 }
 </script>

@@ -8,7 +8,7 @@ export default {
   },
   data: () => {
     return {
-      currentPage: 'Home',
+      currentPage: 'Users',
     }
   },
   methods: {
@@ -34,7 +34,12 @@ export default {
     <a @click.prevent="showUsersPage" href="/users">Users</a>
   </header>
 
-  <component :is="pageName" />
+  <Suspense>
+    <component :is="pageName" />
+    <template #fallback>
+      <h1>Loading...</h1>
+    </template>
+  </Suspense>
 </template>
 
 <style scoped></style>
