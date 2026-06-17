@@ -3,12 +3,16 @@ import Counter from './BasicCounter.vue'
 import NumberList from './NumberList.vue'
 import UserCard from './UserCard.vue'
 import BaseButton from './BaseButton.vue'
+import BasicCounter from './BasicCounter.vue'
+import ComposableCounter from './ComposableCounter.vue'
 export default {
   components: {
     Counter,
     NumberList,
     UserCard,
     BaseButton,
+    BasicCounter,
+    ComposableCounter,
   },
   data: () => ({
     numbers: [
@@ -63,6 +67,8 @@ export default {
 
 <template>
   <h1>Home Page</h1>
+  <ComposableCounter />
+  <ComposableCounter />
   <pre>{{ users }}</pre>
   <BaseButton> ✋🏿 Hi </BaseButton>
   <BaseButton></BaseButton>

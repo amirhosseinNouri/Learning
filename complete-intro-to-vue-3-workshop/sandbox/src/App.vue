@@ -8,7 +8,7 @@ export default {
   },
   data: () => {
     return {
-      currentPage: 'Users',
+      currentPage: 'Home',
     }
   },
   methods: {
