@@ -1,11 +1,7 @@
 <script lang="ts" setup>
+import type { User } from '@/types/user'
 import { computed, ref } from 'vue'
-
-type User = {
-  id: string
-  name: string
-  email: string
-}
+import UserInfo from './UserInfo.vue'
 
 const title = ref('Users')
 const users = ref<User[]>([])
@@ -30,7 +26,7 @@ const changeTitle = () => {
   <button @click="changeTitle">Change title</button>
   <ul>
     <li v-for="user in users" :key="user.id">
-      <p>{{ user.name }}: {{ user.email }}</p>
+      <UserInfo :name="user.name" :email="user.email" :id="user.id" />
     </li>
   </ul>
 </template>
