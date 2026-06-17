@@ -2,15 +2,10 @@
 import type { User } from '@/types/user'
 import { computed, ref, onMounted } from 'vue'
 import UserInfo from '@/components/UserInfo.vue'
+import { fetchAllUsers } from '@/lib/user'
 
 const title = ref('Users')
 const users = ref<User[]>([])
-
-const fetchUser = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users')
-  const usersData = await response.json()
-  users.value = usersData
-}
 
 const titleAllCaps = computed(() => {
   return title.value.toUpperCase()
@@ -20,8 +15,8 @@ const changeTitle = () => {
   title.value = 'Title Updated'
 }
 
-onMounted(() => {
-  fetchUser()
+onMounted(async () => {
+  users.value = await fetchAllUsers()
 })
 </script>
 
