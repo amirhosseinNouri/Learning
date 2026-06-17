@@ -1,10 +1,10 @@
 <script lang="ts">
-import Counter from './BasicCounter.vue'
-import NumberList from './NumberList.vue'
-import UserCard from './UserCard.vue'
-import BaseButton from './BaseButton.vue'
-import BasicCounter from './BasicCounter.vue'
-import ComposableCounter from './ComposableCounter.vue'
+import Counter from '@/components/ComposableCounter.vue'
+import NumberList from '@/components/NumberList.vue'
+import UserCard from '@/components/UserCard.vue'
+import BaseButton from '@/components/BaseButton.vue'
+import BasicCounter from '@/components/BasicCounter.vue'
+import ComposableCounter from '@/components/ComposableCounter.vue'
 export default {
   components: {
     Counter,
@@ -53,14 +53,6 @@ export default {
     handleChangeName() {
       this.user.name = 'Jane Doeeeeee'
     },
-    async fetchUsers() {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users')
-      const users = await response.json()
-      this.users = users
-    },
-  },
-  created() {
-    this.fetchUsers()
   },
 }
 </script>
@@ -69,7 +61,6 @@ export default {
   <h1>Home Page</h1>
   <ComposableCounter />
   <ComposableCounter />
-  <pre>{{ users }}</pre>
   <BaseButton> ✋🏿 Hi </BaseButton>
   <BaseButton></BaseButton>
   <UserCard :user="user" @change-name="handleChangeName" />

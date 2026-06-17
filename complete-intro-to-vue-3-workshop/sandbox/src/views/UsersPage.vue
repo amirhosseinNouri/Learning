@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import type { User } from '@/types/user'
-import { computed, ref } from 'vue'
-import UserInfo from './UserInfo.vue'
+import { computed, ref, onMounted } from 'vue'
+import UserInfo from '@/components/UserInfo.vue'
 
 const title = ref('Users')
 const users = ref<User[]>([])
 
-await new Promise((resolve) => setTimeout(resolve, 1000))
-const response = await fetch('https://jsonplaceholder.typicode.com/users')
-const usersData = await response.json()
-users.value = usersData
+const fetchUser = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users')
+  const usersData = await response.json()
+  users.value = usersData
+}
 
 const titleAllCaps = computed(() => {
   return title.value.toUpperCase()
@@ -18,6 +19,10 @@ const titleAllCaps = computed(() => {
 const changeTitle = () => {
   title.value = 'Title Updated'
 }
+
+onMounted(() => {
+  fetchUser()
+})
 </script>
 
 <template>
