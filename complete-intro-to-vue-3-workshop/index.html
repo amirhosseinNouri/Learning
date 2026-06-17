@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <body>
+    <div id="app">
+      
+      <div>
+        <label>Name</label>
+        <input type="text" v-model="newUser.name" />
+        <label>Age</label>
+        <input @keyup.enter="addUser" type="number" v-model="newUser.age" />
+        <button @click="addUser">Add User</button>
+      </div>
+      <ul>
+        <li v-for="user in users">
+          {{ user.name }} - {{ user.age }} years old
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    const { createApp } = Vue;
+
+    const app = createApp({
+      methods: {
+        addUser() {
+          this.users.push(this.newUser);
+          this.newUser = { name: '', age: 0 };
+        },
+      },
+      data() {
+        return {
+          newUser: {
+            name: '',
+            age: 0,
+          },
+          users: [
+            { name: 'John', age: 30 },
+            { name: 'Jane', age: 25 },
+            { name: 'Bob', age: 35 },
+          ],
+        };
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</html>

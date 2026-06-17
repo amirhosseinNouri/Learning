@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground — Complete Intro to Vue 3</title>
+  </head>
+  <body>
+    <h1>Hello Frontend Masters!</h1>
+    <div id="app">
+      <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
+      <p v-else>Odd: {{ message }}</p>
+      <ul v-for="(item, index) in listOfNumbers">
+        <li>
+          {{ item.id }}
+          <ul>
+            <li v-for="number in item.list">{{ number }} index: {{index}}</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h1>{{ displayTitle }}</h1>
+      <h2>{{ count }}</h2>
+      <h4>{{incrementAmount}}</h4>
+      <button @click="incrementCount">Increment</button>
+
+      By
+      <input type="number" v-model="incrementAmount" />
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+
+      const app = createApp({
+        data() {
+          return {
+            counterTitle: 'Counter Title',
+            count: 0,
+            incrementAmount: 8,
+            message: 'Hello it works',
+            listOfNumbers: [
+              {
+                name: 1,
+                id: '6a887cd2-f0bf-4321-b192-92016f82a883',
+                list: [1, 2, 3],
+              },
+              {
+                name: 2,
+                id: '8d14d90b-2d47-473e-8293-d5c324111d0d',
+                list: [1, 2, 3],
+              },
+              {
+                name: 3,
+                id: 'cd806d65-2309-4625-9104-dcd636cd79b5',
+                list: [1, 2, 3],
+              },
+              {
+                name: 4,
+                id: '00c939cd-fbf4-46d0-8e61-0bc2ce8a5332',
+                list: [1, 2, 3],
+              },
+              {
+                name: 5,
+                id: '295a8170-59c1-4462-9de1-3c9cd41cedab',
+                list: [1, 2, 3],
+              },
+            ],
+          };
+        },
+        computed: {
+          displayTitle() {
+            if (this.count > 10) {
+              return 'Long';
+            }
+            return 'Short';
+          },
+        },
+        methods: {
+          incrementCount() {
+            this.count += this.incrementAmount;
+          },
+        },
+        watch: {
+          count(newValue) {
+            if (newValue % 2 === 0) {
+              this.message = 'Even';
+            } else {
+              this.message = 'Odd';
+            }
+          },
+        },
+      });
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
