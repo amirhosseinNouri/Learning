@@ -42,16 +42,27 @@ export default {
       name: 'John Doe',
       email: 'john@example.com',
     },
+
+    users: [],
   }),
   methods: {
     handleChangeName() {
       this.user.name = 'Jane Doeeeeee'
     },
+    async fetchUsers() {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users')
+      const users = await response.json()
+      this.users = users
+    },
+  },
+  created() {
+    this.fetchUsers()
   },
 }
 </script>
 
 <template>
+  <pre>{{ users }}</pre>
   <BaseButton> ✋🏿 Hi </BaseButton>
   <BaseButton></BaseButton>
   <UserCard :user="user" @change-name="handleChangeName" />
