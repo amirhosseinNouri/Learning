@@ -2,11 +2,13 @@
 import Counter from './components/BasicCounter.vue'
 import NumberList from './components/NumberList.vue'
 import UserCard from './components/UserCard.vue'
+import BaseButton from './components/BaseButton.vue'
 export default {
   components: {
     Counter,
     NumberList,
     UserCard,
+    BaseButton,
   },
   data: () => ({
     numbers: [
@@ -50,6 +52,8 @@ export default {
 </script>
 
 <template>
+  <BaseButton> ✋🏿 Hi </BaseButton>
+  <BaseButton></BaseButton>
   <UserCard :user="user" @change-name="handleChangeName" />
   <Counter />
   <NumberList :numbers="numbers" />
